@@ -78,11 +78,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Wipe database
+    public void onWipe() throws SQLiteException {
+        // Drop older table if existed
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTRIES);
+
+        // Create tables again
+        onCreate(db);
+
+    }
+
     // Adding new entry
     public void addEntry(Entry entry) throws SQLiteException {
 
-        try {
-            SQLiteDatabase db = this.getWritableDatabase();
+
+        SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(INDEX, entry.getIndex());
@@ -103,14 +115,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Inserting Row
         db.insert(TABLE_ENTRIES, null, values);
         db.close(); // Closing database connection
-        }
-         catch (SQLiteException e) {
-            Toast.makeText( null, "left", Toast.LENGTH_SHORT).show();
-        }
     }
 
     // Getting single entry
-    Entry getEntry(int id) {
+    Entry getEntry(int id) throws SQLiteException {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_ENTRIES, new String[] { INDEX,

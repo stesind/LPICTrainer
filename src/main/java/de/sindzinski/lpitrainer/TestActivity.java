@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,25 +17,23 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.LinearLayout;
-import android.content.Context;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
-import de.sindzinski.lpitrainer.ActivitySwipeDetector;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 public class TestActivity extends Activity  {
 
@@ -221,9 +222,25 @@ public class TestActivity extends Activity  {
                 // show it
                 alertDialog.show();
                 return true;
-            case R.id.help:
-                //startActivity(new Intent(this, Help.class));
+            case R.id.menu_legalnotices:
+                String LicenseInfo = null;
+                AssetManager am = this.getAssets();
+                try {
+                    InputStream is = am.open("License");
+                    LicenseInfo = convertStreamToString(is);
+                }
+                catch (IOException e) {
+                    Log.e(TAG, "Error reading file: " + e);
+                }
+
+                AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(this);
+                LicenseDialog.setTitle("Legal Notices");
+                LicenseDialog.setMessage(LicenseInfo);
+                LicenseDialog.show();
                 return true;
+            /*case R.id.help:
+                //startActivity(new Intent(this, Help.class));
+                return true;*/
             case R.id.end:
                 //startActivity(new Intent(this, Help.class));
                 onEnd();
@@ -523,5 +540,17 @@ public class TestActivity extends Activity  {
             this.richtig5 = richtig5;
         }
     }
+    public static String convertStreamToString(InputStream is) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
 
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+
+        is.close();
+
+        return sb.toString();
+    }
 }

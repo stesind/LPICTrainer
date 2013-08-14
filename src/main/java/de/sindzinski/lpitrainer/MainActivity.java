@@ -20,6 +20,8 @@ import android.view.MenuItem;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -34,6 +36,8 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import android.util.Log;
 import android.content.Context;
+import java.io.FileReader;
+import android.content.res.AssetManager;
 
 //import org.openintents.intents.FileManagerIntents;
 
@@ -153,8 +157,8 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item )
-    {
+    public boolean onOptionsItemSelected( MenuItem item ) {
+
         switch (item.getItemId()) {
             case R.menu.main:
                 // Handle Settings
@@ -185,9 +189,25 @@ public class MainActivity extends Activity {
                 // show it
                 alertDialog.show();
                 return true;
-            case R.id.help:
-                //startActivity(new Intent(this, Help.class));
+            case R.id.menu_legalnotices:
+                String LicenseInfo = null;
+                AssetManager am = this.getAssets();
+                try {
+                    InputStream is = am.open("License");
+                    LicenseInfo = convertStreamToString(is);
+                }
+                catch (IOException e) {
+                    Log.e(TAG, "Error reading file: " + e);
+                }
+
+                AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(MainActivity.this);
+                LicenseDialog.setTitle("Legal Notices");
+                LicenseDialog.setMessage(LicenseInfo);
+                LicenseDialog.show();
                 return true;
+            /*case R.id.help:
+                //startActivity(new Intent(this, Help.class));
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -209,7 +229,9 @@ public class MainActivity extends Activity {
         //intent.putExtra("org.openintents.extra.TITLE", "Please select a file");
 
         // Set fancy title and button (optional)
-        intent.putExtra("org.openintents.extra.TITLE", "@sting/button_open_title");
+        //intent.putExtra("org.openintents.extra.TITLE", "@string/button_open_file");
+        intent.putExtra("org.openintents.extra.TITLE", getResources().getString(R.string.button_open_file));
+        
         //intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.open_button));
 
         try {
@@ -217,6 +239,7 @@ public class MainActivity extends Activity {
 
         } catch (ActivityNotFoundException e) {
             // No compatible file manager was found.
+            Log.e(TAG, "Error reading file: " + e);
             Toast.makeText(this, "@string/message_no_filemanager_installed",
                     Toast.LENGTH_SHORT).show();
         }
@@ -256,7 +279,8 @@ public class MainActivity extends Activity {
                         if (filePath != null) {
                             editText_file.setText(filePath);
                             try {
-                                entries = loadXmlFromFile();
+                                entries = loadXmlFromFile(filePath);
+
                                 safeToSQL(entries);
                                 seekBar_from.setMax(entries.size());
                                 seekBar_from.setProgress(0);
@@ -278,7 +302,7 @@ public class MainActivity extends Activity {
 
     //reads xml from file
     //
-    private ArrayList <Entry> loadXmlFromFile() throws XmlPullParserException, IOException {
+    private ArrayList <Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
         InputStream stream = null;
         // Instantiate the parser
         XmlParser parser = new XmlParser();
@@ -287,8 +311,8 @@ public class MainActivity extends Activity {
         String url = null;
         String summary = null;
 
-            EditText editText = (EditText) findViewById(R.id.editText_file);
-            String fileName = editText.getText().toString();
+            //EditText editText = (EditText) findViewById(R.id.editText_file);
+            //String fileName = editText.getText().toString();
 
             FileInputStream fis = null;
             BufferedInputStream bis = null;
@@ -324,6 +348,7 @@ public class MainActivity extends Activity {
         ListIterator it = entries.listIterator();
         try {
             DatabaseHandler db = new DatabaseHandler(this);
+            db.onWipe();
             while (it.hasNext()) {
                 Entry entry = (Entry) it.next();
                 db.addEntry(entry);
@@ -332,5 +357,17 @@ public class MainActivity extends Activity {
             Log.e(TAG, "Error reading database: " + e);
         }
     }
+    public static String convertStreamToString(InputStream is) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
 
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+
+        is.close();
+
+        return sb.toString();
+    }
 }

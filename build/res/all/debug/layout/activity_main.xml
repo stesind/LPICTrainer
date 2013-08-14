@@ -29,7 +29,9 @@
             android:layout_toLeftOf="@+id/button_file"
             android:layout_alignParentLeft="true"
             android:textAlignment="textEnd"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:singleLine="true"
+            />
 
     <SeekBar
             android:layout_width="wrap_content"
@@ -67,18 +69,36 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView_from"
+            android:minWidth="70dp"
             android:layout_alignTop="@+id/seekBar_from"
-            android:layout_alignRight="@+id/button_file"
-            android:minWidth="70dp"/>
+            android:layout_toLeftOf="@+id/button_file"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView_to"
+            android:minWidth="70dp"
             android:layout_alignTop="@+id/seekBar_to"
-            android:layout_alignRight="@+id/button_file"
-            android:minWidth="70dp"/>
+            android:layout_above="@+id/button_start"
+            android:layout_toLeftOf="@+id/imageView"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/ic_media_previous"
+            android:layout_alignTop="@+id/textView_from"
+            android:layout_toRightOf="@+id/editText_file"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/ic_media_next"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignTop="@+id/textView_to"
+            android:layout_toRightOf="@+id/button_start"/>
 
 </RelativeLayout>
 <!-- From: file:/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/layout/activity_main.xml -->

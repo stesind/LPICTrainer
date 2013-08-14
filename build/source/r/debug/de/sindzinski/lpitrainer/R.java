@@ -21,45 +21,48 @@ public final class R {
         public static final int ic_btn_search=0x7f020000;
         public static final int ic_go=0x7f020001;
         public static final int ic_launcher=0x7f020002;
-        public static final int ic_menu_archive=0x7f020003;
-        public static final int ic_menu_back=0x7f020004;
-        public static final int ic_menu_forward=0x7f020005;
-        public static final int ic_menu_help=0x7f020006;
-        public static final int ic_menu_manage=0x7f020007;
-        public static final int ic_menu_play_clip=0x7f020008;
-        public static final int ic_menu_refresh=0x7f020009;
-        public static final int ic_menu_search=0x7f02000a;
-        public static final int ic_menu_search_holo_dark=0x7f02000b;
-        public static final int ic_menu_search_holo_light=0x7f02000c;
-        public static final int ic_menu_share=0x7f02000d;
-        public static final int ic_menu_sort_alphabetically=0x7f02000e;
-        public static final int ic_menu_sort_by_size=0x7f02000f;
-        public static final int ic_search=0x7f020010;
+        public static final int ic_media_next=0x7f020003;
+        public static final int ic_media_previous=0x7f020004;
+        public static final int ic_menu_archive=0x7f020005;
+        public static final int ic_menu_back=0x7f020006;
+        public static final int ic_menu_forward=0x7f020007;
+        public static final int ic_menu_help=0x7f020008;
+        public static final int ic_menu_manage=0x7f020009;
+        public static final int ic_menu_play_clip=0x7f02000a;
+        public static final int ic_menu_refresh=0x7f02000b;
+        public static final int ic_menu_search=0x7f02000c;
+        public static final int ic_menu_search_holo_dark=0x7f02000d;
+        public static final int ic_menu_search_holo_light=0x7f02000e;
+        public static final int ic_menu_share=0x7f02000f;
+        public static final int ic_menu_sort_alphabetically=0x7f020010;
+        public static final int ic_menu_sort_by_size=0x7f020011;
+        public static final int ic_search=0x7f020012;
     }
     public static final class id {
-        public static final int about=0x7f080015;
-        public static final int action_settings=0x7f080014;
-        public static final int button_back=0x7f08000c;
-        public static final int button_check=0x7f080009;
+        public static final int about=0x7f080016;
+        public static final int button_back=0x7f08000e;
+        public static final int button_check=0x7f08000b;
         public static final int button_file=0x7f080000;
-        public static final int button_forwd=0x7f080013;
+        public static final int button_forwd=0x7f080015;
         public static final int button_start=0x7f080005;
-        public static final int checkBox_answer1=0x7f08000e;
-        public static final int checkBox_answer2=0x7f08000f;
-        public static final int checkBox_answer3=0x7f080010;
-        public static final int checkBox_answer4=0x7f080011;
-        public static final int checkBox_answer5=0x7f080012;
-        public static final int editText_answer=0x7f08000d;
+        public static final int checkBox_answer1=0x7f080010;
+        public static final int checkBox_answer2=0x7f080011;
+        public static final int checkBox_answer3=0x7f080012;
+        public static final int checkBox_answer4=0x7f080013;
+        public static final int checkBox_answer5=0x7f080014;
+        public static final int editText_answer=0x7f08000f;
         public static final int editText_file=0x7f080001;
-        public static final int end=0x7f080017;
-        public static final int help=0x7f080016;
-        public static final int linearLayout=0x7f08000a;
-        public static final int scrollView=0x7f080008;
+        public static final int end=0x7f080018;
+        public static final int imageView=0x7f080007;
+        public static final int imageView2=0x7f080008;
+        public static final int linearLayout=0x7f08000c;
+        public static final int menu_legalnotices=0x7f080017;
+        public static final int scrollView=0x7f08000a;
         public static final int seekBar_from=0x7f080002;
         public static final int seekBar_to=0x7f080004;
-        public static final int textView_current=0x7f080007;
+        public static final int textView_current=0x7f080009;
         public static final int textView_from=0x7f080003;
-        public static final int textView_question=0x7f08000b;
+        public static final int textView_question=0x7f08000d;
         public static final int textView_to=0x7f080006;
     }
     public static final class layout {
@@ -83,10 +86,12 @@ public final class R {
         public static final int menu_about=0x7f050007;
         public static final int menu_end=0x7f050008;
         public static final int menu_help=0x7f050009;
-        public static final int menu_settings=0x7f05000a;
-        public static final int message_no_filemanager_installed=0x7f05000b;
-        public static final int title_activity_main=0x7f05000c;
-        public static final int title_activity_test=0x7f05000d;
+        public static final int menu_legalnotices=0x7f05000a;
+        public static final int menu_settings=0x7f05000b;
+        public static final int message_no_filemanager_installed=0x7f05000c;
+        public static final int message_no_licence_file=0x7f05000d;
+        public static final int title_activity_main=0x7f05000e;
+        public static final int title_activity_test=0x7f05000f;
     }
     public static final class style {
         /**  From: file:/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values/styles.xml 
