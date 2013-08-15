@@ -44,7 +44,7 @@ public final class R {
         public static final int button_check=0x7f08000b;
         public static final int button_file=0x7f080000;
         public static final int button_forwd=0x7f080015;
-        public static final int button_start=0x7f080005;
+        public static final int button_start=0x7f080006;
         public static final int checkBox_answer1=0x7f080010;
         public static final int checkBox_answer2=0x7f080011;
         public static final int checkBox_answer3=0x7f080012;
@@ -53,8 +53,8 @@ public final class R {
         public static final int editText_answer=0x7f08000f;
         public static final int editText_file=0x7f080001;
         public static final int end=0x7f080018;
-        public static final int imageView=0x7f080007;
-        public static final int imageView2=0x7f080008;
+        public static final int imageView=0x7f080008;
+        public static final int imageView2=0x7f080007;
         public static final int linearLayout=0x7f08000c;
         public static final int menu_legalnotices=0x7f080017;
         public static final int scrollView=0x7f08000a;
@@ -63,7 +63,7 @@ public final class R {
         public static final int textView_current=0x7f080009;
         public static final int textView_from=0x7f080003;
         public static final int textView_question=0x7f08000d;
-        public static final int textView_to=0x7f080006;
+        public static final int textView_to=0x7f080005;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

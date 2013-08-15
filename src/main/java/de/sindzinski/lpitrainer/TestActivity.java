@@ -293,7 +293,7 @@ public class TestActivity extends Activity  {
             checked = false;
             loadAnswers();
             if (checked == true) {
-                setAnswer();
+                checkAnswer();
             }
         }
     }
@@ -314,7 +314,7 @@ public class TestActivity extends Activity  {
             checked = false;
             loadAnswers();
             if (checked == true) {
-                setAnswer();
+                checkAnswer();
             }
         }
     }
@@ -372,10 +372,10 @@ public class TestActivity extends Activity  {
     }
 
     public void onClickCheck(View view) {
-        setAnswer();
+        checkAnswer();
     }
-    //loads the answers from file
-    public void setAnswer() {
+    //loads the answers from file and marks if correct
+    public void checkAnswer() {
         if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
             if ((entry.richtig1 !=null) && entry.richtig1) {
                 if (checkBox_answer1.isChecked() == true) {
@@ -413,7 +413,14 @@ public class TestActivity extends Activity  {
                 };
             }
         } else {
-            editText_answer.setText(entry.antwort1);
+            if (editText_answer !=null) {
+                if (editText_answer.getText().toString().trim().equals(entry.antwort1.trim())) {
+                    editText_answer.setTextColor(Color.GREEN);
+                } else {
+                    editText_answer.setTextColor(Color.RED);
+                    editText_answer.setText(entry.antwort1);
+                };
+            }
         }
         answered = false;
         checked = true;

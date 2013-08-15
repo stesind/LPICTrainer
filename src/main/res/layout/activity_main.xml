@@ -31,7 +31,7 @@
             android:textAlignment="textEnd"
             android:maxLines="1"
             android:singleLine="true"
-            />
+            android:layout_alignTop="@+id/button_file"/>
 
     <SeekBar
             android:layout_width="wrap_content"
@@ -39,17 +39,18 @@
             android:id="@+id/seekBar_from"
             android:layout_below="@+id/editText_file"
             android:layout_marginTop="68dp"
-            android:layout_toLeftOf="@+id/textView_from"
-            android:layout_alignLeft="@+id/editText_file"/>
+            android:layout_alignLeft="@+id/editText_file"
+            android:layout_toLeftOf="@+id/textView_from"/>
 
     <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seekBar_to"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/seekBar_from"
             android:focusableInTouchMode="false"
-            android:layout_alignRight="@+id/seekBar_from"/>
+            android:layout_below="@+id/seekBar_from"
+            android:layout_alignLeft="@+id/seekBar_from"
+            android:layout_marginTop="36dp"
+            android:layout_toLeftOf="@+id/textView_to"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -61,8 +62,9 @@
             android:onClick="startTest"
             style="@android:style/Holo.ButtonBar"
             android:layout_below="@+id/seekBar_to"
-            android:layout_alignRight="@+id/textView_to"
-            android:contentDescription="@string/button_start_test"/>
+            android:contentDescription="@string/button_start_test"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_toRightOf="@+id/seekBar_to"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -71,7 +73,9 @@
             android:id="@+id/textView_from"
             android:minWidth="70dp"
             android:layout_alignTop="@+id/seekBar_from"
-            android:layout_toLeftOf="@+id/button_file"/>
+            android:layout_alignBottom="@+id/seekBar_from"
+            android:layout_toLeftOf="@+id/imageView"
+            android:layout_alignLeft="@+id/textView_to"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -89,6 +93,7 @@
             android:id="@+id/imageView"
             android:src="@drawable/ic_media_previous"
             android:layout_alignTop="@+id/textView_from"
+            android:layout_alignBottom="@+id/textView_from"
             android:layout_toRightOf="@+id/editText_file"/>
 
     <ImageView
@@ -96,8 +101,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
             android:src="@drawable/ic_media_next"
-            android:layout_alignRight="@+id/imageView"
             android:layout_alignTop="@+id/textView_to"
-            android:layout_toRightOf="@+id/button_start"/>
+            android:layout_alignRight="@+id/imageView"
+            android:layout_toRightOf="@+id/textView_to"/>
 
 </RelativeLayout>

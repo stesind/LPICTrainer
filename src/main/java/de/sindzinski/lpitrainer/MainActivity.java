@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+//import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -231,7 +232,7 @@ public class MainActivity extends Activity {
         // Set fancy title and button (optional)
         //intent.putExtra("org.openintents.extra.TITLE", "@string/button_open_file");
         intent.putExtra("org.openintents.extra.TITLE", getResources().getString(R.string.button_open_file));
-        
+
         //intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.open_button));
 
         try {
