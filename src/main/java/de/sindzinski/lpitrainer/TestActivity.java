@@ -274,6 +274,7 @@ public class TestActivity extends Activity  {
         checkBox_answer5.setVisibility(View.VISIBLE);
         editText_answer.setText("");
         editText_answer.setVisibility(View.INVISIBLE);
+        editText_answer.setHint("");
     }
 
     public void onClickBack(View view) {
@@ -291,8 +292,7 @@ public class TestActivity extends Activity  {
             current--;
             setQuestion(entry);
             checked = false;
-            loadAnswers();
-            if (checked == true) {
+            if (loadAnswers()) {
                 checkAnswer();
             }
         }
@@ -312,8 +312,7 @@ public class TestActivity extends Activity  {
             current++;
             setQuestion(entry);
             checked = false;
-            loadAnswers();
-            if (checked == true) {
+            if (loadAnswers()) {
                 checkAnswer();
             }
         }
@@ -331,7 +330,7 @@ public class TestActivity extends Activity  {
     }
 
     //loads prevously answers
-    public void loadAnswers() {
+    public boolean loadAnswers() {
         Answer answer = (Answer) answers.get(current);
         if (answer != null) {
                 if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
@@ -346,16 +345,24 @@ public class TestActivity extends Activity  {
                 }
                 answered = false;
                 checked = answer.checked;
-
-            }
+            // if stored answer found and loaded
+            return true;
+        } else {
+            //if no stored answer found
+            return false;
         }
+    }
 
+    //fills in the new question
     public void setQuestion(Entry entry) {
         clearView();
         textView_current.setText(Integer.toString(current)+"/"+Integer.toString(max));
 //       textView_current.setText(it.nextIndex()-1+"/"+entries.size());
+
         textView_question.setText(entry.text);
+
         if ((entry.type != null) && (entry.type.equals("auswahl"))) {
+
             checkBox_answer1.setText(entry.antwort1);
             checkBox_answer2.setText(entry.antwort2);
             checkBox_answer3.setText(entry.antwort3);
@@ -368,6 +375,8 @@ public class TestActivity extends Activity  {
             checkBox_answer4.setVisibility(View.INVISIBLE);
             checkBox_answer5.setVisibility(View.INVISIBLE);
             editText_answer.setVisibility(View.VISIBLE);
+
+
         }
     }
 
@@ -376,6 +385,7 @@ public class TestActivity extends Activity  {
     }
     //loads the answers from file and marks if correct
     public void checkAnswer() {
+        saveAnswers();
         if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
             if ((entry.richtig1 !=null) && entry.richtig1) {
                 if (checkBox_answer1.isChecked() == true) {
@@ -419,10 +429,11 @@ public class TestActivity extends Activity  {
                 } else {
                     editText_answer.setTextColor(Color.RED);
                     editText_answer.setText(entry.antwort1);
+                    //editText_answer.setHint(entry.antwort1);
                 };
             }
         }
-        answered = false;
+        //answered = false;
         checked = true;
 
     }
@@ -560,4 +571,6 @@ public class TestActivity extends Activity  {
 
         return sb.toString();
     }
+
+
 }

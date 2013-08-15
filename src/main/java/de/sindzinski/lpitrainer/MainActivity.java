@@ -39,6 +39,7 @@ import android.util.Log;
 import android.content.Context;
 import java.io.FileReader;
 import android.content.res.AssetManager;
+import android.preference.PreferenceFragment;
 
 //import org.openintents.intents.FileManagerIntents;
 
@@ -49,7 +50,7 @@ public class MainActivity extends Activity {
     public final static String EXTRA_TO = "de.sindzinski.lpitrainer.TO";
 
     protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
-    protected static final int REQUEST_CODE_GET_CONTENT = 2;
+    protected static final int REQUEST_CODE_PREFERENCES = 2;
 
     protected EditText editText_file;
     protected SeekBar seekBar_from;
@@ -161,8 +162,10 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected( MenuItem item ) {
 
         switch (item.getItemId()) {
-            case R.menu.main:
+            case R.id.action_settings:
                 // Handle Settings
+                Intent intentSetPref = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivityForResult(intentSetPref, REQUEST_CODE_PREFERENCES);
                 return true;
             case R.id.about:
                 //startActivity(new Intent(this, About.class));
@@ -297,6 +300,12 @@ public class MainActivity extends Activity {
                     }
                 }
                 break;
+            case REQUEST_CODE_PREFERENCES:
+                if (resultCode == RESULT_OK && data != null) {
+                    // obtain the preferences
+
+                }
+                break;
 
         }
     }
@@ -371,4 +380,6 @@ public class MainActivity extends Activity {
 
         return sb.toString();
     }
+
+
 }
