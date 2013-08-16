@@ -25,5 +25,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="dialog_close">Close</string>
+    <string name="about_dialog_title">About</string>
+    <string name="legalNotice_dialog_title">Legal Notice</string>
 
 </resources>

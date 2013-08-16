@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 //import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -35,11 +36,15 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.ListIterator;
+
 import android.util.Log;
 import android.content.Context;
+
 import java.io.FileReader;
+
 import android.content.res.AssetManager;
 import android.preference.PreferenceFragment;
+import android.app.DialogFragment;
 
 //import org.openintents.intents.FileManagerIntents;
 
@@ -57,14 +62,15 @@ public class MainActivity extends Activity {
     protected SeekBar seekBar_to;
     protected TextView textView_to;
     protected TextView textView_from;
-    private static final String TAG="LPITrainer";
+    private static final String TAG = "LPITrainer";
 
 
-    public ArrayList <Entry> entries = null;
+    public ArrayList<Entry> entries = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         editText_file = (EditText) findViewById(R.id.editText_file);
@@ -84,56 +90,56 @@ public class MainActivity extends Activity {
             System.err.println("Error reading file: " + e);
         }*/
 
-            seekBar_from = (SeekBar) findViewById(R.id.seekBar_from);
-            seekBar_to = (SeekBar) findViewById(R.id.seekBar_to);
-            seekBar_from.setMax(settings.getInt("max",0));
-            seekBar_from.setProgress(settings.getInt("from",0));
-            seekBar_to.setMax(settings.getInt("max",0));
-            seekBar_to.setProgress(settings.getInt("to",0));
-            textView_to.setText(String.valueOf(seekBar_to.getProgress()));
-            textView_from.setText(String.valueOf(seekBar_from.getProgress()));
+        seekBar_from = (SeekBar) findViewById(R.id.seekBar_from);
+        seekBar_to = (SeekBar) findViewById(R.id.seekBar_to);
+        seekBar_from.setMax(settings.getInt("max", 0));
+        seekBar_from.setProgress(settings.getInt("from", 0));
+        seekBar_to.setMax(settings.getInt("max", 0));
+        seekBar_to.setProgress(settings.getInt("to", 0));
+        textView_to.setText(String.valueOf(seekBar_to.getProgress()));
+        textView_from.setText(String.valueOf(seekBar_from.getProgress()));
 
-            seekBar_to.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+        seekBar_to.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                    // TODO Auto-generated method stub
-                }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                    // TODO Auto-generated method stub
-                }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
 
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                    // TODO Auto-generated method stub
-                    textView_to.setText(String.valueOf(progress));
-                }
-            });
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+                textView_to.setText(String.valueOf(progress));
+            }
+        });
 
-            seekBar_from.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+        seekBar_from.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                    // TODO Auto-generated method stub
-                }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                    // TODO Auto-generated method stub
-                }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
 
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                    // TODO Auto-generated method stub
-                    textView_from.setText(String.valueOf(progress));
-                }
-            });
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+                textView_from.setText(String.valueOf(progress));
+            }
+        });
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
 
         editText_file = (EditText) findViewById(R.id.editText_file);
@@ -159,55 +165,21 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item ) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // Handle Settings
-                Intent intentSetPref = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivityForResult(intentSetPref, REQUEST_CODE_PREFERENCES);
+                showSettingsActivity();
+                //showSettingsFragment();
                 return true;
             case R.id.about:
-                //startActivity(new Intent(this, About.class));
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        this);
-
-                // set title
-                alertDialogBuilder.setTitle("About");
-
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage(R.string.copyright)
-                        .setCancelable(false)
-                        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                dialog.dismiss();
-                            }
-                        });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
+                //showAboutDialog();
+                showAboutDialogFragment();
                 return true;
             case R.id.menu_legalnotices:
-                String LicenseInfo = null;
-                AssetManager am = this.getAssets();
-                try {
-                    InputStream is = am.open("License");
-                    LicenseInfo = convertStreamToString(is);
-                }
-                catch (IOException e) {
-                    Log.e(TAG, "Error reading file: " + e);
-                }
-
-                AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(MainActivity.this);
-                LicenseDialog.setTitle("Legal Notices");
-                LicenseDialog.setMessage(LicenseInfo);
-                LicenseDialog.show();
+                //showLegalNoticeDialog();
+                showLegalNoticeDialogFragment();
                 return true;
             /*case R.id.help:
                 //startActivity(new Intent(this, Help.class));
@@ -217,12 +189,78 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void showSettingsFragment() {
+        // Display the fragment as the main content.
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new SettingsFragment())
+                .commit();
+    }
+
+    public void showSettingsActivity() {
+        Intent intentSetPref = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivityForResult(intentSetPref, REQUEST_CODE_PREFERENCES);
+    }
+
+    public void showAboutDialogFragment() {
+        DialogFragment newFragment = new AboutDialogFragment();
+        newFragment.show(getFragmentManager(), "about");
+    }
+
+    public void showLegalNoticeDialogFragment() {
+        DialogFragment newFragment = new LegalNoticeDialogFragment();
+        newFragment.show(getFragmentManager(), "legalNotice");
+    }
+
+    //not used anymore
+    public void showLegalNoticeDialog() {
+        String licenseInfo = null;
+        AssetManager am = this.getAssets();
+        try {
+            InputStream is = am.open("License");
+            licenseInfo = convertStreamToString(is);
+        } catch (IOException e) {
+            Log.e(TAG, "Error reading file: " + e);
+        }
+        AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(MainActivity.this);
+        LicenseDialog.setTitle("Legal Notices");
+        LicenseDialog.setMessage(licenseInfo);
+        LicenseDialog.show();
+    }
+
+    //not used anymore
+    public void showAboutDialog() {
+        //startActivity(new Intent(this, About.class));
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        // set title
+        alertDialogBuilder.setTitle("About");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(R.string.copyright)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, close
+                        // current activity
+                        dialog.dismiss();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
     public void selectFile(View view) {
         String fileName = editText_file.getText().toString();
 
         Intent intent = new Intent("org.openintents.action.PICK_FILE");
 
-        if (!TextUtils.isEmpty(fileName)){
+        if (!TextUtils.isEmpty(fileName)) {
             // Construct URI from file name.
             File file = new File(fileName);
             intent.setData(Uri.fromFile(file));
@@ -249,7 +287,9 @@ public class MainActivity extends Activity {
         }
     }
 
-    /** Called when the user clicks the Send button */
+    /**
+     * Called when the user clicks the Send button
+     */
     public void startTest(View view) {
 
         // Do something in response to button
@@ -312,48 +352,47 @@ public class MainActivity extends Activity {
 
     //reads xml from file
     //
-    private ArrayList <Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
+    private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
         InputStream stream = null;
         // Instantiate the parser
         XmlParser parser = new XmlParser();
-        ArrayList <Entry> entries = null;
+        ArrayList<Entry> entries = null;
         String title = null;
         String url = null;
         String summary = null;
 
-            //EditText editText = (EditText) findViewById(R.id.editText_file);
-            //String fileName = editText.getText().toString();
+        //EditText editText = (EditText) findViewById(R.id.editText_file);
+        //String fileName = editText.getText().toString();
 
-            FileInputStream fis = null;
-            BufferedInputStream bis = null;
-            DataInputStream dis = null;
+        FileInputStream fis = null;
+        BufferedInputStream bis = null;
+        DataInputStream dis = null;
 
-            try {
-                fis = new FileInputStream(fileName);
-                bis = new BufferedInputStream(fis);
-                dis = new DataInputStream(bis);
+        try {
+            fis = new FileInputStream(fileName);
+            bis = new BufferedInputStream(fis);
+            dis = new DataInputStream(bis);
 
-                entries = parser.parse(dis);
-                return entries;
+            entries = parser.parse(dis);
+            return entries;
 
+        } finally {
+            if (fis != null) {
+                fis.close();
             }
-
-            finally {
-                    if (fis != null) {
-                        fis.close();
-                    }
-                    if (bis != null) {
-                        bis.close();
-                    }
-                    if (dis != null) {
-                        dis.close();
-                    }
+            if (bis != null) {
+                bis.close();
             }
+            if (dis != null) {
+                dis.close();
+            }
+        }
 
         //Toast.makeText(this, entries.size(),
         //Toast.LENGTH_SHORT).show();
     }
-    public void safeToSQL(ArrayList <Entry> entries) {
+
+    public void safeToSQL(ArrayList<Entry> entries) {
 
         ListIterator it = entries.listIterator();
         try {
@@ -367,6 +406,7 @@ public class MainActivity extends Activity {
             Log.e(TAG, "Error reading database: " + e);
         }
     }
+
     public static String convertStreamToString(InputStream is) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
