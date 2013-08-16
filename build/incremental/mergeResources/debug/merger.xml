@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res" >
+            <file
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values-v14/styles.xml"
+                qualifiers="v14" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo.Light.DarkActionBar" >
+
+                    <!-- API 14 theme customizations can go here. -->
+                </style>
+            </file>
+            <file
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values-v11/styles.xml"
+                qualifiers="v11" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo.Light" >
+
+                    <!-- API 11 theme customizations can go here. -->
+                </style>
+            </file>
+            <file
+                name="ic_menu_sort_by_size"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_sort_by_size.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_media_previous"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_media_previous.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_go"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_go.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_archive"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_archive.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_refresh"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_refresh.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_manage"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_manage.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_media_next"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_media_next.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_play_clip"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_play_clip.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_back"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_back.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_search_holo_dark"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_search_holo_dark.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_share"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_share.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_forward"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_forward.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_sort_alphabetically"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_menu_sort_alphabetically.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_btn_search"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-mdpi/ic_btn_search.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="ic_media_previous"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_media_previous.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_go"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_go.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_help"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_help.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_archive"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_archive.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_refresh"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_refresh.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_media_next"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_media_next.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_play_clip"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_play_clip.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_back"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_back.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_search"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_search.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_search"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_search.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_forward"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-hdpi/ic_menu_forward.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_media_previous"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_media_previous.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_go"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_go.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_help"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_help.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_archive"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_archive.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_refresh"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_refresh.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_manage"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_manage.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_media_next"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_media_next.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_play_clip"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_play_clip.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_back"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_back.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_search"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_search.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_search"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_search.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_search_holo_light"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_search_holo_light.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_menu_forward"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/drawable-xhdpi/ic_menu_forward.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values-sw720dp-land/dimens.xml"
+                qualifiers="sw720dp-land" >
+                <dimen name="activity_horizontal_margin" >128dp
+                </dimen>
+            </file>
+            <file
+                name="activity_settings"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/layout/activity_settings.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_main"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/layout/activity_main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_test"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/layout/activity_test.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="preferences"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/xml/preferences.xml"
+                qualifiers=""
+                type="xml" />
+            <file
+                name="test"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/menu/test.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="settings"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/menu/settings.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="main"
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/menu/main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values/strings.xml"
+                qualifiers="" >
+                <string name="title_activity_settings" >SettingsActivity
+                </string>
+                <string name="button_forward" >Forwd
+                </string>
+                <string name="message_no_filemanager_installed" >No file manager installed!
+                </string>
+                <string name="action_settings" >Settings
+                </string>
+                <string name="pref_test_title" >Test
+                </string>
+                <string name="title_activity_main" >LPI Trainer
+                </string>
+                <string name="title_activity_pref" >PrefActivity
+                </string>
+                <string name="pref_title_shuffle" >Shuffle
+                </string>
+                <string name="button_open_file" >Select a file
+                </string>
+                <string name="menu_end" >End
+                </string>
+                <string name="button_check" >Check
+                </string>
+                <string name="menu_legalnotices" >Legal Notices
+                </string>
+                <string name="title_activity_test" >Test
+                </string>
+                <string name="copyright" >Copyright by Steffen Sindzinski 2013, Licensed under GPL v.3
+                </string>
+                <string name="pref_appearance_title" >Appearance
+                </string>
+                <string name="button_start_test" >Start
+                </string>
+                <string name="pref_shuffle" >Shuffle
+                </string>
+                <string name="menu_about" >About
+                </string>
+                <string name="app_name" >LPI Trainer
+                </string>
+                <string name="menu_help" >Help
+                </string>
+                <string name="message_no_licence_file" >No license file found!
+                </string>
+                <string name="hello_world" >Hello world!
+                </string>
+                <string name="button_back" >Back
+                </string>
+                <string name="menu_settings" >Settings
+                </string>
+            </file>
+            <file
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values/styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Light" >
+
+                    <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+                    -->
+                </style>
+
+                <style
+                    name="AppTheme"
+                    parent="AppBaseTheme" >
+
+                    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+                </style>
+            </file>
+            <file
+                path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/main/res/values/dimens.xml"
+                qualifiers="" >
+                <dimen name="activity_horizontal_margin" >16dp
+                </dimen>
+                <dimen name="activity_vertical_margin" >16dp
+                </dimen>
+            </file>
+        </source>
+        <source path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/build/res/rs/debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/home/steffen/AndroidStudioProjects/LPITrainerProject/LPITrainer/src/debug/res" />
+    </dataSet>
+
+</merger>

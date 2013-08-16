@@ -51,6 +51,7 @@ public class TestActivity extends Activity  {
     protected CheckBox checkBox_answer4;
     protected CheckBox checkBox_answer5;
     protected EditText editText_answer;
+    protected TextView textView_solution;
     protected TextView textView_current;
     protected ScrollView scrollView;
     protected LinearLayout linearLayout;
@@ -429,7 +430,6 @@ public class TestActivity extends Activity  {
                 } else {
                     editText_answer.setTextColor(Color.RED);
                     editText_answer.setText(entry.antwort1);
-                    //editText_answer.setHint(entry.antwort1);
                 };
             }
         }
