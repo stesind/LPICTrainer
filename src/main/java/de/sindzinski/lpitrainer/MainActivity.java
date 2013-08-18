@@ -45,6 +45,8 @@ import java.io.FileReader;
 import android.content.res.AssetManager;
 import android.preference.PreferenceFragment;
 import android.app.DialogFragment;
+import android.app.Fragment;
+import 	android.app.FragmentTransaction;
 
 //import org.openintents.intents.FileManagerIntents;
 
@@ -291,6 +293,36 @@ public class MainActivity extends Activity {
      * Called when the user clicks the Send button
      */
     public void startTest(View view) {
+
+        // Do something in response to button
+        //startTestActivity();
+        startTestFragment();
+    }
+
+    public void startTestFragment() {
+
+        EditText editText = (EditText) findViewById(R.id.editText_file);
+        String fileName = editText.getText().toString();
+        // Create new fragment and transaction
+        TestFragment testFragment = new TestFragment();
+        testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
+        if (testFragment == null || ! testFragment.isInLayout()) {
+            testFragment = TestFragment.newInstance(seekBar_from.getProgress(), seekBar_to.getProgress(), fileName);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.frameLayout, testFragment);
+            //transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        } else {
+            //testFragment.update();
+        }
+    }
+
+    public void startTestActivity() {
 
         // Do something in response to button
         Intent intent = new Intent(this, TestActivity.class);
