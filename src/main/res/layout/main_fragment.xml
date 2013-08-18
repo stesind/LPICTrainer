@@ -108,10 +108,4 @@
             android:layout_alignRight="@+id/imageView"
             android:layout_toRightOf="@+id/textView_to"/>
 
-    <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/frameLayout">
-    </FrameLayout>
-
 </RelativeLayout>

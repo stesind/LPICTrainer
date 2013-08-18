@@ -5,25 +5,22 @@ package de.sindzinski.lpitrainer;
  */
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,23 +37,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
-
-import de.sindzinski.lpitrainer.AboutDialogFragment;
-import de.sindzinski.lpitrainer.DatabaseHandler;
-import de.sindzinski.lpitrainer.Entry;
-import de.sindzinski.lpitrainer.LegalNoticeDialogFragment;
-import de.sindzinski.lpitrainer.R;
-import de.sindzinski.lpitrainer.SettingsActivity;
-import de.sindzinski.lpitrainer.SettingsFragment;
-import de.sindzinski.lpitrainer.TestActivity;
-import de.sindzinski.lpitrainer.TestFragment;
-import de.sindzinski.lpitrainer.XmlParser;
-import android.app.Fragment;
-import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.View.OnClickListener;
-import android.view.LayoutInflater;
 
 public class MainFragment extends Fragment {
 
@@ -226,14 +206,6 @@ public class MainFragment extends Fragment {
 
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        super.onCreateOptionsMenu(menu, inflater);
-        getActivity().getMenuInflater().inflate(R.menu.main, menu);
-    }
-
-
     public void selectFile() {
         String fileName = editText_fileName.getText().toString();
 
@@ -264,38 +236,6 @@ public class MainFragment extends Fragment {
             Toast.makeText(getActivity(), "@string/message_no_filemanager_installed",
                     Toast.LENGTH_SHORT).show();
         }
-    }
-
-    /**
-     * Called when the user clicks the Send button
-     */
-    public void startTest(View view) {
-
-        // Do something in response to button
-        //startTestActivity();
-        startTestFragment();
-    }
-
-    public void startTestFragment() {
-
-        String fileName = editText_fileName.getText().toString();
-        // Create new fragment and transaction
-        TestFragment testFragment = new TestFragment();
-        //testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
-        //if (testFragment == null || ! testFragment.isInLayout()) {
-            testFragment = TestFragment.newInstance(seekBar_from.getProgress(), seekBar_to.getProgress(), editText_fileName.getText().toString());
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack
-            transaction.replace(R.id.frameLayout, testFragment);
-            transaction.addToBackStack(null);
-
-            // Commit the transaction
-            transaction.commit();
-        //} else {
-            //testFragment.update();
-        //}
     }
 
     /**
@@ -334,13 +274,6 @@ public class MainFragment extends Fragment {
                     }
                 }
                 break;
-            case REQUEST_CODE_PREFERENCES:
-                if (resultCode == getActivity().RESULT_OK && data != null) {
-                    // obtain the preferences
-
-                }
-                break;
-
         }
     }
 
