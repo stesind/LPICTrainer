@@ -43,52 +43,13 @@
                     android:layout_alignLeft="@+id/button_back"
                     />
 
-            <EditText
+
+            <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText_answer"
-                    android:layout_gravity="left|center_vertical"/>
-
-            <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New CheckBox"
-                    android:id="@+id/checkBox_answer1"
-                    android:layout_below="@+id/textView_question"/>
-
-
-            <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New CheckBox"
-                    android:id="@+id/checkBox_answer2"
-                    android:layout_below="@+id/checkBox_answer1"
-                    android:layout_alignLeft="@+id/checkBox_answer1"/>
-
-            <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New CheckBox"
-                    android:id="@+id/checkBox_answer3"
-                    android:layout_below="@+id/checkBox_answer2"
-                    android:layout_alignLeft="@+id/checkBox_answer2"
-                    />
-
-            <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New CheckBox"
-                    android:id="@+id/checkBox_answer4"
-                    android:layout_below="@+id/checkBox_answer3"
-                    android:layout_alignLeft="@+id/checkBox_answer3"/>
-
-            <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New CheckBox"
-                    android:id="@+id/checkBox_answer5"
-                    android:layout_below="@+id/checkBox_answer4"
-                    android:layout_alignLeft="@+id/checkBox_answer4"/>
+                    android:layout_height="fill_parent"
+                    android:id="@+id/linearLayoutContainer">
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

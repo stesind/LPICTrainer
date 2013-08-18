@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.FrameLayout;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -62,6 +63,13 @@ public class TestFragment extends Fragment {
     protected ImageButton buttonForward;
     protected ImageButton buttonBack;
     protected ImageButton buttonCheck;
+    protected LinearLayout linearLayoutContainer;
+    protected CheckBox checkBox1;
+    protected CheckBox checkBox2;
+    protected CheckBox checkBox3;
+    protected CheckBox checkBox4;
+    protected CheckBox checkBox5;
+    protected EditText editText1;
 
     public Integer current = 0;
     public String lastAction = null;
@@ -107,19 +115,15 @@ public class TestFragment extends Fragment {
 
         textView_current = (TextView) view.findViewById(R.id.textView_current);
         textView_question = (TextView) view.findViewById(R.id.textView_question);
-        checkBox_answer1 = (CheckBox) view.findViewById(R.id.checkBox_answer1);
-        checkBox_answer2 = (CheckBox) view.findViewById(R.id.checkBox_answer2);
-        checkBox_answer3 = (CheckBox) view.findViewById(R.id.checkBox_answer3);
-        checkBox_answer4 = (CheckBox) view.findViewById(R.id.checkBox_answer4);
-        checkBox_answer5 = (CheckBox) view.findViewById(R.id.checkBox_answer5);
-        editText_answer = (EditText) view.findViewById(R.id.editText_answer);
+
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
+        linearLayoutContainer = (LinearLayout) view.findViewById(R.id.linearLayoutContainer);
 
         buttonBack = (ImageButton) view.findViewById(R.id.button_back);
         buttonCheck = (ImageButton) view.findViewById(R.id.button_check);
         buttonForward = (ImageButton) view.findViewById(R.id.button_forward);
 
-        checkBox_answer1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        /*checkBox_answer1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
             {
@@ -178,7 +182,7 @@ public class TestFragment extends Fragment {
                 }
 
             }
-        });
+        });*/
 
         ActivitySwipeDetectorLR swipe = new ActivitySwipeDetectorLR(getActivity(),new SwipeInterfaceLR() {
             @Override
@@ -263,31 +267,45 @@ public class TestFragment extends Fragment {
         }
     }
 
+    public void addWidgets() {
+        if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
+            checkBox1 = new CheckBox(getActivity());
+            //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+            checkBox1.setText("test");
+            linearLayoutContainer.addView(checkBox1);
+            checkBox2 = new CheckBox(getActivity());
+            //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+            checkBox2.setText("test");
+            linearLayoutContainer.addView(checkBox2);
+            checkBox3 = new CheckBox(getActivity());
+            //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+            checkBox3.setText("test");
+            linearLayoutContainer.addView(checkBox3);
+            checkBox4 = new CheckBox(getActivity());
+            //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+            checkBox4.setText("test");
+            linearLayoutContainer.addView(checkBox4);
+            checkBox5 = new CheckBox(getActivity());
+            //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+            checkBox5.setText("test");
+            linearLayoutContainer.addView(checkBox5);
+
+        } else {
+            editText1 = new EditText(getActivity());
+            linearLayoutContainer.addView(editText1);
+            editText1.setText("");
+        }
+    }
+
+    public void addEditText() {
+        EditText editText1 = new EditText(getActivity());
+        //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+        editText1.setText("test");
+        linearLayoutContainer.addView(editText1);
+    }
+
     public void clearView() {
-        textView_question.setText("");
-        checkBox_answer1.setText("");
-        checkBox_answer2.setText("");
-        checkBox_answer3.setText("");
-        checkBox_answer4.setText("");
-        checkBox_answer5.setText("");
-        checkBox_answer1.setChecked(false);
-        checkBox_answer2.setChecked(false);
-        checkBox_answer3.setChecked(false);
-        checkBox_answer4.setChecked(false);
-        checkBox_answer5.setChecked(false);
-        checkBox_answer1.setTextColor(Color.BLACK);
-        checkBox_answer2.setTextColor(Color.BLACK);
-        checkBox_answer3.setTextColor(Color.BLACK);
-        checkBox_answer4.setTextColor(Color.BLACK);
-        checkBox_answer5.setTextColor(Color.BLACK);
-        checkBox_answer1.setVisibility(View.VISIBLE);
-        checkBox_answer2.setVisibility(View.VISIBLE);
-        checkBox_answer3.setVisibility(View.VISIBLE);
-        checkBox_answer4.setVisibility(View.VISIBLE);
-        checkBox_answer5.setVisibility(View.VISIBLE);
-        editText_answer.setText("");
-        editText_answer.setVisibility(View.INVISIBLE);
-        editText_answer.setHint("");
+        linearLayoutContainer.removeAllViews();
     }
 
     public void prevQuestion() {
@@ -300,8 +318,8 @@ public class TestFragment extends Fragment {
             lastAction = "previous";
             current--;
             setQuestion(entry);
-            checked = false;
-            if (loadAnswers()) {
+            loadAnswers();
+            if (checked) {
                 checkAnswer();
             }
         }
@@ -317,51 +335,49 @@ public class TestFragment extends Fragment {
             lastAction = "next";
             current++;
             setQuestion(entry);
-            checked = false;
-            if (loadAnswers()) {
+            loadAnswers();
+            if (checked) {
                 checkAnswer();
             }
         }
+
     }
 
     public void saveAnswers() {
-        if (answered | checked) {
             //save answers
-            answers.put(current, new Answer(current,checked, editText_answer.getText().toString(), checkBox_answer1.isChecked(), checkBox_answer2.isChecked(), checkBox_answer3.isChecked(), checkBox_answer4.isChecked(), checkBox_answer5.isChecked() ));
-
-            //answers.add(new Answer(current, editText_answer.getText().toString(), checkBox_answer1.isChecked(), checkBox_answer2.isChecked(), checkBox_answer3.isChecked(), checkBox_answer4.isChecked(), checkBox_answer5.isChecked() ));
-            answered = false;
-            checked = false;
+        if (linearLayoutContainer.getChildCount()>1) {
+            answers.put(current, new Answer(current,checked, "", checkBox1.isChecked(), checkBox2.isChecked(), checkBox3.isChecked(), checkBox4.isChecked(), checkBox5.isChecked()));
+        } else if (linearLayoutContainer.getChildCount()==1) {
+            answers.put(current, new Answer(current,checked, editText1.getText().toString(), false, false, false, false, false));
         }
+            //answers.add(new Answer(current, editText_answer.getText().toString(), checkBox_answer1.isChecked(), checkBox_answer2.isChecked(), checkBox_answer3.isChecked(), checkBox_answer4.isChecked(), checkBox_answer5.isChecked() ));
     }
 
     //loads prevously answers
-    public boolean loadAnswers() {
+    public void loadAnswers() {
+        checked = false;
         Answer answer = (Answer) answers.get(current);
         if (answer != null) {
             if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
-                checkBox_answer1.setChecked(answer.richtig1);
-                checkBox_answer2.setChecked(answer.richtig2);
-                checkBox_answer3.setChecked(answer.richtig3);
-                checkBox_answer4.setChecked(answer.richtig4);
-                checkBox_answer5.setChecked(answer.richtig5);
+                checkBox1.setChecked(answer.richtig1);
+                checkBox2.setChecked(answer.richtig2);
+                checkBox3.setChecked(answer.richtig3);
+                checkBox4.setChecked(answer.richtig4);
+                checkBox5.setChecked(answer.richtig5);
 
             } else {
-                editText_answer.setText(answer.antwort);
+                editText1.setText(answer.antwort);
             }
             answered = false;
             checked = answer.checked;
             // if stored answer found and loaded
-            return true;
-        } else {
-            //if no stored answer found
-            return false;
         }
     }
 
     //fills in the new question
     public void setQuestion(Entry entry) {
         clearView();
+        addWidgets();
         textView_current.setText(Integer.toString(current)+"/"+Integer.toString(max));
 //       textView_current.setText(it.nextIndex()-1+"/"+entries.size());
 
@@ -369,74 +385,66 @@ public class TestFragment extends Fragment {
 
         if ((entry.type != null) && (entry.type.equals("auswahl"))) {
 
-            checkBox_answer1.setText(entry.antwort1);
-            checkBox_answer2.setText(entry.antwort2);
-            checkBox_answer3.setText(entry.antwort3);
-            checkBox_answer4.setText(entry.antwort4);
-            checkBox_answer5.setText(entry.antwort5);
-        } else {
-            checkBox_answer1.setVisibility(View.INVISIBLE);
-            checkBox_answer2.setVisibility(View.INVISIBLE);
-            checkBox_answer3.setVisibility(View.INVISIBLE);
-            checkBox_answer4.setVisibility(View.INVISIBLE);
-            checkBox_answer5.setVisibility(View.INVISIBLE);
-            editText_answer.setVisibility(View.VISIBLE);
-
-
+            checkBox1.setText(entry.antwort1);
+            checkBox2.setText(entry.antwort2);
+            checkBox3.setText(entry.antwort3);
+            checkBox4.setText(entry.antwort4);
+            checkBox5.setText(entry.antwort5);
         }
     }
 
     //loads the answers from file and marks if correct
     public void checkAnswer() {
+        checked = true;
         saveAnswers();
         if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
             if ((entry.richtig1 !=null) && entry.richtig1) {
-                if (checkBox_answer1.isChecked() == true) {
-                    checkBox_answer1.setTextColor(Color.GREEN);
+                if (checkBox1.isChecked() == true) {
+                    checkBox1.setTextColor(Color.GREEN);
                 } else {
-                    checkBox_answer1.setTextColor(Color.RED);
+                    checkBox1.setTextColor(Color.RED);
                 };
             }
             if ((entry.richtig2 !=null) && entry.richtig2) {
-                if (checkBox_answer2.isChecked() == true) {
-                    checkBox_answer2.setTextColor(Color.GREEN);
+                if (checkBox2.isChecked() == true) {
+                    checkBox2.setTextColor(Color.GREEN);
                 } else {
-                    checkBox_answer2.setTextColor(Color.RED);
+                    checkBox2.setTextColor(Color.RED);
                 };
             }
             if ((entry.richtig3 !=null) && entry.richtig3) {
-                if (checkBox_answer3.isChecked() == true) {
-                    checkBox_answer3.setTextColor(Color.GREEN);
+                if (checkBox3.isChecked() == true) {
+                    checkBox3.setTextColor(Color.GREEN);
                 } else {
-                    checkBox_answer3.setTextColor(Color.RED);
+                    checkBox3.setTextColor(Color.RED);
                 };
             }
             if ((entry.richtig4 !=null) && entry.richtig4) {
-                if (checkBox_answer4.isChecked() == true) {
-                    checkBox_answer4.setTextColor(Color.GREEN);
+                if (checkBox4.isChecked() == true) {
+                    checkBox4.setTextColor(Color.GREEN);
                 } else {
-                    checkBox_answer4.setTextColor(Color.RED);
+                    checkBox4.setTextColor(Color.RED);
                 };
             }
             if ((entry.richtig5 !=null) && entry.richtig5) {
-                if (checkBox_answer5.isChecked() == true) {
-                    checkBox_answer5.setTextColor(Color.GREEN);
+                if (checkBox5.isChecked() == true) {
+                    checkBox5.setTextColor(Color.GREEN);
                 } else {
-                    checkBox_answer5.setTextColor(Color.RED);
+                    checkBox5.setTextColor(Color.RED);
                 };
             }
         } else {
             if (editText_answer !=null) {
-                if (editText_answer.getText().toString().trim().equals(entry.antwort1.trim())) {
-                    editText_answer.setTextColor(Color.GREEN);
+                if (editText1.getText().toString().trim().equals(entry.antwort1.trim())) {
+                    editText1.setTextColor(Color.GREEN);
                 } else {
-                    editText_answer.setTextColor(Color.RED);
-                    editText_answer.setText(entry.antwort1);
+                    editText1.setTextColor(Color.RED);
+                    editText1.setText(entry.antwort1);
                 };
             }
         }
         //answered = false;
-        checked = true;
+        //checked = true;
 
     }
 
