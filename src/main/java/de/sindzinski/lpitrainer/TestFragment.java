@@ -139,6 +139,13 @@ public class TestFragment extends Fragment {
         setHasOptionsMenu(true);
     }*/
 
+    //needed for adding items to the menu
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -289,56 +296,14 @@ public class TestFragment extends Fragment {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.test, menu);
+        //MenuItem end = menu.add("@string/menu_end");
+        //end.setIcon(R.drawable.ic_menu_refresh);
     }
 
     @Override
     public boolean onOptionsItemSelected( MenuItem item )
     {
         switch (item.getItemId()) {
-            case R.menu.main:
-                // Handle Settings
-                return true;
-            case R.id.about:
-                //startActivity(new Intent(this, About.class));
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-
-                // set title
-                alertDialogBuilder.setTitle("About");
-
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage(R.string.copyright)
-                        .setCancelable(false)
-                        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                dialog.dismiss();
-                            }
-                        });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-                return true;
-            case R.id.menu_legalnotices:
-                String LicenseInfo = null;
-                AssetManager am = getActivity().getAssets();
-                try {
-                    InputStream is = am.open("License");
-                    LicenseInfo = convertStreamToString(is);
-                }
-                catch (IOException e) {
-                    Log.e(TAG, "Error reading file: " + e);
-                }
-
-                AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(getActivity());
-                LicenseDialog.setTitle("Legal Notices");
-                LicenseDialog.setMessage(LicenseInfo);
-                LicenseDialog.show();
-                return true;
             /*case R.id.help:
                 //startActivity(new Intent(this, Help.class));
                 return true;*/
@@ -526,10 +491,6 @@ public class TestFragment extends Fragment {
         //answered = false;
         checked = true;
 
-    }
-
-    public void onButtonEnd(View view) {
-        onEnd();
     }
 
     public void onEnd() {
