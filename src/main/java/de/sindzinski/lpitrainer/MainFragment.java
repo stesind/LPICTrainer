@@ -1,56 +1,64 @@
 package de.sindzinski.lpitrainer;
 
+/**
+ * Created by steffen on 18.08.13.
+ */
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.MenuItem;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-//import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import android.util.Log;
-import android.content.Context;
-
-import java.io.FileReader;
-
-import android.content.res.AssetManager;
-import android.preference.PreferenceFragment;
-import android.app.DialogFragment;
+import de.sindzinski.lpitrainer.AboutDialogFragment;
+import de.sindzinski.lpitrainer.DatabaseHandler;
+import de.sindzinski.lpitrainer.Entry;
+import de.sindzinski.lpitrainer.LegalNoticeDialogFragment;
+import de.sindzinski.lpitrainer.R;
+import de.sindzinski.lpitrainer.SettingsActivity;
+import de.sindzinski.lpitrainer.SettingsFragment;
+import de.sindzinski.lpitrainer.TestActivity;
+import de.sindzinski.lpitrainer.TestFragment;
+import de.sindzinski.lpitrainer.XmlParser;
 import android.app.Fragment;
-import 	android.app.FragmentTransaction;
+import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.View.OnClickListener;
+import android.view.LayoutInflater;
 
-//import org.openintents.intents.FileManagerIntents;
-
-public class MainActivity extends Activity implements MainFragment.OnTestListener {
+public class MainFragment extends Fragment {
 
     public final static String EXTRA_FILENAME = "de.sindzinski.lpitrainer.FILENAME";
     public final static String EXTRA_FROM = "de.sindzinski.lpitrainer.FROM";
@@ -59,101 +67,170 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
     protected static final int REQUEST_CODE_PREFERENCES = 2;
 
-    protected EditText editText_file;
+    protected EditText editText_fileName;
     protected SeekBar seekBar_from;
     protected SeekBar seekBar_to;
     protected TextView textView_to;
     protected TextView textView_from;
-    private static final String TAG = "LPITrainer";
+    protected ImageButton button_file;
+    protected Button button_test;
 
+    private static final String TAG = "LPITrainer";
 
     public ArrayList<Entry> entries = null;
 
+    OnTestListener mListener;
+
+    // Container Activity must implement this interface to receive events from fragment
+    public interface OnTestListener {
+        public void onTest(int from, int to, String fileName);
+    }
+
+    //this ensures that the activity implements the interface
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
-        startMainFragment();
-    }
-
-    public void onTest(int from, int to, String fileName) {
-        // Create new fragment and transaction
-        TestFragment testFragment = new TestFragment();
-        //testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
-        //if (testFragment == null || ! testFragment.isInLayout()) {
-            testFragment = TestFragment.newInstance(from, to, fileName);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack
-            transaction.replace(R.id.frameLayout, testFragment);
-            transaction.addToBackStack("test");
-
-            // Commit the transaction
-            transaction.commit();
-        //} else {
-            //testFragment.update();
-        //}
-    }
-
-    public void startMainFragment() {
-
-        // Create new fragment and transaction
-        MainFragment mainFragment = new MainFragment();
-        mainFragment = (MainFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
-        if (mainFragment == null || ! mainFragment.isInLayout()) {
-            mainFragment = MainFragment.newInstance();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack
-            transaction.replace(R.id.frameLayout, mainFragment);
-            transaction.addToBackStack("main");
-
-            // Commit the transaction
-            transaction.commit();
-        } else {
-            //testFragment.update();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnTestListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
         }
     }
 
-    //not neccacary because fragments are on the backstack
-    @Override
-    public void onBackPressed() {
-/*        final Myfragment fragment = (Myfragment) getSupportFragmentManager().findFragmentByTag("test");
+    //this calls the event on the activity
+    public void onTest() {
+        // Append the clicked item's row ID with the content provider Uri
+        // Send the event and Uri to the host activity
+        mListener.onTest(seekBar_from.getProgress(), seekBar_to.getProgress(),  editText_fileName.getText().toString());
+    }
 
-        if (fragment.allowBackPressed()) { // and then you define a method allowBackPressed with the logic to allow back pressed or not
-            super.onBackPressed();
-        }*/
-        super.onBackPressed();
+    public static MainFragment newInstance() {
+        MainFragment f = new MainFragment();
+
+        // Supply index input as an argument.
+/*        Bundle args = new Bundle();
+        args.putInt("from", from);
+        args.putInt("to", to);
+        args.putString("fileName", fileName);
+        f.setArguments(args);*/
+
+        return f;
     }
 
     @Override
-    protected void onStop() {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.main_fragment, container, false);
+
+        SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
+
+        editText_fileName = (EditText) view.findViewById(R.id.editText_fileName);
+        editText_fileName.setText(settings.getString("fileName", "").toString());
+
+        seekBar_from = (SeekBar) view.findViewById(R.id.seekBar_from);
+        seekBar_to = (SeekBar) view.findViewById(R.id.seekBar_to);
+        seekBar_from.setMax(settings.getInt("max", 0));
+        seekBar_from.setProgress(settings.getInt("from", 0));
+        seekBar_to.setMax(settings.getInt("max", 0));
+        seekBar_to.setProgress(settings.getInt("to", 0));
+
+        textView_to = (TextView) view.findViewById(R.id.textView_to);
+        textView_from = (TextView) view.findViewById(R.id.textView_from);
+        textView_to.setText(String.valueOf(seekBar_to.getProgress()));
+        textView_from.setText(String.valueOf(seekBar_from.getProgress()));
+
+        button_file = (ImageButton) view.findViewById(R.id.button_file);
+        button_test = (Button) view.findViewById(R.id.button_test);
+
+        seekBar_to.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+                textView_to.setText(String.valueOf(progress));
+            }
+        });
+
+        seekBar_from.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+                textView_from.setText(String.valueOf(progress));
+            }
+        });
+
+        //register the listener for buttons
+        OnClickListener clickListener = new OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                switch(v.getId()) {
+                    case R.id.button_test:
+                        // which is supposed to be called automatically
+                        // in your activity, which has now changed to a fragment.
+                        //startTestFragment();
+                        onTest();
+                        break;
+                    case R.id.button_file:
+                        selectFile();
+                        break;
+                }
+            }
+        };
+
+        button_test.setOnClickListener(clickListener);
+        button_file.setOnClickListener(clickListener);
+
+        return view;
+    }
+
+    @Override
+    public void onStop() {
         super.onStop();
-/*
-        editText_file = (EditText) findViewById(R.id.editText_file);
+
+        //editText_file = (EditText) view.findViewById(R.id.editText_file);
 
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences("Settings", 0);
+        SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("fileName", editText_file.getText().toString());
+        editor.putString("fileName", editText_fileName.getText().toString());
         editor.putInt("max", seekBar_to.getMax());
         editor.putInt("from", seekBar_from.getProgress());
         editor.putInt("to", seekBar_to.getProgress());
         // Commit the edits!
-        editor.commit();*/
+        editor.commit();
 
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        super.onCreateOptionsMenu(menu, inflater);
+        getActivity().getMenuInflater().inflate(R.menu.main, menu);
     }
 
     @Override
@@ -189,7 +266,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     }
 
     public void showSettingsActivity() {
-        Intent intentSetPref = new Intent(getApplicationContext(), SettingsActivity.class);
+        Intent intentSetPref = new Intent(getActivity(), SettingsActivity.class);
         startActivityForResult(intentSetPref, REQUEST_CODE_PREFERENCES);
     }
 
@@ -206,14 +283,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     //not used anymore
     public void showLegalNoticeDialog() {
         String licenseInfo = null;
-        AssetManager am = this.getAssets();
+        AssetManager am = getActivity().getAssets();
         try {
             InputStream is = am.open("License");
             licenseInfo = convertStreamToString(is);
         } catch (IOException e) {
             Log.e(TAG, "Error reading file: " + e);
         }
-        AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(getActivity());
         LicenseDialog.setTitle("Legal Notices");
         LicenseDialog.setMessage(licenseInfo);
         LicenseDialog.show();
@@ -222,8 +299,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     //not used anymore
     public void showAboutDialog() {
         //startActivity(new Intent(this, About.class));
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
         // set title
         alertDialogBuilder.setTitle("About");
@@ -245,10 +321,10 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         // show it
         alertDialog.show();
-    /*}
+    }
 
-    public void selectFile(View view) {
-        String fileName = editText_file.getText().toString();
+    public void selectFile() {
+        String fileName = editText_fileName.getText().toString();
 
         Intent intent = new Intent("org.openintents.action.PICK_FILE");
 
@@ -274,10 +350,10 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         } catch (ActivityNotFoundException e) {
             // No compatible file manager was found.
             Log.e(TAG, "Error reading file: " + e);
-            Toast.makeText(this, "@string/message_no_filemanager_installed",
+            Toast.makeText(getActivity(), "@string/message_no_filemanager_installed",
                     Toast.LENGTH_SHORT).show();
         }
- */   }
+    }
 
     /**
      * Called when the user clicks the Send button
@@ -291,59 +367,44 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     public void startTestFragment() {
 
-        EditText editText = (EditText) findViewById(R.id.editText_fileName);
-        String fileName = editText.getText().toString();
+        String fileName = editText_fileName.getText().toString();
         // Create new fragment and transaction
         TestFragment testFragment = new TestFragment();
-        testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
-        if (testFragment == null || ! testFragment.isInLayout()) {
-            testFragment = TestFragment.newInstance(seekBar_from.getProgress(), seekBar_to.getProgress(), fileName);
+        //testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
+        //if (testFragment == null || ! testFragment.isInLayout()) {
+            testFragment = TestFragment.newInstance(seekBar_from.getProgress(), seekBar_to.getProgress(), editText_fileName.getText().toString());
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
             // Replace whatever is in the fragment_container view with this fragment,
             // and add the transaction to the back stack
             transaction.replace(R.id.frameLayout, testFragment);
-            //transaction.addToBackStack(null);
+            transaction.addToBackStack(null);
 
             // Commit the transaction
             transaction.commit();
-        } else {
+        //} else {
             //testFragment.update();
-        }
-    }
-
-    public void startTestActivity() {
-
-        // Do something in response to button
-        Intent intent = new Intent(this, TestActivity.class);
-
-        EditText editText = (EditText) findViewById(R.id.editText_fileName);
-        String fileName = editText.getText().toString();
-
-        intent.putExtra(EXTRA_FILENAME, fileName);
-        intent.putExtra(EXTRA_FROM, seekBar_from.getProgress());
-        intent.putExtra(EXTRA_TO, seekBar_to.getProgress());
-        startActivity(intent);
+        //}
     }
 
     /**
      * This is called after the file manager finished.
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //editText_file.setText("");
 
         switch (requestCode) {
             case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
-                if (resultCode == RESULT_OK && data != null) {
+                if (resultCode == getActivity().RESULT_OK && data != null) {
                     // obtain the filename
                     Uri fileUri = data.getData();
                     if (fileUri != null) {
                         String filePath = fileUri.getPath();
                         if (filePath != null) {
-                            editText_file.setText(filePath);
+                            editText_fileName.setText(filePath);
                             try {
                                 entries = loadXmlFromFile(filePath);
 
@@ -363,7 +424,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
                 }
                 break;
             case REQUEST_CODE_PREFERENCES:
-                if (resultCode == RESULT_OK && data != null) {
+                if (resultCode == getActivity().RESULT_OK && data != null) {
                     // obtain the preferences
 
                 }
@@ -418,7 +479,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         ListIterator it = entries.listIterator();
         try {
-            DatabaseHandler db = new DatabaseHandler(this);
+            DatabaseHandler db = new DatabaseHandler(getActivity());
             db.onWipe();
             while (it.hasNext()) {
                 Entry entry = (Entry) it.next();
@@ -445,3 +506,4 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
 
 }
+

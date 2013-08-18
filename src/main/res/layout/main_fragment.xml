@@ -27,7 +27,7 @@
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_file"
+            android:id="@+id/editText_fileName"
             android:layout_alignBottom="@+id/button_file"
             android:layout_toLeftOf="@+id/button_file"
             android:layout_alignParentLeft="true"
@@ -40,9 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seekBar_from"
-            android:layout_below="@+id/editText_file"
+            android:layout_below="@+id/editText_fileName"
             android:layout_marginTop="68dp"
-            android:layout_alignLeft="@+id/editText_file"
+            android:layout_alignLeft="@+id/editText_fileName"
             android:layout_toLeftOf="@+id/textView_from"/>
 
     <SeekBar
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button_start_test"
             android:drawableLeft="@drawable/ic_menu_play_clip"
-            android:id="@+id/button_start"
+            android:id="@+id/button_test"
             android:layout_marginTop="22dp"
             android:onClick="startTest"
             style="@android:style/Holo.ButtonBar"
@@ -87,7 +87,7 @@
             android:id="@+id/textView_to"
             android:minWidth="70dp"
             android:layout_alignTop="@+id/seekBar_to"
-            android:layout_above="@+id/button_start"
+            android:layout_above="@+id/button_test"
             android:layout_toLeftOf="@+id/imageView"/>
 
     <ImageView
@@ -97,7 +97,7 @@
             android:src="@drawable/ic_media_previous"
             android:layout_alignTop="@+id/textView_from"
             android:layout_alignBottom="@+id/textView_from"
-            android:layout_toRightOf="@+id/editText_file"/>
+            android:layout_toRightOf="@+id/editText_fileName"/>
 
     <ImageView
             android:layout_width="wrap_content"
