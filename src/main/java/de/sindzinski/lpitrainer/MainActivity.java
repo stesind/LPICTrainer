@@ -170,11 +170,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     }
 
-    public void showSettingsActivity() {
-        Intent intentSetPref = new Intent(getApplicationContext(), SettingsActivity.class);
-        startActivityForResult(intentSetPref, REQUEST_CODE_PREFERENCES);
-    }
-
     public void showAboutDialogFragment() {
         DialogFragment newFragment = new AboutDialogFragment();
         newFragment.show(getFragmentManager(), "about");
