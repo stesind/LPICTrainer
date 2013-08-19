@@ -38,6 +38,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
+import android.animation.LayoutTransition;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.Animator;
+import android.animation.Keyframe;
 
 public class TestFragment extends Fragment {
 
@@ -118,6 +124,12 @@ public class TestFragment extends Fragment {
 
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         linearLayoutContainer = (LinearLayout) view.findViewById(R.id.linearLayoutContainer);
+
+        //animation of layout changes
+        //can also be done in xml layout by android:animateLayoutChanges="true"
+//        LayoutTransition layoutTransition = new LayoutTransition();
+        //required min api level 16!
+//        linearLayoutContainer.setLayoutTransition(layoutTransition);
 
         buttonBack = (ImageButton) view.findViewById(R.id.button_back);
         buttonCheck = (ImageButton) view.findViewById(R.id.button_check);
@@ -242,6 +254,74 @@ public class TestFragment extends Fragment {
 
         return view;
     }
+
+    private void setupAnimations(LayoutTransition transition) {
+        // Changing while Adding
+        PropertyValuesHolder pvhLeft =
+                PropertyValuesHolder.ofInt("left", 0, 1);
+        PropertyValuesHolder pvhTop =
+                PropertyValuesHolder.ofInt("top", 0, 1);
+        PropertyValuesHolder pvhRight =
+                PropertyValuesHolder.ofInt("right", 0, 1);
+        PropertyValuesHolder pvhBottom =
+                PropertyValuesHolder.ofInt("bottom", 0, 1);
+        PropertyValuesHolder pvhScaleX =
+                PropertyValuesHolder.ofFloat("scaleX", 1f, 0f, 1f);
+        PropertyValuesHolder pvhScaleY =
+                PropertyValuesHolder.ofFloat("scaleY", 1f, 0f, 1f);
+        final ObjectAnimator changeIn = ObjectAnimator.ofPropertyValuesHolder(
+                this, pvhLeft, pvhTop, pvhRight, pvhBottom, pvhScaleX, pvhScaleY).
+                setDuration(transition.getDuration(LayoutTransition.CHANGE_APPEARING));
+        transition.setAnimator(LayoutTransition.CHANGE_APPEARING, changeIn);
+        changeIn.addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anim) {
+                View view = (View) ((ObjectAnimator) anim).getTarget();
+                view.setScaleX(1f);
+                view.setScaleY(1f);
+            }
+        });
+
+        // Changing while Removing
+        Keyframe kf0 = Keyframe.ofFloat(0f, 0f);
+        Keyframe kf1 = Keyframe.ofFloat(.9999f, 360f);
+        Keyframe kf2 = Keyframe.ofFloat(1f, 0f);
+        PropertyValuesHolder pvhRotation =
+                PropertyValuesHolder.ofKeyframe("rotation", kf0, kf1, kf2);
+        final ObjectAnimator changeOut = ObjectAnimator.ofPropertyValuesHolder(
+                this, pvhLeft, pvhTop, pvhRight, pvhBottom, pvhRotation).
+                setDuration(transition.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
+        transition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changeOut);
+        changeOut.addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anim) {
+                View view = (View) ((ObjectAnimator) anim).getTarget();
+                view.setRotation(0f);
+            }
+        });
+
+        // Adding
+        ObjectAnimator animIn = ObjectAnimator.ofFloat(null, "rotationY", 90f, 0f).
+                setDuration(transition.getDuration(LayoutTransition.APPEARING));
+        transition.setAnimator(LayoutTransition.APPEARING, animIn);
+        animIn.addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anim) {
+                View view = (View) ((ObjectAnimator) anim).getTarget();
+                view.setRotationY(0f);
+            }
+        });
+
+        // Removing
+        ObjectAnimator animOut = ObjectAnimator.ofFloat(null, "rotationX", 0f, 90f).
+                setDuration(transition.getDuration(LayoutTransition.DISAPPEARING));
+        transition.setAnimator(LayoutTransition.DISAPPEARING, animOut);
+        animIn.addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator anim) {
+                View view = (View) ((ObjectAnimator) anim).getTarget();
+                view.setRotationX(0f);
+            }
+        });
+
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
