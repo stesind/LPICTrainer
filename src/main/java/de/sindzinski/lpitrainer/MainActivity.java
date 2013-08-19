@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 import android.animation.ObjectAnimator;
 import android.animation.AnimatorSet;
 
@@ -58,22 +59,22 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         TestFragment testFragment = new TestFragment();
         //testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
         //if (testFragment == null || ! testFragment.isInLayout()) {
-            testFragment = TestFragment.newInstance(from, to, fileName);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        testFragment = TestFragment.newInstance(from, to, fileName);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
         //transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
 //        transaction.setCustomAnimations(
 //                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
 //                R.anim.card_flip_left_in, R.anim.card_flip_left_out);
         transaction.replace(R.id.container, testFragment);
-            transaction.addToBackStack("test");
+        transaction.addToBackStack("test");
 
-            // Commit the transaction
-            transaction.commit();
+        // Commit the transaction
+        transaction.commit();
         //} else {
-            //testFragment.update();
+        //testFragment.update();
         //}
     }
 
@@ -82,7 +83,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // Create new fragment and transaction
         MainFragment mainFragment = new MainFragment();
         mainFragment = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
-        if (mainFragment == null || ! mainFragment.isInLayout()) {
+        if (mainFragment == null || !mainFragment.isInLayout()) {
             mainFragment = MainFragment.newInstance();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
@@ -141,8 +142,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // Handle Settings
-                showSettingsActivity();
-                //showSettingsFragment();
+                //showSettingsActivity();
+                showSettingsFragment();
                 return true;
             case R.id.about:
                 //showAboutDialog();
@@ -162,9 +163,11 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     public void showSettingsFragment() {
         // Display the fragment as the main content.
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, new SettingsFragment());
+        transaction.addToBackStack("settings");
+        transaction.commit();
+
     }
 
     public void showSettingsActivity() {
