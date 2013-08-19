@@ -369,6 +369,7 @@ public class TestActivity extends Activity  {
             checkBox_answer3.setText(entry.antwort3);
             checkBox_answer4.setText(entry.antwort4);
             checkBox_answer5.setText(entry.antwort5);
+            editText_answer.setVisibility(View.GONE);
         } else {
             checkBox_answer1.setVisibility(View.INVISIBLE);
             checkBox_answer2.setVisibility(View.INVISIBLE);
