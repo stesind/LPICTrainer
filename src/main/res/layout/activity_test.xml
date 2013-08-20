@@ -98,7 +98,7 @@
             android:text="@string/button_check"
             android:contentDescription="@string/button_check"
             android:id="@+id/button_check"
-            android:layout_alignTop="@+id/button_forwd"
+            android:layout_alignTop="@+id/button_forward"
             android:layout_alignRight="@+id/scrollView"
             android:src="@drawable/ic_menu_search"
             android:onClick="onClickCheck"
