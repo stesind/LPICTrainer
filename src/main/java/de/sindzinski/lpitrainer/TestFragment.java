@@ -4,6 +4,7 @@ package de.sindzinski.lpitrainer;
  * Created by steffen on 17.08.13.
  */
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
@@ -105,6 +106,7 @@ public class TestFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -115,6 +117,9 @@ public class TestFragment extends Fragment {
         from = getArguments().getInt("from", 0);
         to = getArguments().getInt("to", 0);
         fileName = getArguments().getString("fileName");
+
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.test_fragment, container, false);

@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.app.ActionBar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,6 +44,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     protected TextView textView_from;
     private static final String TAG = "LPITrainer";
 
+    private boolean mTwoPane;
+
 
     public ArrayList<Entry> entries = null;
 
@@ -50,8 +54,18 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
         startMainFragment();
+        //determine if it is two pane or not, if so, fill in an default test fragment
+        if (findViewById(R.id.container_two_pane) != null) {
+            mTwoPane = true;
+            SharedPreferences settings = this.getSharedPreferences("Settings", 0);
+
+            String fileName = settings.getString("fileName","").toString();
+            Integer from= settings.getInt("from",0);
+            Integer to = settings.getInt("to",0);
+            onTest(from, to, fileName);
+        }
+        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     public void onTest(int from, int to, String fileName) {
@@ -68,8 +82,13 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 //        transaction.setCustomAnimations(
 //                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
 //                R.anim.card_flip_left_in, R.anim.card_flip_left_out);
-        transaction.replace(R.id.container, testFragment);
-        transaction.addToBackStack("test");
+        if (mTwoPane) {
+            transaction.addToBackStack("test");
+            transaction.replace(R.id.container_two_pane, testFragment);
+        } else {
+            transaction.addToBackStack("test");
+            transaction.replace(R.id.container, testFragment);
+        }
 
         // Commit the transaction
         transaction.commit();
@@ -90,7 +109,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             // Replace whatever is in the fragment_container view with this fragment,
             // and add the transaction to the back stack
             transaction.replace(R.id.container, mainFragment);
-            transaction.addToBackStack("main");
+            //transaction.addToBackStack("main");
 
             // Commit the transaction
             transaction.commit();
@@ -113,19 +132,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     @Override
     protected void onStop() {
         super.onStop();
-/*
-        editText_file = (EditText) findViewById(R.id.editText_file);
-
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences("Settings", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("fileName", editText_file.getText().toString());
-        editor.putInt("max", seekBar_to.getMax());
-        editor.putInt("from", seekBar_from.getProgress());
-        editor.putInt("to", seekBar_to.getProgress());
-        // Commit the edits!
-        editor.commit();*/
 
     }
 

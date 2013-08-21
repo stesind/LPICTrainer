@@ -4,6 +4,7 @@ package de.sindzinski.lpitrainer;
  * Created by steffen on 18.08.13.
  */
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
@@ -102,6 +103,9 @@ public class MainFragment extends Fragment {
                                 Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //ActionBar actionBar = getActivity().getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(false);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.main_fragment, container, false);
 
@@ -188,8 +192,8 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
 
         //editText_file = (EditText) view.findViewById(R.id.editText_file);
 
