@@ -18,31 +18,32 @@
             android:text="@string/button_open_file"
             android:src="@drawable/ic_menu_archive"
             android:id="@+id/button_file"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="14dp"
             android:contentDescription="@string/button_open_file"
-            android:onClick="selectFile"/>
+            android:onClick="selectFile"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
 
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText_fileName"
-            android:layout_alignBottom="@+id/button_file"
             android:layout_toLeftOf="@+id/button_file"
             android:layout_alignParentLeft="true"
             android:textAlignment="textEnd"
             android:maxLines="1"
             android:singleLine="true"
-            android:layout_alignTop="@+id/button_file"/>
+            android:layout_alignTop="@+id/button_file"
+            android:gravity="fill|right"
+            android:layout_alignBottom="@+id/button_file"
+            android:editable="true"/>
 
     <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seekBar_from"
+            android:layout_marginTop="13dp"
             android:layout_below="@+id/editText_fileName"
-            android:layout_marginTop="68dp"
-            android:layout_alignLeft="@+id/editText_fileName"
+            android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/textView_from"/>
 
     <SeekBar
@@ -50,10 +51,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/seekBar_to"
             android:focusableInTouchMode="false"
+            android:layout_marginTop="11dp"
             android:layout_below="@+id/seekBar_from"
             android:layout_alignLeft="@+id/seekBar_from"
-            android:layout_marginTop="36dp"
-            android:layout_toLeftOf="@+id/textView_to"/>
+            android:layout_alignRight="@+id/seekBar_from"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -61,13 +62,11 @@
             android:text="@string/button_start_test"
             android:drawableLeft="@drawable/ic_menu_play_clip"
             android:id="@+id/button_test"
-            android:layout_marginTop="22dp"
             android:onClick="startTest"
             style="@android:style/Holo.ButtonBar"
-            android:layout_below="@+id/seekBar_to"
             android:contentDescription="@string/button_start_test"
-            android:layout_alignRight="@+id/imageView2"
-            android:layout_toRightOf="@+id/seekBar_to"/>
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/imageView2"/>
 
     <TextView
             android:layout_width="wrap_content"

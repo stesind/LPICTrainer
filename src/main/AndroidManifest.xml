@@ -30,10 +30,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.sindzinski.lpitrainer.MainActivity" />
         </activity>
-        <activity
-            android:name="de.sindzinski.lpitrainer.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
     </application>
 
 </manifest>

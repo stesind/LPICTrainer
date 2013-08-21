@@ -45,6 +45,9 @@ import android.animation.PropertyValuesHolder;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.Animator;
 import android.animation.Keyframe;
+import android.widget.SpinnerAdapter;
+import android.widget.ArrayAdapter;
+import android.app.ActionBar.OnNavigationListener;
 
 public class TestFragment extends Fragment {
 
@@ -120,6 +123,30 @@ public class TestFragment extends Fragment {
 
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+/*      //unused spinner
+        //beim erzeugen des ArrayAdapters nicht von der activity sondern actionBar.getThemedContext() ableiten damit die Hintergrundfarbe richtig ist
+        SpinnerAdapter mSpinnerAdapter;
+        mSpinnerAdapter = ArrayAdapter.createFromResource(actionBar.getThemedContext(), R.array.action_list,
+                android.R.layout.simple_spinner_dropdown_item);
+
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+
+        // Set up the dropdown list navigation in the action bar.
+
+        OnNavigationListener mOnNavigationListener = new OnNavigationListener() {
+            // Get the same strings provided for the drop-down's ArrayAdapter
+            String[] strings = getResources().getStringArray(R.array.action_list);
+
+            @Override
+            public boolean onNavigationItemSelected(int position, long itemId) {
+                Toast.makeText(getActivity(), strings[position], Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        };
+        //alternativ kann der Listener auch im fragment mit "implements OnNavigationListener implementiert werden
+        //dann kann die funktion auch im fragment gemacht werden
+        actionBar.setListNavigationCallbacks(mSpinnerAdapter, mOnNavigationListener );*/
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.test_fragment, container, false);
@@ -249,7 +276,8 @@ public class TestFragment extends Fragment {
             entries = (ArrayList) db.getAllEntries();
 
             //entries = loadXmlFromFile();
-            it = entries.subList(from, to).listIterator();
+            //check if from is <= to
+            it = entries.subList((from > to) ? 0 : from, to).listIterator();
 
             max = to-from;
             nextQuestion();
@@ -332,6 +360,7 @@ public class TestFragment extends Fragment {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.test, menu);
+        inflater.inflate(R.menu.zoom, menu);
         //MenuItem end = menu.add("@string/menu_end");
         //end.setIcon(R.drawable.ic_menu_refresh);
     }
@@ -346,6 +375,10 @@ public class TestFragment extends Fragment {
             case R.id.end:
                 //startActivity(new Intent(this, Help.class));
                 onEnd();
+                return true;
+            case R.id.zoom:
+                //startActivity(new Intent(this, Help.class));
+                Toast.makeText(getActivity(), "zoom", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

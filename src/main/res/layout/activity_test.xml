@@ -11,7 +11,6 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView_current"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"/>
@@ -98,11 +97,11 @@
             android:text="@string/button_check"
             android:contentDescription="@string/button_check"
             android:id="@+id/button_check"
-            android:layout_alignTop="@+id/button_forward"
-            android:layout_alignRight="@+id/scrollView"
             android:src="@drawable/ic_menu_search"
             android:onClick="onClickCheck"
-            style="@android:style/Holo.ButtonBar"/>
+            style="@android:style/Holo.ButtonBar"
+            android:layout_alignTop="@+id/button_forwd"
+            android:layout_alignRight="@+id/scrollView"/>
 
     <ImageButton
             android:layout_width="wrap_content"
