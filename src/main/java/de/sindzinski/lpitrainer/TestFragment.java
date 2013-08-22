@@ -90,7 +90,10 @@ public class TestFragment extends Fragment {
     protected Boolean checked = false;
 
     private static final String TAG="LPITrainer";
+    private static final String CURRENT="CURRENT_QUESTION";
 
+    //later get the arguments with:
+    //getArguments().getInt("someInt", 0);
     public static TestFragment newInstance(Integer from, Integer to, String fileName) {
         TestFragment f = new TestFragment();
 
@@ -116,6 +119,9 @@ public class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        if (savedInstanceState != null) {
+            current = savedInstanceState.getInt(CURRENT);
+        }
         //get Arguments
         from = getArguments().getInt("from", 0);
         to = getArguments().getInt("to", 0);
@@ -696,6 +702,13 @@ public class TestFragment extends Fragment {
         return sb.toString();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Save the current article selection in case we need to recreate the fragment
+        outState.putInt(CURRENT, current);
+    }
 
 }
 

@@ -101,7 +101,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                 Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       // super.onCreate(savedInstanceState);
 
         //ActionBar actionBar = getActivity().getActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(false);

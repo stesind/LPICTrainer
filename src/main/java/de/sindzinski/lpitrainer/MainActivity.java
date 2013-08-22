@@ -54,6 +54,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        // However, if we're being restored from a previous state,
+        // then we don't need to do anything and should return or else
+        // we could end up with overlapping fragments.
+        if (savedInstanceState != null) {
+            return;
+        }
+
         startMainFragment();
         //determine if it is two pane or not, if so, fill in an default test fragment
         if (findViewById(R.id.container_two_pane) != null) {
@@ -101,7 +109,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         // Create new fragment and transaction
         MainFragment mainFragment = new MainFragment();
-        mainFragment = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
+        mainFragment = (MainFragment) getFragmentManager().findFragmentByTag("main");
         if (mainFragment == null || !mainFragment.isInLayout()) {
             mainFragment = MainFragment.newInstance();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -109,7 +117,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             // Replace whatever is in the fragment_container view with this fragment,
             // and add the transaction to the back stack
             transaction.replace(R.id.container, mainFragment);
-            //transaction.addToBackStack("main");
+            transaction.addToBackStack("main");
 
             // Commit the transaction
             transaction.commit();
