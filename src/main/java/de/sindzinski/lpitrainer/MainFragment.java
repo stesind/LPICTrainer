@@ -352,6 +352,12 @@ public class MainFragment extends Fragment {
         return sb.toString();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        // Save the current article selection in case we need to recreate the fragment
+        //outState.putInt(CURRENT, current);
+    }
 }
 

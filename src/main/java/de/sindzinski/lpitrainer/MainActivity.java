@@ -58,22 +58,39 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // However, if we're being restored from a previous state,
         // then we don't need to do anything and should return or else
         // we could end up with overlapping fragments.
+        MainFragment mainFragment;
+        TestFragment testFragment;
         if (savedInstanceState != null) {
-            return;
-        }
+            mainFragment = (MainFragment) getFragmentManager().findFragmentByTag("main");
+            testFragment = (TestFragment) getFragmentManager().findFragmentByTag("test");
+        } else {
+            mainFragment = new MainFragment();
+            mainFragment = (MainFragment) getFragmentManager().findFragmentByTag("main");
+            mainFragment = MainFragment.newInstance();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container, mainFragment);
+            transaction.addToBackStack("main");
 
-        startMainFragment();
+            // Commit the transaction
+            transaction.commit();
+            //testFragment.update();
+
+        //startMainFragment();
         //determine if it is two pane or not, if so, fill in an default test fragment
-        if (findViewById(R.id.container_two_pane) != null) {
-            mTwoPane = true;
-            SharedPreferences settings = this.getSharedPreferences("Settings", 0);
+            if (findViewById(R.id.container_two_pane) != null) {
+                mTwoPane = true;
+                SharedPreferences settings = this.getSharedPreferences("Settings", 0);
 
-            String fileName = settings.getString("fileName","").toString();
-            Integer from= settings.getInt("from",0);
-            Integer to = settings.getInt("to",0);
-            onTest(from, to, fileName);
-        }
+                String fileName = settings.getString("fileName","").toString();
+                Integer from= settings.getInt("from",0);
+                Integer to = settings.getInt("to",0);
+                onTest(from, to, fileName);
+            }
         // TODO: If exposing deep links into your app, handle intents here.
+        }
     }
 
     public void onTest(int from, int to, String fileName) {

@@ -121,6 +121,7 @@ public class TestFragment extends Fragment {
 
         if (savedInstanceState != null) {
             current = savedInstanceState.getInt(CURRENT);
+
         }
         //get Arguments
         from = getArguments().getInt("from", 0);
