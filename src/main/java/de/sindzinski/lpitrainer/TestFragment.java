@@ -658,6 +658,9 @@ public class TestFragment extends Fragment {
             maxpoints = maxpoints + entry.points;
         }
 
+        //although already checked, call to redraw the current question
+        checkAnswer();
+
         Toast.makeText(getActivity(),
                 "You reached " + points.toString() + " out of " + maxpoints.toString(), Toast.LENGTH_LONG).show();
     }
