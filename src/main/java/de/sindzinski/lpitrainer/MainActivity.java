@@ -55,91 +55,80 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         setContentView(R.layout.activity_main);
 
+
         // However, if we're being restored from a previous state,
         // then we don't need to do anything and should return or else
         // we could end up with overlapping fragments.
-        MainFragment mainFragment;
-        TestFragment testFragment;
         if (savedInstanceState != null) {
-            mainFragment = (MainFragment) getFragmentManager().findFragmentByTag("main");
-            testFragment = (TestFragment) getFragmentManager().findFragmentByTag("test");
-        } else {
-            mainFragment = new MainFragment();
-            mainFragment = (MainFragment) getFragmentManager().findFragmentByTag("main");
-            mainFragment = MainFragment.newInstance();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack
-            transaction.replace(R.id.container, mainFragment);
-            transaction.addToBackStack("main");
-
-            // Commit the transaction
-            transaction.commit();
-            //testFragment.update();
-
-        //startMainFragment();
-        //determine if it is two pane or not, if so, fill in an default test fragment
-            if (findViewById(R.id.container_two_pane) != null) {
-                mTwoPane = true;
-                SharedPreferences settings = this.getSharedPreferences("Settings", 0);
-
-                String fileName = settings.getString("fileName","").toString();
-                Integer from= settings.getInt("from",0);
-                Integer to = settings.getInt("to",0);
-                onTest(from, to, fileName);
-            }
-        // TODO: If exposing deep links into your app, handle intents here.
+            return;
         }
-    }
 
-    public void onTest(int from, int to, String fileName) {
-        // Create new fragment and transaction
-        TestFragment testFragment = new TestFragment();
-        //testFragment = (TestFragment) getFragmentManager().findFragmentById(R.id.frameLayout);
-        //if (testFragment == null || ! testFragment.isInLayout()) {
-        testFragment = TestFragment.newInstance(from, to, fileName);
+        SharedPreferences settings = this.getSharedPreferences("Settings", 0);
+        String fileName = settings.getString("fileName","").toString();
+        Integer from= settings.getInt("from",0);
+        Integer to = settings.getInt("to",0);
+        //onTest(from, to, fileName);
+
+        MainFragment mainFragment = new MainFragment();
+        mainFragment = MainFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
+        //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
-        //transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
-//        transaction.setCustomAnimations(
-//                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
-//                R.anim.card_flip_left_in, R.anim.card_flip_left_out);
-        if (mTwoPane) {
-            transaction.addToBackStack("test");
-            transaction.replace(R.id.container_two_pane, testFragment);
-        } else {
-            transaction.addToBackStack("test");
-            transaction.replace(R.id.container, testFragment);
-        }
+        transaction.addToBackStack("main");
+        transaction.replace(R.id.container, mainFragment);
+        //transaction.addToBackStack("main");
 
         // Commit the transaction
         transaction.commit();
-        //} else {
         //testFragment.update();
-        //}
+
+
+        // Check whether the activity is using the layout version with
+        // the fragment_container FrameLayout. If so, we must add the first fragment
+        if (findViewById(R.id.container_two_pane) != null) {
+            mTwoPane = true;
+            onTest(from, to, fileName);
+        } else {
+            mTwoPane = false;
+        }
     }
 
-    public void startMainFragment() {
 
-        // Create new fragment and transaction
-        MainFragment mainFragment = new MainFragment();
-        mainFragment = (MainFragment) getFragmentManager().findFragmentByTag("main");
-        if (mainFragment == null || !mainFragment.isInLayout()) {
-            mainFragment = MainFragment.newInstance();
+    public void onTest(int from, int to, String fileName) {
+        // Create new fragment and transact();
+
+        TestFragment testFragment = (TestFragment)
+                getFragmentManager().findFragmentByTag("test");
+
+        if (testFragment != null) {
+            //just update the fragment
+            //testFragment.update();)) {
+            testFragment = TestFragment.newInstance(from, to, fileName);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack
-            transaction.replace(R.id.container, mainFragment);
-            transaction.addToBackStack("main");
+        } else {
+            //transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_righ             t);
+            //        transaction.setCustomAnimatio            ns(
+            //                R.anim.card_flip_right_in, R.anim.card_flip_right_o            ut,
+            //                R.anim.card_flip_left_in, R.anim.card_flip_left_o
 
+            // Create fragment
+            testFragment = new TestFragment();
+            //Arguments can go by bundle or by instance
+//            Bundle args = new Bundle();
+//            args.putInt(TestFragment.ARG_POSITION, position);
+//            testFragment.setArguments(args);
+            testFragment = TestFragment.newInstance(from, to, fileName);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            if (mTwoPane) {
+                transaction.replace(R.id.container_two_pane, testFragment);
+            } else {
+                transaction.replace(R.id.container, testFragment);
+            }
+            transaction.addToBackStack("test");
             // Commit the transaction
             transaction.commit();
-        } else {
-            //testFragment.update();
         }
     }
 

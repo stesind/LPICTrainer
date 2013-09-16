@@ -112,7 +112,7 @@ public class TestFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
+        setRetainInstance(true);
     }
 
     @Override
@@ -120,8 +120,8 @@ public class TestFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         if (savedInstanceState != null) {
-            current = savedInstanceState.getInt(CURRENT);
-
+            //current = savedInstanceState.getInt(CURRENT);
+            //update the current view to saved question, done later in this block
         }
         //get Arguments
         from = getArguments().getInt("from", 0);
@@ -165,7 +165,7 @@ public class TestFragment extends Fragment {
         linearLayoutContainer = (LinearLayout) view.findViewById(R.id.linearLayoutContainer);
 
         //animation of layout changes
-        //can also be done in xml layout by android:animateLayoutChanges="true"
+        //can also be done in xml layout by android:animateLayoutChanges="trtransaction.commit();ue"
 //        LayoutTransition layoutTransition = new LayoutTransition();
         //required min api level 16!
 //        linearLayoutContainer.setLayoutTransition(layoutTransition);
@@ -286,6 +286,10 @@ public class TestFragment extends Fragment {
             //check if from is <= to
             it = entries.subList((from > to) ? 0 : from, to).listIterator();
 
+            //run to current item
+            for(int i=from; i<current-1; i++) {
+                it.next();
+            }
             max = to-from;
             nextQuestion();
         } catch (SQLiteException e) {
@@ -294,6 +298,29 @@ public class TestFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // During startup, check if there are arguments passed to the fragment.
+        // onStart is a good place to do this because the layout has already been
+        // applied to the fragment at this point so we can safely call the method
+        // below that sets the article text.
+/*        Bundle args = getArguments();
+        if (args != null) {
+            // Set article based on argument passed in
+            updateArticleView(args.getInt(ARG_POSITION));
+        } else if (mCurrentPosition != -1) {
+            // Set article based on saved instance state defined during onCreateView
+            updateArticleView(mCurrentPosition);
+        }*/
+
+        //scroll to the current question
+        //updateTest(current);
+    }
+
+
 
     private void setupAnimations(LayoutTransition transition) {
         // Changing while Adding
@@ -559,14 +586,12 @@ public class TestFragment extends Fragment {
                 };
             }
         } else {
-            if (editText_answer !=null) {
-                if (editText1.getText().toString().trim().equals(entry.antwort1.trim())) {
-                    editText1.setTextColor(Color.GREEN);
-                } else {
-                    editText1.setTextColor(Color.RED);
-                    editText1.setText(entry.antwort1);
-                };
-            }
+            if (editText1.getText().toString().trim().equals(entry.antwort1.trim())) {
+                editText1.setTextColor(Color.GREEN);
+            } else {
+                editText1.setTextColor(Color.RED);
+                editText1.setText(entry.antwort1);
+            };
         }
         //answered = false;
         //checked = true;
