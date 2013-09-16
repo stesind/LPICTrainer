@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
-        transaction.addToBackStack("main");
+        //transaction.addToBackStack("main");
         transaction.replace(R.id.container, mainFragment);
         //transaction.addToBackStack("main");
 
@@ -97,6 +97,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     public void onTest(int from, int to, String fileName) {
         // Create new fragment and transact();
+
+        safeSettings(from,to, fileName);
 
         TestFragment testFragment = (TestFragment)
                 getFragmentManager().findFragmentByTag("test");
@@ -278,5 +280,22 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         return sb.toString();
     }
 
+    public void safeSettings(int from, int to, String fileName) {
 
+        //editText_file = (EditText) view.findViewById(R.id.editText_file);
+
+        // during onDestroy the fragment is detached from the activity so getActivity returns null!!!!!
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+
+        SharedPreferences settings = this.getSharedPreferences("Settings", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("fileName", fileName );
+        //editor.putInt("max", seekBar_to.getMax());
+        editor.putInt("from", from);
+        editor.putInt("to", to);
+        // Commit the edits!
+        editor.commit();
+
+    }
 }

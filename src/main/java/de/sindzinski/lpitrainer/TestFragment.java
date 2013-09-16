@@ -81,7 +81,7 @@ public class TestFragment extends Fragment {
     protected CheckBox checkBox5;
     protected EditText editText1;
 
-    public Integer current = 0;
+    protected Integer current = 0;
     public String lastAction = null;
     public Integer max = 0;
     protected Entry entry = null;
@@ -91,6 +91,7 @@ public class TestFragment extends Fragment {
 
     private static final String TAG="LPITrainer";
     private static final String CURRENT="CURRENT_QUESTION";
+    private static final String ANSWERS="CURRENT_ANSWERS";
 
     //later get the arguments with:
     //getArguments().getInt("someInt", 0);
@@ -112,21 +113,23 @@ public class TestFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        setRetainInstance(true);
+
+        //setRetainInstance(true); //savedInstancestate will always be null!!!
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (savedInstanceState != null) {
-            //current = savedInstanceState.getInt(CURRENT);
-            //update the current view to saved question, done later in this block
-        }
         //get Arguments
         from = getArguments().getInt("from", 0);
         to = getArguments().getInt("to", 0);
         fileName = getArguments().getString("fileName");
+
+        if (savedInstanceState != null) {
+            current = savedInstanceState.getInt(CURRENT,0);
+            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
+        }
 
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -287,8 +290,13 @@ public class TestFragment extends Fragment {
             it = entries.subList((from > to) ? 0 : from, to).listIterator();
 
             //run to current item
-            for(int i=from; i<current-1; i++) {
+            int i = 1;
+            if (current > 0) {
+                current--; //neccessary because current is increased in nextQuestion
+            }
+            while (i < current) {
                 it.next();
+                i++;
             }
             max = to-from;
             nextQuestion();
@@ -729,11 +737,12 @@ public class TestFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
 
         // Save the current article selection in case we need to recreate the fragment
-        outState.putInt(CURRENT, current);
+        savedInstanceState.putInt(CURRENT, current);
+        savedInstanceState.putSerializable(ANSWERS, answers);
     }
 
 }

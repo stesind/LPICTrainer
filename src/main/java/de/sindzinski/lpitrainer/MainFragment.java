@@ -191,25 +191,6 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        //editText_file = (EditText) view.findViewById(R.id.editText_file);
-
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("fileName", editText_fileName.getText().toString());
-        editor.putInt("max", seekBar_to.getMax());
-        editor.putInt("from", seekBar_from.getProgress());
-        editor.putInt("to", seekBar_to.getProgress());
-        // Commit the edits!
-        editor.commit();
-
-    }
-
     public void selectFile() {
         String fileName = editText_fileName.getText().toString();
 
