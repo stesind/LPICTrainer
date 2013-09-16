@@ -13,13 +13,11 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="de.sindzinski.lpitrainer.MainFragment"
             android:layout_weight="1"/>
 
     <FrameLayout
             android:id="@+id/container_two_pane"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="de.sindzinski.lpitrainer.TestFragment"
             android:layout_weight="1"/>
 </LinearLayout>

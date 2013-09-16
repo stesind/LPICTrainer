@@ -10,13 +10,8 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -48,8 +43,10 @@ import android.animation.Keyframe;
 import android.widget.SpinnerAdapter;
 import android.widget.ArrayAdapter;
 import android.app.ActionBar.OnNavigationListener;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 
-public class TestFragment extends Fragment {
+public class TestFragment extends Fragment  {
 
     public ArrayList<Entry> entries = null;
     //public ArrayList <Answer> answers = null;
@@ -92,6 +89,81 @@ public class TestFragment extends Fragment {
     private static final String TAG="LPITrainer";
     private static final String CURRENT="CURRENT_QUESTION";
     private static final String ANSWERS="CURRENT_ANSWERS";
+
+
+
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+
+/*
+    private GestureDetector gestureScanner;
+
+
+    public boolean onTouchEvent(MotionEvent me)
+    {
+        return gestureScanner.onTouchEvent(me);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                           float velocityY) {
+        try {
+            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                return false;
+            // right to left swipe
+            if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                Log.i(TAG, "LEFTERS <<");
+
+
+            }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                Log.i(TAG, "rIGTHERS >>");
+
+            }
+            else if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+            }  else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+            }
+        } catch (Exception e) {
+            // nothing
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+                            float distanceY) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+*/
+
+
+
 
     //later get the arguments with:
     //getArguments().getInt("someInt", 0);
@@ -237,22 +309,24 @@ public class TestFragment extends Fragment {
 
             }
         });*/
-
+/*
         ActivitySwipeDetectorLR swipe = new ActivitySwipeDetectorLR(getActivity(),new SwipeInterfaceLR() {
             @Override
             public void onLeftToRight(View v) {
-                //Toast.makeText(TestActivity.this, "left", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "left", Toast.LENGTH_SHORT).show();
                 prevQuestion();
             }
 
             @Override
             public void onRightToLeft(View v) {
-                //Toast.makeText(TestActivity.this, "right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "right", Toast.LENGTH_SHORT).show();
                 nextQuestion();
             }
         });
         ScrollView swipe_layout = (ScrollView) view.findViewById(R.id.scrollView);
-        swipe_layout.setOnTouchListener(swipe);
+        swipe_layout.setOnTouchListener(swipe);*/
+
+
 
         //register the listener for buttons
 
@@ -303,6 +377,50 @@ public class TestFragment extends Fragment {
         } catch (SQLiteException e) {
             Log.e(TAG, "Error reading database: " + e);
         }
+
+
+        final GestureDetector gesture = new GestureDetector(getActivity(),
+                new GestureDetector.SimpleOnGestureListener() {
+
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                           float velocityY) {
+                        Log.i(TAG, "onFling has been called!");
+                        final int SWIPE_MIN_DISTANCE = 120;
+                        final int SWIPE_MAX_OFF_PATH = 250;
+                        final int SWIPE_THRESHOLD_VELOCITY = 200;
+                        try {
+                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                                return false;
+                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                Log.i(TAG, "Right to Left");
+                                nextQuestion();
+                            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                Log.i(TAG, "Left to Right");
+                                prevQuestion();
+                            }
+                        } catch (Exception e) {
+                            // nothing
+                        }
+                        return super.onFling(e1, e2, velocityX, velocityY);
+                    }
+                });
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gesture.onTouchEvent(event);
+            }
+        });
+
+
 
         return view;
     }
