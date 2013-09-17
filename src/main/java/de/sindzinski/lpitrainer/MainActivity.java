@@ -86,12 +86,13 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         // Check whether the activity is using the layout version with
         // the fragment_container FrameLayout. If so, we must add the first fragment
-        if (findViewById(R.id.container_two_pane) != null) {
+/*        if (findViewById(R.id.container_two_pane) != null) {
             mTwoPane = true;
             onTest(from, to, fileName);
         } else {
             mTwoPane = false;
-        }
+        }*/
+
     }
 
 
@@ -122,12 +123,12 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 //            testFragment.setArguments(args);
             testFragment = TestFragment.newInstance(from, to, fileName);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            if (mTwoPane) {
+/*            if (findViewById(R.id.container_two_pane) != null) {
                 transaction.replace(R.id.container_two_pane, testFragment);
             } else {
                 transaction.replace(R.id.container, testFragment);
-            }
+            }*/
+            transaction.replace(R.id.container, testFragment);
             transaction.addToBackStack("test");
             // Commit the transaction
             transaction.commit();

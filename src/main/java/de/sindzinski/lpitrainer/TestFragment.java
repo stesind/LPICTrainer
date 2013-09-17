@@ -45,6 +45,7 @@ import android.widget.ArrayAdapter;
 import android.app.ActionBar.OnNavigationListener;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
+import java.io.Serializable;
 
 public class TestFragment extends Fragment  {
 
@@ -379,6 +380,7 @@ public class TestFragment extends Fragment  {
         }
 
 
+        //working gesture detecture
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
 
@@ -821,7 +823,7 @@ public class TestFragment extends Fragment  {
         }
     }
 
-    public static class Answer {
+    public static class Answer implements Serializable {
 
         public Integer index = 0;
         public boolean checked;
