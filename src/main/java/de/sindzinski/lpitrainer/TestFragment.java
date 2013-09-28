@@ -93,6 +93,7 @@ public class TestFragment extends Fragment {
     private static final String TAG="LPITrainer";
     private static final String CURRENT="CURRENT_QUESTION";
     private static final String ANSWERS="CURRENT_ANSWERS";
+    private static final String ENTRIES="CURRENT_ENTRIES";
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -198,14 +199,10 @@ public class TestFragment extends Fragment {
         to = getArguments().getInt("to", 0);
         fileName = getArguments().getString("fileName");
 
-        if (savedInstanceState != null) {
-            current = savedInstanceState.getInt(CURRENT,0);
-            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
-        }
-
         //get default preferences from preferencemanager not from shared settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
+
 
 /*
         //already done in main activity
@@ -302,35 +299,37 @@ public class TestFragment extends Fragment {
         buttonBack.setOnClickListener(clickListener);
         buttonCheck.setOnClickListener(clickListener);
 
-        //load first data to display
-        try {
-            //load from sqlite database
-            DatabaseHandler db = new DatabaseHandler(getActivity());
-            entries = (ArrayList) db.getAllEntries();
+        if (savedInstanceState != null) {
+            //redrawn
+            current = savedInstanceState.getInt(CURRENT,0);
+            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
+            entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
+
+        } else {
+            //newly drawn
+            //load first data to display
+            try {
+                //load from sqlite database
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                entries = (ArrayList) db.getAllEntries();
+
+
+            } catch (SQLiteException e) {
+                Log.e(TAG, "Error reading database: " + e);
+            }
 
             //if set in preferences then shuffle entries
             if (shuffle) {
                 Collections.shuffle(entries);
             }
-            //entries = loadXmlFromFile();
-            //check if from is <= to
-            it = entries.subList((from > to) ? 0 : from, to).listIterator();
-
-            //run to current item
-            int i = 1;
-            if (current > 0) {
-                current--; //neccessary because current is increased in nextQuestion
-            }
-            while (i < current) {
-                it.next();
-                i++;
-            }
-            max = to-from;
-            nextQuestion();
-        } catch (SQLiteException e) {
-            Log.e(TAG, "Error reading database: " + e);
         }
 
+        //entries = loadXmlFromFile();
+        //check if from is <= to
+        it = entries.subList((from > to) ? 0 : from, to).listIterator();
+
+        max = to-from;
+        nextQuestion();
 
         //working gesture detecture
         final GestureDetector gesture = new GestureDetector(getActivity(),
@@ -816,6 +815,7 @@ public class TestFragment extends Fragment {
         // Save the current article selection in case we need to recreate the fragment
         savedInstanceState.putInt(CURRENT, current);
         savedInstanceState.putSerializable(ANSWERS, answers);
+        savedInstanceState.putSerializable(ENTRIES, entries);
     }
 
 }
