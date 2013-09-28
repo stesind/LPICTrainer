@@ -80,7 +80,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // and add the transaction to the back stack
         //transaction.addToBackStack("main");
         transaction.replace(R.id.container, mainFragment);
-        transaction.addToBackStack("main");
+        //transaction.addToBackStack("main");
 
         // Commit the transaction
         transaction.commit();

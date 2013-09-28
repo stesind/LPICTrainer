@@ -4,7 +4,7 @@
             android:key="pref_key_test_settings">
         <CheckBoxPreference
                 android:key="pref_key_shuffle"
-                android:title="@string/pref_title_shuffle"
-                android:defaultValue="false" />
+                android:title="@string/pref_key_shuffle_title"
+                android:defaultValue="@bool/pref_key_shuffle_default" />
     </PreferenceCategory>
 </PreferenceScreen>

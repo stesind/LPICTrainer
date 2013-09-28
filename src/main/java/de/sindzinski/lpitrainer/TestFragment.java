@@ -6,6 +6,7 @@ package de.sindzinski.lpitrainer;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.FrameLayout;
+import 	android.preference.PreferenceManager;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -91,12 +93,11 @@ public class TestFragment extends Fragment {
     private static final String CURRENT="CURRENT_QUESTION";
     private static final String ANSWERS="CURRENT_ANSWERS";
 
-
-
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
+    private boolean shuffle = false;
 /*
     private GestureDetector gestureScanner;
 
@@ -201,8 +202,14 @@ public class TestFragment extends Fragment {
             answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
         }
 
+        //get default preferences from preferencemanager not from shared settings
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
+
+/*
+        //already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);*/
 
 /*      //unused spinner
         //beim erzeugen des ArrayAdapters nicht von der activity sondern actionBar.getThemedContext() ableiten damit die Hintergrundfarbe richtig ist
