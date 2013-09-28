@@ -55,6 +55,9 @@ public class MainFragment extends Fragment {
     protected TextView textView_from;
     protected ImageButton button_file;
     protected Button button_test;
+    public String fileName;
+    public Integer from;
+    public Integer to;
 
     private static final String TAG = "LPITrainer";
 
@@ -111,8 +114,14 @@ public class MainFragment extends Fragment {
 
         SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
 
+        fileName = settings.getString("fileName", "").toString();
+        from = settings.getInt("from", 0);
+        to = settings.getInt("to", 0);
+        Uri fileUri = Uri.parse(settings.getString("fileName", ""));
+
         editText_fileName = (EditText) view.findViewById(R.id.editText_fileName);
-        editText_fileName.setText(settings.getString("fileName", "").toString());
+        //editText_fileName.setText(settings.getString("fileName", "").toString());
+        editText_fileName.setText(fileUri.getLastPathSegment());
 
         seekBar_from = (SeekBar) view.findViewById(R.id.seekBar_from);
         seekBar_to = (SeekBar) view.findViewById(R.id.seekBar_to);
@@ -125,6 +134,8 @@ public class MainFragment extends Fragment {
         textView_from = (TextView) view.findViewById(R.id.textView_from);
         textView_to.setText(String.valueOf(seekBar_to.getProgress()));
         textView_from.setText(String.valueOf(seekBar_from.getProgress()));
+
+
 
         button_file = (ImageButton) view.findViewById(R.id.button_file);
         button_test = (Button) view.findViewById(R.id.button_test);
@@ -192,7 +203,7 @@ public class MainFragment extends Fragment {
     }
 
     public void selectFile() {
-        String fileName = editText_fileName.getText().toString();
+        //String fileName = editText_fileName.getText().toString();
 
         Intent intent = new Intent("org.openintents.action.PICK_FILE");
 
@@ -200,6 +211,7 @@ public class MainFragment extends Fragment {
             // Construct URI from file name.
             File file = new File(fileName);
             intent.setData(Uri.fromFile(file));
+            //intent.setData(Uri.parse(fileName));
         } else {
             intent.setData(Uri.parse("file://storage/extSdCard/lpic4.xml"));
         }
@@ -238,11 +250,11 @@ public class MainFragment extends Fragment {
                     // obtain the filename
                     Uri fileUri = data.getData();
                     if (fileUri != null) {
-                        String filePath = fileUri.getPath();
-                        if (filePath != null) {
-                            editText_fileName.setText(filePath);
+                        fileName = fileUri.getPath();
+                        if (fileName != null) {
+                            editText_fileName.setText(fileUri.getLastPathSegment());
                             try {
-                                entries = loadXmlFromFile(filePath);
+                                entries = loadXmlFromFile(fileName);
 
                                 safeToSQL(entries);
                                 seekBar_from.setMax(entries.size());

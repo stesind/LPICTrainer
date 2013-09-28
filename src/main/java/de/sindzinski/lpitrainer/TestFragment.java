@@ -47,7 +47,7 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import java.io.Serializable;
 
-public class TestFragment extends Fragment  {
+public class TestFragment extends Fragment {
 
     public ArrayList<Entry> entries = null;
     //public ArrayList <Answer> answers = null;
@@ -163,9 +163,6 @@ public class TestFragment extends Fragment  {
     }
 */
 
-
-
-
     //later get the arguments with:
     //getArguments().getInt("someInt", 0);
     public static TestFragment newInstance(Integer from, Integer to, String fileName) {
@@ -240,77 +237,20 @@ public class TestFragment extends Fragment  {
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         linearLayoutContainer = (LinearLayout) view.findViewById(R.id.linearLayoutContainer);
 
-        //animation of layout changes
+/*        //animation of layout changes
         //can also be done in xml layout by android:animateLayoutChanges="trtransaction.commit();ue"
-//        LayoutTransition layoutTransition = new LayoutTransition();
+        LayoutTransition layoutTransition = new LayoutTransition();
         //required min api level 16!
-//        linearLayoutContainer.setLayoutTransition(layoutTransition);
+        //setupAnimations(layoutTransition);
+        layoutTransition.enableTransitionType(LayoutTransition.CHANGING);
+        linearLayoutContainer.setLayoutTransition(layoutTransition);*/
 
         buttonBack = (ImageButton) view.findViewById(R.id.button_back);
         buttonCheck = (ImageButton) view.findViewById(R.id.button_check);
         buttonForward = (ImageButton) view.findViewById(R.id.button_forward);
 
-        /*checkBox_answer1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if ( isChecked )
-                {
-                    // perform logic
-                    answered = true;
-                }
-
-            }
-        });
-        checkBox_answer2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if ( isChecked )
-                {
-                    // perform logic
-                    answered = true;
-                }
-
-            }
-        });
-        checkBox_answer3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if ( isChecked )
-                {
-                    // perform logic
-                    answered = true;
-                }
-
-            }
-        });
-        checkBox_answer4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if ( isChecked )
-                {
-                    // perform logic
-                    answered = true;
-                }
-
-            }
-        });
-        checkBox_answer5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if ( isChecked )
-                {
-                    // perform logic
-                    answered = true;
-                }
-
-            }
-        });*/
 /*
+        //another swipe solution using extra class
         ActivitySwipeDetectorLR swipe = new ActivitySwipeDetectorLR(getActivity(),new SwipeInterfaceLR() {
             @Override
             public void onLeftToRight(View v) {
@@ -325,8 +265,8 @@ public class TestFragment extends Fragment  {
             }
         });
         ScrollView swipe_layout = (ScrollView) view.findViewById(R.id.scrollView);
-        swipe_layout.setOnTouchListener(swipe);*/
-
+        swipe_layout.setOnTouchListener(swipe);
+*/
 
 
         //register the listener for buttons
@@ -421,8 +361,6 @@ public class TestFragment extends Fragment  {
                 return gesture.onTouchEvent(event);
             }
         });
-
-
 
         return view;
     }

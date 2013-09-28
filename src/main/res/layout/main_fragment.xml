@@ -27,15 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText_fileName"
-            android:layout_toLeftOf="@+id/button_file"
-            android:layout_alignParentLeft="true"
             android:textAlignment="textEnd"
             android:maxLines="1"
             android:singleLine="true"
-            android:layout_alignTop="@+id/button_file"
             android:gravity="fill|right"
-            android:layout_alignBottom="@+id/button_file"
-            android:editable="true"/>
+            android:editable="true"
+            android:layout_alignTop="@+id/button_file"
+            android:layout_alignParentLeft="true" android:layout_toLeftOf="@+id/button_file"/>
 
     <SeekBar
             android:layout_width="wrap_content"
@@ -44,7 +42,7 @@
             android:layout_marginTop="13dp"
             android:layout_below="@+id/editText_fileName"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/textView_from"/>
+            android:layout_toLeftOf="@+id/button_test"/>
 
     <SeekBar
             android:layout_width="wrap_content"
@@ -54,7 +52,7 @@
             android:layout_marginTop="11dp"
             android:layout_below="@+id/seekBar_from"
             android:layout_alignLeft="@+id/seekBar_from"
-            android:layout_alignRight="@+id/seekBar_from"/>
+            android:layout_toLeftOf="@+id/button_test"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -65,29 +63,27 @@
             android:onClick="startTest"
             style="@android:style/Holo.ButtonBar"
             android:contentDescription="@string/button_start_test"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/imageView2" android:enabled="true" android:clickable="true"/>
+            android:enabled="true" android:clickable="true" android:layout_below="@+id/seekBar_to"
+            android:layout_alignRight="@+id/imageView2"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView_from"
-            android:minWidth="70dp"
             android:layout_alignTop="@+id/seekBar_from"
             android:layout_alignBottom="@+id/seekBar_from"
             android:layout_toLeftOf="@+id/imageView"
-            android:layout_alignLeft="@+id/textView_to"/>
+            android:minWidth="50dp" android:layout_alignLeft="@+id/textView_to"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView_to"
-            android:minWidth="70dp"
             android:layout_alignTop="@+id/seekBar_to"
             android:layout_above="@+id/button_test"
-            android:layout_toLeftOf="@+id/imageView"/>
+            android:layout_toLeftOf="@+id/imageView" android:minWidth="50dp"/>
 
     <ImageView
             android:layout_width="wrap_content"

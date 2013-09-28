@@ -56,6 +56,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         setContentView(R.layout.activity_main);
 
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         // However, if we're being restored from a previous state,
         // then we don't need to do anything and should return or else
         // we could end up with overlapping fragments.
@@ -77,7 +80,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // and add the transaction to the back stack
         //transaction.addToBackStack("main");
         transaction.replace(R.id.container, mainFragment);
-        //transaction.addToBackStack("main");
+        transaction.addToBackStack("main");
 
         // Commit the transaction
         transaction.commit();
@@ -163,6 +166,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             case R.id.action_settings:
                 // Handle Settings
                 //showSettingsActivity();
