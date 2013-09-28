@@ -82,7 +82,7 @@ public class TestFragment extends Fragment {
     protected CheckBox checkBox5;
     protected EditText editText1;
 
-    protected Integer current = 0;
+    protected Integer current = 1;
     public String lastAction = null;
     public Integer max = 0;
     protected Entry entry = null;
@@ -203,7 +203,6 @@ public class TestFragment extends Fragment {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
 
-
 /*
         //already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
@@ -299,38 +298,6 @@ public class TestFragment extends Fragment {
         buttonBack.setOnClickListener(clickListener);
         buttonCheck.setOnClickListener(clickListener);
 
-        if (savedInstanceState != null) {
-            //redrawn
-            current = savedInstanceState.getInt(CURRENT,0);
-            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
-            entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
-
-        } else {
-            //newly drawn
-            //load first data to display
-            try {
-                //load from sqlite database
-                DatabaseHandler db = new DatabaseHandler(getActivity());
-                entries = (ArrayList) db.getAllEntries();
-
-
-            } catch (SQLiteException e) {
-                Log.e(TAG, "Error reading database: " + e);
-            }
-
-            //if set in preferences then shuffle entries
-            if (shuffle) {
-                Collections.shuffle(entries);
-            }
-        }
-
-        //entries = loadXmlFromFile();
-        //check if from is <= to
-        it = entries.subList((from > to) ? 0 : from, to).listIterator();
-
-        max = to-from;
-        nextQuestion();
-
         //working gesture detecture
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
@@ -372,6 +339,48 @@ public class TestFragment extends Fragment {
                 return gesture.onTouchEvent(event);
             }
         });
+
+
+        if (savedInstanceState != null) {
+            //redrawn
+            current = savedInstanceState.getInt(CURRENT,0);
+            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
+            entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
+        } else {
+            //newly drawn
+            //load first data to display
+            try {
+                //load from sqlite database
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                entries = (ArrayList) db.getAllEntries();
+
+                //if set in preferences then shuffle entries
+                if (shuffle) {
+                    Collections.shuffle(entries);
+                }
+
+            } catch (SQLiteException e) {
+                Log.e(TAG, "Error reading database: " + e);
+            }
+        }
+
+        //entries = loadXmlFromFile();
+        //check if from is <= to
+        it = entries.subList((from > to) ? 0 : from, to).listIterator();
+
+        //run to current item
+        int i = 1;
+
+        while (i < current) {
+            it.next();
+            i++;
+        }
+        max = to-from;
+        if (current > 0) {
+            current--; //neccessary because current is increased in nextQuestion
+        }
+        nextQuestion();
+
 
         return view;
     }
