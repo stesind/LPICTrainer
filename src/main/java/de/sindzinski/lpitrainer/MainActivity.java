@@ -46,6 +46,10 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     private boolean mTwoPane;
 
+    public String fileName;
+    public Integer from;
+    public Integer to;
+    public Integer max;
 
     public ArrayList<Entry> entries = null;
 
@@ -54,7 +58,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -67,9 +70,10 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         }
 
         SharedPreferences settings = this.getSharedPreferences("Settings", 0);
-        String fileName = settings.getString("fileName","").toString();
-        Integer from= settings.getInt("from",0);
-        Integer to = settings.getInt("to",0);
+        fileName = settings.getString("fileName","").toString();
+        from= settings.getInt("from",0);
+        to = settings.getInt("to",0);
+        max = settings.getInt("max",0);
         //onTest(from, to, fileName);
 
         MainFragment mainFragment = new MainFragment();
@@ -102,7 +106,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public void onTest(int from, int to, String fileName) {
         // Create new fragment and transact();
 
-        safeSettings(from,to, fileName);
+        safeSettings(from,to, fileName, max);
 
         TestFragment testFragment = (TestFragment)
                 getFragmentManager().findFragmentByTag("test");
@@ -287,7 +291,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         return sb.toString();
     }
 
-    public void safeSettings(int from, int to, String fileName) {
+    public void safeSettings(int from, int to, String fileName, int max) {
 
         //editText_file = (EditText) view.findViewById(R.id.editText_file);
 
@@ -297,8 +301,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         SharedPreferences settings = this.getSharedPreferences("Settings", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("fileName", fileName );
-        //editor.putInt("max", seekBar_to.getMax());
+        editor.putString("fileName", fileName.toString() );
+        editor.putInt("max", max);
         editor.putInt("from", from);
         editor.putInt("to", to);
         // Commit the edits!

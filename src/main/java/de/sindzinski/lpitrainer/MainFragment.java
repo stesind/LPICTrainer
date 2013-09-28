@@ -58,7 +58,7 @@ public class MainFragment extends Fragment {
     public String fileName;
     public Integer from;
     public Integer to;
-
+    public Integer max;
     private static final String TAG = "LPITrainer";
 
     public ArrayList<Entry> entries = null;
@@ -68,6 +68,7 @@ public class MainFragment extends Fragment {
     // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
         public void onTest(int from, int to, String fileName);
+
     }
 
     //this ensures that the activity implements the interface
@@ -85,7 +86,7 @@ public class MainFragment extends Fragment {
     public void onTest() {
         // Append the clicked item's row ID with the content provider Uri
         // Send the event and Uri to the host activity
-        mListener.onTest(seekBar_from.getProgress(), seekBar_to.getProgress(),  editText_fileName.getText().toString());
+        mListener.onTest(from, to,  fileName);
     }
 
     public static MainFragment newInstance() {
@@ -117,6 +118,7 @@ public class MainFragment extends Fragment {
         fileName = settings.getString("fileName", "").toString();
         from = settings.getInt("from", 0);
         to = settings.getInt("to", 0);
+        max = settings.getInt("max",0);
         Uri fileUri = Uri.parse(settings.getString("fileName", ""));
 
         editText_fileName = (EditText) view.findViewById(R.id.editText_fileName);
@@ -125,10 +127,10 @@ public class MainFragment extends Fragment {
 
         seekBar_from = (SeekBar) view.findViewById(R.id.seekBar_from);
         seekBar_to = (SeekBar) view.findViewById(R.id.seekBar_to);
-        seekBar_from.setMax(settings.getInt("max", 0));
-        seekBar_from.setProgress(settings.getInt("from", 0));
-        seekBar_to.setMax(settings.getInt("max", 0));
-        seekBar_to.setProgress(settings.getInt("to", 0));
+        seekBar_from.setMax(max);
+        seekBar_from.setProgress(from);
+        seekBar_to.setMax(max);
+        seekBar_to.setProgress(to);
 
         textView_to = (TextView) view.findViewById(R.id.textView_to);
         textView_from = (TextView) view.findViewById(R.id.textView_from);
@@ -156,6 +158,7 @@ public class MainFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // TODO Auto-generated method stub
                 textView_to.setText(String.valueOf(progress));
+                to = Integer.parseInt(String.valueOf(progress));
             }
         });
 
@@ -175,6 +178,7 @@ public class MainFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // TODO Auto-generated method stub
                 textView_from.setText(String.valueOf(progress));
+                from = Integer.parseInt(String.valueOf(progress));
             }
         });
 
@@ -259,8 +263,11 @@ public class MainFragment extends Fragment {
                                 safeToSQL(entries);
                                 seekBar_from.setMax(entries.size());
                                 seekBar_from.setProgress(0);
+                                from = 0;
                                 seekBar_to.setMax(entries.size());
                                 seekBar_to.setProgress(entries.size());
+                                to = entries.size();
+                                max = entries.size();
 
                             } catch (IOException e) {
                                 Log.e(TAG, "Error reading file: " + e);

@@ -13,15 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.FrameLayout;
+import android.widget.*;
 import 	android.preference.PreferenceManager;
 import java.util.Collections;
 
@@ -43,8 +35,6 @@ import android.animation.PropertyValuesHolder;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.Animator;
 import android.animation.Keyframe;
-import android.widget.SpinnerAdapter;
-import android.widget.ArrayAdapter;
 import android.app.ActionBar.OnNavigationListener;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -70,6 +60,7 @@ public class TestFragment extends Fragment {
     protected TextView textView_current;
     protected ScrollView scrollView;
     protected LinearLayout linearLayout;
+    protected RelativeLayout relativeLayout;
     protected ActivitySwipeDetector swipe;
     protected ImageButton buttonForward;
     protected ImageButton buttonBack;
@@ -100,6 +91,7 @@ public class TestFragment extends Fragment {
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
     private boolean shuffle = false;
+    private int textSize = 2;
 /*
     private GestureDetector gestureScanner;
 
@@ -202,6 +194,7 @@ public class TestFragment extends Fragment {
         //get default preferences from preferencemanager not from shared settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
+        textSize = Integer.parseInt(sharedPref.getString("pref_key_size", getActivity().getResources().getString(R.string.pref_key_size_default)));
 
 /*
         //already done in main activity
@@ -240,6 +233,8 @@ public class TestFragment extends Fragment {
 
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         linearLayoutContainer = (LinearLayout) view.findViewById(R.id.linearLayoutContainer);
+        linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout);
+        relativeLayout = (RelativeLayout) view.findViewById(R.id.relativeLayout);
 
 /*        //animation of layout changes
         //can also be done in xml layout by android:animateLayoutChanges="trtransaction.commit();ue"
@@ -381,6 +376,7 @@ public class TestFragment extends Fragment {
         }
         nextQuestion();
 
+        changeTextSize();
 
         return view;
     }
@@ -485,6 +481,89 @@ public class TestFragment extends Fragment {
         //end.setIcon(R.drawable.ic_menu_refresh);
     }
 
+    public void nextTextSize() {
+        if (textSize <3) {
+            textSize++;
+        } else {
+            textSize = 1;
+        }
+
+        changeTextSize();
+    }
+
+    public void changeTextSize() {
+
+        ArrayList<View> allViewsWithinMyTopView = getAllChildren(relativeLayout);
+        for (View child : allViewsWithinMyTopView) {
+            if (child instanceof TextView) {
+                TextView childView = (TextView) child;
+                switch (textSize) {
+                    case 1:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Small);
+                        break;
+                    case 2:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+                        break;
+                    case 3:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Large);
+                        break;
+                }
+            }
+            if (child instanceof EditText) {
+                EditText childView = (EditText) child;
+                switch (textSize) {
+                    case 1:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Small);
+                        break;
+                    case 2:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+                        break;
+                    case 3:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Large);
+                        break;
+                }
+            }
+            if (child instanceof CheckBox) {
+                CheckBox childView = (CheckBox) child;
+                switch (textSize) {
+                    case 1:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Small);
+                        break;
+                    case 2:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+                        break;
+                    case 3:
+                        childView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Large);
+                        break;
+                }
+            }
+        }
+    }
+
+    private ArrayList<View> getAllChildren(View v) {
+
+        if (!(v instanceof ViewGroup)) {
+            ArrayList<View> viewArrayList = new ArrayList<View>();
+            viewArrayList.add(v);
+            return viewArrayList;
+        }
+
+        ArrayList<View> result = new ArrayList<View>();
+
+        ViewGroup vg = (ViewGroup) v;
+        for (int i = 0; i < vg.getChildCount(); i++) {
+
+            View child = vg.getChildAt(i);
+
+            ArrayList<View> viewArrayList = new ArrayList<View>();
+            viewArrayList.add(v);
+            viewArrayList.addAll(getAllChildren(child));
+
+            result.addAll(viewArrayList);
+        }
+        return result;
+    }
+
     @Override
     public boolean onOptionsItemSelected( MenuItem item )
     {
@@ -498,7 +577,8 @@ public class TestFragment extends Fragment {
                 return true;
             case R.id.zoom:
                 //startActivity(new Intent(this, Help.class));
-                Toast.makeText(getActivity(), "zoom", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "zoom", Toast.LENGTH_LONG).show();
+                nextTextSize();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -6,5 +6,11 @@
                 android:key="pref_key_shuffle"
                 android:title="@string/pref_key_shuffle_title"
                 android:defaultValue="@bool/pref_key_shuffle_default" />
+        <ListPreference
+                android:key="pref_key_size"
+                android:title="Text Size"
+                android:defaultValue="@string/pref_key_size_default"
+                android:entries="@array/size_list"
+                android:entryValues="@array/size_list_values" />
     </PreferenceCategory>
 </PreferenceScreen>
