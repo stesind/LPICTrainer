@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.FrameLayout;
 import 	android.preference.PreferenceManager;
+import java.util.Collections;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -307,6 +308,10 @@ public class TestFragment extends Fragment {
             DatabaseHandler db = new DatabaseHandler(getActivity());
             entries = (ArrayList) db.getAllEntries();
 
+            //if set in preferences then shuffle entries
+            if (shuffle) {
+                Collections.shuffle(entries);
+            }
             //entries = loadXmlFromFile();
             //check if from is <= to
             it = entries.subList((from > to) ? 0 : from, to).listIterator();
