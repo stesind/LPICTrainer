@@ -196,10 +196,10 @@ public class TestFragment extends Fragment {
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
         textSize = Integer.parseInt(sharedPref.getString("pref_key_size", getActivity().getResources().getString(R.string.pref_key_size_default)));
 
-/*
-        //already done in main activity
+
+        //not already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);*/
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 /*      //unused spinner
         //beim erzeugen des ArrayAdapters nicht von der activity sondern actionBar.getThemedContext() ableiten damit die Hintergrundfarbe richtig ist
@@ -640,6 +640,7 @@ public class TestFragment extends Fragment {
             if (checked) {
                 checkAnswer();
             }
+            changeTextSize();
         }
     }
 
@@ -657,6 +658,7 @@ public class TestFragment extends Fragment {
             if (checked) {
                 checkAnswer();
             }
+            changeTextSize();
         }
 
     }

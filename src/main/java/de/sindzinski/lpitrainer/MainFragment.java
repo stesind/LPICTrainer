@@ -109,8 +109,9 @@ public class MainFragment extends Fragment {
                                 Bundle savedInstanceState) {
        // super.onCreate(savedInstanceState);
 
-        //ActionBar actionBar = getActivity().getActionBar();
-        //actionBar.setDisplayHomeAsUpEnabled(false);
+        //not already done in main activity
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.main_fragment, container, false);

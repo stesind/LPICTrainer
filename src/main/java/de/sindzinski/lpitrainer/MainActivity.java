@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         // However, if we're being restored from a previous state,
         // then we don't need to do anything and should return or else

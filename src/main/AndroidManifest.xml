@@ -26,7 +26,7 @@
         <activity
             android:name="de.sindzinski.lpitrainer.TestActivity"
             android:label="@string/title_activity_test"
-            android:parentActivityName="com.example.myfirstapp.MainActivity" >
+            android:parentActivityName="de.sindzinski.lpitrainer.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.sindzinski.lpitrainer.MainActivity" />
