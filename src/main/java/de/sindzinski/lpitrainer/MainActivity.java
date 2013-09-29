@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import 	android.preference.PreferenceManager;
 
 import android.animation.ObjectAnimator;
 import android.animation.AnimatorSet;
@@ -44,17 +45,28 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     protected TextView textView_from;
     private static final String TAG = "LPITrainer";
 
+    private PreferenceManager chosenTheme;
     private boolean mTwoPane;
 
     public String fileName;
     public Integer from;
     public Integer to;
     public Integer max;
+    private boolean isDarkTheme;
 
     public ArrayList<Entry> entries = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
+        if (isDarkTheme) {
+            this.setTheme(android.R.style.Theme_Holo);
+        } else {
+            this.setTheme(android.R.style.Theme_Holo_Light);
+        }
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -69,12 +81,18 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             return;
         }
 
-        SharedPreferences settings = this.getSharedPreferences("Settings", 0);
+/*        SharedPreferences settings = this.getSharedPreferences("Settings", 0);
         fileName = settings.getString("fileName","").toString();
         from= settings.getInt("from",0);
         to = settings.getInt("to",0);
         max = settings.getInt("max",0);
+        //onTest(from, to, fileName);*/
+        fileName = sharedPref.getString("fileName","").toString();
+        from= sharedPref.getInt("from",0);
+        to = sharedPref.getInt("to",0);
+        max = sharedPref.getInt("max",0);
         //onTest(from, to, fileName);
+
 
         MainFragment mainFragment = new MainFragment();
         mainFragment = MainFragment.newInstance();
@@ -103,7 +121,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     }
 
 
-    public void onTest(int from, int to, String fileName) {
+    public void onTest(int from, int to, String fileName, int max) {
         // Create new fragment and transact();
 
         safeSettings(from,to, fileName, max);
@@ -298,9 +316,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // during onDestroy the fragment is detached from the activity so getActivity returns null!!!!!
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
-
-        SharedPreferences settings = this.getSharedPreferences("Settings", 0);
-        SharedPreferences.Editor editor = settings.edit();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences settings = this.getSharedPreferences("Settings", 0);
+        SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("fileName", fileName.toString() );
         editor.putInt("max", max);
         editor.putInt("from", from);

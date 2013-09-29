@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.SharedPreferences;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -67,7 +69,7 @@ public class MainFragment extends Fragment {
 
     // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
-        public void onTest(int from, int to, String fileName);
+        public void onTest(int from, int to, String fileName, int max);
 
     }
 
@@ -86,7 +88,7 @@ public class MainFragment extends Fragment {
     public void onTest() {
         // Append the clicked item's row ID with the content provider Uri
         // Send the event and Uri to the host activity
-        mListener.onTest(from, to,  fileName);
+        mListener.onTest(from, to, fileName, max);
     }
 
     public static MainFragment newInstance() {
@@ -113,13 +115,19 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.main_fragment, container, false);
 
-        SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        fileName = sharedPref.getString("fileName","").toString();
+        from= sharedPref.getInt("from",0);
+        to = sharedPref.getInt("to",0);
+        max = sharedPref.getInt("max",0);
+
+     /*   SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
 
         fileName = settings.getString("fileName", "").toString();
         from = settings.getInt("from", 0);
         to = settings.getInt("to", 0);
-        max = settings.getInt("max",0);
-        Uri fileUri = Uri.parse(settings.getString("fileName", ""));
+        max = settings.getInt("max",0);*/
+        Uri fileUri = Uri.parse(sharedPref.getString("fileName", ""));
 
         editText_fileName = (EditText) view.findViewById(R.id.editText_fileName);
         //editText_fileName.setText(settings.getString("fileName", "").toString());

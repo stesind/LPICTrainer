@@ -12,5 +12,9 @@
                 android:defaultValue="@string/pref_key_size_default"
                 android:entries="@array/size_list"
                 android:entryValues="@array/size_list_values" />
+        <SwitchPreference
+                android:key="pref_key_theme"
+                android:title="Dark Theme"
+                android:defaultValue="@bool/pref_key_dark_default" />
     </PreferenceCategory>
 </PreferenceScreen>
