@@ -267,6 +267,8 @@ public class MainFragment extends Fragment {
                         if (fileName != null) {
                             editText_fileName.setText(fileUri.getLastPathSegment());
                             try {
+                                Toast.makeText(getActivity(), "@string/message_reading_file",
+                                        Toast.LENGTH_LONG).show();
                                 entries = loadXmlFromFile(fileName);
 
                                 safeToSQL(entries);

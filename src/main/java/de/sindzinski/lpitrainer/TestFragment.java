@@ -92,6 +92,7 @@ public class TestFragment extends Fragment {
 
     private boolean shuffle = false;
     private int textSize = 2;
+    private int textSizeResource;
 /*
     private GestureDetector gestureScanner;
 
@@ -487,7 +488,17 @@ public class TestFragment extends Fragment {
         } else {
             textSize = 1;
         }
-
+        switch (textSize) {
+            case 1:
+                textSizeResource = android.R.style.TextAppearance_Small;
+                break;
+            case 2:
+                textSizeResource = android.R.style.TextAppearance_Medium;
+                break;
+            case 3:
+                textSizeResource = android.R.style.TextAppearance_Large;
+                break;
+        }
         changeTextSize();
     }
 
@@ -589,21 +600,26 @@ public class TestFragment extends Fragment {
         if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
             checkBox1 = new CheckBox(getActivity());
             //frameLayout.setBackgroundColor(Color.TRANSPARENT);
-            checkBox1.setText("test");
+                checkBox1.setText("test");
+                checkBox1.setTextAppearance(getActivity(), textSizeResource);
             linearLayoutContainer.addView(checkBox1);
             checkBox2 = new CheckBox(getActivity());
+            checkBox2.setTextAppearance(getActivity(), textSizeResource);
             //frameLayout.setBackgroundColor(Color.TRANSPARENT);
             checkBox2.setText("test");
             linearLayoutContainer.addView(checkBox2);
             checkBox3 = new CheckBox(getActivity());
+            checkBox3.setTextAppearance(getActivity(), textSizeResource);
             //frameLayout.setBackgroundColor(Color.TRANSPARENT);
             checkBox3.setText("test");
             linearLayoutContainer.addView(checkBox3);
             checkBox4 = new CheckBox(getActivity());
+            checkBox4.setTextAppearance(getActivity(), textSizeResource);
             //frameLayout.setBackgroundColor(Color.TRANSPARENT);
             checkBox4.setText("test");
             linearLayoutContainer.addView(checkBox4);
             checkBox5 = new CheckBox(getActivity());
+            checkBox5.setTextAppearance(getActivity(), textSizeResource);
             //frameLayout.setBackgroundColor(Color.TRANSPARENT);
             checkBox5.setText("test");
             linearLayoutContainer.addView(checkBox5);
@@ -611,6 +627,7 @@ public class TestFragment extends Fragment {
         } else {
             editText1 = new EditText(getActivity());
             linearLayoutContainer.addView(editText1);
+            editText1.setTextAppearance(getActivity(), textSizeResource);
             editText1.setText("");
         }
     }
@@ -640,7 +657,7 @@ public class TestFragment extends Fragment {
             if (checked) {
                 checkAnswer();
             }
-            changeTextSize();
+            //changeTextSize();
         }
     }
 
@@ -658,7 +675,7 @@ public class TestFragment extends Fragment {
             if (checked) {
                 checkAnswer();
             }
-            changeTextSize();
+            //changeTextSize();
         }
 
     }

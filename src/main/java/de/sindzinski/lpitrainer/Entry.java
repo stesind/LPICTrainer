@@ -1,9 +1,11 @@
 package de.sindzinski.lpitrainer;
 
+import android.os.Parcelable;
+import android.os.Parcel;
 /**
  * Created by steffen on 13.08.13.
  */
-public class Entry {
+public class Entry implements Parcelable {
 
     Integer index;
     String title;
@@ -100,5 +102,51 @@ public class Entry {
 
     public Boolean getRichtig5() {
         return richtig5;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel outParcel, int flags) {
+
+        outParcel.writeInt(index);
+        outParcel.writeString(title);
+        outParcel.writeString(type);
+        outParcel.writeInt(points);
+        outParcel.writeString(text);
+        outParcel.writeString(antwort1);
+        outParcel.writeByte((byte) (richtig1 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(antwort2);
+        outParcel.writeByte((byte) (richtig2 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(antwort3);
+        outParcel.writeByte((byte) (richtig3 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(antwort4);
+        outParcel.writeByte((byte) (richtig4 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(antwort5);
+        outParcel.writeByte((byte) (richtig5 ? 1 : 0));     //if myBoolean == true, byte == 1
+        //myBoolean = in.readByte() == 1;     //myBoolean == true if byte == 1
+    }
+
+    public void readFromParcel(Parcel inParcel, int flags) {
+
+        index=inParcel.readInt();
+        title = inParcel.readString();
+        type = inParcel.readString();
+        points=inParcel.readInt();
+        text = inParcel.readString();
+        antwort1 = inParcel.readString();
+        richtig1 = inParcel.readByte() == 1;     //myBoolean == true if byte == 1
+        antwort2 = inParcel.readString();
+        richtig2 = inParcel.readByte() == 1;     //myBoolean == true if byte == 1
+        antwort3 = inParcel.readString();
+        richtig3 = inParcel.readByte() == 1;     //myBoolean == true if byte == 1
+        antwort4 = inParcel.readString();
+        richtig4 = inParcel.readByte() == 1;     //myBoolean == true if byte == 1
+        antwort5 = inParcel.readString();
+        richtig5 = inParcel.readByte() == 1;     //myBoolean == true if byte == 1
+
     }
 }
