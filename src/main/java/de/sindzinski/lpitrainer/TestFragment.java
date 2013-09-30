@@ -192,6 +192,11 @@ public class TestFragment extends Fragment {
         to = getArguments().getInt("to", 0);
         fileName = getArguments().getString("fileName");
 
+        //only valid settings
+        if (from > to) {
+            from = 0;
+        }
+
         //get default preferences from preferencemanager not from shared settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
