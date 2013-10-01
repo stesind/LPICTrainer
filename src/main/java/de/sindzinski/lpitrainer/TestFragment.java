@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
-import 	android.preference.PreferenceManager;
+import android.preference.PreferenceManager;
 import java.util.Collections;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -202,6 +202,17 @@ public class TestFragment extends Fragment {
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
         textSize = Integer.parseInt(sharedPref.getString("pref_key_size", getActivity().getResources().getString(R.string.pref_key_size_default)));
 
+        switch (textSize) {
+            case 1:
+                textSizeResource = android.R.style.TextAppearance_Small;
+                break;
+            case 2:
+                textSizeResource = android.R.style.TextAppearance_Medium;
+                break;
+            case 3:
+                textSizeResource = android.R.style.TextAppearance_Large;
+                break;
+        }
 
         //not already done in main activity
         ActionBar actionBar = getActivity().getActionBar();

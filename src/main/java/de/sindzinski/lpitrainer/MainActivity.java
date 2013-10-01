@@ -53,6 +53,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer to;
     public Integer max;
     private boolean isDarkTheme;
+    private boolean showAd = true;
 
     public ArrayList<Entry> entries = null;
 
@@ -108,6 +109,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         transaction.commit();
         //testFragment.update();
 
+        if (showAd) {
+            //ad
+            AdFragment adFragment = new AdFragment();
+            mainFragment = MainFragment.newInstance();
+            FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
+            adTransaction.replace(R.id.ad_container, adFragment);
+            adTransaction.commit();
+        }
 
         // Check whether the activity is using the layout version with
         // the fragment_container FrameLayout. If so, we must add the first fragment
@@ -327,4 +336,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         editor.commit();
 
     }
+
+
 }
