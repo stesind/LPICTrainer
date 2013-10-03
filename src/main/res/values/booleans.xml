@@ -2,4 +2,5 @@
 <resources>
     <bool name="pref_key_shuffle_default">false</bool>
     <bool name="pref_key_dark_default">false</bool>
+    <bool name="pref_key_ads_default">false</bool>
 </resources>

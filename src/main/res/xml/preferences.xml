@@ -1,5 +1,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
+            android:title="@string/pref_general_title"
+            android:key="pref_key_general_settings">
+        <SwitchPreference
+                android:key="pref_key_theme"
+                android:title="Dark Theme"
+                android:defaultValue="@bool/pref_key_dark_default" />
+        <SwitchPreference
+                android:key="pref_key_ads"
+                android:title="Show Ads"
+                android:defaultValue="@bool/pref_key_ads_default" />
+    </PreferenceCategory>
+    <PreferenceCategory
             android:title="@string/pref_test_title"
             android:key="pref_key_test_settings">
         <CheckBoxPreference
@@ -12,9 +24,5 @@
                 android:defaultValue="@string/pref_key_size_default"
                 android:entries="@array/size_list"
                 android:entryValues="@array/size_list_values" />
-        <SwitchPreference
-                android:key="pref_key_theme"
-                android:title="Dark Theme"
-                android:defaultValue="@bool/pref_key_dark_default" />
     </PreferenceCategory>
 </PreferenceScreen>
