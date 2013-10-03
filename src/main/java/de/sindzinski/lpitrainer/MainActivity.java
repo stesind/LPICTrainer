@@ -337,5 +337,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     }
 
+    // We're being destroyed.
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
+/*        // very important:
+        Log.d(TAG, "Destroying helper.");
+        if (mHelper != null) mHelper.dispose();
+        mHelper = null;*/
+    }
 }
