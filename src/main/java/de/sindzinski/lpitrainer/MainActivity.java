@@ -298,7 +298,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             case REQUEST_CODE_PREFERENCES:
                 if (resultCode == RESULT_OK && data != null) {
                     // obtain the preferences
-
                 }
                 break;
 

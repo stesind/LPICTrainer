@@ -938,8 +938,10 @@ public class TestFragment extends Fragment {
 
         // Save the current article selection in case we need to recreate the fragment
         savedInstanceState.putInt(CURRENT, current);
+        //savedInstanceState.putSerializable(ANSWERS, answers);
+        //savedInstanceState.putSerializable(ENTRIES, entries);
         savedInstanceState.putSerializable(ANSWERS, answers);
-        savedInstanceState.putSerializable(ENTRIES, entries);
+        savedInstanceState.putParcelableArrayList(ENTRIES, entries);
     }
 
 }

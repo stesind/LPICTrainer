@@ -40,6 +40,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import android.os.AsyncTask;
+import android.app.ProgressDialog;
 
 public class MainFragment extends Fragment {
 
@@ -64,10 +66,11 @@ public class MainFragment extends Fragment {
     private static final String TAG = "LPITrainer";
 
     public ArrayList<Entry> entries = null;
+    ProgressDialog dialog;
 
     OnTestListener mListener;
 
-    // Container Activity must implement this interface to receive events from fragment
+        // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
         public void onTest(int from, int to, String fileName, int max);
 
@@ -248,6 +251,7 @@ public class MainFragment extends Fragment {
         }
     }
 
+
     /**
      * This is called after the file manager finished.
      */
@@ -266,29 +270,122 @@ public class MainFragment extends Fragment {
                         fileName = fileUri.getPath();
                         if (fileName != null) {
                             editText_fileName.setText(fileUri.getLastPathSegment());
-                            try {
+
                                 Toast.makeText(getActivity(), "@string/message_reading_file",
                                         Toast.LENGTH_LONG).show();
-                                entries = loadXmlFromFile(fileName);
+                                //entries = loadXmlFromFile(fileName);
+                                new loadXmlFromFileTask().execute(fileName);
 
-                                safeToSQL(entries);
+                                //now done in async task
+/*                                safeToSQL(entries);
                                 seekBar_from.setMax(entries.size());
                                 seekBar_from.setProgress(0);
                                 from = 0;
                                 seekBar_to.setMax(entries.size());
                                 seekBar_to.setProgress(entries.size());
                                 to = entries.size();
-                                max = entries.size();
+                                max = entries.size();*/
 
-                            } catch (IOException e) {
-                                Log.e(TAG, "Error reading file: " + e);
-                            } catch (XmlPullParserException e) {
-                                Log.e(TAG, "Error reading file: " + e);
-                            }
                         }
                     }
                 }
                 break;
+        }
+    }
+
+    private class loadXmlFromFileTask extends AsyncTask<String, Integer, ArrayList<Entry>>  {
+        protected ArrayList<Entry> doInBackground(String... fileName) {
+
+            Log.e(TAG, "running in async background task: doInBackground " );
+            try {
+                entries = loadXmlFromFile(fileName[0]);
+            } catch (IOException ie){
+                Log.e(TAG, "Error: " +ie.toString() );
+            } catch (XmlPullParserException ie){
+                Log.e(TAG, "Error: " +ie.toString() );
+            }
+            return entries;
+        }
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Please wait");
+            dialog.show();
+        }
+        protected void onProgressUpdate(Integer... progress) {
+            //setProgressPercent(progress[0]);
+        }
+
+        protected void onPostExecute(ArrayList result) {
+            //runs in foreground task
+            Log.e(TAG, "running in post execute forground task " );
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+            //showDialog("Downloaded " + result + " bytes");
+            entries = result;
+            seekBar_from.setMax(entries.size());
+            seekBar_from.setProgress(0);
+            from = 0;
+            seekBar_to.setMax(entries.size());
+            seekBar_to.setProgress(entries.size());
+            to = entries.size();
+            max = entries.size();
+            safeToSQL(entries);
+        }
+
+        private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
+            InputStream stream = null;
+            // Instantiate the parser
+            XmlParser parser = new XmlParser();
+            ArrayList<Entry> entries = null;
+            String title = null;
+            String url = null;
+            String summary = null;
+
+            //EditText editText = (EditText) findViewById(R.id.editText_file);
+            //String fileName = editText.getText().toString();
+
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
+            DataInputStream dis = null;
+
+            try {
+                fis = new FileInputStream(fileName);
+                bis = new BufferedInputStream(fis);
+                dis = new DataInputStream(bis);
+
+                entries = parser.parse(dis);
+                return entries;
+
+            } finally {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (bis != null) {
+                    bis.close();
+                }
+                if (dis != null) {
+                    dis.close();
+                }
+            }
+
+            //Toast.makeText(this, entries.size(),
+            //Toast.LENGTH_SHORT).show();
+        }
+
+        protected void safeToSQL(ArrayList<Entry> entries) {
+
+            ListIterator it = entries.listIterator();
+            try {
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                db.onWipe();
+                while (it.hasNext()) {
+                    Entry entry = (Entry) it.next();
+                    db.addEntry(entry);
+                }
+            } catch (SQLiteException e) {
+                Log.e(TAG, "Error reading database: " + e);
+            }
         }
     }
 
