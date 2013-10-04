@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer to;
     public Integer max;
     private boolean isDarkTheme;
-    private boolean showAd = false;
+    private boolean showAd = true;
 
     public ArrayList<Entry> entries = null;
 
