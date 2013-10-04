@@ -7,21 +7,21 @@ import android.os.Parcel;
  */
 public class Entry implements Parcelable {
 
-    Integer index;
-    String title;
-    String type;
-    Integer points;
-    String text;
-    String antwort1;
-    Boolean richtig1;
-    String antwort2;
-    Boolean richtig2;
-    String antwort3;
-    Boolean richtig3;
-    String antwort4;
-    Boolean richtig4;
-    String antwort5;
-    Boolean richtig5;
+    public Integer index;
+    public String title;
+    public String type;
+    public Integer points;
+    public String text;
+    public String antwort1;
+    public Boolean richtig1;
+    public String antwort2;
+    public Boolean richtig2;
+    public String antwort3;
+    public Boolean richtig3;
+    public String antwort4;
+    public Boolean richtig4;
+    public String antwort5;
+    public Boolean richtig5;
 
     public Entry () {
     };

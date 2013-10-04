@@ -896,7 +896,7 @@ public class TestFragment extends Fragment {
         }
     }
 
-    public static class Answer implements Serializable {
+/*    public static class Answer implements Serializable {
 
         public Integer index = 0;
         public boolean checked;
@@ -917,7 +917,7 @@ public class TestFragment extends Fragment {
             this.richtig4 = richtig4;
             this.richtig5 = richtig5;
         }
-    }
+    }*/
     public static String convertStreamToString(InputStream is) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
