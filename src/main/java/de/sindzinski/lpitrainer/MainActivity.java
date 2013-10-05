@@ -214,9 +214,10 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
                 //showLegalNoticeDialog();
                 showLegalNoticeDialogFragment();
                 return true;
-            /*case R.id.help:
+            case R.id.help:
                 //startActivity(new Intent(this, Help.class));
-                return true;*/
+                showHelpDialogFragment();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -241,7 +242,12 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         newFragment.show(getFragmentManager(), "legalNotice");
     }
 
-    //not used anymore
+    public void showHelpDialogFragment() {
+        DialogFragment newFragment = new HelpDialogFragment();
+        newFragment.show(getFragmentManager(), "help");
+    }
+
+    /*//not used anymore
     public void showLegalNoticeDialog() {
         String licenseInfo = null;
         AssetManager am = this.getAssets();
@@ -283,7 +289,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         // show it
         alertDialog.show();
-    }
+    }   */
 
     /**
      * This is called after the file manager finished.

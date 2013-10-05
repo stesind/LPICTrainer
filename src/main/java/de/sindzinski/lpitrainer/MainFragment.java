@@ -66,7 +66,7 @@ public class MainFragment extends Fragment {
     private static final String TAG = "LPITrainer";
 
     public ArrayList<Entry> entries = null;
-    ProgressDialog dialog;
+    ProgressDialog progressDialog;
 
     OnTestListener mListener;
 
@@ -269,15 +269,14 @@ public class MainFragment extends Fragment {
                     if (fileUri != null) {
                         fileName = fileUri.getPath();
                         if (fileName != null) {
-                            editText_fileName.setText(fileUri.getLastPathSegment());
 
-                                Toast.makeText(getActivity(), "@string/message_reading_file",
-                                        Toast.LENGTH_LONG).show();
                                 //entries = loadXmlFromFile(fileName);
+                                //load in async task
                                 new loadXmlFromFileTask().execute(fileName);
 
                                 //now done in async task
 /*                                safeToSQL(entries);
+                                editText_fileName.setText(fileUri.getLastPathSegment());
                                 seekBar_from.setMax(entries.size());
                                 seekBar_from.setProgress(0);
                                 from = 0;
@@ -294,22 +293,26 @@ public class MainFragment extends Fragment {
     }
 
     private class loadXmlFromFileTask extends AsyncTask<String, Integer, ArrayList<Entry>>  {
-        protected ArrayList<Entry> doInBackground(String... fileName) {
 
+        protected ArrayList<Entry> doInBackground(String... fileName) {
+            //runs in background task
             Log.e(TAG, "running in async background task: doInBackground " );
             try {
                 entries = loadXmlFromFile(fileName[0]);
+                return entries;
             } catch (IOException ie){
                 Log.e(TAG, "Error: " +ie.toString() );
             } catch (XmlPullParserException ie){
                 Log.e(TAG, "Error: " +ie.toString() );
             }
-            return entries;
+            return null;
         }
         protected void onPreExecute() {
-            dialog = new ProgressDialog(getActivity());
-            dialog.setMessage("Please wait");
-            dialog.show();
+            //runs in foreground task
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setMessage(getString(R.string.message_reading_file));
+            progressDialog.show();
         }
         protected void onProgressUpdate(Integer... progress) {
             //setProgressPercent(progress[0]);
@@ -318,19 +321,25 @@ public class MainFragment extends Fragment {
         protected void onPostExecute(ArrayList result) {
             //runs in foreground task
             Log.e(TAG, "running in post execute forground task " );
-            if (dialog.isShowing()) {
-                dialog.dismiss();
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
             }
             //showDialog("Downloaded " + result + " bytes");
-            entries = result;
-            seekBar_from.setMax(entries.size());
-            seekBar_from.setProgress(0);
-            from = 0;
-            seekBar_to.setMax(entries.size());
-            seekBar_to.setProgress(entries.size());
-            to = entries.size();
-            max = entries.size();
-            safeToSQL(entries);
+            if (result != null) {
+                entries = result;
+                Uri fileUri = Uri.parse(fileName);
+                editText_fileName.setText(fileUri.getLastPathSegment());
+                seekBar_from.setMax(entries.size());
+                seekBar_from.setProgress(0);
+                from = 0;
+                seekBar_to.setMax(entries.size());
+                seekBar_to.setProgress(entries.size());
+                to = entries.size();
+                max = entries.size();
+                safeToSQL(entries);
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.message_error_reading_file), Toast.LENGTH_SHORT).show();
+            }
         }
 
         private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
@@ -391,7 +400,7 @@ public class MainFragment extends Fragment {
 
     //reads xml from file
     //
-    private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
+/*    private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
         InputStream stream = null;
         // Instantiate the parser
         XmlParser parser = new XmlParser();
@@ -444,7 +453,7 @@ public class MainFragment extends Fragment {
         } catch (SQLiteException e) {
             Log.e(TAG, "Error reading database: " + e);
         }
-    }
+    }*/
 
     public static String convertStreamToString(InputStream is) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -466,6 +475,20 @@ public class MainFragment extends Fragment {
 
         // Save the current article selection in case we need to recreate the fragment
         //outState.putInt(CURRENT, current);
+    }
+
+    //extended log tag
+    private static final boolean FINAL_CONSTANT_IS_LOCAL = true;
+    private static final String LOG_TAG = MainFragment.class.getSimpleName();
+
+    private String getLogTagWithMethod() {
+        if (FINAL_CONSTANT_IS_LOCAL) {
+            Throwable stack = new Throwable().fillInStackTrace();
+            StackTraceElement[] trace = stack.getStackTrace();
+            return trace[0].getClassName() + "." + trace[0].getMethodName() + ":" + trace[0].getLineNumber();
+        } else {
+            return LOG_TAG;
+        }
     }
 }
 
