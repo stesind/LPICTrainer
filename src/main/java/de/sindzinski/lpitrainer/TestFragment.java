@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.*;
 import android.preference.PreferenceManager;
 import java.util.Collections;
+import android.content.Context;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -310,12 +311,16 @@ public class TestFragment extends Fragment {
         buttonBack.setOnClickListener(clickListener);
         buttonCheck.setOnClickListener(clickListener);
 
+
         //working gesture detecture
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
+                    private MotionEvent mLastOnDownEvent;
 
                     @Override
                     public boolean onDown(MotionEvent e) {
+                        mLastOnDownEvent = e;
+                        //return super.onDown(e);
                         return true;
                     }
 
@@ -323,9 +328,14 @@ public class TestFragment extends Fragment {
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                            float velocityY) {
                         Log.i(TAG, "onFling has been called!");
+                        
                         final int SWIPE_MIN_DISTANCE = 120;
                         final int SWIPE_MAX_OFF_PATH = 250;
                         final int SWIPE_THRESHOLD_VELOCITY = 200;
+
+                        if (e1==null)
+                            e1 = mLastOnDownEvent;
+
                         try {
                             if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
                                 return false;
@@ -350,7 +360,9 @@ public class TestFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 return gesture.onTouchEvent(event);
             }
+
         });
+
 
 
         if (savedInstanceState != null) {
@@ -397,6 +409,7 @@ public class TestFragment extends Fragment {
 
         return view;
     }
+
 
     @Override
     public void onStart() {
@@ -944,5 +957,20 @@ public class TestFragment extends Fragment {
         savedInstanceState.putParcelableArrayList(ENTRIES, entries);
     }
 
+
+
+    public class MyLayout extends LinearLayout {
+        public MyLayout(Context context) {
+            super(context);
+
+        }
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent ev) {
+            // do whatever you want with the event
+            // and return true so that children don't receive it
+            return true;
+        }
 }
+}
+
 

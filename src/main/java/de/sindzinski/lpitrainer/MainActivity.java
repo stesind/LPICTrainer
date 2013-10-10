@@ -1,21 +1,35 @@
 package de.sindzinski.lpitrainer;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.support.v4.app.*;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.app.ActionBar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import 	android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import android.animation.ObjectAnimator;
 import android.animation.AnimatorSet;
@@ -208,15 +223,22 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
                 return true;
             case R.id.about:
                 //showAboutDialog();
-                showAboutDialogFragment();
+                HelpUtils.showAbout(this);
+                //showAboutDialogFragment();
                 return true;
             case R.id.menu_legalnotices:
                 //showLegalNoticeDialog();
-                showLegalNoticeDialogFragment();
+                //showLegalNoticeDialogFragment();
+                HelpUtils.showOpenSourceLicenses(this);
                 return true;
             case R.id.help:
                 //startActivity(new Intent(this, Help.class));
-                showHelpDialogFragment();
+                //showHelpDialogFragment();
+                HelpUtils.showHelp(this);
+                return true;
+            case R.id.eula:
+                //startActivity(new Intent(this, Help.class));
+                HelpUtils.showEula(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -232,12 +254,13 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     }
 
-    public void showAboutDialogFragment() {
+/*    public void showAboutDialogFragment() {
         DialogFragment newFragment = new AboutDialogFragment();
         newFragment.show(getFragmentManager(), "about");
     }
 
     public void showLegalNoticeDialogFragment() {
+
         DialogFragment newFragment = new LegalNoticeDialogFragment();
         newFragment.show(getFragmentManager(), "legalNotice");
     }
@@ -245,7 +268,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public void showHelpDialogFragment() {
         DialogFragment newFragment = new HelpDialogFragment();
         newFragment.show(getFragmentManager(), "help");
-    }
+    }*/
+
+
 
     /*//not used anymore
     public void showLegalNoticeDialog() {

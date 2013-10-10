@@ -15,4 +15,8 @@
           android:title="@string/menu_help"
           android:orderInCategory="100"
           android:showAsAction="never"/>
+    <item android:id="@+id/eula"
+          android:title="@string/menu_eula"
+          android:orderInCategory="100"
+          android:showAsAction="never"/>
 </menu>
