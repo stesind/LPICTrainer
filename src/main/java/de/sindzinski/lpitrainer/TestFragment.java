@@ -94,6 +94,9 @@ public class TestFragment extends Fragment {
     private boolean shuffle = false;
     private int textSize = 2;
     private int textSizeResource;
+
+    private int mTouchSlop;
+    private int mMinimumFlingVelocity;
 /*
     private GestureDetector gestureScanner;
 
@@ -311,6 +314,9 @@ public class TestFragment extends Fragment {
         buttonBack.setOnClickListener(clickListener);
         buttonCheck.setOnClickListener(clickListener);
 
+        ViewConfiguration vc = ViewConfiguration.get(getActivity());
+        mTouchSlop = vc.getScaledTouchSlop();
+        mMinimumFlingVelocity = vc.getScaledMinimumFlingVelocity();
 
         //working gesture detecture
         final GestureDetector gesture = new GestureDetector(getActivity(),
@@ -329,9 +335,11 @@ public class TestFragment extends Fragment {
                                            float velocityY) {
                         Log.i(TAG, "onFling has been called!");
                         
-                        final int SWIPE_MIN_DISTANCE = 120;
+                        //final int SWIPE_MIN_DISTANCE = 120;
+                        final int SWIPE_MIN_DISTANCE = mTouchSlop;
                         final int SWIPE_MAX_OFF_PATH = 250;
-                        final int SWIPE_THRESHOLD_VELOCITY = 200;
+                        //final int SWIPE_THRESHOLD_VELOCITY = 200;
+                        final int SWIPE_THRESHOLD_VELOCITY = mMinimumFlingVelocity;
 
                         if (e1==null)
                             e1 = mLastOnDownEvent;
