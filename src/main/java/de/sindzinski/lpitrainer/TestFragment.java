@@ -325,6 +325,7 @@ public class TestFragment extends Fragment {
 
                     @Override
                     public boolean onDown(MotionEvent e) {
+                        Log.i(TAG, "onDown has been called!");
                         mLastOnDownEvent = e;
                         //return super.onDown(e);
                         return true;
@@ -339,25 +340,29 @@ public class TestFragment extends Fragment {
                         final int SWIPE_MIN_DISTANCE = mTouchSlop;
                         final int SWIPE_MAX_OFF_PATH = 250;
                         //final int SWIPE_THRESHOLD_VELOCITY = 200;
-                        final int SWIPE_THRESHOLD_VELOCITY = mMinimumFlingVelocity;
+                        final int SWIPE_THRESHOLD_VELOCITY = 0;
+                        //final int SWIPE_THRESHOLD_VELOCITY = mMinimumFlingVelocity;
 
                         if (e1==null)
                             e1 = mLastOnDownEvent;
 
                         try {
-                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+/*                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+                                Log.i(TAG, "Off path");
                                 return false;
+                            }*/
                             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                Log.i(TAG, "Right to Left");
+                                Log.i(TAG, "Right to Left" + (e1.getX() - e2.getX()));
                                 nextQuestion();
                             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                Log.i(TAG, "Left to Right");
+                                Log.i(TAG, "Left to Right" + (e2.getX() - e1.getX()));
                                 prevQuestion();
                             }
                         } catch (Exception e) {
                             // nothing
+                            //Log.i(TAG, "Exception" + e.getMessage().toString());
                         }
                         return super.onFling(e1, e2, velocityX, velocityY);
                     }

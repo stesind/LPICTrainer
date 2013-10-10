@@ -30,7 +30,7 @@ public class ContainerLayout extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "onInterceptTouchEvent");
+
         int action = ev.getActionMasked();
         float lastX = 0;
         float currentX = 0;
@@ -38,19 +38,23 @@ public class ContainerLayout extends RelativeLayout {
         float lastY = 0;
         float currentY = 0;
         float yDiff = 0;
+        int lastAction;
         ViewConfiguration vc = ViewConfiguration.get(ContainerLayout.this.getContext());
         int mTouchSlop = vc.getScaledTouchSlop();
         Boolean mIsScrolling;
 
         // Always handle the case of the touch gesture being complete.
+/*
         if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
             // Release the scroll.
             return false; // Do not intercept touch event, let the child handle it
         }
-
+*/
+        lastAction = action;
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 Log.i(TAG, "onInterceptTouchEvent.ACTION_DOWN");
+
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -59,12 +63,21 @@ public class ContainerLayout extends RelativeLayout {
 
                     lastX = ev.getHistoricalX(0);
                     currentX = ev.getX();
-                    xDiff = lastX - currentX;
+                    if (lastX > currentX) {
+                        xDiff = lastX - currentX;
+                    } else {
+                        xDiff = currentX -lastX;
+                    }
 
                     lastY = ev.getHistoricalY(0);
                     currentY = ev.getY();
-                    yDiff = lastX - currentX;
-
+                    if (lastY > currentY) {
+                        yDiff = lastY - currentY;
+                    } else {
+                        yDiff = currentY -lastY;
+                    }
+                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE X - " + xDiff);
+                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE Y - " + yDiff);
                 }
 
                 // Touch slop should be calculated using ViewConfiguration
@@ -72,13 +85,13 @@ public class ContainerLayout extends RelativeLayout {
                 if (xDiff > mTouchSlop) {
                     // Start scrolling!
                     mIsScrolling = true;
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - X scrolling");
+                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - X scrolling" + xDiff);
                     return true;
                 }
                 if (yDiff > mTouchSlop) {
                     // Start scrolling!
                     mIsScrolling = true;
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - Y scrolling");
+                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - Y scrolling" + yDiff);
                     return true;
                 }
                 break;
@@ -89,6 +102,11 @@ public class ContainerLayout extends RelativeLayout {
             case MotionEvent.ACTION_UP:
                 mIsScrolling = false;
                 Log.i(TAG, "onInterceptTouchEvent.ACTION_UP");
+                if (lastAction == MotionEvent.ACTION_DOWN) {
+                    Log.i(TAG, "onInterceptTouchEvent.ACTION_UP");
+                    return false;
+                }
+
                 break;
         }
         //return super.onInterceptTouchEvent(ev);

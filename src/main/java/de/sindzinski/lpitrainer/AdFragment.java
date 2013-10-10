@@ -58,7 +58,7 @@ public class AdFragment extends Fragment {
         adRequest.addKeyword("linux server");
         adRequest.addKeyword("network");
 
-        adRequest.addTestDevice("802B891354C148BCD485A9BD5BE25D0D");
+        //adRequest.addTestDevice("802B891354C148BCD485A9BD5BE25D0D");
         // Ad network-specific mechanism to enable test mode.  Be sure to disable before
         // publishing your application.
         //adRequest.addTestDevice(TEST_DEVICE_ID);
