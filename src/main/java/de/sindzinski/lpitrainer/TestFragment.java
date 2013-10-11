@@ -330,28 +330,56 @@ public class TestFragment extends Fragment {
                         //return super.onDown(e);
                         return true;
                     }
+                    /* onScroll gives several events on one scroll, so it cannot be used for a page flip
+
+                     */
+/*                    @Override
+                    public boolean onScroll (MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                        //Log.i(TAG, "onScroll has been called!");
+                        if (e1==null) {
+                            Log.i(TAG, "onScroll - e1 = null" + " e2 = " + e2.getX() + "  distance X " + distanceX + " distance Y " + distanceY);
+                        } else {
+                            Log.i(TAG, "onScroll - e1 = " + e1.getX() + " e2 = " + e2.getX() + "  distance X " + distanceX + " distance Y " + distanceY);
+                        }
+
+                            Log.i(TAG, "horizontal scroll");
+                            if (distanceX > 0) {
+                                Log.i(TAG, "right to left");
+                                nextQuestion();
+                            } else {
+                                Log.i(TAG, "left to right");
+
+                                prevQuestion();
+                            }
+
+                        return true;
+                    }*/
 
                     @Override
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                            float velocityY) {
                         Log.i(TAG, "onFling has been called!");
-                        
+                        if (e1==null) {
+                            Log.i(TAG, "onFling - e1 = null e2 = " + e2.getX() + "velocityX: " + velocityX);
+                        } else {
+                            Log.i(TAG, "onFling - e1 = " + e1.getX() + " e2 = " + e2.getX() + "  distance X " + (e1.getX() - e2.getX()) + "velocityX: " + velocityX);
+                        }
+
+
                         //final int SWIPE_MIN_DISTANCE = 120;
                         final int SWIPE_MIN_DISTANCE = mTouchSlop;
                         final int SWIPE_MAX_OFF_PATH = 250;
                         //final int SWIPE_THRESHOLD_VELOCITY = 200;
-                        final int SWIPE_THRESHOLD_VELOCITY = 0;
-                        //final int SWIPE_THRESHOLD_VELOCITY = mMinimumFlingVelocity;
+                        //final int SWIPE_THRESHOLD_VELOCITY = 0;
+                        final int SWIPE_THRESHOLD_VELOCITY = mMinimumFlingVelocity;
 
-                        if (e1==null)
-                            e1 = mLastOnDownEvent;
 
                         try {
-/*                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+/*                           if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
                                 Log.i(TAG, "Off path");
                                 return false;
                             }*/
-                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+/*                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                                 Log.i(TAG, "Right to Left" + (e1.getX() - e2.getX()));
                                 nextQuestion();
@@ -359,6 +387,20 @@ public class TestFragment extends Fragment {
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                                 Log.i(TAG, "Left to Right" + (e2.getX() - e1.getX()));
                                 prevQuestion();
+                            }*/
+                            /*unfortunately sometimes e1 is null, so the distance cannot calculated
+                            maybe it has something to do with onInterceptTouchEvent ACTION_DOWN but if it is not
+                            returning false then buttons do not work anymore
+
+                             */
+                            if (Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                if (velocityX > 0) {
+                                    Log.i(TAG, "Left to Right" );
+                                    prevQuestion();
+                                } else {
+                                    Log.i(TAG, "Right to Left" );
+                                    nextQuestion();
+                                }
                             }
                         } catch (Exception e) {
                             // nothing
