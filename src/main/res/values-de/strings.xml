@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LPI Trainer</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_help">Hilfe</string>
+    <string name="help">Hilfe</string>
+    <string name="copyright">Copyright by Steffen Sindzinski 2013, Licensed under GPL v.3</string>
+    <string name="menu_legalnotices">Lizenzen</string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_main">LPI Trainer</string>
+    <string name="button_open_file">Datei auswählen</string>
+    <string name="message_no_filemanager_installed">Kein Dateimanager installiert!</string>
+    <string name="message_no_licence_file">No license file found!</string>
+    <string name="message_reading_file">Lese Datei...</string>
+    <string name="message_error_reading_file">Fehler beim Lesen der Datei!</string>
+    <string name="message_please_wait">Bitte warten...</string>
+    <string name="button_start_test">Start</string>
+    <string name="menu_end">Ende</string>
+    <string name="menu_zoom">Zoom</string>
+    <string name="menu_about">Impressum</string>
+    <string name="menu_eula">Eula</string>
+    <string name="button_back">Zurück</string>
+    <string name="button_forward">Vorwärz</string>
+    <string name="button_check">Überprüfen</string>
+    <string name="pref_appearance_title">Erscheinung</string>
+    <string name="pref_test_title">Test</string>
+    <string name="pref_general_title">Allgemein</string>
+    <string name="pref_key_shuffle">Mischen</string>
+    <string name="pref_key_shuffle_title">Mischen</string>
+    <string name="fragment_preferences_title">Einstellungen</string>
+    <string name="title_activity_pref">PrefActivity</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="dialog_close">Close</string>
+    <string name="about_dialog_title">Impressum</string>
+    <string name="file_name_license">Hilfe</string>
+    <string name="file_name_help">Hilfe</string>
+    <string name="legalNotice_dialog_title">Lizenzen</string>
+    <string name="pref_key_size_default">1</string>
+    <string name="admob_id">ca-app-pub-8612547192837580/2075807553</string>
+    <string name="about_eula">End User License Agreement</string>
+    <string name="about_licenses">Lizenzen</string>
+    <string name="about_body"><![CDATA[
+        <b>Copyright Steffen Sindzinski 2013</b><br>
+        Version %s<br><br>
+        <a href="http://m.google.com/utos">Terms of Service</a><br><br>
+        <a href="http://www.google.com/policies/privacy/">Privacy Policy</a>
+    ]]></string>
+
+    <!--suppress AndroidLintTypographyOther -->
+    <string name="eula_text"><![CDATA[
+        By downloading, installing or using this application or any portion thereof
+        (\"Application\"), you agree to these terms and conditions.<br>
+        <br>
+        Your use of this Application is governed by: (a) the Google Terms of Service
+        (<a href="http://m.google.com/utos">m.google.com/utos</a>); (b) Google\'s Privacy Policy
+        (<a href="http://www.google.com/policies/privacy">http://www.google.com/policies/privacy</a>);
+        and (c) any applicable Google Service-specific terms of service or privacy policies.
+        Google\'s terms of service and privacy policies may be updated from time to time and without
+        notice.<br>
+        <br>
+        This Application collects certain information as you use it, including via Google Analytics.
+        Google\'s Privacy Policy explains how Google treats your information and protects your
+        privacy when you use the Application.  You agree to the use of your data in accordance
+        with Google\'s privacy policy.
+    ]]></string>
+    <string name="title_announcements">Ankündigungen</string>
+    <string name="title_about">Impressum</string>
+    <string name="ok">OK</string>
+</resources>
