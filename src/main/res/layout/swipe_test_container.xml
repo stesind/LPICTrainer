@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<de.sindzinski.lpitrainer.ContainerLayout
+<de.sindzinski.lpictrainer.ContainerLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,4 +23,4 @@
             android:id="@+id/linearLayoutContainer">
     </LinearLayout>
 
-</de.sindzinski.lpitrainer.ContainerLayout>
+</de.sindzinski.lpictrainer.ContainerLayout>
