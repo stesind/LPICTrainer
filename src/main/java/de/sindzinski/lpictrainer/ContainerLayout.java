@@ -48,16 +48,19 @@ public class ContainerLayout extends RelativeLayout {
             return false; // Do not intercept touch event, let the child handle it
         }
 */
+        /* ACTION_DOWN must return false to let react on buttons and so
+
+         */
         lastAction = action;
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 Log.i(TAG, "onInterceptTouchEvent.ACTION_DOWN");
-
-                break;
+                return false;
 
             case MotionEvent.ACTION_MOVE:
                 Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE");
-                if (ev.getHistorySize() > 0) {
+                return true;
+                /*if (ev.getHistorySize() > 0) {
 
                     lastX = ev.getHistoricalX(0);
                     currentX = ev.getX();
@@ -92,11 +95,11 @@ public class ContainerLayout extends RelativeLayout {
                     Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - Y scrolling" + yDiff);
                     return true;
                 }
-                break;
+                break;*/
             case MotionEvent.ACTION_CANCEL:
                 mIsScrolling = false;
                 Log.i(TAG, "onInterceptTouchEvent.ACTION_CANCEL");
-                break;
+                return false;
             case MotionEvent.ACTION_UP:
                 mIsScrolling = false;
                 Log.i(TAG, "onInterceptTouchEvent.ACTION_UP");
@@ -105,10 +108,10 @@ public class ContainerLayout extends RelativeLayout {
                     return false;
                 }
 
-                break;
+                return false;
         }
         //return super.onInterceptTouchEvent(ev);
-        return false;
+        return true;
     }
 
 
