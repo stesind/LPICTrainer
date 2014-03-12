@@ -1,0 +1,67 @@
+From 336d995d1a5b689a9e60e38666ea9313d48a300d Mon Sep 17 00:00:00 2001
+From: Steffen Sindzinski <stesind@gmail.com>
+Date: Fri, 15 Nov 2013 15:24:07 +0100
+Subject: [PATCH] Revert "now using velocityX for detecting page flip"
+
+This reverts commit 3108fdb537f4d6850830fd1094edb1514f5fcc77.
+---
+ .../de/sindzinski/lpictrainer/ContainerLayout.java | 17 +++----
+ 2 files changed, 14 insertions(+), 59 deletions(-)
+
+diff --git a/src/main/java/de/sindzinski/lpictrainer/ContainerLayout.java b/src/main/java/de/sindzinski/lpictrainer/ContainerLayout.java
+index a3e76bd..82d5f9d 100644
+--- a/src/main/java/de/sindzinski/lpictrainer/ContainerLayout.java
++++ b/src/main/java/de/sindzinski/lpictrainer/ContainerLayout.java
+@@ -48,19 +48,16 @@ public class ContainerLayout extends RelativeLayout {
+             return false; // Do not intercept touch event, let the child handle it
+         }
+ */
+-        /* ACTION_DOWN must return false to let react on buttons and so
+-
+-         */
+         lastAction = action;
+         switch (action) {
+             case MotionEvent.ACTION_DOWN:
+                 Log.i(TAG, "onInterceptTouchEvent.ACTION_DOWN");
+-                return false;
++
++                break;
+ 
+             case MotionEvent.ACTION_MOVE:
+                 Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE");
+-                return true;
+-                /*if (ev.getHistorySize() > 0) {
++                if (ev.getHistorySize() > 0) {
+ 
+                     lastX = ev.getHistoricalX(0);
+                     currentX = ev.getX();
+@@ -95,11 +92,11 @@ public class ContainerLayout extends RelativeLayout {
+                     Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - Y scrolling" + yDiff);
+                     return true;
+                 }
+-                break;*/
++                break;
+             case MotionEvent.ACTION_CANCEL:
+                 mIsScrolling = false;
+                 Log.i(TAG, "onInterceptTouchEvent.ACTION_CANCEL");
+-                return false;
++                break;
+             case MotionEvent.ACTION_UP:
+                 mIsScrolling = false;
+                 Log.i(TAG, "onInterceptTouchEvent.ACTION_UP");
+@@ -108,10 +105,10 @@ public class ContainerLayout extends RelativeLayout {
+                     return false;
+                 }
+ 
+-                return false;
++                break;
+         }
+         //return super.onInterceptTouchEvent(ev);
+-        return true;
++        return false;
+     }
+ 
+ 
+-- 
+1.8.3.2
+

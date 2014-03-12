@@ -1,0 +1,205 @@
+[33mcommit e12fe7f69d8bd17bd861a661b8a317c3d93b1e27[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Tue Sep 17 09:21:43 2013 +0200
+
+    answers now is seriliazable
+
+[33mcommit 3eacf204aebadbe19d6274bd8e9111e4e3099e69[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Sep 16 18:46:07 2013 +0200
+
+    removed settings as actions
+
+[33mcommit 658e107eb9fa727ae6a514febb318bfe9d3e95cd[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Sep 16 14:13:40 2013 +0200
+
+    added swipe detection in fragments
+
+[33mcommit 5703a1e69d41795af50da1dd0ab4eae37e8a55bd[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Sep 16 11:43:02 2013 +0200
+
+    added state hidden for soft keyboard on activity start
+
+[33mcommit 55f6264dffedaeb6fce504f3cbed528ac89480b5[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Sep 16 11:30:29 2013 +0200
+
+    if checked all, the current is redrawn
+
+[33mcommit 27bae243a7c8eddbb8173b708ad08dda2339b75b[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Sep 16 11:12:57 2013 +0200
+
+    fix rotation
+
+[33mcommit 7339ed310a11a87454736bd1b3d01f56fa7df1d2[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Sep 16 11:12:02 2013 +0200
+
+    fix rotation null pointer with removing on stop from fragment
+
+[33mcommit 3977dae1f3e18d3843d836fa1cb31b5af4886087[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Thu Sep 5 14:55:35 2013 +0200
+
+    zwischenstand mit orientierungsbug
+
+[33mcommit cffd4e41c852a8e3142849f4b97339d29147602b[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Thu Aug 22 21:16:12 2013 +0200
+
+    tested, but still bug when switching orientation
+
+[33mcommit 198194119106c374a49ea10f93cb38d915a2f654[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 21 22:02:07 2013 +0200
+
+    working but one error while changing orientation on small devices
+
+[33mcommit 0b062c3359345800d839cd5c5f9db4a31c6928c3[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 21 20:31:03 2013 +0200
+
+    overworked layout2
+
+[33mcommit d3529cdef45591a4d76d86152d91cf5c93e893a4[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 21 20:30:33 2013 +0200
+
+    overworked layout
+
+[33mcommit 6e782027b5795594d2f7fd64e9066037b5577b88[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 21 19:25:38 2013 +0200
+
+    added spinner and commented it out
+
+[33mcommit 34eb6cd0eff11fed2758ff31063fd081b6a22447[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 21 10:52:53 2013 +0200
+
+    added 2 pane support additional files
+
+[33mcommit 198e1f660dea4f7e78536ff544d0f75fc2c733ad[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 21 10:51:13 2013 +0200
+
+    added 2 pane support
+
+[33mcommit fc5d94edf7f42913a156f9d1979b40041ca47e92[m
+Merge: c0dd397 b0850a6
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Tue Aug 20 07:23:59 2013 +0200
+
+    Merge branch 'slideinmenu'
+
+[33mcommit b0850a672ef0e082b30a8f6c3f40eb21849645cd[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Aug 19 08:03:29 2013 +0200
+
+    removed settings as actions
+
+[33mcommit 369c38899790258da27fb0092c69b3929dc467d4[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Aug 19 08:01:07 2013 +0200
+
+    changed to preferencesfragment
+
+[33mcommit c0dd397d8b519ee06ceb5b166af57a9d1b53a352[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Aug 19 07:39:09 2013 +0200
+
+    let editText_answer dissapear with .setVisibility(View.GONE); without using any more space
+
+[33mcommit bc57dbd9f11eacd8b2887a0a2725c8a64e70f73e[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Aug 19 07:33:25 2013 +0200
+
+    stopped playing around with layout annimations
+
+[33mcommit 3e7f5b68eaf37aa17b3bc1956b8d99134162271a[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Mon Aug 19 00:00:15 2013 +0200
+
+    changed test fragment to dynamically adding widgets
+
+[33mcommit 5d0c0a508a4059761e3628901899e0e1466ed759[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Sun Aug 18 20:52:57 2013 +0200
+
+    added some code for animations, but not working
+    removed unused procedures
+
+[33mcommit 2bdff62f1c5ced6838ee85868ead87cdbbd0dc70[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Sun Aug 18 13:44:37 2013 +0200
+
+    fixed menu in test fragment
+
+[33mcommit 9f9ecddc8064b58845e5f8346d37747824a2918b[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Sun Aug 18 12:58:26 2013 +0200
+
+    working main fragment and triggering my main activity
+
+[33mcommit 0411776d5d10ea97add2b05c59aa1594644a9a9b[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Sun Aug 18 10:29:28 2013 +0200
+
+    working test fragment
+
+[33mcommit dc269ffce5d462d898199214cf947ed96b2ea1d9[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Fri Aug 16 17:51:02 2013 +0200
+
+    improved settings per pref activity and fragments
+
+[33mcommit cc8f437d1d6b544235558fb0ee30a024a7d5edec[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Fri Aug 16 16:12:33 2013 +0200
+
+    legalnotice dialog as fragment
+
+[33mcommit 27a4c3572eff7ef9ce1c0db94dc73a3095053a18[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Fri Aug 16 15:29:36 2013 +0200
+
+    about dialog as fragment
+
+[33mcommit 95d0a7bcdeefe7ee16370338022d703313b8862a[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Fri Aug 16 14:27:23 2013 +0200
+
+    removed build folder from git
+
+[33mcommit 6eb965659ecf80993a29e040c5eb1e2596c6c96b[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Fri Aug 16 08:17:53 2013 +0200
+
+    working with settings as action and little edittext bug
+
+[33mcommit 2eedf640a772a6e5431dd9c28842ad0a1c0000e9[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Thu Aug 15 20:12:07 2013 +0200
+
+    fixing edittext check
+
+[33mcommit f0f632c1ea843aa50d94be59551ba9700773d350[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Thu Aug 15 09:55:55 2013 +0200
+
+    implemented check of edittext answers
+
+[33mcommit 19e5547a47efbdf9e5a27fa368aab58d658514ac[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 14 14:28:47 2013 +0200
+
+    fixed changing of database
+
+[33mcommit c66f83fdfb2d25d92852d59b97e867c175960399[m
+Author: Steffen Sindzinski <stesind@gmail.com>
+Date:   Wed Aug 14 11:43:19 2013 +0200
+
+    overworked design
