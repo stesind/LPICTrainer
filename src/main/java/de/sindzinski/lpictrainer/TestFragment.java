@@ -15,7 +15,9 @@ import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import android.preference.PreferenceManager;
-import java.util.Collections;
+
+import java.util.*;
+
 import android.content.Context;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -27,9 +29,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ListIterator;
+
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -47,6 +47,7 @@ public class TestFragment extends Fragment {
     public Integer from;
     public Integer to;
     public ListIterator<Entry> it;
+    //public ArrayList<Entry> subEntries = null;
     protected TextView textView_question;
     protected CheckBox checkBox_answer1;
     protected CheckBox checkBox_answer2;
@@ -430,11 +431,6 @@ public class TestFragment extends Fragment {
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 entries = (ArrayList) db.getAllEntries();
 
-                //if set in preferences then shuffle entries
-                if (shuffle) {
-                    Collections.shuffle(entries);
-                }
-
             } catch (SQLiteException e) {
                 Log.e(TAG, "Error reading database: " + e);
             }
@@ -442,7 +438,15 @@ public class TestFragment extends Fragment {
 
         //entries = loadXmlFromFile();
         //check if from is <= to
-        it = entries.subList((from > to) ? 0 : from, to).listIterator();
+        List<Entry> subEntries = entries.subList((from > to) ? 0 : from, to);
+
+        //if set in preferences then shuffle entries
+        if (shuffle) {
+            Collections.shuffle(subEntries);
+        }
+
+        //get the iterator fr
+        it = subEntries.listIterator();
 
         //run to current item
         int i = 1;
