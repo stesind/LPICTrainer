@@ -185,11 +185,6 @@ public class TestFragment extends Fragment {
         setHasOptionsMenu(true);
 
         //setRetainInstance(true); //savedInstancestate will always be null!!!
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
 
         //get Arguments
         from = getArguments().getInt("from", 0);
@@ -220,6 +215,59 @@ public class TestFragment extends Fragment {
                 textSizeResource = android.R.style.TextAppearance_Large;
                 break;
         }
+
+
+        if (savedInstanceState != null) {
+            //redrawn
+            current = savedInstanceState.getInt(CURRENT,0);
+            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
+            entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
+            subEntries = (ArrayList) savedInstanceState.getSerializable(SUBENTRIES);
+        } else {
+            //newly drawn
+            //load first data to display
+            try {
+                //load from sqlite database
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                entries = (ArrayList) db.getAllEntries();
+                subEntries = new ArrayList<Entry>(entries.subList((from > to) ? 0 : from, to));
+
+                //if set in preferences then shuffle entries
+                if (shuffle) {
+                    Collections.shuffle(subEntries);
+                }
+            } catch (SQLiteException e) {
+                Log.e(TAG, "Error reading database: " + e);
+            }
+        }
+
+        //entries = loadXmlFromFile();
+        //check if from is <= to
+
+
+        //get the iterator fr
+        it = subEntries.listIterator();
+
+        //run to current item
+        int i = 1;
+
+        while (i < current) {
+            it.next();
+            i++;
+        }
+        max = to-from;
+        if (current > 0) {
+            current--; //neccessary because current is increased in nextQuestion
+        }
+
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
 
         //not already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
@@ -332,7 +380,7 @@ public class TestFragment extends Fragment {
                         mLastOnDownEvent = e;
                         //return super.onDown(e);
                         return true;
-                    }null
+                    }
                     /* onScroll gives several events on one scroll, so it cannot be used for a page flip
 
                      */
@@ -422,50 +470,7 @@ public class TestFragment extends Fragment {
         });
 
 
-
-        if (savedInstanceState != null) {
-            //redrawn
-            current = savedInstanceState.getInt(CURRENT,0);
-            answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
-            entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
-            subEntries = (ArrayList) savedInstanceState.getSerializable(SUBENTRIES);
-        } else {
-            //newly drawn
-            //load first data to display
-            try {
-                //load from sqlite database
-                DatabaseHandler db = new DatabaseHandler(getActivity());
-                entries = (ArrayList) db.getAllEntries();
-                subEntries = new ArrayList<Entry>(entries.subList((from > to) ? 0 : from, to));
-
-                //if set in preferences then shuffle entries
-                if (shuffle) {
-                    Collections.shuffle(subEntries);
-                }
-            } catch (SQLiteException e) {
-                Log.e(TAG, "Error reading database: " + e);
-            }
-        }
-
-        //entries = loadXmlFromFile();
-        //check if from is <= to
-
-
-        //get the iterator fr
-        it = subEntries.listIterator();
-
-        //run to current item
-        int i = 1;
-
-        while (i < current) {
-            it.next();
-            i++;
-        }
-        max = to-from;
-        if (current > 0) {
-            current--; //neccessary because current is increased in nextQuestion
-        }
-        nextQuestion();
+        currentQuestion();
 
         changeTextSize();
 
@@ -771,6 +776,20 @@ public class TestFragment extends Fragment {
             //changeTextSize();
         }
 
+    }
+
+    public void currentQuestion() {
+        //saveAnswers();
+        if (entry == null) {
+            entry = it.next();
+            current++;
+        }
+        lastAction = "next";
+        setQuestion(entry);
+        loadAnswers();
+        if (checked) {
+             checkAnswer();
+        }
     }
 
     public void saveAnswers() {
