@@ -48,22 +48,22 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
     }
 
     public void onRightToLeftSwipe(View v){
-        Log.i(logTag, "RightToLeftSwipe!");
+        Logger.d(logTag, "RightToLeftSwipe!");
         activity.right2left(v);
     }
 
     public void onLeftToRightSwipe(View v){
-        Log.i(logTag, "LeftToRightSwipe!");
+        Logger.d(logTag, "LeftToRightSwipe!");
         activity.left2right(v);
     }
 
     public void onTopToBottomSwipe(View v){
-        Log.i(logTag, "onTopToBottomSwipe!");
+        Logger.d(logTag, "onTopToBottomSwipe!");
         activity.top2bottom(v);
     }
 
     public void onBottomToTopSwipe(View v){
-        Log.i(logTag, "onBottomToTopSwipe!");
+        Logger.d(logTag, "onBottomToTopSwipe!");
         activity.bottom2top(v);
     }
 
@@ -88,7 +88,7 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
                     if(deltaX > 0) { this.onRightToLeftSwipe(v); return true; }
                 }
                 else {
-                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
+                    Logger.d(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
                 }
 
                 // swipe vertical?
@@ -98,7 +98,7 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
                     if(deltaY > 0) { this.onBottomToTopSwipe(v); return true; }
                 }
                 else {
-                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
+                    Logger.d(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
                     v.performClick();
                 }
             }

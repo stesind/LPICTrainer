@@ -44,7 +44,6 @@ import android.widget.TextView;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
-import android.widget.Toast;
 
 /**
  * This is a set of helper methods for showing contextual help information in the app.

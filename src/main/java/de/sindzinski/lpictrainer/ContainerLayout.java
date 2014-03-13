@@ -51,12 +51,12 @@ public class ContainerLayout extends RelativeLayout {
         lastAction = action;
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                Log.i(TAG, "onInterceptTouchEvent.ACTION_DOWN");
+                Logger.d(TAG, "onInterceptTouchEvent.ACTION_DOWN");
 
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE");
+                Logger.d(TAG, "onInterceptTouchEvent.ACTION_MOVE");
                 if (ev.getHistorySize() > 0) {
 
                     lastX = ev.getHistoricalX(0);
@@ -74,8 +74,8 @@ public class ContainerLayout extends RelativeLayout {
                     } else {
                         yDiff = currentY -lastY;
                     }
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE X - " + xDiff);
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE Y - " + yDiff);
+                    Logger.d(TAG, "onInterceptTouchEvent.ACTION_MOVE X - " + xDiff);
+                    Logger.d(TAG, "onInterceptTouchEvent.ACTION_MOVE Y - " + yDiff);
                 }
 
                 // Touch slop should be calculated using ViewConfiguration
@@ -83,25 +83,25 @@ public class ContainerLayout extends RelativeLayout {
                 if (xDiff > mTouchSlop) {
                     // Start scrolling!
                     mIsScrolling = true;
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - X scrolling" + xDiff);
+                    Logger.d(TAG, "onInterceptTouchEvent.ACTION_MOVE - X scrolling" + xDiff);
                     return true;
                 }
                 if (yDiff > mTouchSlop) {
                     // Start scrolling!
                     mIsScrolling = true;
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_MOVE - Y scrolling" + yDiff);
+                    Logger.d(TAG, "onInterceptTouchEvent.ACTION_MOVE - Y scrolling" + yDiff);
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:
                 mIsScrolling = false;
-                Log.i(TAG, "onInterceptTouchEvent.ACTION_CANCEL");
+                Logger.d(TAG, "onInterceptTouchEvent.ACTION_CANCEL");
                 break;
             case MotionEvent.ACTION_UP:
                 mIsScrolling = false;
-                Log.i(TAG, "onInterceptTouchEvent.ACTION_UP");
+                Logger.d(TAG, "onInterceptTouchEvent.ACTION_UP");
                 if (lastAction == MotionEvent.ACTION_DOWN) {
-                    Log.i(TAG, "onInterceptTouchEvent.ACTION_UP");
+                    Logger.d(TAG, "onInterceptTouchEvent.ACTION_UP");
                     return false;
                 }
 

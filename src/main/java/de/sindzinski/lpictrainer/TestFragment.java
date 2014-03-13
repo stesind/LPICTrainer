@@ -47,6 +47,7 @@ public class TestFragment extends Fragment {
     public Integer from;
     public Integer to;
     public ListIterator<Entry> it;
+    public ArrayList<Entry> subEntries;
     //public ArrayList<Entry> subEntries = null;
     protected TextView textView_question;
     protected CheckBox checkBox_answer1;
@@ -84,6 +85,7 @@ public class TestFragment extends Fragment {
     private static final String CURRENT="CURRENT_QUESTION";
     private static final String ANSWERS="CURRENT_ANSWERS";
     private static final String ENTRIES="CURRENT_ENTRIES";
+    private static final String SUBENTRIES="CURRENT_SUBENTRIES";
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -118,11 +120,11 @@ public class TestFragment extends Fragment {
                 return false;
             // right to left swipe
             if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                Log.i(TAG, "LEFTERS <<");
+                Logger.i(TAG, "LEFTERS <<");
 
 
             }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                Log.i(TAG, "rIGTHERS >>");
+                Logger.i(TAG, "rIGTHERS >>");
 
             }
             else if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
@@ -201,6 +203,9 @@ public class TestFragment extends Fragment {
 
         //get default preferences from preferencemanager not from shared settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //delete the old string key size because it is now integer
+        //sharedPref.edit().remove("pref_key_size").commit();
+
         shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
         textSize = Integer.parseInt(sharedPref.getString("pref_key_size", getActivity().getResources().getString(R.string.pref_key_size_default)));
 
@@ -323,32 +328,32 @@ public class TestFragment extends Fragment {
 
                     @Override
                     public boolean onDown(MotionEvent e) {
-                        Log.i(TAG, "onDown has been called!");
+                        Logger.i(TAG, "onDown has been called!");
                         mLastOnDownEvent = e;
                         //return super.onDown(e);
                         return true;
-                    }
+                    }null
                     /* onScroll gives several events on one scroll, so it cannot be used for a page flip
 
                      */
 /*                    @Override
                     public boolean onScroll (MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                        //Log.i(TAG, "onScroll has been called!");
+                        //Logger.i(TAG, "onScroll has been called!");
                         if (e1==null) {
-                            Log.i(TAG, "onScroll - e1 = null" + " e2 = " + e2.getX() + "  distance X " + distanceX + " distance Y " + distanceY);
+                            Logger.i(TAG, "onScroll - e1 = null" + " e2 = " + e2.getX() + "  distance X " + distanceX + " distance Y " + distanceY);
                         } else {
-                            Log.i(TAG, "onScroll - e1 = " + e1.getX() + " e2 = " + e2.getX() + "  distance X " + distanceX + " distance Y " + distanceY);
+                            Logger.i(TAG, "onScroll - e1 = " + e1.getX() + " e2 = " + e2.getX() + "  distance X " + distanceX + " distance Y " + distanceY);
                         }
 
-                            Log.i(TAG, "horizontal scroll");
+                            Logger.i(TAG, "horizontal scroll");
                             if (distanceX > 0) {
-                                Log.i(TAG, "right to left");
+                                Logger.i(TAG, "right to left");
                                 nextQuestion();
                             } else {
-                                Log.i(TAG, "left to right");
+                                Logger.i(TAG, "left to right");
 
                                 prevQuestion();
-                            }
+                            }:
 
                         return true;
                     }*/
@@ -356,11 +361,11 @@ public class TestFragment extends Fragment {
                     @Override
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                            float velocityY) {
-                        Log.i(TAG, "onFling has been called!");
+                        Logger.i(TAG, "onFling has been called!");
                         if (e1==null) {
-                            Log.i(TAG, "onFling - e1 = null e2 = " + e2.getX() + "velocityX: " + velocityX);
+                            Logger.i(TAG, "onFling - e1 = null e2 = " + e2.getX() + "velocityX: " + velocityX);
                         } else {
-                            Log.i(TAG, "onFling - e1 = " + e1.getX() + " e2 = " + e2.getX() + "  distance X " + (e1.getX() - e2.getX()) + "velocityX: " + velocityX);
+                            Logger.i(TAG, "onFling - e1 = " + e1.getX() + " e2 = " + e2.getX() + "  distance X " + (e1.getX() - e2.getX()) + "velocityX: " + velocityX);
                         }
 
 
@@ -369,21 +374,21 @@ public class TestFragment extends Fragment {
                         final int SWIPE_MAX_OFF_PATH = 250;
                         //final int SWIPE_THRESHOLD_VELOCITY = 200;
                         //final int SWIPE_THRESHOLD_VELOCITY = 0;
-                        final int SWIPE_THRESHOLD_VELOCITY = mMinimumFlingVelocity;
+                        final int SWIPE_THRESHOLD_VELOCITYnull = mMinimumFlingVelocity;
 
 
                         try {
 /*                           if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
-                                Log.i(TAG, "Off path");
+                                Logger.i(TAG, "Off path");
                                 return false;
                             }*/
 /*                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                Log.i(TAG, "Right to Left" + (e1.getX() - e2.getX()));
+                                Logger.i(TAG, "Right to Left" + (e1.getX() - e2.getX()));
                                 nextQuestion();
                             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                Log.i(TAG, "Left to Right" + (e2.getX() - e1.getX()));
+                                Logger.i(TAG, "Left to Right" + (e2.getX() - e1.getX()));
                                 prevQuestion();
                             }*/
                             /*unfortunately sometimes e1 is null, so the distance cannot calculated
@@ -393,16 +398,16 @@ public class TestFragment extends Fragment {
                              */
                             if (Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                                 if (velocityX > 0) {
-                                    Log.i(TAG, "Left to Right" );
+                                    Logger.i(TAG, "Left to Right" );
                                     prevQuestion();
                                 } else {
-                                    Log.i(TAG, "Right to Left" );
+                                    Logger.i(TAG, "Right to Left" );
                                     nextQuestion();
                                 }
                             }
                         } catch (Exception e) {
                             // nothing
-                            //Log.i(TAG, "Exception" + e.getMessage().toString());
+                            //Logger.i(TAG, "Exception" + e.getMessage().toString());
                         }
                         return super.onFling(e1, e2, velocityX, velocityY);
                     }
@@ -423,6 +428,7 @@ public class TestFragment extends Fragment {
             current = savedInstanceState.getInt(CURRENT,0);
             answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
             entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
+            subEntries = (ArrayList) savedInstanceState.getSerializable(SUBENTRIES);
         } else {
             //newly drawn
             //load first data to display
@@ -430,7 +436,12 @@ public class TestFragment extends Fragment {
                 //load from sqlite database
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 entries = (ArrayList) db.getAllEntries();
+                subEntries = new ArrayList<Entry>(entries.subList((from > to) ? 0 : from, to));
 
+                //if set in preferences then shuffle entries
+                if (shuffle) {
+                    Collections.shuffle(subEntries);
+                }
             } catch (SQLiteException e) {
                 Log.e(TAG, "Error reading database: " + e);
             }
@@ -438,12 +449,7 @@ public class TestFragment extends Fragment {
 
         //entries = loadXmlFromFile();
         //check if from is <= to
-        List<Entry> subEntries = entries.subList((from > to) ? 0 : from, to);
 
-        //if set in preferences then shuffle entries
-        if (shuffle) {
-            Collections.shuffle(subEntries);
-        }
 
         //get the iterator fr
         it = subEntries.listIterator();
@@ -736,6 +742,7 @@ public class TestFragment extends Fragment {
             }
             entry = it.previous();
             lastAction = "previous";
+            Logger.d(TAG, String.valueOf(entry.index));
             current--;
             setQuestion(entry);
             loadAnswers();
@@ -754,6 +761,7 @@ public class TestFragment extends Fragment {
             }
             entry = it.next();
             lastAction = "next";
+            Logger.d(TAG, String.valueOf(entry.index));
             current++;
             setQuestion(entry);
             loadAnswers();
@@ -1011,6 +1019,8 @@ public class TestFragment extends Fragment {
         //savedInstanceState.putSerializable(ENTRIES, entries);
         savedInstanceState.putSerializable(ANSWERS, answers);
         savedInstanceState.putParcelableArrayList(ENTRIES, entries);
+        savedInstanceState.putParcelableArrayList(SUBENTRIES, subEntries);
+
     }
 
 

@@ -74,4 +74,5 @@
     <string name="title_announcements">Announcements</string>
     <string name="title_about">About</string>
     <string name="ok">OK</string>
+    <string name="trial_thanks">Thank You for using during trial period!</string>
 </resources>

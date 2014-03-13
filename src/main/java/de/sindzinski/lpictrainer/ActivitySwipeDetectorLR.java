@@ -65,12 +65,12 @@ public class ActivitySwipeDetectorLR implements View.OnTouchListener {
     }
 
     public void onRightToLeftSwipe(View v){
-        Log.i(logTag, "RightToLeftSwipe!");
+        Logger.d(logTag, "RightToLeftSwipe!");
         activity.onRightToLeft(v);
     }
 
     public void onLeftToRightSwipe(View v){
-        Log.i(logTag, "LeftToRightSwipe!");
+        Logger.d(logTag, "LeftToRightSwipe!");
         activity.onLeftToRight(v);
     }
 
@@ -97,7 +97,7 @@ public class ActivitySwipeDetectorLR implements View.OnTouchListener {
                 long time = timeUp - timeDown;
 
                 if (absDeltaY > MAX_OFF_PATH) {
-                    Log.i(logTag, String.format("absDeltaY=%.2f, MAX_OFF_PATH=%.2f", absDeltaY, MAX_OFF_PATH));
+                    Logger.d(logTag, String.format("absDeltaY=%.2f, MAX_OFF_PATH=%.2f", absDeltaY, MAX_OFF_PATH));
                     return v.performClick();
                 }
 
@@ -106,8 +106,8 @@ public class ActivitySwipeDetectorLR implements View.OnTouchListener {
                     if(deltaX < 0) { this.onLeftToRightSwipe(v); return true; }
                     if(deltaX > 0) { this.onRightToLeftSwipe(v); return true; }
                 } else {
-                    Log.i(logTag, String.format("absDeltaX=%.2f, MIN_DISTANCE=%.2f, absDeltaX > MIN_DISTANCE=%b", absDeltaX, MIN_DISTANCE, (absDeltaX > MIN_DISTANCE)));
-                    Log.i(logTag, String.format("absDeltaX=%.2f, time=%d, VELOCITY=%d, time*VELOCITY/M_SEC=%d, absDeltaX > time * VELOCITY / M_SEC=%b", absDeltaX, time, VELOCITY, time * VELOCITY / M_SEC, (absDeltaX > time * VELOCITY / M_SEC)));
+                    Logger.d(logTag, String.format("absDeltaX=%.2f, MIN_DISTANCE=%.2f, absDeltaX > MIN_DISTANCE=%b", absDeltaX, MIN_DISTANCE, (absDeltaX > MIN_DISTANCE)));
+                    Logger.d(logTag, String.format("absDeltaX=%.2f, time=%d, VELOCITY=%d, time*VELOCITY/M_SEC=%d, absDeltaX > time * VELOCITY / M_SEC=%b", absDeltaX, time, VELOCITY, time * VELOCITY / M_SEC, (absDeltaX > time * VELOCITY / M_SEC)));
                 }
 
             }

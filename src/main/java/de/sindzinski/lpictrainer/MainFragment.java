@@ -111,12 +111,16 @@ public class MainFragment extends Fragment {
                                 Bundle savedInstanceState) {
        // super.onCreate(savedInstanceState);
 
+
+
         //not already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.main_fragment, container, false);
+
+
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         fileName = sharedPref.getString("fileName","").toString();
@@ -415,7 +419,7 @@ public class MainFragment extends Fragment {
         BufferedInputStream bis = null;
         DataInputStream dis = null;
 
-        try {
+        try {Action
             fis = new FileInputStream(fileName);
             bis = new BufferedInputStream(fis);
             dis = new DataInputStream(bis);

@@ -59,7 +59,7 @@ public class Trial {
             }
             return true;
         } else if (notify) {
-            //toast(R.string.trial_thanks);
+            Toast.makeText(context, R.string.trial_thanks, Toast.LENGTH_SHORT).show();
         }
         return false;
     }

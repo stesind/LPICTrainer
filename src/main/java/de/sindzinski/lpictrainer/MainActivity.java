@@ -143,7 +143,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         //show app rater dialog
         AppRater.appLaunched(this);
-        Trial.checkTrial(this, true);
+        //Trial.checkTrial(this, false);
     }
 
 
@@ -375,7 +375,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         super.onDestroy();
 
 /*        // very important:
-        Log.d(TAG, "Destroying helper.");
+        Logger.d(TAG, "Destroying helper.");
         if (mHelper != null) mHelper.dispose();
         mHelper = null;*/
     }
