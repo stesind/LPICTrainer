@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }
 apply plugin: 'android'
@@ -19,11 +19,12 @@ dependencies { compile files('libs/GoogleAdMobAdsSdk-6.4.1.jar') }
 
 
 android {
-    compileSdkVersion 17
-    buildToolsVersion "19.0.1"
-
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 16
+        targetSdkVersion 20
+    }
+    productFlavors {
     }
 }
