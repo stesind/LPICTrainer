@@ -1,2 +1,16 @@
-This program is only intended to run with the questions provided with the book series LPI .. of ... It does not come with any questions.
-Please copy the lpicX.xml files from the trainers CD to your android device. The X stands for a number. Then select this file in the file open dialog.
+This program is only intended to run with the question files provided with the book series LPI-1 and LPI-2 of Harald Maaßen in German. It does not come with any questions.
+Please copy the lpicX.xml files from the trainers CD to your android device. The X stands for the file number. Then select this file in the file open dialog. Please install the OI file manager from
+the Android Play Store.
+
+Usage
+
+Select the questions using the sliders. Then press the start button.
+
+The refresh symbol in the top bar solves all questions and marks if correctly or wrongly answered.
+
+Navigate between answers by left and right swiping or by the arrows. The Looking glass icon in the bottom bar solves the current question.
+
+Settings
+
+One can change the theme and text size in the settings. Also one can enable shuffling of questions.
+
