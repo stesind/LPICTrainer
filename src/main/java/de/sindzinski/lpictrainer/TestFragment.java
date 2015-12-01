@@ -216,7 +216,8 @@ public class TestFragment extends Fragment {
                 break;
         }
 
-
+        // onCreated is only called if fragment was created or app was in background, or screen rotated, safedinstancestate is then filled by the safeinstancestate method
+        //onCreateView instead is called also if other fragment like settings fragment was in foreground
         if (savedInstanceState != null) {
             //redrawn
             current = savedInstanceState.getInt(CURRENT,0);

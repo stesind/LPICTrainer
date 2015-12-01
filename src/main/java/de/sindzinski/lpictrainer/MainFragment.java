@@ -34,6 +34,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -209,7 +210,8 @@ public class MainFragment extends Fragment {
                         onTest();
                         break;
                     case R.id.button_file:
-                        selectFile();
+                        //selectFile();
+                        showFileChooser();
                         break;
                 }
             }
@@ -254,6 +256,24 @@ public class MainFragment extends Fragment {
         }
     }
 
+    private static final int FILE_SELECT_CODE = 0;
+
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("FILE/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+
+        try {
+            startActivityForResult(
+                    Intent.createChooser(intent, "Select txt file"),
+                    FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(this.getActivity(), "Please install a File Manager.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
 
     /**
      * This is called after the file manager finished.
@@ -265,6 +285,20 @@ public class MainFragment extends Fragment {
         //editText_file.setText("");
 
         switch (requestCode) {
+            case FILE_SELECT_CODE:
+                if (resultCode == Activity.RESULT_OK) {
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    Uri fileUri = data.getData();
+                    fileName = fileUri.getPath();
+                    //try {
+                            new loadXmlFromFileTask().execute(fileName);
+                    //} catch (FileNotFoundException e) {
+                        /* Exception handler must be here! */
+                    //}
+                }
+                break;
+
             case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
                 if (resultCode == getActivity().RESULT_OK && data != null) {
                     // obtain the filename

@@ -65,7 +65,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer to;
     public Integer max;
     private boolean isDarkTheme;
-    private boolean showAd = true;
 
     public ArrayList<Entry> entries = null;
     private SharedPreferences sharedPref;
@@ -80,7 +79,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         } else {
             this.setTheme(android.R.style.Theme_Holo_Light);
         }
-        showAd = sharedPref.getBoolean("pref_key_ads", this.getResources().getBoolean(R.bool.pref_key_ads_default));
+        boolean showAd = sharedPref.getBoolean("pref_key_ads", this.getResources().getBoolean(R.bool.pref_key_ads_default));
 
         super.onCreate(savedInstanceState);
 
