@@ -1,5 +1,6 @@
 package de.sindzinski.lpictrainer;
 
+/*
 // Ad network-specific imports (AdMob).
 import com.google.ads.Ad;
 import com.google.ads.AdListener;
@@ -13,13 +14,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+*/
+
+import android.app.Fragment;
 
 /**
  * Created by steffen on 01.10.13.
  */
 public class AdFragment extends Fragment {
-    private int mNum;
-    private AdView mAdView;
+  /*  private AdView mAdView;
     private TextView mAdStatus;
 
     static AdFragment newInstance(int num) {
@@ -32,14 +35,14 @@ public class AdFragment extends Fragment {
         return af;
     }
 
-    /**
+    *//**
      * When creating, retrieve this instance's number from its arguments.
-     */
+     *//*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        mNum = args != null ? args.getInt("num") : 1;
+        int mNum = args != null ? args.getInt("num") : 1;
     }
 
     @Override
@@ -92,5 +95,5 @@ public class AdFragment extends Fragment {
 
         @Override
         public void onReceiveAd(Ad ad) { }
-    }
+    }*/
 }

@@ -12,9 +12,9 @@
     <string name="button_open_file">Datei auswählen</string>
     <string name="message_no_filemanager_installed">Kein Dateimanager installiert!</string>
     <string name="message_no_licence_file">No license file found!</string>
-    <string name="message_reading_file">Lese Datei...</string>
+    <string name="message_reading_file">Lese Datei…</string>
     <string name="message_error_reading_file">Fehler beim Lesen der Datei!</string>
-    <string name="message_please_wait">Bitte warten...</string>
+    <string name="message_please_wait">Bitte warten…</string>
     <string name="button_start_test">Start</string>
     <string name="menu_end">Ende</string>
     <string name="menu_zoom">Zoom</string>

@@ -32,7 +32,8 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
     static final String logTag = "ActivitySwipeDetector";
     private SwipeInterface activity;
     static final int MIN_DISTANCE = 100;
-    private float downX, downY, upX, upY;
+    private float downX;
+    private float downY;
 
     /*
     //instead using relative metrics:
@@ -75,8 +76,8 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
                 return true;
             }
             case MotionEvent.ACTION_UP: {
-                upX = event.getX();
-                upY = event.getY();
+                float upX = event.getX();
+                float upY = event.getY();
 
                 float deltaX = downX - upX;
                 float deltaY = downY - upY;

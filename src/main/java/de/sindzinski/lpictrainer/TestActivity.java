@@ -394,35 +394,35 @@ public class TestActivity extends Activity  {
                     checkBox_answer1.setTextColor(Color.GREEN);
                 } else {
                     checkBox_answer1.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig2 !=null) && entry.richtig2) {
                if (checkBox_answer2.isChecked() == true) {
                     checkBox_answer2.setTextColor(Color.GREEN);
                 } else {
                     checkBox_answer2.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig3 !=null) && entry.richtig3) {
                if (checkBox_answer3.isChecked() == true) {
                     checkBox_answer3.setTextColor(Color.GREEN);
                 } else {
                     checkBox_answer3.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig4 !=null) && entry.richtig4) {
                if (checkBox_answer4.isChecked() == true) {
                     checkBox_answer4.setTextColor(Color.GREEN);
                 } else {
                     checkBox_answer4.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig5 !=null) && entry.richtig5) {
                if (checkBox_answer5.isChecked() == true) {
                     checkBox_answer5.setTextColor(Color.GREEN);
                 } else {
                     checkBox_answer5.setTextColor(Color.RED);
-                };
+                }
             }
         } else {
             if (editText_answer !=null) {
@@ -431,7 +431,7 @@ public class TestActivity extends Activity  {
                 } else {
                     editText_answer.setTextColor(Color.RED);
                     editText_answer.setText(entry.antwort1);
-                };
+                }
             }
         }
         //answered = false;
@@ -477,7 +477,7 @@ public class TestActivity extends Activity  {
                 } else {
                     if (!entry.antwort1.equals(answer.antwort)) {
                         faults++;
-                    };
+                    }
                 }
                 if (faults == 0) {
                     points = points + entry.points;

@@ -85,55 +85,35 @@ public class XmlParser {
             } else if ((type != null) && (type.equals("auswahl")) && (name.equals("antwort"))) {
 
                 tag = parser.getName();
-                if (parser.getAttributeValue(null, "richtig").equals("ja")) {
-                    richtig1 = true;
-                } else {
-                    richtig1 = false;
-                }
+                richtig1 = parser.getAttributeValue(null, "richtig").equals("ja");
                 //richtig1 = parser.getAttributeValue(null, "richtig");
                 antwort1 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                if (parser.getAttributeValue(null, "richtig").equals("ja")) {
-                    richtig2 = true;
-                } else {
-                    richtig2 = false;
-                }
+                richtig2 = parser.getAttributeValue(null, "richtig").equals("ja");
                 //richtig2 = parser.getAttributeValue(null, "richtig");
                 antwort2 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                if (parser.getAttributeValue(null, "richtig").equals("ja")) {
-                    richtig3 = true;
-                } else {
-                    richtig3 = false;
-                }
+                richtig3 = parser.getAttributeValue(null, "richtig").equals("ja");
                 //richtig3 = parser.getAttributeValue(null, "richtig");
                 antwort3 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                if (parser.getAttributeValue(null, "richtig").equals("ja")) {
-                    richtig4 = true;
-                } else {
-                    richtig4 = false;
-                }
+                richtig4 = parser.getAttributeValue(null, "richtig").equals("ja");
                 //richtig4 = parser.getAttributeValue(null, "richtig");
                 antwort4 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                if (parser.getAttributeValue(null, "richtig").equals("ja")) {
-                    richtig5 = true;
-                } else {
-                    richtig5 = false;
-                }
+                richtig5 = parser.getAttributeValue(null, "richtig").equals("ja");
                 //richtig5 = parser.getAttributeValue(null, "richtig");
                 antwort5 = android.text.Html.fromHtml(readText(parser)).toString();
 

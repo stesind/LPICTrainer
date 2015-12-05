@@ -67,7 +67,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     private boolean isDarkTheme;
 
     public ArrayList<Entry> entries = null;
-    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -356,7 +355,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // during onDestroy the fragment is detached from the activity so getActivity returns null!!!!!
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         //SharedPreferences settings = this.getSharedPreferences("Settings", 0);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("fileName", fileName.toString() );

@@ -91,7 +91,6 @@ public class TestFragment extends Fragment {
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
-    private boolean shuffle = false;
     private int textSize = 2;
     private int textSizeResource;
 
@@ -201,7 +200,7 @@ public class TestFragment extends Fragment {
         //delete the old string key size because it is now integer
         //sharedPref.edit().remove("pref_key_size").commit();
 
-        shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
+        boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getActivity().getResources().getBoolean(R.bool.pref_key_shuffle_default));
         textSize = Integer.parseInt(sharedPref.getString("pref_key_size", getActivity().getResources().getString(R.string.pref_key_size_default)));
 
         switch (textSize) {
@@ -853,35 +852,35 @@ public class TestFragment extends Fragment {
                     checkBox1.setTextColor(Color.GREEN);
                 } else {
                     checkBox1.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig2 !=null) && entry.richtig2) {
                 if (checkBox2.isChecked() == true) {
                     checkBox2.setTextColor(Color.GREEN);
                 } else {
                     checkBox2.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig3 !=null) && entry.richtig3) {
                 if (checkBox3.isChecked() == true) {
                     checkBox3.setTextColor(Color.GREEN);
                 } else {
                     checkBox3.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig4 !=null) && entry.richtig4) {
                 if (checkBox4.isChecked() == true) {
                     checkBox4.setTextColor(Color.GREEN);
                 } else {
                     checkBox4.setTextColor(Color.RED);
-                };
+                }
             }
             if ((entry.richtig5 !=null) && entry.richtig5) {
                 if (checkBox5.isChecked() == true) {
                     checkBox5.setTextColor(Color.GREEN);
                 } else {
                     checkBox5.setTextColor(Color.RED);
-                };
+                }
             }
         } else {
             if (editText1.getText().toString().trim().equals(entry.antwort1.trim())) {
@@ -889,7 +888,7 @@ public class TestFragment extends Fragment {
             } else {
                 editText1.setTextColor(Color.RED);
                 editText1.setText(entry.antwort1);
-            };
+            }
         }
         //answered = false;
         //checked = true;
@@ -930,7 +929,7 @@ public class TestFragment extends Fragment {
                 } else {
                     if (!entry.antwort1.equals(answer.antwort)) {
                         faults++;
-                    };
+                    }
                 }
                 if (faults == 0) {
                     points = points + entry.points;

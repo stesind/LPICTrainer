@@ -1,0 +1,1885 @@
+﻿<rootnode>
+	<aufgabenanzahl>120</aufgabenanzahl>
+	
+	
+	<fragetitel>Frage 1</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 1 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben die Quellen für einen neuen Kernel von einem FTP-Server heruntergeladen. Unter welchem Verzeichnis werden Sie den neuen Kernel entpacken?
+
+	</fragetext>
+	<antwort zuFrage='Frage 1' richtig='nein'> /var/lib</antwort>
+	<antwort zuFrage='Frage 1' richtig='ja'> /usr/src</antwort>
+	<antwort zuFrage='Frage 1' richtig='nein'> /lib/modules</antwort>
+	<antwort zuFrage='Frage 1' richtig='nein'> /boot</antwort>
+	<antwort zuFrage='Frage 1' richtig='nein'> /etc</antwort>
+	
+	
+	<fragetitel>Frage 2</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 2 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben auf einem Computer einen angepassten Kernel kompiliert. Viele Funktionen haben Sie bei der Konfiguration für den statischen Teil des Kernels angegeben. Der Kernel ist entsprechend groß. Welche Datei kopieren Sie in das Verzeichnis /boot?
+
+	</fragetext>
+	<antwort zuFrage='Frage 2' richtig='ja'> bzImage</antwort>
+	<antwort zuFrage='Frage 2' richtig='nein'> zImage</antwort>
+	<antwort zuFrage='Frage 2' richtig='nein'> image.bz</antwort>
+	<antwort zuFrage='Frage 2' richtig='nein'> image.gz</antwort>
+	<antwort zuFrage='Frage 2' richtig='nein'> kernel.st</antwort>
+	
+	
+	<fragetitel>Frage 3</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 3 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Version des laufenden Kernels auf einem System identifizieren. Welches Kommando zeigt ausschließlich die gewünschte Information?
+
+	</fragetext>
+	<antwort zuFrage='Frage 3' richtig='nein'> uname -a</antwort>
+	<antwort zuFrage='Frage 3' richtig='nein'> ls /lib/modules</antwort>
+	<antwort zuFrage='Frage 3' richtig='ja'> uname -r</antwort>
+	<antwort zuFrage='Frage 3' richtig='nein'> dmesg</antwort>
+	<antwort zuFrage='Frage 3' richtig='nein'> cat /proc/cpuinfo</antwort>
+	
+	
+	<fragetitel>Frage 4</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 4 im Buch.
+	</erklaerung>
+	<fragetext>Sie beabsichtigen, einen angepassten Kernel für ein System zu konfigurieren. Die Konfiguration soll auf der Konsole stattfinden, aber Sie möchten dennoch eine Menüführung verwenden. Welches Kommando geben Sie ein?
+
+	</fragetext>
+	<antwort zuFrage='Frage 4' richtig='nein'> make config</antwort>
+	<antwort zuFrage='Frage 4' richtig='nein'> make xconfig</antwort>
+	<antwort zuFrage='Frage 4' richtig='nein'> make gconfig</antwort>
+	<antwort zuFrage='Frage 4' richtig='nein'> make oldconfig</antwort>
+	<antwort zuFrage='Frage 4' richtig='ja'> make menuconfig</antwort>
+	
+	
+	<fragetitel>Frage 5</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 5 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben die Quellen eines neuen Kernels aus dem Internet heruntergeladen und wollen zunächst die Konfiguration des bereits laufenden Kernels in den neuen Kernel übernehmen. Auf diese Art soll der Konfigurationsaufwand minimiert werden. Welches der folgenden Kommandos werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 5' richtig='nein'> make config</antwort>
+	<antwort zuFrage='Frage 5' richtig='nein'> make xconfig</antwort>
+	<antwort zuFrage='Frage 5' richtig='nein'> make cloneconfig</antwort>
+	<antwort zuFrage='Frage 5' richtig='ja'> make oldconfig</antwort>
+	<antwort zuFrage='Frage 5' richtig='nein'> make menuconfig</antwort>
+	
+	
+	<fragetitel>Frage 6</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 6 im Buch.
+	</erklaerung>
+	<fragetext>Bei einer Überprüfung eines Computers stellen Sie fest, dass aufgrund jahrelanger Updates viele unterschiedliche Kernelversionen auf dem System koexistieren, die nicht mehr genutzt werden. Die statischen Bestandteile der veralteten Kernel haben Sie bereits gelöscht. Nun wollen Sie auch noch die verwaisten Modulverzeichnisse entfernen. Wo werden Sie diese Verzeichnisse finden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 6' richtig='nein'> /boot</antwort>
+	<antwort zuFrage='Frage 6' richtig='nein'> /proc/modules</antwort>
+	<antwort zuFrage='Frage 6' richtig='nein'> /etc/modules</antwort>
+	<antwort zuFrage='Frage 6' richtig='ja'> /lib/modules</antwort>
+	<antwort zuFrage='Frage 6' richtig='nein'> /var/lib/modules</antwort>
+	
+	
+	<fragetitel>Frage 7</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 7 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen die Konfiguration eines angepassten Kernels. Sie haben die Quellpakete bereits beschafft und extrahiert. Welchen obligatorischen Softlink werden Sie erstellen, bevor Sie mit der Arbeit beginnen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 7' richtig='nein'> /etc/src</antwort>
+	<antwort zuFrage='Frage 7' richtig='nein'> ~/src/linux</antwort>
+	<antwort zuFrage='Frage 7' richtig='ja'> /urs/src/linux</antwort>
+	<antwort zuFrage='Frage 7' richtig='nein'> /usr/src/linux-headers-3.0.0-12</antwort>
+	<antwort zuFrage='Frage 7' richtig='nein'> /lib/modules/3.0.0-12-generic</antwort>
+	
+	
+	<fragetitel>Frage 8</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 8 im Buch.
+	</erklaerung>
+	<fragetext>Welche beiden Programme werden wahlweise verwendet, wenn eine initiale RAM-Disk erstellt oder aktualisiert werden soll? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 8' richtig='nein'> make</antwort>
+	<antwort zuFrage='Frage 8' richtig='ja'> mkinitrd</antwort>
+	<antwort zuFrage='Frage 8' richtig='nein'> update-grub</antwort>
+	<antwort zuFrage='Frage 8' richtig='ja'> mkinitramfs</antwort>
+	<antwort zuFrage='Frage 8' richtig='nein'> init</antwort>
+	
+	
+	<fragetitel>Frage 9</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 9 im Buch.
+	</erklaerung>
+	<fragetext>Um eine neue Grafikkarte mit allen Funktionen nutzen zu können, benötigen Sie einen Patch für Ihren laufenden Kernel. Welches der folgenden Programme ist für die Anwendung des Patches zwingend erforderlich?
+
+	</fragetext>
+	<antwort zuFrage='Frage 9' richtig='nein'> bzip2</antwort>
+	<antwort zuFrage='Frage 9' richtig='ja'> patch</antwort>
+	<antwort zuFrage='Frage 9' richtig='nein'> gzip</antwort>
+	<antwort zuFrage='Frage 9' richtig='nein'> make</antwort>
+	<antwort zuFrage='Frage 9' richtig='nein'> tar</antwort>
+	
+	
+	<fragetitel>Frage 10</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 10 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Kommandos sind geeignet, einen angewendeten Patch aus den Kernelquellen wieder zu entfernen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 10' richtig='ja'> bzip2 -dc patch-3.0.15-rc2.bz2 | patch -p1 -R</antwort>
+	<antwort zuFrage='Frage 10' richtig='nein'> gunzip -dc patch-3.0.15-rc2.bz2 | patch -p1 -R</antwort>
+	<antwort zuFrage='Frage 10' richtig='ja'> gunzip -dc patch-3.0.15-rc2.gz |patch -p1 -R</antwort>
+	<antwort zuFrage='Frage 10' richtig='nein'> bzip2 -dc patch-3.0.15-rc2.gz |patch -p1 -R</antwort>
+	<antwort zuFrage='Frage 10' richtig='nein'> patch -p1 --dry-run &lt; patch-3.0.15-rc2</antwort>
+	
+	
+	<fragetitel>Frage 11</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 11 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben eine neue Kernelversion in Form eines tar-Balls aus dem Internet heruntergeladen. In welchem Verzeichnis sollten Sie den tar-Ball auspacken, bevor Sie mit der Konfiguration beginnen?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 11' richtig='ja'>/usr/src</antwort>
+	
+	
+	<fragetitel>Frage 12</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 12 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben eine neue Kernelversion aus dem Internet heruntergeladen und in das Verzeichnis /usr/src/linux-3.0.0-15 entpackt. Sie wollen nun den obligatorischen Softlink /usr/src/linux erstellen. Welches Kommando geben Sie ein?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 12' richtig='ja'>ln -s /usr/src/linux-3.0.0-15 /usr/src/linux</antwort>
+	
+	
+	<fragetitel>Frage 13</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 13 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen die Konfiguration eines angepassten Kernels. Welches der folgenden Pakete müssen Sie installieren, um eine menügestützte Konfiguration auf der Konsole durchführen zu können?
+
+	</fragetext>
+	<antwort zuFrage='Frage 13' richtig='nein'> make</antwort>
+	<antwort zuFrage='Frage 13' richtig='nein'> gcc</antwort>
+	<antwort zuFrage='Frage 13' richtig='nein'> mc</antwort>
+	<antwort zuFrage='Frage 13' richtig='nein'> dracut</antwort>
+	<antwort zuFrage='Frage 13' richtig='ja'> libncurses5-dev</antwort>
+	
+	
+	<fragetitel>Frage 14</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 14 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben einen neu erstellten Kernel und die zugehörigen Module installiert. Der neue Kernel soll beim nächsten Systemstart verfügbar sein. Welches Kommando müssen Sie verwenden, wenn der Bootloader Grub (Version 0.97) installiert ist?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 14' richtig='ja'>update-grub</antwort>
+	
+	
+	<fragetitel>Frage 15</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 15 im Buch.
+	</erklaerung>
+	<fragetext>Mit welchen der folgenden Kommandos können Sie die geladenen Module eines laufenden Kernels anzeigen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 15' richtig='ja'> lsmod</antwort>
+	<antwort zuFrage='Frage 15' richtig='nein'> modprobe -l</antwort>
+	<antwort zuFrage='Frage 15' richtig='nein'> insmod</antwort>
+	<antwort zuFrage='Frage 15' richtig='ja'> cat /proc/modules</antwort>
+	<antwort zuFrage='Frage 15' richtig='nein'> cat /etc/modules</antwort>
+	
+	
+	<fragetitel>Frage 16</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 16 im Buch.
+	</erklaerung>
+	<fragetext>Welchen Befehl können Sie verwenden, um alle auf einem System verfügbaren (also nicht nur die geladenen) Kernelmodule anzuzeigen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 16' richtig='ja'> modprobe -l</antwort>
+	<antwort zuFrage='Frage 16' richtig='nein'> insmod</antwort>
+	<antwort zuFrage='Frage 16' richtig='nein'> lsmod</antwort>
+	<antwort zuFrage='Frage 16' richtig='nein'> modprobe -a</antwort>
+	<antwort zuFrage='Frage 16' richtig='nein'> modprobe -r</antwort>
+	
+	
+	<fragetitel>Frage 17</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 17 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen ein Modul in den laufenden Kernel laden. Module, von denen dieses Modul abhängt, sollen automatisch ebenfalls geladen werden. Welches Programm werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 17' richtig='ja'> modprobe</antwort>
+	<antwort zuFrage='Frage 17' richtig='nein'> insmod</antwort>
+	<antwort zuFrage='Frage 17' richtig='nein'> rmmod</antwort>
+	<antwort zuFrage='Frage 17' richtig='nein'> init</antwort>
+	<antwort zuFrage='Frage 17' richtig='nein'> start</antwort>
+	
+	
+	<fragetitel>Frage 18</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 18 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Datei modules.dep neu erstellen. Sicherheitshalber wollen Sie vorher einen Trockenlauf durchführen, um eventuelle Probleme im Vorfeld zu erkennen. Welches Kommando werden Sie ausführen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 18' richtig='nein'> modprobe -a</antwort>
+	<antwort zuFrage='Frage 18' richtig='nein'> depmod -A</antwort>
+	<antwort zuFrage='Frage 18' richtig='ja'> depmod -n</antwort>
+	<antwort zuFrage='Frage 18' richtig='nein'> insmod > modules.dep</antwort>
+	<antwort zuFrage='Frage 18' richtig='nein'> lsmod > modules.dep</antwort>
+	
+	
+	<fragetitel>Frage 19</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 19 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Konfigurationsdateien steuern das Verhalten von modprobe? (Wählen Sie drei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 19' richtig='ja'> modules.conf</antwort>
+	<antwort zuFrage='Frage 19' richtig='nein'> /proc/sys/kernel</antwort>
+	<antwort zuFrage='Frage 19' richtig='ja'> modprobe.conf</antwort>
+	<antwort zuFrage='Frage 19' richtig='ja'> modprobe.conf.local</antwort>
+	<antwort zuFrage='Frage 19' richtig='nein'> modules.dep</antwort>
+	
+	
+	<fragetitel>Frage 20</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 20 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Datei modules.dep neu erstellen. Welches Programm werden Sie ausführen? (Geben Sie nur das Programm ohne Optionen an!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 20' richtig='ja'>depmod</antwort>
+	
+	
+	<fragetitel>Frage 21</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 21 im Buch.
+	</erklaerung>
+	<fragetext>Welcher Dämon steht bei einem System-V basierten System in der Hierarchie am höchsten und welche Prozess-ID verwendet dieser Dämon?
+
+	</fragetext>
+	<antwort zuFrage='Frage 21' richtig='nein'> initd mit PID 0</antwort>
+	<antwort zuFrage='Frage 21' richtig='ja'> init mit PID 1</antwort>
+	<antwort zuFrage='Frage 21' richtig='nein'> init mit PID 0</antwort>
+	<antwort zuFrage='Frage 21' richtig='nein'> initd mit PID 1</antwort>
+	<antwort zuFrage='Frage 21' richtig='nein'> init mit PID 1000</antwort>
+	
+	
+	<fragetitel>Frage 22</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 22 im Buch.
+	</erklaerung>
+	<fragetext>Sie sind mit einem System über eine SSH-Sitzung verbunden. Nach einem Kernel-Update ist ein Neustart erforderlich. Welche der folgenden Kommandos können Sie verwenden? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 22' richtig='ja'> shutdown -r now</antwort>
+	<antwort zuFrage='Frage 22' richtig='nein'> init 0</antwort>
+	<antwort zuFrage='Frage 22' richtig='nein'> shutdown -h now</antwort>
+	<antwort zuFrage='Frage 22' richtig='nein'> shutdown -hF now</antwort>
+	<antwort zuFrage='Frage 22' richtig='ja'> init 6</antwort>
+	
+	
+	<fragetitel>Frage 23</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 23 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen während eines administrativen Eingriffs verhindern, dass andere Benutzer auf den Computer, an dem Sie arbeiten, zugreifen. Sie wollen den Runlevel wechseln. Welches Kommando werden Sie ausführen?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 23' richtig='ja'>init 1</antwort>
+	<antwort zuFrage='Frage 23' richtig='ja'>init s</antwort>
+	<antwort zuFrage='Frage 23' richtig='ja'>init S</antwort>
+	<antwort zuFrage='Frage 23' richtig='ja'>telinit 1</antwort>
+	<antwort zuFrage='Frage 23' richtig='ja'>telinit s</antwort>
+	<antwort zuFrage='Frage 23' richtig='ja'>telinit S</antwort>
+	
+	
+	<fragetitel>Frage 24</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 24 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen für einen Computer den Runlevel ändern, der nach einem Systemstart standardmäßig ausgeführt wird. Welche Datei werden Sie hierfür bearbeiten? Geben Sie die Datei und den Pfad an!
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 24' richtig='ja'>/etc/inittab</antwort>
+	
+	
+	<fragetitel>Frage 25</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 25 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen auf einem System-V basierten Linux-Computer die init-Skripte überprüfen. In welchen Verzeichnissen werden Sie nachsehen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 25' richtig='nein'> /etc/init</antwort>
+	<antwort zuFrage='Frage 25' richtig='ja'> /etc/init.d</antwort>
+	<antwort zuFrage='Frage 25' richtig='ja'> /etc/rc.d</antwort>
+	<antwort zuFrage='Frage 25' richtig='nein'> /lib/modules</antwort>
+	<antwort zuFrage='Frage 25' richtig='nein'> /boot</antwort>
+	
+	
+	<fragetitel>Frage 26</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 26 im Buch.
+	</erklaerung>
+	<fragetext>Sie verwenden das Kommando runlevel. Das Ergebnis des Kommandos sehen Sie hier:
+&lt;br /> archangel:~ # runlevel 1 3
+&lt;br /> Welche Rückschlüsse können Sie aus der Ausgabe des Kommandos ziehen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 26' richtig='nein'> Der Computer befindet sich in Runlevel 1.</antwort>
+	<antwort zuFrage='Frage 26' richtig='ja'> Der Computer befindet sich in Runlevel 3.</antwort>
+	<antwort zuFrage='Frage 26' richtig='nein'> Ein Neustart steht aus.</antwort>
+	<antwort zuFrage='Frage 26' richtig='nein'> Der Computer befand sich zuvor in Runlevel 3.</antwort>
+	<antwort zuFrage='Frage 26' richtig='ja'> Der Computer befand sich zuvor in Runlevel 1.</antwort>
+	
+	
+	<fragetitel>Frage 27</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 27 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen einen Computer neu starten. Während des Neustarts soll eine Überprüfung der Dateisysteme erzwungen werden. Welches Kommando können Sie hierfür verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 27' richtig='nein'> shutdown -r now</antwort>
+	<antwort zuFrage='Frage 27' richtig='nein'> init 6</antwort>
+	<antwort zuFrage='Frage 27' richtig='nein'> init 0</antwort>
+	<antwort zuFrage='Frage 27' richtig='nein'> shutdown -rf now</antwort>
+	<antwort zuFrage='Frage 27' richtig='ja'> shutdown -rF now</antwort>
+	
+	
+	<fragetitel>Frage 28</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 28 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen sich über einige Standards belesen, die für alle Linux-Distributionen gelten sollten. Welche Webseiten sollten Sie hier besuchen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 28' richtig='ja'> http://www.linuxbase.org</antwort>
+	<antwort zuFrage='Frage 28' richtig='ja'> http://www.linuxfoundation.org</antwort>
+	<antwort zuFrage='Frage 28' richtig='nein'> http://www.lpi.org</antwort>
+	<antwort zuFrage='Frage 28' richtig='nein'> http://www.kernel.org</antwort>
+	<antwort zuFrage='Frage 28' richtig='nein'> http://www.wikipedia.de</antwort>
+	
+	
+	<fragetitel>Frage 29</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 29 im Buch.
+	</erklaerung>
+	<fragetext>Sie vermuten ein Problem mit einer Festplatte. Bevor Sie die Dateisysteme einer gründlichen Überprüfung unterziehen, wollen Sie sehen, ob es in letzter Zeit Kernel-Meldungen zu dieser Festplatte gab. Welches Kommando werden Sie ausführen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 29' richtig='nein'> fsck -t ext4 /dev/sda1</antwort>
+	<antwort zuFrage='Frage 29' richtig='nein'> fdisk /dev/sda</antwort>
+	<antwort zuFrage='Frage 29' richtig='nein'> cfdisk /dev/sda</antwort>
+	<antwort zuFrage='Frage 29' richtig='ja'> dmesg|tail</antwort>
+	<antwort zuFrage='Frage 29' richtig='nein'> fsck -V /dev/sda1</antwort>
+	
+	
+	<fragetitel>Frage 30</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 30 im Buch.
+	</erklaerung>
+	<fragetext>Zu Überprüfungszwecken müssen Sie ein Dateisystem aushängen. Sie erhalten aber eine Fehlermeldung, die besagt, dass die Ressource beschäftigt sei. Welches Programm können Sie verwenden, um zu ermitteln, welche Programme bzw. welche Benutzer auf das Dateisystem zugreifen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 30' richtig='nein'> df</antwort>
+	<antwort zuFrage='Frage 30' richtig='nein'> free</antwort>
+	<antwort zuFrage='Frage 30' richtig='ja'> lsof</antwort>
+	<antwort zuFrage='Frage 30' richtig='nein'> dmesg</antwort>
+	<antwort zuFrage='Frage 30' richtig='nein'> du</antwort>
+	
+	
+	<fragetitel>Frage 31</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 31 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben Änderungen an der Datei /etc/inittab vorgenommen. Die Änderungen müssen sofort übernommen werden, ohne die Verfügbarkeit des Systems einzuschränken. Welches Kommando werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 31' richtig='nein'> init 6</antwort>
+	<antwort zuFrage='Frage 31' richtig='ja'> telinit-q</antwort>
+	<antwort zuFrage='Frage 31' richtig='nein'> reboot</antwort>
+	<antwort zuFrage='Frage 31' richtig='nein'> init -q</antwort>
+	<antwort zuFrage='Frage 31' richtig='nein'> init 0</antwort>
+	
+	
+	<fragetitel>Frage 32</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 32 im Buch.
+	</erklaerung>
+	<fragetext>Sie finden auf einem Computer ein beschädigtes Dateisystem vor. Welches Programm werden Sie für die Reparatur verwenden? (Geben Sie nur das Programm ohne Pfadangabe, Optionen oder Parameter an!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 32' richtig='ja'>fsck</antwort>
+	
+	
+	<fragetitel>Frage 33</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 33 im Buch.
+	</erklaerung>
+	<fragetext>Sie stellen fest, dass eine an ein System angeschlossene Festplatte plötzlich nicht mehr beschreibbar ist. Alle Partitionen sind nur noch lesbar. Sie müssen die zweite Partition der Festplatte sofort beschreibbar machen. Wie gehen Sie vor?
+
+	</fragetext>
+	<antwort zuFrage='Frage 33' richtig='ja'> mount -o remount,rw /dev/sdb2</antwort>
+	<antwort zuFrage='Frage 33' richtig='nein'> mount -o remount,rw /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 33' richtig='nein'> mount /dev/sdb1 /temp</antwort>
+	<antwort zuFrage='Frage 33' richtig='nein'> umask 022</antwort>
+	<antwort zuFrage='Frage 33' richtig='nein'> chmod 777 / -R</antwort>
+	
+	
+	<fragetitel>Frage 34</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 34 im Buch.
+	</erklaerung>
+	<fragetext>Sie starten ein System mit der GRUB-Shell. Sie nehmen Änderungen an den Kernel-Parametern eines Eintrags vor und starten anschließend das Betriebssystem. Nach einem weiteren Reboot stellen Sie fest, dass die Änderungen, die Sie in der GRUB-Shell vorgenommen haben, nicht mehr angewendet werden. Wie machen Sie die Änderungen dauerhaft?
+
+	</fragetext>
+	<antwort zuFrage='Frage 34' richtig='nein'> Schließen Sie Änderungen in der GRUB-Shell mit Strg-X ab.</antwort>
+	<antwort zuFrage='Frage 34' richtig='nein'> Schließen Sie Änderungen in der GRUB-Shell mit :x ab.</antwort>
+	<antwort zuFrage='Frage 34' richtig='nein'> Schließen Sie Änderungen in der GRUB-Shell mit ZZ ab.</antwort>
+	<antwort zuFrage='Frage 34' richtig='nein'> Editieren Sie die Datei /etc/grub.cfg.</antwort>
+	<antwort zuFrage='Frage 34' richtig='ja'> Editieren Sie die Datei /boot/grub/grub.cfg.</antwort>
+	
+	
+	<fragetitel>Frage 35</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 35 im Buch.
+	</erklaerung>
+	<fragetext>Die dritte Partition einer Festplatte weist etliche Fehler auf. Sie wollen, dass die Fehler behoben werden, ohne bei jeder einzelnen Reparatur eine Bestätigung geben zu müssen. Welche Kommandos können Sie verwenden? (Wählen Sie zwei!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 35' richtig='nein'> fsck -a /dev/sdb2</antwort>
+	<antwort zuFrage='Frage 35' richtig='nein'> fsck -y /dev/sdb2</antwort>
+	<antwort zuFrage='Frage 35' richtig='ja'> fsck -a /dev/sdb3</antwort>
+	<antwort zuFrage='Frage 35' richtig='ja'> fsck -y /dev/sdb3</antwort>
+	<antwort zuFrage='Frage 35' richtig='nein'> cfdisk</antwort>
+	
+	
+	<fragetitel>Frage 36</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 36 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen ein ext4-Dateisystem überprüfen. Welche der folgenden Kommandos können Sie hierfür verwenden? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 36' richtig='nein'> ext4.mkfs /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 36' richtig='nein'> mkfs -t ext4 /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 36' richtig='ja'> fsck -t ext4 /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 36' richtig='nein'> mkfs.ext4 /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 36' richtig='ja'> fsck.ext4 /dev/sdb1</antwort>
+	
+	
+	<fragetitel>Frage 37</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 37 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen festlegen, dass die Partition /dev/sdb1 einer USB-Festplatte bei jedem Systemstart automatisch mit dem Verzeichnis /backup verbunden wird. Welche Datei werden Sie bearbeiten?
+
+	</fragetext>
+	<antwort zuFrage='Frage 37' richtig='nein'> /etc/mtab</antwort>
+	<antwort zuFrage='Frage 37' richtig='nein'> /proc/mounts</antwort>
+	<antwort zuFrage='Frage 37' richtig='nein'> /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 37' richtig='ja'> /etc/fstab</antwort>
+	<antwort zuFrage='Frage 37' richtig='nein'> /backup</antwort>
+	
+	
+	<fragetitel>Frage 38</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 38 im Buch.
+	</erklaerung>
+	<fragetext>Ein System lässt sich nicht herunterfahren. Bevor Sie das Gerät ausschalten, wollen Sie, dass der Inhalt des Festplattencaches auf die jeweiligen Datenträger geschrieben wird. Welches Kommando (ohne Optionen) werden Sie verwenden?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 38' richtig='ja'>sync</antwort>
+	
+	
+	<fragetitel>Frage 39</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 39 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen überprüfen, welche Volumen und Partitionen eines Systems derzeit eingehängt sind. Mit welchen der folgenden Kommandos bekommen Sie die benötigten Informationen? (Wählen Sie drei!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 39' richtig='ja'> mount</antwort>
+	<antwort zuFrage='Frage 39' richtig='ja'> cat /proc/mounts</antwort>
+	<antwort zuFrage='Frage 39' richtig='nein'> sync</antwort>
+	<antwort zuFrage='Frage 39' richtig='nein'> cat /etc/fstab</antwort>
+	<antwort zuFrage='Frage 39' richtig='ja'> cat /etc/mtab</antwort>
+	
+	
+	<fragetitel>Frage 40</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 40 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Einträge einer fstab-Datei sind nicht gültig? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 40' richtig='nein'> /dev/sda1     /        ext3     defaults  0  0</antwort>
+	<antwort zuFrage='Frage 40' richtig='nein'> /dev/sdb1     /backup  ext4     noauto    1  1</antwort>
+	<antwort zuFrage='Frage 40' richtig='nein'> proc          /proc    proc     defaults  0  0</antwort>
+	<antwort zuFrage='Frage 40' richtig='ja'> sda1          /        ext2     defaults  0  0</antwort>
+	<antwort zuFrage='Frage 40' richtig='ja'> /proc/sda1    /        ext3     defaults  0  0</antwort>
+	
+	
+	<fragetitel>Frage 41</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 41 im Buch.
+	</erklaerung>
+	<fragetext>Sie arbeiten an einem System, dessen /etc/fstab-Datei u.a. den folgenden Eintrag enthält:
+&lt;br /> /dev/sda3    /speicher    ext4    defaults,auto    0  0
+&lt;br /> Welche der folgenden Kommandos würden /dev/sda3 mit dem Verzeichnis /speicher verbinden? (Wählen Sie drei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 41' richtig='ja'> mount /dev/sda3</antwort>
+	<antwort zuFrage='Frage 41' richtig='nein'> mount /speicher /dev/sda3 -t ext4</antwort>
+	<antwort zuFrage='Frage 41' richtig='ja'> mount /speicher</antwort>
+	<antwort zuFrage='Frage 41' richtig='nein'> umount /dev/sda3 /speicher</antwort>
+	<antwort zuFrage='Frage 41' richtig='ja'> mount -a</antwort>
+	
+	
+	<fragetitel>Frage 42</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 42 im Buch.
+	</erklaerung>
+	<fragetext>Sie erstellen einen neuen Eintrag in der Datei /etc/fstab. Sie müssen sicherstellen, dass das neu eingetragene Dateisystem von beliebigen Benutzern eingehängt werden kann. Gleichzeitig muss garantiert werden, dass dieses Dateisystem nur von demselben Benutzer oder durch root wieder ausgehängt werden kann. Welche Option werden Sie dem Eintrag hinzufügen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 42' richtig='nein'> ro</antwort>
+	<antwort zuFrage='Frage 42' richtig='nein'> nouser</antwort>
+	<antwort zuFrage='Frage 42' richtig='nein'> noauto</antwort>
+	<antwort zuFrage='Frage 42' richtig='nein'> users</antwort>
+	<antwort zuFrage='Frage 42' richtig='ja'> user</antwort>
+	
+	
+	<fragetitel>Frage 43</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 43 im Buch.
+	</erklaerung>
+	<fragetext>Einige Einträge in der Datei /etc/fstab sind mit der Option defaults konfiguriert. Welche der folgenden Optionen wird hierdurch nicht abgedeckt?
+
+	</fragetext>
+	<antwort zuFrage='Frage 43' richtig='ja'> ro</antwort>
+	<antwort zuFrage='Frage 43' richtig='nein'> rw</antwort>
+	<antwort zuFrage='Frage 43' richtig='nein'> auto</antwort>
+	<antwort zuFrage='Frage 43' richtig='nein'> exec</antwort>
+	<antwort zuFrage='Frage 43' richtig='nein'> nouser</antwort>
+	
+	
+	<fragetitel>Frage 44</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 44 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen alle in der Datei /etc/fstab definierten Swap-Dateisysteme aktivieren. Welches Kommando werden Sie verwenden? Geben Sie das Kommando und wenn erforderlich, Optionen in Kurzschreibweise an!
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 44' richtig='ja'>swapon -a</antwort>
+	
+	
+	<fragetitel>Frage 45</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 45 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen den Automounter autofs verwenden, um Verbindungen zu Windows-Freigaben herzustellen. Welche der folgenden ist die Hauptkonfigurationsdatei von autofs?
+
+	</fragetext>
+	<antwort zuFrage='Frage 45' richtig='nein'> /etc/fstab</antwort>
+	<antwort zuFrage='Frage 45' richtig='ja'> /etc/auto.master</antwort>
+	<antwort zuFrage='Frage 45' richtig='nein'> /etc/mtab</antwort>
+	<antwort zuFrage='Frage 45' richtig='nein'> /etc/auto.mist</antwort>
+	<antwort zuFrage='Frage 45' richtig='nein'> /etc/auto.net</antwort>
+	
+	
+	<fragetitel>Frage 46</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 46 im Buch.
+	</erklaerung>
+	<fragetext>Sie verwenden ein Notebook, das täglich mehrmals heruntergefahren bzw. gestartet wird. Es passiert Ihnen deshalb häufig, dass während des Startvorgangs eine Dateisystemprüfung stattfindet. Sie wollen nun die Anzahl der Mountvorgänge zwischen den Startvorhängen erhöhen. Welches Programm können Sie hierfür verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 46' richtig='nein'> mkisofs</antwort>
+	<antwort zuFrage='Frage 46' richtig='nein'> fsck</antwort>
+	<antwort zuFrage='Frage 46' richtig='nein'> debugfs</antwort>
+	<antwort zuFrage='Frage 46' richtig='ja'> tune2fs</antwort>
+	<antwort zuFrage='Frage 46' richtig='nein'> hdparm</antwort>
+	
+	
+	<fragetitel>Frage 47</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 47 im Buch.
+	</erklaerung>
+	<fragetext>Sie bemerken, dass auf der Partition /dev/sda3 eines Systems zyklisch Dateien verloren gehen. Um den Fehler einzugrenzen, wollen Sie nach fehlerhaften Sektoren in dieser Partition suchen. Welche beiden der folgenden Kommandos können Sie verwenden, nachdem Sie die fragliche Partition ausgehängt haben? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 47' richtig='nein'> fsck -y /dev/sda3</antwort>
+	<antwort zuFrage='Frage 47' richtig='ja'> badblocks /dev/sda3</antwort>
+	<antwort zuFrage='Frage 47' richtig='nein'> hdparm</antwort>
+	<antwort zuFrage='Frage 47' richtig='ja'> e2fsck -c /dev/sda3</antwort>
+	<antwort zuFrage='Frage 47' richtig='nein'> tune2fs</antwort>
+	
+	
+	<fragetitel>Frage 48</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 48 im Buch.
+	</erklaerung>
+	<fragetext>Ein Benutzer hat versehentlich eine wichtige Datei gelöscht. Leider gibt es keine Sicherung, in der diese Datei enthalten ist. Welches Tool können Sie verwenden, um die Datei wiederherzustellen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 48' richtig='nein'> mkfs</antwort>
+	<antwort zuFrage='Frage 48' richtig='nein'> tune2fs</antwort>
+	<antwort zuFrage='Frage 48' richtig='ja'> debugfs</antwort>
+	<antwort zuFrage='Frage 48' richtig='nein'> restore</antwort>
+	<antwort zuFrage='Frage 48' richtig='nein'> cp</antwort>
+	
+	
+	<fragetitel>Frage 49</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 49 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Intervalle für die automatische Dateisystemprüfung während des Systemstarts an einem Computer ändern. Alle Dateisysteme sind mit ReiserFS formatiert. Welches Tool werden Sie einsetzen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 49' richtig='ja'> reiserfstune</antwort>
+	<antwort zuFrage='Frage 49' richtig='nein'> debugreiserfs</antwort>
+	<antwort zuFrage='Frage 49' richtig='nein'> debugfs</antwort>
+	<antwort zuFrage='Frage 49' richtig='nein'> tune2fs</antwort>
+	<antwort zuFrage='Frage 49' richtig='nein'> mkfs.reiserfs</antwort>
+	
+	
+	<fragetitel>Frage 50</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 50 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben eine neue Festplatte an ein System angeschlossen. Die Festplatte verwendet die Gerätedatei /dev/sdd. Da Sie nicht sicher sind, welche Software auf dem Computer verfügbar ist, wollen Sie ein möglichst einfaches Programm zur Partitionierung der neuen Festplatte verwenden. Welches Kommando werden Sie zunächst eingeben?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 50' richtig='ja'>fdisk /dev/sdd</antwort>
+	
+	
+	<fragetitel>Frage 51</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 51 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben fdisk verwendet, um eine Swap-Partition zu erstellen. Die Gerätedatei der Swap-Partition ist /dev/sdb1. Welches Kommando werden Sie als nächstes verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 51' richtig='nein'> swapon -v /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 51' richtig='nein'> swapoff -v /dev/sdb1</antwort>
+	<antwort zuFrage='Frage 51' richtig='nein'> swapon -a</antwort>
+	<antwort zuFrage='Frage 51' richtig='nein'> vi /etc/fstab</antwort>
+	<antwort zuFrage='Frage 51' richtig='ja'> mkswap /dev/sdb1</antwort>
+	
+	
+	<fragetitel>Frage 52</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 52 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen den Inhalt des Verzeichnisses /home eines Servers auf eine DVD brennen. Eine grafische Oberfläche steht auf dem System nicht zur Verfügung. Welches Programm müssen Sie zunächst verwenden, um eine ISO 9660 konforme Datei zu erhalten?
+
+	</fragetext>
+	<antwort zuFrage='Frage 52' richtig='nein'> dd</antwort>
+	<antwort zuFrage='Frage 52' richtig='ja'> mkisofs</antwort>
+	<antwort zuFrage='Frage 52' richtig='nein'> cdrecord</antwort>
+	<antwort zuFrage='Frage 52' richtig='nein'> mkfs.ntfs</antwort>
+	<antwort zuFrage='Frage 52' richtig='nein'> fdisk</antwort>
+	
+	
+	<fragetitel>Frage 53</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 53 im Buch.
+	</erklaerung>
+	<fragetext>Zu Archivierungszwecken wollen Sie aus dem Inhalt einer CD eine ISO-Datei generieren. Die Gerätedatei des CD-Laufwerks ist /dev/hdc. Welches der folgenden Kommandos erstellt die ISO-Datei?
+
+	</fragetext>
+	<antwort zuFrage='Frage 53' richtig='nein'> cp /dev/hdc cdrom.iso</antwort>
+	<antwort zuFrage='Frage 53' richtig='nein'> cdrecord /dev/hdc</antwort>
+	<antwort zuFrage='Frage 53' richtig='nein'> dd if=cdrom.iso of=/dev/hdc</antwort>
+	<antwort zuFrage='Frage 53' richtig='ja'> dd if=/dev/hdc of=cdrom.iso</antwort>
+	<antwort zuFrage='Frage 53' richtig='nein'> cdrecord dev=/dev/hdc</antwort>
+	
+	
+	<fragetitel>Frage 54</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 54 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Einrichtungen sind involviert, wenn eine eingelegte DVD automatisch in den Verzeichnisbaum eingehängt wird?
+
+	</fragetext>
+	<antwort zuFrage='Frage 54' richtig='nein'> mkisofs</antwort>
+	<antwort zuFrage='Frage 54' richtig='ja'> hald</antwort>
+	<antwort zuFrage='Frage 54' richtig='nein'> cdrecord</antwort>
+	<antwort zuFrage='Frage 54' richtig='nein'> mke2fs</antwort>
+	<antwort zuFrage='Frage 54' richtig='ja'> dbus</antwort>
+	
+	
+	<fragetitel>Frage 55</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 55 im Buch.
+	</erklaerung>
+	<fragetext>Sie ersetzen bei einem Debian-System eine defekte Netzwerkkarte, die den Alias eth0 trägt. Nachdem Sie den Computer neu gestartet haben, stellen Sie fest, dass die neue Netzwerkkarte den Namen eth1 verwendet. Um unnötigen Konfigurationsaufwand in bestehenden Skripten zu vermeiden, wollen Sie die Netzwerkkarte in eth0 umbenennen. Welche Datei werden Sie bearbeiten?
+
+	</fragetext>
+	<antwort zuFrage='Frage 55' richtig='nein'> /etc/network/interfaces</antwort>
+	<antwort zuFrage='Frage 55' richtig='nein'> /etc/init.d</antwort>
+	<antwort zuFrage='Frage 55' richtig='ja'> /etc/udev/rules.d/70-persistent-net.rules</antwort>
+	<antwort zuFrage='Frage 55' richtig='nein'> /etc/sysconfig/network</antwort>
+	<antwort zuFrage='Frage 55' richtig='nein'> /etc/inittab</antwort>
+	
+	
+	<fragetitel>Frage 56</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 56 im Buch.
+	</erklaerung>
+	<fragetext>Sie vermuten Probleme mit der Elektronik einer USB-Festplatte. Um den Fehler einzugrenzen, wollen Sie live sehen, was in dem Moment geschieht, in dem Sie die Festplatte einstecken. Welche Programme können Sie hierfür verwenden? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 56' richtig='nein'> lsusb</antwort>
+	<antwort zuFrage='Frage 56' richtig='ja'> udevmonitor</antwort>
+	<antwort zuFrage='Frage 56' richtig='ja'> udevadm</antwort>
+	<antwort zuFrage='Frage 56' richtig='nein'> dmesg</antwort>
+	<antwort zuFrage='Frage 56' richtig='nein'> lspci</antwort>
+	
+	
+	<fragetitel>Frage 57</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 57 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen die Konfiguration eines Software-RAID. Sie wollen vier Datenträger zu einem RAID-Verbund zusammenschalten, sodass möglichst viel Speicherkapazität bei optimaler Leistungsausnutzung verfügbar wird. Welchen RAID-Level werden Sie konfigurieren? (Antworten Sie z.B. mit RAID 7!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 57' richtig='ja'>RAID 0</antwort>
+	
+	
+	<fragetitel>Frage 58</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 58 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen die Konfiguration eines Software-RAID. Ihnen stehen lediglich zwei Festplatten zur Verfügung und Sie benötigen ein Maximum an Redundanz. Welchen RAID-Level werden Sie konfigurieren? (Antworten Sie z.B. mit RAID 7!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 58' richtig='ja'>RAID 1</antwort>
+	
+	
+	<fragetitel>Frage 59</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 59 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen ein bestehendes RAID 5-System erweitern. Sie haben bereits eine neue Festplatte in den Computer eingebaut und partitioniert. Mit welchem Kommando fügen Sie die Partition dem RAID-Verbund hinzu?
+
+	</fragetext>
+	<antwort zuFrage='Frage 59' richtig='nein'> fdisk</antwort>
+	<antwort zuFrage='Frage 59' richtig='nein'> cfdisk</antwort>
+	<antwort zuFrage='Frage 59' richtig='nein'> mdadm --detail /dev/md0</antwort>
+	<antwort zuFrage='Frage 59' richtig='ja'> mdadm --add /dev/md0 /dev/sdd1</antwort>
+	<antwort zuFrage='Frage 59' richtig='nein'> sfdisk</antwort>
+	
+	
+	<fragetitel>Frage 60</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 60 im Buch.
+	</erklaerung>
+	<fragetext>Sie verwalten einen Server, der mit einem Software-RAID-Array ausgestattet ist. Sie wollen eine Benachrichtigung per E-Mail erhalten, wenn ein Problem mit dem RAID-Array auftritt. In welcher Konfigurationsdatei werden Sie Ihre E-Mailadresse hinterlegen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 60' richtig='nein'> /etc/mtab</antwort>
+	<antwort zuFrage='Frage 60' richtig='nein'> /etc/fstab</antwort>
+	<antwort zuFrage='Frage 60' richtig='ja'> /etc/mdadm/mdadm.conf</antwort>
+	<antwort zuFrage='Frage 60' richtig='nein'> /etc/aliases</antwort>
+	<antwort zuFrage='Frage 60' richtig='nein'> ~/.forward</antwort>
+	
+	
+	<fragetitel>Frage 61</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 61 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen den PIO-Mode und den UDMA-Mode einer Festplatte ermitteln. Welches der folgenden Werkzeuge können Sie hierfür einsetzen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 61' richtig='nein'> df</antwort>
+	<antwort zuFrage='Frage 61' richtig='ja'> hdparm</antwort>
+	<antwort zuFrage='Frage 61' richtig='nein'> tune2fs</antwort>
+	<antwort zuFrage='Frage 61' richtig='nein'> du</antwort>
+	<antwort zuFrage='Frage 61' richtig='nein'> sysctl</antwort>
+	
+	
+	<fragetitel>Frage 62</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 62 im Buch.
+	</erklaerung>
+	<fragetext>Sie betreiben ein DVD-Laufwerk als Slave am sekundären Anschluss eines EIDE-Controllers. Auf dem Computer ist Red Hat installiert. Welche Gerätedatei verwendet das DVD-Laufwerk?
+
+	</fragetext>
+	<antwort zuFrage='Frage 62' richtig='nein'> /dev/sda</antwort>
+	<antwort zuFrage='Frage 62' richtig='nein'> /dev/hda</antwort>
+	<antwort zuFrage='Frage 62' richtig='nein'> /dev/hdb</antwort>
+	<antwort zuFrage='Frage 62' richtig='nein'> /dev/hdc</antwort>
+	<antwort zuFrage='Frage 62' richtig='ja'> /dev/hdd</antwort>
+	
+	
+	<fragetitel>Frage 63</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 63 im Buch.
+	</erklaerung>
+	<fragetext>Sie arbeiten an einem System, auf dem LVM installiert ist. Mit welchem Kommando können Sie feststellen, welche physikalischen Volumen auf dem System vorhanden sind?
+
+	</fragetext>
+	<antwort zuFrage='Frage 63' richtig='ja'> pvscan -v</antwort>
+	<antwort zuFrage='Frage 63' richtig='nein'> vgscan -v</antwort>
+	<antwort zuFrage='Frage 63' richtig='nein'> lvscan -v</antwort>
+	<antwort zuFrage='Frage 63' richtig='nein'> vgcreate</antwort>
+	<antwort zuFrage='Frage 63' richtig='nein'>fdisk</antwort>
+	
+	
+	<fragetitel>Frage 64</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 64 im Buch.
+	</erklaerung>
+	<fragetext>Sie arbeiten an einem System, auf dem LVM installiert ist. Sie müssen mehrere physikalische Volumen auf neuen Festplatten erstellen. Welches Kommando kommt hier zum Einsatz?
+
+	</fragetext>
+	<antwort zuFrage='Frage 64' richtig='nein'> fdisk</antwort>
+	<antwort zuFrage='Frage 64' richtig='nein'> vgscan</antwort>
+	<antwort zuFrage='Frage 64' richtig='nein'> pvscan</antwort>
+	<antwort zuFrage='Frage 64' richtig='nein'> vgcreate</antwort>
+	<antwort zuFrage='Frage 64' richtig='ja'> pvcreate</antwort>
+	
+	
+	<fragetitel>Frage 65</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 65 im Buch.
+	</erklaerung>
+	<fragetext>Sie arbeiten an einem neuen System, auf dem LVM installiert ist. Sie müssen sich einen Überblick über die vorhandenen Volumengruppen und physikalischen (LVM-) Volumen verschaffen. Welches Kommando werden Sie verwenden? (Nennen Sie nur das Kommando ohne Optionen oder Parameter!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 65' richtig='ja'>vgscan</antwort>
+	
+	
+	<fragetitel>Frage 66</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 66 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Aussagen sind in Bezug auf LVM zutreffend? (Wählen Sie alle zutreffenden Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 66' richtig='nein'> LVM wird ausschließlich für RAID verwendet.</antwort>
+	<antwort zuFrage='Frage 66' richtig='ja'> LVM und RAID sind kombinierbare Technologien.</antwort>
+	<antwort zuFrage='Frage 66' richtig='nein'> Volumen, die mit LVM verwaltet werden, sind nicht erweiterbar.</antwort>
+	<antwort zuFrage='Frage 66' richtig='ja'> LVM verwaltete Volumen können um zusätzlichen Festplatten ergänzt werden.</antwort>
+	<antwort zuFrage='Frage 66' richtig='nein'> LVM bietet Ausfallsicherheit durch Redundanz.</antwort>
+	
+	
+	<fragetitel>Frage 67</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 67 im Buch.
+	</erklaerung>
+	<fragetext>Sie arbeiten an einem System, auf dem LVM installiert ist. Eines der logischen Volumen ist fast vollständig mit Daten gefüllt und soll nun mit einer neuen Festplatte erweitert werden. Sie erstellen auf der neuen Festplatte die nötige Partition und initialisieren diese anschließend mit dem Programm pvcreate. Welche beiden Tools werden Sie anschließend nacheinander einsetzen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 67' richtig='nein'> lvcreate</antwort>
+	<antwort zuFrage='Frage 67' richtig='nein'> vgcreate</antwort>
+	<antwort zuFrage='Frage 67' richtig='ja'> lvextend</antwort>
+	<antwort zuFrage='Frage 67' richtig='ja'> resize2fs</antwort>
+	<antwort zuFrage='Frage 67' richtig='nein'> pvcreate</antwort>
+	
+	
+	<fragetitel>Frage 68</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 68 im Buch.
+	</erklaerung>
+	<fragetext>Welche Komponente von Linux abstrahiert für Programme die physikalischen Volumen eine Festplatte, sodass nur noch die logischen (LVM-) Volumen verwendet werden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 68' richtig='nein'> inetd</antwort>
+	<antwort zuFrage='Frage 68' richtig='nein'> xinetd</antwort>
+	<antwort zuFrage='Frage 68' richtig='ja'> Device Mapper</antwort>
+	<antwort zuFrage='Frage 68' richtig='nein'> lvcreate</antwort>
+	<antwort zuFrage='Frage 68' richtig='nein'> pvcreate</antwort>
+	
+	
+	<fragetitel>Frage 69</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 69 im Buch.
+	</erklaerung>
+	<fragetext>Sie überprüfen die Netzwerksicherheit eines Computers und benötigen eine Aufstellung der Hardwareadressen (MAC-Adressen) von Systemen, die kürzlich diesen Computer kontaktiert haben. Welches Kommando können Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 69' richtig='ja'> arp</antwort>
+	<antwort zuFrage='Frage 69' richtig='nein'> arp -d</antwort>
+	<antwort zuFrage='Frage 69' richtig='nein'> ifconfig</antwort>
+	<antwort zuFrage='Frage 69' richtig='nein'> route -n</antwort>
+	<antwort zuFrage='Frage 69' richtig='nein'> ifup</antwort>
+	
+	
+	<fragetitel>Frage 70</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 70 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Routing-Tabelle eines Computers überprüfen. Um die Ausgabe des Programms zu beschleunigen, soll hierbei die Namensauflösung der einzelnen Routing-Tabellen-Einträge unterdrückt werden. Welches Kommando werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 70' richtig='nein'> route</antwort>
+	<antwort zuFrage='Frage 70' richtig='nein'> route -C</antwort>
+	<antwort zuFrage='Frage 70' richtig='nein'> route -v</antwort>
+	<antwort zuFrage='Frage 70' richtig='ja'> route -n</antwort>
+	<antwort zuFrage='Frage 70' richtig='nein'> traceroute</antwort>
+	
+	
+	<fragetitel>Frage 71</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 71 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die IP-Adresse einer Netzwerkschnittstelle ermitteln. Welche der folgenden Programme sind hierfür am besten geeignet? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 71' richtig='ja'> ifconfig</antwort>
+	<antwort zuFrage='Frage 71' richtig='nein'> route</antwort>
+	<antwort zuFrage='Frage 71' richtig='nein'> arp</antwort>
+	<antwort zuFrage='Frage 71' richtig='nein'> ping</antwort>
+	<antwort zuFrage='Frage 71' richtig='ja'> ip</antwort>
+	
+	
+	<fragetitel>Frage 72</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 72 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Konfiguration der Drahtlosnetzwerkkarte wlan0 überprüfen. Hierbei soll auch die Sendeleistung ermittelt werden. Welches der folgenden Kommandos werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 72' richtig='nein'> iwconfig wlan0 txpower on</antwort>
+	<antwort zuFrage='Frage 72' richtig='ja'> iwconfig wlan0</antwort>
+	<antwort zuFrage='Frage 72' richtig='nein'> ifconfig wlan0</antwort>
+	<antwort zuFrage='Frage 72' richtig='nein'> iwconfig wlan0 txpower off</antwort>
+	<antwort zuFrage='Frage 72' richtig='nein'> iwconfig wlan0 txpower 20mW</antwort>
+	
+	
+	<fragetitel>Frage 73</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 73 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die Schnittstellenkonfiguration des Netzwerkadapters mit der Bezeichnung eth1 überprüfen. Parameter anderer Schnittstellen sollen aus Gründen der Übersichtlichkeit nicht angezeigt werden. Geben Sie das für diesen Zweck einfachste Kommando ein!
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 73' richtig='ja'>ifconfig eth1</antwort>
+	
+	
+	<fragetitel>Frage 74</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 74 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen einer Routing-Tabelle einen neuen Eintrag hinzufügen. Das Routing-Ziel ist das Netzwerk 172.16.0.0. Der nächste Router auf dem Weg zu diesem Netzwerk verwendet die IP-Adresse 192.168.50.7. Welche der folgenden Kommandos können Sie für diese Aufgabe verwenden? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 74' richtig='ja'> route add -net 172.16.0.0 netmask 255.255.0.0 gw 192.168.50.7</antwort>
+	<antwort zuFrage='Frage 74' richtig='nein'> route add -net 192.168.50.7/24 gw 172.16.0.0</antwort>
+	<antwort zuFrage='Frage 74' richtig='nein'> route add -net 192.168.50.7 netmask 255.255.0.0 gw 172.16.0.0</antwort>
+	<antwort zuFrage='Frage 74' richtig='ja'> route add -net 172.16.0.0/24 gw 192.168.50.7</antwort>
+	<antwort zuFrage='Frage 74' richtig='nein'> route -n</antwort>
+	
+	
+	<fragetitel>Frage 75</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 75 im Buch.
+	</erklaerung>
+	<fragetext>Im Rahmen einer Sicherheitsprüfung müssen Sie auf einem entfernten System feststellen, welche TCP- und UDP-Ports geöffnet sind. Welches Werkzeug können Sie für diese Aufgabe verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 75' richtig='nein'> iptables</antwort>
+	<antwort zuFrage='Frage 75' richtig='nein'> ifconfig</antwort>
+	<antwort zuFrage='Frage 75' richtig='nein'> lsof</antwort>
+	<antwort zuFrage='Frage 75' richtig='nein'> netstat</antwort>
+	<antwort zuFrage='Frage 75' richtig='ja'> nmap</antwort>
+	
+	
+	<fragetitel>Frage 76</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 76 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen eine USB Festplatte von einem System entfernen. Bei dem Versuch, das Laufwerk auszuhängen, bekommen Sie eine Fehlermeldung, weil einige Dateien auf dem Gerät noch geöffnet sind. Mit welchem Programm können Sie feststellen, welche Dateien geöffnet sind?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 76' richtig='ja'>lsof</antwort>
+	
+	
+	<fragetitel>Frage 77</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 77 im Buch.
+	</erklaerung>
+	<fragetext>Die Netzwerkschnittstelle eth0 eines Computers ist mit der IPv4-Adresse 192.168.50.1 konfiguriert. Sie wollen derselben Netzwerkschnittstelle eine weitere IPv4-Adresse hinzufügen. Welche der folgenden Kommandos führen eine solche Konfiguration durch? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 77' richtig='ja'> ifconfig eth0:1 192.168.7.5</antwort>
+	<antwort zuFrage='Frage 77' richtig='nein'> ifconfig eth0 192.168.7.5</antwort>
+	<antwort zuFrage='Frage 77' richtig='nein'> ip address show dev eth0</antwort>
+	<antwort zuFrage='Frage 77' richtig='ja'> ip address add 192.168.7.5/24 dev eth0</antwort>
+	<antwort zuFrage='Frage 77' richtig='nein'> ifconfig eth1:1 192.168.7.5</antwort>
+	
+	
+	<fragetitel>Frage 78</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 78 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben einen neuen Apache Webserver installiert und wollen nun einen groben Funktionstest durchführen. Welche der folgenden Kommandos können Sie auf dem Host ausführen, um zu sehen, ob der Webserver bereit ist? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 78' richtig='nein'> netstat -an| grep :8080</antwort>
+	<antwort zuFrage='Frage 78' richtig='nein'> netstat -an| grep :443</antwort>
+	<antwort zuFrage='Frage 78' richtig='ja'> netstat -an| grep :80</antwort>
+	<antwort zuFrage='Frage 78' richtig='nein'> nmap localhost -p 443</antwort>
+	<antwort zuFrage='Frage 78' richtig='ja'> nmap localhost -p 80</antwort>
+	
+	
+	<fragetitel>Frage 79</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 79 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen den Netzwerkverkehr zu einem System überwachen. Zu diesem Zweck wollen Sie ein Programm verwenden, das eine grafische Ausgabe der erfassten Pakete ermöglicht. Welches Programm werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 79' richtig='ja'> wireshark</antwort>
+	<antwort zuFrage='Frage 79' richtig='nein'> netcat</antwort>
+	<antwort zuFrage='Frage 79' richtig='nein'> netstat</antwort>
+	<antwort zuFrage='Frage 79' richtig='nein'> nmap</antwort>
+	<antwort zuFrage='Frage 79' richtig='nein'> ifconfig</antwort>
+	
+	
+	<fragetitel>Frage 80</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 80 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen die Routing-Tabelle eines Computers einsehen, der als Netzwerkrouter fungiert. Um die Ausgabe möglichst schnell zu erhalten, sollen die Einträge der Routing-Tabelle nicht mittels DNS in Hostnamen aufgelöst werden. Welches Kommando werden Sie ausführen?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 80' richtig='ja'>route -n</antwort>
+	
+	
+	<fragetitel>Frage 81</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 81 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen die Installation einer Netzwerkanwendung, die den TCP-Port 5112 verwenden wird. Vorher müssen Sie überprüfen, ob die Kommunikation über diesen Port in Ihrem Netzwerk eventuell durch eine Firewall blockiert wird. Welches Programm können Sie zu Hilfe nehmen, bis die Anwendung tatsächlich installiert ist?
+
+	</fragetext>
+	<antwort zuFrage='Frage 81' richtig='nein'> nmap</antwort>
+	<antwort zuFrage='Frage 81' richtig='nein'> netstat</antwort>
+	<antwort zuFrage='Frage 81' richtig='nein'> wireshark</antwort>
+	<antwort zuFrage='Frage 81' richtig='ja'> netcat</antwort>
+	<antwort zuFrage='Frage 81' richtig='nein'> ifconfig</antwort>
+	
+	
+	<fragetitel>Frage 82</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 82 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen auf eine möglichst einfache Art feststellen, ob ein entfernter Computer eingeschaltet und mit dem Netzwerk verbunden ist. Bei der Überprüfung soll das Protokoll ICMP genutzt werden. Welches Programm setzen Sie ein?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 82' richtig='ja'>ping</antwort>
+	
+	
+	<fragetitel>Frage 83</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 83 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Programme können Sie verwenden, um die Funktionalität eines DNS-Servers zu überprüfen? (Wählen Sie drei der angebotenen Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 83' richtig='nein'> route</antwort>
+	<antwort zuFrage='Frage 83' richtig='ja'> nslookup</antwort>
+	<antwort zuFrage='Frage 83' richtig='nein'> ping</antwort>
+	<antwort zuFrage='Frage 83' richtig='ja'> dig</antwort>
+	<antwort zuFrage='Frage 83' richtig='ja'> host</antwort>
+	
+	
+	<fragetitel>Frage 84</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 84 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Konfigurationsdateien dienen üblicherweise der Konfiguration des Namens für einen Host? (Wählen Sie zwei!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 84' richtig='ja'> /etc/HOSTNAME</antwort>
+	<antwort zuFrage='Frage 84' richtig='nein'> /etc/hosts</antwort>
+	<antwort zuFrage='Frage 84' richtig='ja'> /etc/hostname</antwort>
+	<antwort zuFrage='Frage 84' richtig='nein'> /etc/hosts.allow</antwort>
+	<antwort zuFrage='Frage 84' richtig='nein'> /bin/hostname</antwort>
+	
+	
+	<fragetitel>Frage 85</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 85 im Buch.
+	</erklaerung>
+	<fragetext>Sie vermuten ein Problem mit einem USB-Controller und wollen deshalb die letzten 20 Zeilen des Kernel Ring Buffers einsehen. Welches Kommando werden Sie verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 85' richtig='nein'> dmesg| tail</antwort>
+	<antwort zuFrage='Frage 85' richtig='ja'> dmesg| tail -n 20</antwort>
+	<antwort zuFrage='Frage 85' richtig='nein'> tail -n 20 /var/log/syslog</antwort>
+	<antwort zuFrage='Frage 85' richtig='nein'> tail -n 20 /var/log/messages</antwort>
+	<antwort zuFrage='Frage 85' richtig='nein'> dmesg</antwort>
+	
+	
+	<fragetitel>Frage 86</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 86 im Buch.
+	</erklaerung>
+	<fragetext>Von Ihrer Arbeitstation aus müssen Sie probehalber regelmäßig einen Router anpingen. Der Router ist nicht in Ihrem DNS-System eingetragen, aber Sie wollen ihn zukünftig mit einem einfachen Namen ansprechen können. In welche lokale Konfigurationsdatei tragen Sie den Namen und die IP-Adresse des Routers ein?
+
+	</fragetext>
+	<antwort zuFrage='Frage 86' richtig='nein'> /etc/hosts.allow</antwort>
+	<antwort zuFrage='Frage 86' richtig='nein'> /etc/bind/db.127</antwort>
+	<antwort zuFrage='Frage 86' richtig='nein'> /etc/hostname</antwort>
+	<antwort zuFrage='Frage 86' richtig='ja'> /etc/hosts</antwort>
+	<antwort zuFrage='Frage 86' richtig='nein'> /etc/hosts.deny</antwort>
+	
+	
+	<fragetitel>Frage 87</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 87 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen ein System zur Verwendung eines bestimmten DNS-Servers konfigurieren. In welche der folgenden Konfigurationsdateien sollten Sie den DNS-Server eintragen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 87' richtig='nein'> /etc/named.conf</antwort>
+	<antwort zuFrage='Frage 87' richtig='nein'> /etc/hosts</antwort>
+	<antwort zuFrage='Frage 87' richtig='ja'> /etc/resolv.conf</antwort>
+	<antwort zuFrage='Frage 87' richtig='nein'> /etc/bind/named.conf</antwort>
+	<antwort zuFrage='Frage 87' richtig='nein'> /etc/dnsclient.conf</antwort>
+	
+	
+	<fragetitel>Frage 88</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 88 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen überprüfen, welche Router ein TCP-Datenpaket durchläuft, wenn Sie den Server deep.thought.adams.com kontaktieren. Welches Kommando werden Sie verwenden? (Geben Sie das Kommando samt Parametern und ggf. Optionen an!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 88' richtig='ja'>traceroute deep.thought.adams.com</antwort>
+	
+	
+	<fragetitel>Frage 89</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 89 im Buch.
+	</erklaerung>
+	<fragetext>Sie konfigurieren die Sicherheitseinstellungen eines Systems, auf dem TCP-Wrapper verwendet werden. Es soll verhindert werden, dass überhaupt vom Netzwerk aus auf diesen Host zugegriffen werden kann. Welche Einträge werden Sie in welchen Konfigurationsdateien vornehmen? (Wählen Sie zwei Antworten! Beide Antworten sind Teil einer Lösung.)
+
+	</fragetext>
+	<antwort zuFrage='Frage 89' richtig='ja'> ALL: ALL in /etc/hosts.deny</antwort>
+	<antwort zuFrage='Frage 89' richtig='ja'> /etc/hosts.allow entleeren oder löschen</antwort>
+	<antwort zuFrage='Frage 89' richtig='nein'> ALL: ALL in /etc/hosts.allow</antwort>
+	<antwort zuFrage='Frage 89' richtig='nein'> /etc/hosts.deny entleeren oder löschen</antwort>
+	<antwort zuFrage='Frage 89' richtig='nein'> DENY: ALL in /etc/host.conf</antwort>
+	
+	
+	<fragetitel>Frage 90</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 90 im Buch.
+	</erklaerung>
+	<fragetext>Welche beiden der folgenden Einträge sind typisch für die Konfigurationsdatei resolv.conf? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 90' richtig='nein'> domain=lpic-1.de</antwort>
+	<antwort zuFrage='Frage 90' richtig='nein'> address 192.168.50.1</antwort>
+	<antwort zuFrage='Frage 90' richtig='nein'> dns-nameservers 192.168.50.1</antwort>
+	<antwort zuFrage='Frage 90' richtig='ja'> nameserver 192.168.50.1</antwort>
+	<antwort zuFrage='Frage 90' richtig='ja'> search lpic-2.de</antwort>
+	
+	
+	<fragetitel>Frage 91</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 91 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen einen Server zu Wartungszwecken herunterzufahren. Sie wollen, dass alle Benutzer, die mit dem Server verbunden sind, über die Shell eine Benachrichtigung erhalten. Welche der folgenden Programme können Sie hierfür verwenden? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 91' richtig='nein'> issue</antwort>
+	<antwort zuFrage='Frage 91' richtig='ja'> shutdown</antwort>
+	<antwort zuFrage='Frage 91' richtig='ja'> wall</antwort>
+	<antwort zuFrage='Frage 91' richtig='nein'> issue.net</antwort>
+	<antwort zuFrage='Frage 91' richtig='nein'> info</antwort>
+	
+	
+	<fragetitel>Frage 92</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 92 im Buch.
+	</erklaerung>
+	<fragetext>Sie sollen dafür sorgen, dass alle Benutzer darüber informiert werden, dass die private Nutzung des Internets in Ihrem Unternehmen nicht mehr länger geduldet wird. Es soll eine Benachrichtigung erfolgen, sobald die Benutzer sich an ihren Systemen angemeldet haben. Welche Konfigurationsdatei werden Sie auf den Arbeitsstationen der User jeweils bearbeiten?
+
+	</fragetext>
+	<antwort zuFrage='Frage 92' richtig='nein'> issue</antwort>
+	<antwort zuFrage='Frage 92' richtig='nein'> issue.net</antwort>
+	<antwort zuFrage='Frage 92' richtig='nein'> info</antwort>
+	<antwort zuFrage='Frage 92' richtig='ja'> motd</antwort>
+	<antwort zuFrage='Frage 92' richtig='nein'> resolv.conf</antwort>
+	
+	
+	<fragetitel>Frage 93</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 93 im Buch.
+	</erklaerung>
+	<fragetext>Sie vermuten eine fehlerhafte Namensauflösung bei einem DNS-Server. Sie wollen nun den Namen www.lpic-2.de in eine IP-Adresse auflösen. Es soll bei der Diagnose der DNS-Server mit der IP-Adresse 172.16.0.10 verwendet werden - unabhängig davon, welcher DNS-Server in der Datei resolv.conf des Testsystems eingetragen ist. Welche der folgenden Kommandos können Sie verwenden, um dieses Ziel zu erreichen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 93' richtig='nein'> nslookup www.lpic-2.de</antwort>
+	<antwort zuFrage='Frage 93' richtig='ja'> dig @172.16.0.10 www.lpic-2.de</antwort>
+	<antwort zuFrage='Frage 93' richtig='nein'> host www.lpic-2.de</antwort>
+	<antwort zuFrage='Frage 93' richtig='nein'> ping www.lpic-2.de</antwort>
+	<antwort zuFrage='Frage 93' richtig='ja'> dig www.lpic-2.de @172.16.0.10</antwort>
+	
+	
+	<fragetitel>Frage 94</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 94 im Buch.
+	</erklaerung>
+	<fragetext>Ein Bekannter bittet Sie, ihm bei einem Netzwerkproblem zu helfen. Die verwendete Linux-Distribution ist Ihnen nicht bekannt. Nach welchen Verzeichnissen werden Sie zunächst suchen, um die IP-Konfiguration zu überprüfen und ggf. anzupassen? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 94' richtig='ja'> /etc/network/</antwort>
+	<antwort zuFrage='Frage 94' richtig='nein'> /etc/init.d/</antwort>
+	<antwort zuFrage='Frage 94' richtig='nein'> /proc/sys/net/ipv4</antwort>
+	<antwort zuFrage='Frage 94' richtig='nein'> /etc/rc.d/</antwort>
+	<antwort zuFrage='Frage 94' richtig='ja'> /etc/sysconfig/network-scripts/</antwort>
+	
+	
+	<fragetitel>Frage 95</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 95 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben ein Programm in Form eines tar-Balls aus dem Internet heruntergeladen. Welches der folgenden Kommandos wird den tar-Ball entpacken?
+
+	</fragetext>
+	<antwort zuFrage='Frage 95' richtig='nein'> ./configure</antwort>
+	<antwort zuFrage='Frage 95' richtig='ja'> tar -xvzf tarball.tar.gz</antwort>
+	<antwort zuFrage='Frage 95' richtig='nein'> tar -xvfz tarball.tar.gz</antwort>
+	<antwort zuFrage='Frage 95' richtig='nein'> tar -t tarball.tar.gz</antwort>
+	<antwort zuFrage='Frage 95' richtig='nein'> make</antwort>
+	
+	
+	<fragetitel>Frage 96</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 96 im Buch.
+	</erklaerung>
+	<fragetext>Auf der Suche nach einer bestimmten Datei müssen Sie den Inhalt der Archivdatei archiv.tar auflisten. Welches Kommando werden Sie verwenden? Geben Sie in Ihrer Antwort auch Optionen und Parameter an!
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 96' richtig='ja'>tar -t archiv.tar</antwort>
+	
+	
+	<fragetitel>Frage 97</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 97 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben ein Programm in Form eines tar-Balls aus dem Internet heruntergeladen. In welchem Verzeichnis sollten Sie den tar-Ball nach dem Filesystem Hierarchy Standard entpacken?
+
+	</fragetext>
+	<antwort zuFrage='Frage 97' richtig='ja'> /usr/src</antwort>
+	<antwort zuFrage='Frage 97' richtig='nein'> /var/src</antwort>
+	<antwort zuFrage='Frage 97' richtig='nein'> ~/src</antwort>
+	<antwort zuFrage='Frage 97' richtig='nein'> /etc</antwort>
+	<antwort zuFrage='Frage 97' richtig='nein'> /lib</antwort>
+	
+	
+	<fragetitel>Frage 98</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 98 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben ein Programm in Form eines tar-Balls aus dem Internet heruntergeladen und ausgepackt. Als Nächstes soll das Programm für die Kompilierung vorbereitet werden. Welches Kommando werden Sie ausführen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 98' richtig='nein'> make</antwort>
+	<antwort zuFrage='Frage 98' richtig='nein'> make install</antwort>
+	<antwort zuFrage='Frage 98' richtig='nein'> tar -xvzf tarball.tar.gz</antwort>
+	<antwort zuFrage='Frage 98' richtig='nein'> CONFIGURE</antwort>
+	<antwort zuFrage='Frage 98' richtig='ja'> ./configure</antwort>
+	
+	
+	<fragetitel>Frage 99</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 99 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Programme dienen der Komprimierung von Dateien? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 99' richtig='ja'> bzip2</antwort>
+	<antwort zuFrage='Frage 99' richtig='nein'> tar</antwort>
+	<antwort zuFrage='Frage 99' richtig='nein'> cpio</antwort>
+	<antwort zuFrage='Frage 99' richtig='ja'> gzip</antwort>
+	<antwort zuFrage='Frage 99' richtig='nein'> gunzip</antwort>
+	
+	
+	<fragetitel>Frage 100</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 100 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben ein Programm in Form eines tar-Balls aus dem Internet heruntergeladen, ausgepackt, konfiguriert und kompiliert. Jetzt sind Sie bereit, das Programm zu installieren. Welchen Befehl werden Sie eingeben?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 100' richtig='ja'>make install</antwort>
+	
+	
+	<fragetitel>Frage 101</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 101 im Buch.
+	</erklaerung>
+	<fragetext>Sie erhalten eine Datei mit der Bezeichnung archiv.gz. Welche der folgenden Programme können Sie verwenden, um die Datei zu öffnen? (Wählen Sie drei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 101' richtig='ja'> zcat</antwort>
+	<antwort zuFrage='Frage 101' richtig='nein'> bzip2</antwort>
+	<antwort zuFrage='Frage 101' richtig='ja'> gunzip</antwort>
+	<antwort zuFrage='Frage 101' richtig='ja'> gzip</antwort>
+	<antwort zuFrage='Frage 101' richtig='nein'> dpkg</antwort>
+	
+	
+	<fragetitel>Frage 102</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 102 im Buch.
+	</erklaerung>
+	<fragetext>Sie wollen die Kernel-Quellen passend zu Ihrem laufenden Kernel aus dem Internet herunterladen. Welches Kommando können Sie verwenden, um die momentan installierte Kernel-Version zu ermitteln? Es sollen keine nicht benötigten Informationen ausgegeben werden!
+
+	</fragetext>
+	<antwort zuFrage='Frage 102' richtig='nein'> uname -a</antwort>
+	<antwort zuFrage='Frage 102' richtig='nein'> uname -s</antwort>
+	<antwort zuFrage='Frage 102' richtig='nein'> lsb_release -a</antwort>
+	<antwort zuFrage='Frage 102' richtig='ja'> uname -r</antwort>
+	<antwort zuFrage='Frage 102' richtig='nein'> lsb_release</antwort>
+	
+	
+	<fragetitel>Frage 103</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 103 im Buch.
+	</erklaerung>
+	<fragetext>Welches der folgenden Programme wurde ursprünglich hauptsächlich benutzt, um Backups für eine Bandsicherung vorzubereiten?
+
+	</fragetext>
+	<antwort zuFrage='Frage 103' richtig='nein'> cpio</antwort>
+	<antwort zuFrage='Frage 103' richtig='ja'> tar</antwort>
+	<antwort zuFrage='Frage 103' richtig='nein'> dd</antwort>
+	<antwort zuFrage='Frage 103' richtig='nein'> rsync</antwort>
+	<antwort zuFrage='Frage 103' richtig='nein'> mt</antwort>
+	
+	
+	<fragetitel>Frage 104</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 104 im Buch.
+	</erklaerung>
+	<fragetext>Ein USB-Speichermedium verwendet die Gerätedatei /dev/sdb. Sie müssen das komplette Dateisystem des Mediums inklusive Startumgebung (MBR) in die Datei usbstick.img sichern. Sie wollen das Programm dd verwenden, um die Datensicherung im aktuellen Verzeichnis durchzuführen. Wie wird das komplette Kommando lauten? (Verwenden Sie nur die nötigsten Optionen und Parameter!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 104' richtig='ja'>dd if=/dev/sdb of=usbstick.img</antwort>
+	
+	
+	<fragetitel>Frage 105</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 105 im Buch.
+	</erklaerung>
+	<fragetext>Welche der folgenden Verzeichnisse sollten bei einer Datensicherung unbedingt berücksichtigt werden? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 105' richtig='nein'> /proc</antwort>
+	<antwort zuFrage='Frage 105' richtig='nein'> /bin</antwort>
+	<antwort zuFrage='Frage 105' richtig='ja'> /home</antwort>
+	<antwort zuFrage='Frage 105' richtig='ja'> /var</antwort>
+	<antwort zuFrage='Frage 105' richtig='nein'> /usr</antwort>
+	
+	
+	<fragetitel>Frage 106</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 106 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen eine Datensicherung. Welche der folgenden Verzeichnisse sind bei einer regelmäßigen Sicherung am wenigsten wichtig? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 106' richtig='nein'> /home</antwort>
+	<antwort zuFrage='Frage 106' richtig='nein'> /var</antwort>
+	<antwort zuFrage='Frage 106' richtig='ja'> /proc</antwort>
+	<antwort zuFrage='Frage 106' richtig='nein'> /etc</antwort>
+	<antwort zuFrage='Frage 106' richtig='ja'> /lib</antwort>
+	
+	
+	<fragetitel>Frage 107</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 107 im Buch.
+	</erklaerung>
+	<fragetext>Bei welchen beiden der folgenden Gerätedateien handelt es sich um nicht rückspulende Bandlaufwerke? (Wählen Sie zwei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 107' richtig='ja'> /dev/nst0</antwort>
+	<antwort zuFrage='Frage 107' richtig='nein'> /dev/st0</antwort>
+	<antwort zuFrage='Frage 107' richtig='ja'> /dev/nft0</antwort>
+	<antwort zuFrage='Frage 107' richtig='nein'> /dev/ft0</antwort>
+	<antwort zuFrage='Frage 107' richtig='nein'> /dev/fd0</antwort>
+	
+	
+	<fragetitel>Frage 108</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 108 im Buch.
+	</erklaerung>
+	<fragetext>Sie führen täglich Datensicherungen einzelner Partitionen mithilfe des Programms dump durch. Welches Programm benötigen Sie im Notfall für die Wiederherstellung der Daten? (Geben Sie nur das Programm ohne Optionen oder Parameter an!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 108' richtig='ja'>restore</antwort>
+	
+	
+	<fragetitel>Frage 109</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 109 im Buch.
+	</erklaerung>
+	<fragetext>Sie konfigurieren einen DNS-Server, der über mehrere Netzwerkschnittstellen verfügt. Es soll festgelegt werden, dass der Server lediglich die Schnittstelle mit der IP-Adresse 192.168.5.1 und das Loopbackdevice abhorcht. Wie müssen Sie die entsprechende Option konfigurieren, wenn der standardmäßige Port für DNS verwendet werden soll?
+
+	</fragetext>
+	<antwort zuFrage='Frage 109' richtig='ja'> listen-on port 53 { 127.0.0.1; 192.168.5.1; };</antwort>
+	<antwort zuFrage='Frage 109' richtig='nein'> listen-on port 53 {127.0.0.1; 192.168.5.1;};</antwort>
+	<antwort zuFrage='Frage 109' richtig='nein'> listen-on port 25 { 127.0.0.1; 192.168.5.1; };</antwort>
+	<antwort zuFrage='Frage 109' richtig='nein'> allow-query { 127.0.0.1; 192.168.5.0/24; };</antwort>
+	<antwort zuFrage='Frage 109' richtig='nein'> allow-query {127.0.0.1; 192.168.5.0/24;};</antwort>
+	
+	
+	<fragetitel>Frage 110</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 110 im Buch.
+	</erklaerung>
+	<fragetext>Sie konfigurieren einen DNS-Server, der in einem segmentierten Netzwerk eingesetzt wird. Der Zugriff auf den Server muss nun so begrenzt werden, dass nur noch vom Netzwerk mit der ID 192.168.5.0/24 aus und über das Loopbackdevice zugegriffen werden kann. Welche der folgenden Optionen werden Sie in der Datei named.conf verwenden?
+
+	</fragetext>
+	<antwort zuFrage='Frage 110' richtig='nein'> listen-on port 53 { 127.0.0.1; 192.168.5.1; };</antwort>
+	<antwort zuFrage='Frage 110' richtig='nein'> listen-on port 53 {127.0.0.1; 192.168.5.1;};</antwort>
+	<antwort zuFrage='Frage 110' richtig='nein'> listen-on port 25 { 127.0.0.1; 192.168.5.1; };</antwort>
+	<antwort zuFrage='Frage 110' richtig='nein'> allow-query {127.0.0.1; 192.168.5.0/24;};</antwort>
+	<antwort zuFrage='Frage 110' richtig='ja'> allow-query { 127.0.0.1; 192.168.5.0/24; };</antwort>
+	
+	
+	<fragetitel>Frage 111</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 111 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben einer DNS-Zone auf einem BIND-Server neue Host (A)-Einträge hinzugefügt. Sie wollen, dass der Server die Zonendateien neu einliest, damit die neuen Einträge im Netzwerk sofort verfügbar werden. Welches Kommando sollten Sie auf dem DNS-Server verwenden?
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 111' richtig='ja'>rndc reload</antwort>
+	
+	
+	<fragetitel>Frage 112</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 112 im Buch.
+	</erklaerung>
+	<fragetext>Sie beabsichtigen, einer DNS-Zone weitere Einträge hinzuzufügen. Sie müssen verhindern, dass der Daemon named gleichzeitig versucht, diese Zonendatei zu beschreiben. Welches Kommando sollten Sie verwenden, bevor Sie die Zonendatei bearbeiten?
+
+	</fragetext>
+	<antwort zuFrage='Frage 112' richtig='nein'> rndc stop</antwort>
+	<antwort zuFrage='Frage 112' richtig='nein'> rndc thaw</antwort>
+	<antwort zuFrage='Frage 112' richtig='ja'> rndc freeze</antwort>
+	<antwort zuFrage='Frage 112' richtig='nein'> rndc reload</antwort>
+	<antwort zuFrage='Frage 112' richtig='nein'> rndc halt</antwort>
+	
+	
+	<fragetitel>Frage 113</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 113 im Buch.
+	</erklaerung>
+	<fragetext>Sie konfigurieren die Ausfallsicherheit für einen SMTP-Server, der als Mail Exchanger fungiert. Die Priorität des bestehenden Mailservers ist in DNS mit einem Wert von 50 konfiguriert. Wie könnte der entsprechende Eintrag in DNS für einen Reserve-SMTP-Server aussehen? (Wählen Sie zwei mögliche Einträge!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 113' richtig='ja'>     IN    MX    100   smtp02.lpic-2.de.</antwort>
+	<antwort zuFrage='Frage 113' richtig='ja'>     IN    MX    80    smtp02.lpic-2.de.</antwort>
+	<antwort zuFrage='Frage 113' richtig='nein'>     IN    MX    10    smtp02.lpic-2.de.</antwort>
+	<antwort zuFrage='Frage 113' richtig='nein'>     IN    MX    80    47.11.8.15</antwort>
+	<antwort zuFrage='Frage 113' richtig='nein'>     IN    MX    100   47.11.8.15</antwort>
+	
+	
+	<fragetitel>Frage 114</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 114 im Buch.
+	</erklaerung>
+	<fragetext>Welcher der folgenden Eintragstypen ist nicht in einer Forward-Lookup-Zone anzutreffen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 114' richtig='nein'> SOA</antwort>
+	<antwort zuFrage='Frage 114' richtig='ja'> PTR</antwort>
+	<antwort zuFrage='Frage 114' richtig='nein'> NS</antwort>
+	<antwort zuFrage='Frage 114' richtig='nein'> AAAA</antwort>
+	<antwort zuFrage='Frage 114' richtig='nein'> CNAME</antwort>
+	
+	
+	<fragetitel>Frage 115</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 115 im Buch.
+	</erklaerung>
+	<fragetext>Sie haben Änderungen an der Konfigurationsdatei named.conf vorgenommen. Da es sich hierbei um sicherheitskritische Einstellungen handelt, müssen Sie dafür sorgen, dass diese sofort angewendet werden. Welche der folgenden Kommandos können Sie verwenden, damit BIND die Konfiguration sofort verwendet? (Wählen Sie drei Antworten!)
+
+	</fragetext>
+	<antwort zuFrage='Frage 115' richtig='ja'> rndc reload</antwort>
+	<antwort zuFrage='Frage 115' richtig='nein'> rndc thaw</antwort>
+	<antwort zuFrage='Frage 115' richtig='nein'> rndc stop</antwort>
+	<antwort zuFrage='Frage 115' richtig='ja'> /etc/init.d/named restart</antwort>
+	<antwort zuFrage='Frage 115' richtig='ja'> kill -HUP `pidof named`</antwort>
+	
+	
+	<fragetitel>Frage 116</fragetitel>
+	<fragetyp>text</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 116 im Buch.
+	</erklaerung>
+	<fragetext>Wie heit der Eintragstyp in einer DNS-Zonendatei, der steuert, wie oft Sekundärzonen zu anderen Servern transferiert werden dürfen? (Geben Sie nur das Akronym an! Beachten Sie bei Ihrer Antwort die Groß-/ Kleinschreibung!)
+ 
+ 
+&lt;br />
+	</fragetext>
+	<antwort zuFrage='Frage 116' richtig='ja'>SOA</antwort>
+	
+	
+	<fragetitel>Frage 117</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 117 im Buch.
+	</erklaerung>
+	<fragetext>Sie konfigurieren die Sicherheitseinstellungen eines DNS-Servers. Sie müssen festlegen, von welchen Netzwerken aus eine dynamische Aktualisierung der Zonen durch Clients erlaubt werden soll. Welche Option werden Sie konfigurieren?
+
+	</fragetext>
+	<antwort zuFrage='Frage 117' richtig='nein'> allow update</antwort>
+	<antwort zuFrage='Frage 117' richtig='nein'> allow-recursion</antwort>
+	<antwort zuFrage='Frage 117' richtig='nein'> allow-query</antwort>
+	<antwort zuFrage='Frage 117' richtig='nein'> allow-transfer</antwort>
+	<antwort zuFrage='Frage 117' richtig='ja'> allow-update</antwort>
+	
+	
+	<fragetitel>Frage 118</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 118 im Buch.
+	</erklaerung>
+	<fragetext>Sie konfigurieren die Sicherheitseinstellungen eines DNS-Servers. Sie müssen festlegen, welche Server sekundäre Zonen von diesem Server beziehen dürfen. Welche Option werden Sie konfigurieren?
+
+	</fragetext>
+	<antwort zuFrage='Frage 118' richtig='nein'> allow update</antwort>
+	<antwort zuFrage='Frage 118' richtig='nein'> allow-recursion</antwort>
+	<antwort zuFrage='Frage 118' richtig='nein'> allow-query</antwort>
+	<antwort zuFrage='Frage 118' richtig='ja'> allow-transfer</antwort>
+	<antwort zuFrage='Frage 118' richtig='nein'> allow-update</antwort>
+	
+	
+	<fragetitel>Frage 119</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 119 im Buch.
+	</erklaerung>
+	<fragetext>Sie planen den Einsatz von DNSSEC. Welchen der folgenden Eintragstypen werden Sie verwenden, um den öffentlichen Schlüssel des Servers zu veröffentlichen?
+
+	</fragetext>
+	<antwort zuFrage='Frage 119' richtig='ja'> DNSKEY</antwort>
+	<antwort zuFrage='Frage 119' richtig='nein'> RRSIG</antwort>
+	<antwort zuFrage='Frage 119' richtig='nein'> SIG</antwort>
+	<antwort zuFrage='Frage 119' richtig='nein'> KEY</antwort>
+	<antwort zuFrage='Frage 119' richtig='nein'> NS</antwort>
+	
+	
+	<fragetitel>Frage 120</fragetitel>
+	<fragetyp>auswahl</fragetyp>
+	<punkte>1</punkte>
+	<hinweis>keiner</hinweis>
+	<erklaerung>Entspricht Frage 120 im Buch.
+	</erklaerung>
+	<fragetext>Sie müssen die dynamischen Aktualisierungen von Clientcomputern in DNS in Ihrem Netzwerk absichern. Sie wollen keine PKI-basierte Methode verwenden, weil die Implementierung zu zeitaufwändig wäre. Welche Technologie setzen Sie stattdessen ein?
+
+	</fragetext>
+	<antwort zuFrage='Frage 120' richtig='nein'> DNSSEC</antwort>
+	<antwort zuFrage='Frage 120' richtig='ja'> TSIG</antwort>
+	<antwort zuFrage='Frage 120' richtig='nein'> RRSIG</antwort>
+	<antwort zuFrage='Frage 120' richtig='nein'> DNSKEY</antwort>
+	<antwort zuFrage='Frage 120' richtig='nein'> KEY</antwort>
+</rootnode>
+

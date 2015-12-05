@@ -24,7 +24,7 @@ public class Entry implements Parcelable {
     public Boolean richtig5;
 
     public Entry () {
-    };
+    }
 
     //additional interface for entry to set values directly and not by setter
     public Entry(Integer index, String title, String type, Integer points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {

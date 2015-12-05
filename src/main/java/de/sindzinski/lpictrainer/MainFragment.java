@@ -45,12 +45,7 @@ import android.app.ProgressDialog;
 
 public class MainFragment extends Fragment {
 
-    public final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
-    public final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
-    public final static String EXTRA_TO = "de.sindzinski.lpictrainer.TO";
-
     protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
-    protected static final int REQUEST_CODE_PREFERENCES = 2;
 
     protected EditText editText_fileName;
     protected SeekBar seekBar_from;
@@ -72,7 +67,7 @@ public class MainFragment extends Fragment {
 
         // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
-        public void onTest(int from, int to, String fileName, int max);
+        void onTest(int from, int to, String fileName, int max);
 
     }
 
@@ -96,13 +91,6 @@ public class MainFragment extends Fragment {
 
     public static MainFragment newInstance() {
         MainFragment f = new MainFragment();
-
-        // Supply index input as an argument.
-/*        Bundle args = new Bundle();
-        args.putInt("from", from);
-        args.putInt("to", to);
-        args.putString("fileName", fileName);
-        f.setArguments(args);*/
 
         return f;
     }
@@ -129,12 +117,6 @@ public class MainFragment extends Fragment {
         to = sharedPref.getInt("to",0);
         max = sharedPref.getInt("max",0);
 
-     /*   SharedPreferences settings = getActivity().getSharedPreferences("Settings", 0);
-
-        fileName = settings.getString("fileName", "").toString();
-        from = settings.getInt("from", 0);
-        to = settings.getInt("to", 0);
-        max = settings.getInt("max",0);*/
         Uri fileUri = Uri.parse(sharedPref.getString("fileName", ""));
 
         editText_fileName = (EditText) view.findViewById(R.id.editText_fileName);
@@ -307,20 +289,8 @@ public class MainFragment extends Fragment {
                         fileName = fileUri.getPath();
                         if (fileName != null) {
 
-                                //entries = loadXmlFromFile(fileName);
                                 //load in async task
                                 new loadXmlFromFileTask().execute(fileName);
-
-                                //now done in async task
-/*                                safeToSQL(entries);
-                                editText_fileName.setText(fileUri.getLastPathSegment());
-                                seekBar_from.setMax(entries.size());
-                                seekBar_from.setProgress(0);
-                                from = 0;
-                                seekBar_to.setMax(entries.size());
-                                seekBar_to.setProgress(entries.size());
-                                to = entries.size();
-                                max = entries.size();*/
 
                         }
                     }
@@ -383,13 +353,7 @@ public class MainFragment extends Fragment {
             InputStream stream = null;
             // Instantiate the parser
             XmlParser parser = new XmlParser();
-            ArrayList<Entry> entries = null;
-            String title = null;
-            String url = null;
-            String summary = null;
-
-            //EditText editText = (EditText) findViewById(R.id.editText_file);
-            //String fileName = editText.getText().toString();
+            //ArrayList<Entry> entries = null;
 
             FileInputStream fis = null;
             BufferedInputStream bis = null;
@@ -434,63 +398,6 @@ public class MainFragment extends Fragment {
             }
         }
     }
-
-    //reads xml from file
-    //
-/*    private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
-        InputStream stream = null;
-        // Instantiate the parser
-        XmlParser parser = new XmlParser();
-        ArrayList<Entry> entries = null;
-        String title = null;
-        String url = null;
-        String summary = null;
-
-        //EditText editText = (EditText) findViewById(R.id.editText_file);
-        //String fileName = editText.getText().toString();
-
-        FileInputStream fis = null;
-        BufferedInputStream bis = null;
-        DataInputStream dis = null;
-
-        try {Action
-            fis = new FileInputStream(fileName);
-            bis = new BufferedInputStream(fis);
-            dis = new DataInputStream(bis);
-
-            entries = parser.parse(dis);
-            return entries;
-
-        } finally {
-            if (fis != null) {
-                fis.close();
-            }
-            if (bis != null) {
-                bis.close();
-            }
-            if (dis != null) {
-                dis.close();
-            }
-        }
-
-        //Toast.makeText(this, entries.size(),
-        //Toast.LENGTH_SHORT).show();
-    }
-
-    public void safeToSQL(ArrayList<Entry> entries) {
-
-        ListIterator it = entries.listIterator();
-        try {
-            DatabaseHandler db = new DatabaseHandler(getActivity());
-            db.onWipe();
-            while (it.hasNext()) {
-                Entry entry = (Entry) it.next();
-                db.addEntry(entry);
-            }
-        } catch (SQLiteException e) {
-            Log.e(TAG, "Error reading database: " + e);
-        }
-    }*/
 
     public static String convertStreamToString(InputStream is) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
