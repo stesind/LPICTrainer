@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.helper;
 
 import android.app.AlertDialog;
 import android.content.*;
@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import de.sindzinski.lpictrainer.R;
 
 /**
  * Created by steffen on 17.10.13.

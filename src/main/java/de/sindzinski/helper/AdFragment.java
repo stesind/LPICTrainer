@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.helper;
 
 /*
 // Ad network-specific imports (AdMob).

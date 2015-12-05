@@ -1,10 +1,12 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.helper;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.app.Dialog;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
+import de.sindzinski.lpictrainer.R;
 
 /**
  * Created by steffen on 16.08.13.

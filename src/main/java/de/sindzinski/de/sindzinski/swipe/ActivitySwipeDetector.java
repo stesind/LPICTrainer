@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.de.sindzinski.swipe;
 
 /**
  * Created by steffen on 13.08.13.
@@ -23,9 +23,10 @@ public void left2right(View v) {
 
  */
 
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import de.sindzinski.helper.Logger;
 
 public class ActivitySwipeDetector implements View.OnTouchListener {
 

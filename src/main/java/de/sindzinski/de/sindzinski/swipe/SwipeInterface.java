@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.de.sindzinski.swipe;
 
 /**
  * Created by steffen on 13.08.13.

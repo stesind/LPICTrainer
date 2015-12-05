@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.sindzinski.lpictrainer;
+package de.sindzinski.helper;
 
 //import com.google.android.apps.iosched.R;
 
@@ -44,6 +44,8 @@ import android.widget.TextView;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+
+import de.sindzinski.lpictrainer.R;
 
 /**
  * This is a set of helper methods for showing contextual help information in the app.
@@ -110,7 +112,7 @@ public class HelpUtils {
 
             LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(
                     Context.LAYOUT_INFLATER_SERVICE);
-            TextView aboutBodyView = (TextView) layoutInflater.inflate(R.layout.dialog_about, null);
+            TextView aboutBodyView = (TextView) layoutInflater.inflate(R.layout.dialog_about,null);
             aboutBodyView.setText(aboutBody);
             aboutBodyView.setMovementMethod(new LinkMovementMethod());
 

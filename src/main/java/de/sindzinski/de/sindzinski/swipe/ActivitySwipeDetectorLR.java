@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.de.sindzinski.swipe;
 
 /**
  * Created by steffen on 13.08.13.
@@ -44,6 +44,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+
+import de.sindzinski.helper.Logger;
 
 public class ActivitySwipeDetectorLR implements View.OnTouchListener {
 

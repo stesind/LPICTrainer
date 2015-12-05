@@ -1,11 +1,12 @@
 package de.sindzinski.lpictrainer;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.view.ViewConfiguration;
+
+import de.sindzinski.helper.Logger;
 
 /**
  * Created by steffen on 10.10.13.

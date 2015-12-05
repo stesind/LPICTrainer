@@ -35,6 +35,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
 
+import de.sindzinski.de.sindzinski.database.DatabaseHandler;
+import de.sindzinski.de.sindzinski.database.XmlParser;
+import de.sindzinski.de.sindzinski.swipe.ActivitySwipeDetector;
+import de.sindzinski.de.sindzinski.swipe.ActivitySwipeDetectorLR;
+import de.sindzinski.de.sindzinski.swipe.SwipeInterfaceLR;
+
 public class TestActivity extends Activity  {
 
     public ArrayList <Entry> entries = null;
@@ -179,8 +185,8 @@ public class TestActivity extends Activity  {
                 nextQuestion();
             }
         });
-        ScrollView swipe_layout = (ScrollView) findViewById(R.id.scrollView);
-        swipe_layout.setOnTouchListener(swipe);
+
+        scrollView.setOnTouchListener(swipe);
 
     }
     @Override

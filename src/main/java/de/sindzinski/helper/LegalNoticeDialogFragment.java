@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.helper;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,22 +12,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import android.content.Context;
+import android.content.res.AssetManager;
+
+import de.sindzinski.lpictrainer.R;
 
 /**
  * Created by steffen on 16.08.13.
  */
-public class HelpDialogFragment extends DialogFragment {
+public class LegalNoticeDialogFragment  extends DialogFragment {
 
     private static final String TAG="LPITrainer";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
-        String helpText = null;
+        String licenseInfo = null;
         AssetManager am = getActivity().getAssets();
         try {
-            InputStream is = am.open(getString(R.string.file_name_help));
-            helpText = convertStreamToString(is);
+            InputStream is = am.open(getString(R.string.file_name_license));
+            licenseInfo = convertStreamToString(is);
         }
         catch (IOException e) {
             Log.e(TAG, "Error reading file: " + e);
@@ -35,7 +39,7 @@ public class HelpDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.legalNotice_dialog_title);
-        builder.setMessage(helpText)
+        builder.setMessage(licenseInfo)
                 .setPositiveButton(R.string.dialog_close, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // FIRE ZE MISSILES!

@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.helper;
 
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;

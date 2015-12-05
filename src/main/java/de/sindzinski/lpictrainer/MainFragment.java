@@ -34,7 +34,6 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -42,6 +41,9 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
+
+import de.sindzinski.de.sindzinski.database.DatabaseHandler;
+import de.sindzinski.de.sindzinski.database.XmlParser;
 
 public class MainFragment extends Fragment {
 

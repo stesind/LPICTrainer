@@ -1,30 +1,12 @@
 package de.sindzinski.lpictrainer;
 
 import android.app.*;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.*;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.*;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebView;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -34,10 +16,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import 	android.preference.PreferenceManager;
-import android.widget.Toast;
 
-import android.animation.ObjectAnimator;
-import android.animation.AnimatorSet;
+import de.sindzinski.helper.AppRater;
+import de.sindzinski.helper.HelpUtils;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -123,7 +104,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
         if (showAd) {
             //ad
-            AdFragment adFragment = new AdFragment();
+            //AdFragment adFragment = new AdFragment();
+            Fragment adFragment = new Fragment();
             mainFragment = MainFragment.newInstance();
             FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
             adTransaction.replace(R.id.ad_container, adFragment);
@@ -156,8 +138,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         if (testFragment != null) {
             //just update the fragment
             //testFragment.update();)) {
-            testFragment = TestFragment.newInstance(from, to, fileName);
+            //testFragment = TestFragment.newInstance(from, to, fileName);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.commit();
         } else {
             //transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_righ             t);
             //        transaction.setCustomAnimatio            ns(
@@ -165,7 +148,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             //                R.anim.card_flip_left_in, R.anim.card_flip_left_o
 
             // Create fragment
-            testFragment = new TestFragment();
+            //testFragment = new TestFragment();
             //Arguments can go by bundle or by instance
 //            Bundle args = new Bundle();
 //            args.putInt(TestFragment.ARG_POSITION, position);

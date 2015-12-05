@@ -38,6 +38,11 @@ import android.animation.Animator;
 import android.animation.Keyframe;
 import android.view.GestureDetector;
 
+import de.sindzinski.de.sindzinski.database.DatabaseHandler;
+import de.sindzinski.de.sindzinski.database.XmlParser;
+import de.sindzinski.de.sindzinski.swipe.ActivitySwipeDetector;
+import de.sindzinski.helper.Logger;
+
 public class TestFragment extends Fragment {
 
     public ArrayList<Entry> entries = null;

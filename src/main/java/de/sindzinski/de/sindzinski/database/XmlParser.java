@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.de.sindzinski.database;
 
 /**
  * Created by steffen on 09.08.13.
@@ -18,6 +18,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import de.sindzinski.lpictrainer.Entry;
 
 
 public class XmlParser {
