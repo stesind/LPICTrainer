@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,8 +41,9 @@ import java.util.ListIterator;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
 
-import de.sindzinski.de.sindzinski.database.DatabaseHandler;
-import de.sindzinski.de.sindzinski.database.XmlParser;
+import de.sindzinski.database.DatabaseHandler;
+import de.sindzinski.database.XmlParser;
+import de.sindzinski.helper.Logger;
 
 public class MainFragment extends Fragment {
 
@@ -56,6 +56,10 @@ public class MainFragment extends Fragment {
     protected TextView textView_from;
     protected ImageButton button_file;
     protected Button button_test;
+    protected Button button_LPIC1;
+    protected Button button_LPIC2;
+    protected Button button_LPIC3;
+    protected Button button_LPIC4;
     public String fileName;
     public Integer from;
     public Integer to;
@@ -103,7 +107,6 @@ public class MainFragment extends Fragment {
        // super.onCreate(savedInstanceState);
 
 
-
         //not already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
@@ -141,6 +144,11 @@ public class MainFragment extends Fragment {
 
         button_file = (ImageButton) view.findViewById(R.id.button_file);
         button_test = (Button) view.findViewById(R.id.button_test);
+        button_LPIC1 = (Button) view.findViewById(R.id.button_LPIC1);
+        button_LPIC2 = (Button) view.findViewById(R.id.button_LPIC2);
+        button_LPIC3 = (Button) view.findViewById(R.id.button_LPIC3);
+        button_LPIC4 = (Button) view.findViewById(R.id.button_LPIC4);
+
 
         seekBar_to.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -193,6 +201,30 @@ public class MainFragment extends Fragment {
                         //startTestFragment();
                         onTest();
                         break;
+                    case R.id.button_LPIC1:
+                        // which is supposed to be called automatically
+                        // in your activity, which has now changed to a fragment.
+                        //startTestFragment();
+                        new loadXmlFromAssetTask().execute("lpic1.xml");
+                        break;
+                    case R.id.button_LPIC2:
+                        // which is supposed to be called automatically
+                        // in your activity, which has now changed to a fragment.
+                        //startTestFragment();
+                        new loadXmlFromAssetTask().execute("lpic2.xml");
+                        break;
+                    case R.id.button_LPIC3:
+                        // which is supposed to be called automatically
+                        // in your activity, which has now changed to a fragment.
+                        //startTestFragment();
+                        new loadXmlFromAssetTask().execute("lpic3.xml");
+                        break;
+                    case R.id.button_LPIC4:
+                        // which is supposed to be called automatically
+                        // in your activity, which has now changed to a fragment.
+
+                        new loadXmlFromAssetTask().execute("lpic4.xml");
+                        break;
                     case R.id.button_file:
                         //selectFile();
                         showFileChooser();
@@ -202,6 +234,10 @@ public class MainFragment extends Fragment {
         };
 
         button_test.setOnClickListener(clickListener);
+        button_LPIC1.setOnClickListener(clickListener);
+        button_LPIC2.setOnClickListener(clickListener);
+        button_LPIC3.setOnClickListener(clickListener);
+        button_LPIC4.setOnClickListener(clickListener);
         button_file.setOnClickListener(clickListener);
 
         return view;
@@ -234,7 +270,7 @@ public class MainFragment extends Fragment {
 
         } catch (ActivityNotFoundException e) {
             // No compatible file manager was found.
-            Log.e(TAG, "Error reading file: " + e);
+            Logger.e(TAG, "Error reading file: " + e);
             Toast.makeText(getActivity(), "@string/message_no_filemanager_installed",
                     Toast.LENGTH_SHORT).show();
         }
@@ -305,14 +341,14 @@ public class MainFragment extends Fragment {
 
         protected ArrayList<Entry> doInBackground(String... fileName) {
             //runs in background task
-            Log.e(TAG, "running in async background task: doInBackground " );
+            Logger.e(TAG, "running in async background task: doInBackground " );
             try {
                 entries = loadXmlFromFile(fileName[0]);
                 return entries;
             } catch (IOException ie){
-                Log.e(TAG, "Error: " +ie.toString() );
+                Logger.e(TAG, "Error: " +ie.toString() );
             } catch (XmlPullParserException ie){
-                Log.e(TAG, "Error: " +ie.toString() );
+                Logger.e(TAG, "Error: " +ie.toString() );
             }
             return null;
         }
@@ -329,7 +365,7 @@ public class MainFragment extends Fragment {
 
         protected void onPostExecute(ArrayList result) {
             //runs in foreground task
-            Log.e(TAG, "running in post execute forground task " );
+            Logger.e(TAG, "running in post execute forground task " );
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
@@ -396,7 +432,109 @@ public class MainFragment extends Fragment {
                     db.addEntry(entry);
                 }
             } catch (SQLiteException e) {
-                Log.e(TAG, "Error reading database: " + e);
+                Logger.e(TAG, "Error reading database: " + e);
+            }
+        }
+    }
+
+    private class loadXmlFromAssetTask extends AsyncTask<String, Integer, ArrayList<Entry>>
+    {
+        String fileName;
+        protected ArrayList<Entry> doInBackground(String... params) {
+            //runs in background task
+
+            this.fileName = params[0];
+
+            Logger.e(TAG, "running in async background task: doInBackground " );
+            try {
+                entries = loadXmlFromAsset(params[0]);
+                return entries;
+            } catch (IOException ie){
+                Logger.e(TAG, "Error: " +ie.toString() );
+            } catch (XmlPullParserException ie){
+                Logger.e(TAG, "Error: " +ie.toString() );
+            }
+            return null;
+        }
+        protected void onPreExecute() {
+            //runs in foreground task
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setMessage(getString(R.string.message_reading_file));
+            progressDialog.show();
+        }
+        protected void onProgressUpdate(Integer... progress) {
+            //setProgressPercent(progress[0]);
+        }
+
+        protected void onPostExecute(ArrayList result) {
+            //runs in foreground task
+            Logger.e(TAG, "running in post execute forground task ");
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            //showDialog("Downloaded " + result + " bytes");
+            if (result != null) {
+                entries = result;
+                editText_fileName.setText(this.fileName);
+                seekBar_from.setMax(entries.size());
+                seekBar_from.setProgress(0);
+                from = 0;
+                seekBar_to.setMax(entries.size());
+                seekBar_to.setProgress(entries.size());
+                to = entries.size();
+                max = entries.size();
+                safeToSQL(entries);
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.message_error_reading_file), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        private ArrayList<Entry> loadXmlFromAsset(String fileName) throws XmlPullParserException, IOException {
+            InputStream is = null;
+            // Instantiate the parser
+            XmlParser parser = new XmlParser();
+            //ArrayList<Entry> entries = null;
+
+            BufferedInputStream bis = null;
+            DataInputStream dis = null;
+
+            try {
+                is = getActivity().getAssets().open(fileName);
+                bis = new BufferedInputStream(is);
+                dis = new DataInputStream(bis);
+
+                entries = parser.parse(dis);
+                return entries;
+
+            } finally {
+                if (is != null) {
+                    is.close();
+                }
+                if (bis != null) {
+                    bis.close();
+                }
+                if (dis != null) {
+                    dis.close();
+                }
+            }
+
+            //Toast.makeText(this, entries.size(),
+            //Toast.LENGTH_SHORT).show();
+        }
+
+        protected void safeToSQL(ArrayList<Entry> entries) {
+
+            ListIterator it = entries.listIterator();
+            try {
+                DatabaseHandler db = new DatabaseHandler(getActivity());
+                db.onWipe();
+                while (it.hasNext()) {
+                    Entry entry = (Entry) it.next();
+                    db.addEntry(entry);
+                }
+            } catch (SQLiteException e) {
+                Logger.e(TAG, "Error reading database: " + e);
             }
         }
     }

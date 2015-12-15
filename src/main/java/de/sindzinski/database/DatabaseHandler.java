@@ -1,4 +1,4 @@
-package de.sindzinski.de.sindzinski.database;
+package de.sindzinski.database;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText_fileName"
-            android:textAlignment="textEnd"
             android:maxLines="1"
             android:singleLine="true"
             android:gravity="fill|right"
@@ -100,5 +99,45 @@
             android:layout_alignTop="@+id/textView_to"
             android:layout_alignRight="@+id/imageView"
             android:layout_toRightOf="@+id/textView_to"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_test"
+        android:layout_alignParentStart="true">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_LPIC1"
+            android:id="@+id/button_LPIC1"
+            android:layout_weight="1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_LPIC2"
+            android:id="@+id/button_LPIC2"
+            android:layout_weight="1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_LPIC3"
+            android:id="@+id/button_LPIC3"
+            android:layout_weight="1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_LPIC4"
+            android:id="@+id/button_LPIC4"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </RelativeLayout>

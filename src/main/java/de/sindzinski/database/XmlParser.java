@@ -1,4 +1,4 @@
-package de.sindzinski.de.sindzinski.database;
+package de.sindzinski.database;
 
 /**
  * Created by steffen on 09.08.13.
@@ -12,11 +12,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
 import android.provider.BaseColumns;
-import android.util.Log;
 
 import de.sindzinski.lpictrainer.Entry;
 

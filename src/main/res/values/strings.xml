@@ -16,6 +16,10 @@
     <string name="message_error_reading_file">Error reading file!</string>
     <string name="message_please_wait">Please wait…</string>
     <string name="button_start_test">Start</string>
+    <string name="button_LPIC1">LPIC1</string>
+    <string name="button_LPIC2">LPIC2</string>
+    <string name="button_LPIC3">LPIC3</string>
+    <string name="button_LPIC4">LPIC4</string>
     <string name="trial_purchase">Purchase</string>
     <string name="package_name">Purchase</string>
     <string name="menu_end">End</string>

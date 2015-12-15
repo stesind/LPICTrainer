@@ -35,11 +35,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
 
-import de.sindzinski.de.sindzinski.database.DatabaseHandler;
-import de.sindzinski.de.sindzinski.database.XmlParser;
-import de.sindzinski.de.sindzinski.swipe.ActivitySwipeDetector;
-import de.sindzinski.de.sindzinski.swipe.ActivitySwipeDetectorLR;
-import de.sindzinski.de.sindzinski.swipe.SwipeInterfaceLR;
+import de.sindzinski.database.DatabaseHandler;
+import de.sindzinski.database.XmlParser;
+import de.sindzinski.swipe.ActivitySwipeDetector;
+import de.sindzinski.swipe.ActivitySwipeDetectorLR;
+import de.sindzinski.swipe.SwipeInterfaceLR;
 
 public class TestActivity extends Activity  {
 

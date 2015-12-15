@@ -19,6 +19,7 @@ import 	android.preference.PreferenceManager;
 
 import de.sindzinski.helper.AppRater;
 import de.sindzinski.helper.HelpUtils;
+import de.sindzinski.helper.Logger;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -51,6 +52,13 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (BuildConfig.DEBUG) {
+            Logger.logging = true;
+        } else {
+            Logger.logging = false;
+        }
+        
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
@@ -262,7 +270,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             InputStream is = am.open("License");
             licenseInfo = convertStreamToString(is);
         } catch (IOException e) {
-            Log.e(TAG, "Error reading file: " + e);
+            logger.e(TAG, "Error reading file: " + e);
         }
         AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(MainActivity.this);
         LicenseDialog.setTitle("Legal Notices");
@@ -356,7 +364,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         super.onDestroy();
 
 /*        // very important:
-        Logger.d(TAG, "Destroying helper.");
+        logger.d(TAG, "Destroying helper.");
         if (mHelper != null) mHelper.dispose();
         mHelper = null;*/
     }
