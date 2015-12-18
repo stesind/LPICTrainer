@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import android.provider.BaseColumns;
 
-import de.sindzinski.lpictrainer.Entry;
+import de.sindzinski.lpictrainer.Question;
 
 
 public class XmlParser {
@@ -24,7 +24,7 @@ public class XmlParser {
 
     /* Inner class that defines the table contents */
     public static abstract class FeedEntry implements BaseColumns {
-        public static final String TABLE_NAME = "entry";
+        public static final String TABLE_NAME = "question";
         public static final String COLUMN_NAME_ENTRY_ID = "entryid";
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_SUBTITLE = "subtitle";
@@ -116,7 +116,7 @@ public class XmlParser {
                 antwort5 = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
-                entries.add(new Entry(index, title, type, points, text, antwort1, richtig1, antwort2, richtig2, antwort3, richtig3, antwort4, richtig4, antwort5, richtig5));
+                entries.add(new Question(index, title, type, points, text, antwort1, richtig1, antwort2, richtig2, antwort3, richtig3, antwort4, richtig4, antwort5, richtig5));
                 title = null;
                 type = null;
                 points = null;
@@ -135,7 +135,7 @@ public class XmlParser {
                 antwort1 = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
-                entries.add(new Entry(index, title, type, points, text, antwort1, richtig1, antwort2, richtig2, antwort3, richtig3, antwort4, richtig4, antwort5, richtig5));
+                entries.add(new Question(index, title, type, points, text, antwort1, richtig1, antwort2, richtig2, antwort3, richtig3, antwort4, richtig4, antwort5, richtig5));
                 title = null;
                 type = null;
                 points = null;
@@ -166,7 +166,7 @@ public class XmlParser {
                 continue;
             }
             String name = parser.getName();
-            // Starts by looking for the entry tag
+            // Starts by looking for the question tag
             if (name.equals("fragetitel")) {
                 entries.add(readEntry(parser));
             } else {
@@ -176,7 +176,7 @@ public class XmlParser {
         return entries;
     }*/
 
-/*    public static class Entry {
+/*    public static class Question {
         public final String title;
         public final String type;
         public final String points;
@@ -194,7 +194,7 @@ public class XmlParser {
         // We don't use namespaces
         private static final String ns = null;
 
-        private Entry(String title, String type, String points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {
+        private Question(String title, String type, String points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {
             this.title = title;
             this.type = type;
             this.points = points;
@@ -212,9 +212,9 @@ public class XmlParser {
         }
     }*/
 
-    // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
+    // Parses the contents of an question. If it encounters a title, summary, or link tag, hands them off
     // to their respective "read" methods for processing. Otherwise, skips the tag.
-    /*private Entry readEntry(XmlPullParser parser) throws XmlPullParserException, IOException {
+    /*private Question readEntry(XmlPullParser parser) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, ns, "fragetitel");
         String title = null;
         String type = null;
@@ -237,7 +237,7 @@ public class XmlParser {
                 skip(parser);
             }
         }
-        return new Entry(title, type, points, text);
+        return new Question(title, type, points, text);
     }
 */
     // Processes title tags in the feed.

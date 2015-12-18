@@ -5,7 +5,7 @@ import android.os.Parcel;
 /**
  * Created by steffen on 13.08.13.
  */
-public class Entry implements Parcelable {
+public class Question implements Parcelable {
 
     public Integer index;
     public String title;
@@ -23,11 +23,11 @@ public class Entry implements Parcelable {
     public String antwort5;
     public Boolean richtig5;
 
-    public Entry () {
+    public Question() {
     }
 
-    //additional interface for entry to set values directly and not by setter
-    public Entry(Integer index, String title, String type, Integer points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {
+    //additional interface for question to set values directly and not by setter
+    public Question(Integer index, String title, String type, Integer points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {
         this.index = index;
         this.title = title;
         this.type = type;
@@ -71,19 +71,19 @@ public class Entry implements Parcelable {
         //myBoolean = in.readByte() == 1;     //myBoolean == true if byte == 1
     }
 
-    public static final Parcelable.Creator<Entry> CREATOR
-            = new Parcelable.Creator<Entry>() {
-        public Entry createFromParcel(Parcel in) {
-            return new Entry(in);
+    public static final Parcelable.Creator<Question> CREATOR
+            = new Parcelable.Creator<Question>() {
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
         }
 
-        public Entry[] newArray(int size) {
-            return new Entry[size];
+        public Question[] newArray(int size) {
+            return new Question[size];
         }
     };
 
     //read from parcel
-    private Entry(Parcel in) {
+    private Question(Parcel in) {
         index=in.readInt();
         title = in.readString();
         type = in.readString();

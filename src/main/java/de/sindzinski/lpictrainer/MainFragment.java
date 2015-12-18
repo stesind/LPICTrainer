@@ -66,7 +66,7 @@ public class MainFragment extends Fragment {
     public Integer max;
     private static final String TAG = "LPITrainer";
 
-    public ArrayList<Entry> entries = null;
+    public ArrayList<Question> entries = null;
     ProgressDialog progressDialog;
 
     OnTestListener mListener;
@@ -337,9 +337,9 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private class loadXmlFromFileTask extends AsyncTask<String, Integer, ArrayList<Entry>>  {
+    private class loadXmlFromFileTask extends AsyncTask<String, Integer, ArrayList<Question>>  {
 
-        protected ArrayList<Entry> doInBackground(String... fileName) {
+        protected ArrayList<Question> doInBackground(String... fileName) {
             //runs in background task
             Logger.e(TAG, "running in async background task: doInBackground " );
             try {
@@ -387,11 +387,11 @@ public class MainFragment extends Fragment {
             }
         }
 
-        private ArrayList<Entry> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
+        private ArrayList<Question> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
             InputStream stream = null;
             // Instantiate the parser
             XmlParser parser = new XmlParser();
-            //ArrayList<Entry> entries = null;
+            //ArrayList<Question> entries = null;
 
             FileInputStream fis = null;
             BufferedInputStream bis = null;
@@ -421,15 +421,15 @@ public class MainFragment extends Fragment {
             //Toast.LENGTH_SHORT).show();
         }
 
-        protected void safeToSQL(ArrayList<Entry> entries) {
+        protected void safeToSQL(ArrayList<Question> entries) {
 
             ListIterator it = entries.listIterator();
             try {
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 db.onWipe();
                 while (it.hasNext()) {
-                    Entry entry = (Entry) it.next();
-                    db.addEntry(entry);
+                    Question question = (Question) it.next();
+                    db.addEntry(question);
                 }
             } catch (SQLiteException e) {
                 Logger.e(TAG, "Error reading database: " + e);
@@ -437,10 +437,10 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private class loadXmlFromAssetTask extends AsyncTask<String, Integer, ArrayList<Entry>>
+    private class loadXmlFromAssetTask extends AsyncTask<String, Integer, ArrayList<Question>>
     {
         String fileName;
-        protected ArrayList<Entry> doInBackground(String... params) {
+        protected ArrayList<Question> doInBackground(String... params) {
             //runs in background task
 
             this.fileName = params[0];
@@ -490,11 +490,11 @@ public class MainFragment extends Fragment {
             }
         }
 
-        private ArrayList<Entry> loadXmlFromAsset(String fileName) throws XmlPullParserException, IOException {
+        private ArrayList<Question> loadXmlFromAsset(String fileName) throws XmlPullParserException, IOException {
             InputStream is = null;
             // Instantiate the parser
             XmlParser parser = new XmlParser();
-            //ArrayList<Entry> entries = null;
+            //ArrayList<Question> entries = null;
 
             BufferedInputStream bis = null;
             DataInputStream dis = null;
@@ -523,15 +523,15 @@ public class MainFragment extends Fragment {
             //Toast.LENGTH_SHORT).show();
         }
 
-        protected void safeToSQL(ArrayList<Entry> entries) {
+        protected void safeToSQL(ArrayList<Question> entries) {
 
             ListIterator it = entries.listIterator();
             try {
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 db.onWipe();
                 while (it.hasNext()) {
-                    Entry entry = (Entry) it.next();
-                    db.addEntry(entry);
+                    Question question = (Question) it.next();
+                    db.addEntry(question);
                 }
             } catch (SQLiteException e) {
                 Logger.e(TAG, "Error reading database: " + e);

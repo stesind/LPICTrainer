@@ -48,7 +48,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer max;
     private boolean isDarkTheme;
 
-    public ArrayList<Entry> entries = null;
+    public ArrayList<Question> entries = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

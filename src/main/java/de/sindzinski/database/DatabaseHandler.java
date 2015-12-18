@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteException;
 
-import de.sindzinski.lpictrainer.Entry;
+import de.sindzinski.lpictrainer.Question;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -91,35 +91,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    // Adding new entry
-    public void addEntry(Entry entry) throws SQLiteException {
+    // Adding new question
+    public void addEntry(Question question) throws SQLiteException {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(INDEX, entry.getIndex());
-        values.put(TITLE, entry.getTitle());
-        values.put(TYPE, entry.getType());
-        values.put(POINTS, entry.getPoints());
-        values.put(TEXT, entry.getText());
-        values.put(ANTWORT1, entry.getAntwort1());
-        values.put(RICHTIG1, entry.getRichtig1());
-        values.put(ANTWORT2, entry.getAntwort2());
-        values.put(RICHTIG2, entry.getRichtig2());
-        values.put(ANTWORT3, entry.getAntwort3());
-        values.put(RICHTIG3, entry.getRichtig3());
-        values.put(ANTWORT4, entry.getAntwort4());
-        values.put(RICHTIG4, entry.getRichtig4());
-        values.put(ANTWORT5, entry.getAntwort5());
-        values.put(RICHTIG5, entry.getRichtig5());
+        values.put(INDEX, question.getIndex());
+        values.put(TITLE, question.getTitle());
+        values.put(TYPE, question.getType());
+        values.put(POINTS, question.getPoints());
+        values.put(TEXT, question.getText());
+        values.put(ANTWORT1, question.getAntwort1());
+        values.put(RICHTIG1, question.getRichtig1());
+        values.put(ANTWORT2, question.getAntwort2());
+        values.put(RICHTIG2, question.getRichtig2());
+        values.put(ANTWORT3, question.getAntwort3());
+        values.put(RICHTIG3, question.getRichtig3());
+        values.put(ANTWORT4, question.getAntwort4());
+        values.put(RICHTIG4, question.getRichtig4());
+        values.put(ANTWORT5, question.getAntwort5());
+        values.put(RICHTIG5, question.getRichtig5());
         // Inserting Row
         db.insert(TABLE_ENTRIES, null, values);
         db.close(); // Closing database connection
     }
 
-    // Getting single entry
-    Entry getEntry(int id) throws SQLiteException {
+    // Getting single question
+    Question getEntry(int id) throws SQLiteException {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_ENTRIES, new String[] { INDEX,
@@ -128,15 +128,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Entry entry = new Entry(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
+        Question question = new Question(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
                 cursor.getString(4), cursor.getString(5), cursor.getInt(6)>0, cursor.getString(7), cursor.getInt(8)>0, cursor.getString(9),cursor.getInt(10)>0,
                 cursor.getString(11),cursor.getInt(12)>0, cursor.getString(13),cursor.getInt(14)>0);
-        return entry;
+        return question;
     }
 
     // Getting All Entries
-    public List<Entry> getAllEntries() throws SQLiteException {
-        List<Entry> entrytList = new ArrayList<Entry>();
+    public List<Question> getAllEntries() throws SQLiteException {
+        List<Question> entrytList = new ArrayList<Question>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_ENTRIES;
 
@@ -146,11 +146,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Entry entry = new Entry(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
+                Question question = new Question(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
                         cursor.getString(4), cursor.getString(5), cursor.getInt(6)>0, cursor.getString(7), cursor.getInt(8)>0, cursor.getString(9),cursor.getInt(10)>0,
                         cursor.getString(11),cursor.getInt(12)>0, cursor.getString(13),cursor.getInt(14)>0);
                 // Adding contact to list
-                entrytList.add(entry);
+                entrytList.add(question);
             } while (cursor.moveToNext());
         }
 
@@ -158,36 +158,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return entrytList;
     }
 
-    // Updating single entry
-    public int updateEntry(Entry entry) throws SQLiteException {
+    // Updating single question
+    public int updateEntry(Question question) throws SQLiteException {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(INDEX, entry.getIndex());
-        values.put(TITLE, entry.getTitle());
-        values.put(TYPE, entry.getType());
-        values.put(POINTS, entry.getPoints());
-        values.put(TEXT, entry.getText());
-        values.put(ANTWORT1, entry.getAntwort1());
-        values.put(RICHTIG1, entry.getRichtig1());
-        values.put(ANTWORT2, entry.getAntwort2());
-        values.put(RICHTIG2, entry.getRichtig2());
-        values.put(ANTWORT3, entry.getAntwort3());
-        values.put(RICHTIG3, entry.getRichtig3());
-        values.put(ANTWORT4, entry.getAntwort4());
-        values.put(RICHTIG4, entry.getRichtig4());
-        values.put(ANTWORT5, entry.getAntwort5());
-        values.put(RICHTIG5, entry.getRichtig5());
+        values.put(INDEX, question.getIndex());
+        values.put(TITLE, question.getTitle());
+        values.put(TYPE, question.getType());
+        values.put(POINTS, question.getPoints());
+        values.put(TEXT, question.getText());
+        values.put(ANTWORT1, question.getAntwort1());
+        values.put(RICHTIG1, question.getRichtig1());
+        values.put(ANTWORT2, question.getAntwort2());
+        values.put(RICHTIG2, question.getRichtig2());
+        values.put(ANTWORT3, question.getAntwort3());
+        values.put(RICHTIG3, question.getRichtig3());
+        values.put(ANTWORT4, question.getAntwort4());
+        values.put(RICHTIG4, question.getRichtig4());
+        values.put(ANTWORT5, question.getAntwort5());
+        values.put(RICHTIG5, question.getRichtig5());
         // updating row
         return db.update(TABLE_ENTRIES, values, INDEX + " = ?",
-                new String[] { String.valueOf(entry.getIndex()) });
+                new String[] { String.valueOf(question.getIndex()) });
     }
 
-    // Deleting single entry
-    public void deleteEntry(Entry entry) throws SQLiteException  {
+    // Deleting single question
+    public void deleteEntry(Question question) throws SQLiteException  {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ENTRIES, INDEX + " = ?",
-                new String[] { String.valueOf(entry.getIndex()) });
+                new String[] { String.valueOf(question.getIndex()) });
         db.close();
     }
 

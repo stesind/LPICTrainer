@@ -45,15 +45,15 @@ import de.sindzinski.helper.Logger;
 
 public class TestFragment extends Fragment {
 
-    public ArrayList<Entry> entries = null;
+    public ArrayList<Question> entries = null;
     //public ArrayList <Answer> answers = null;
     public HashMap answers = new HashMap();
     public String fileName;
     public Integer from;
     public Integer to;
-    public ListIterator<Entry> it;
-    public ArrayList<Entry> subEntries;
-    //public ArrayList<Entry> subEntries = null;
+    public ListIterator<Question> it;
+    public ArrayList<Question> subEntries;
+    //public ArrayList<Question> subEntries = null;
     protected TextView textView_question;
     protected CheckBox checkBox_answer1;
     protected CheckBox checkBox_answer2;
@@ -81,7 +81,7 @@ public class TestFragment extends Fragment {
     protected Integer current = 1;
     public String lastAction = null;
     public Integer max = 0;
-    protected Entry entry = null;
+    protected Question question = null;
 
     protected Boolean answered = false;
     protected Boolean checked = false;
@@ -235,7 +235,7 @@ public class TestFragment extends Fragment {
                 //load from sqlite database
                 DatabaseHandler db = new DatabaseHandler(getActivity());
                 entries = (ArrayList) db.getAllEntries();
-                subEntries = new ArrayList<Entry>(entries.subList((from > to) ? 0 : from, to));
+                subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
 
                 //if set in preferences then shuffle entries
                 if (shuffle) {
@@ -698,7 +698,7 @@ public class TestFragment extends Fragment {
     }
 
     public void addWidgets() {
-        if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
+        if ((question.type !=null) && (question.type.equals("auswahl"))) {
             checkBox1 = new CheckBox(getActivity());
             //frameLayout.setBackgroundColor(Color.TRANSPARENT);
                 checkBox1.setText("test");
@@ -748,13 +748,13 @@ public class TestFragment extends Fragment {
         saveAnswers();
         if (it.hasPrevious()) {
             if (lastAction == "next") {
-                entry = it.previous();
+                question = it.previous();
             }
-            entry = it.previous();
+            question = it.previous();
             lastAction = "previous";
-            Logger.d(TAG, String.valueOf(entry.index));
+            Logger.d(TAG, String.valueOf(question.index));
             current--;
-            setQuestion(entry);
+            setQuestion(question);
             loadAnswers();
             if (checked) {
                 checkAnswer();
@@ -767,13 +767,13 @@ public class TestFragment extends Fragment {
         saveAnswers();
         if (it.hasNext()) {
             if (lastAction == "previous") {
-                entry = it.next();
+                question = it.next();
             }
-            entry = it.next();
+            question = it.next();
             lastAction = "next";
-            Logger.d(TAG, String.valueOf(entry.index));
+            Logger.d(TAG, String.valueOf(question.index));
             current++;
-            setQuestion(entry);
+            setQuestion(question);
             loadAnswers();
             if (checked) {
                 checkAnswer();
@@ -785,12 +785,12 @@ public class TestFragment extends Fragment {
 
     public void currentQuestion() {
         //saveAnswers();
-        if (entry == null) {
-            entry = it.next();
+        if (question == null) {
+            question = it.next();
             current++;
         }
         lastAction = "next";
-        setQuestion(entry);
+        setQuestion(question);
         loadAnswers();
         if (checked) {
              checkAnswer();
@@ -812,7 +812,7 @@ public class TestFragment extends Fragment {
         checked = false;
         Answer answer = (Answer) answers.get(current);
         if (answer != null) {
-            if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
+            if ((question.type !=null) && (question.type.equals("auswahl"))) {
                 checkBox1.setChecked(answer.richtig1);
                 checkBox2.setChecked(answer.richtig2);
                 checkBox3.setChecked(answer.richtig3);
@@ -829,21 +829,21 @@ public class TestFragment extends Fragment {
     }
 
     //fills in the new question
-    public void setQuestion(Entry entry) {
+    public void setQuestion(Question question) {
         clearView();
         addWidgets();
         textView_current.setText(Integer.toString(current)+"/"+Integer.toString(max));
 //       textView_current.setText(it.nextIndex()-1+"/"+entries.size());
 
-        textView_question.setText(entry.text);
+        textView_question.setText(question.text);
 
-        if ((entry.type != null) && (entry.type.equals("auswahl"))) {
+        if ((question.type != null) && (question.type.equals("auswahl"))) {
 
-            checkBox1.setText(entry.antwort1);
-            checkBox2.setText(entry.antwort2);
-            checkBox3.setText(entry.antwort3);
-            checkBox4.setText(entry.antwort4);
-            checkBox5.setText(entry.antwort5);
+            checkBox1.setText(question.antwort1);
+            checkBox2.setText(question.antwort2);
+            checkBox3.setText(question.antwort3);
+            checkBox4.setText(question.antwort4);
+            checkBox5.setText(question.antwort5);
         }
     }
 
@@ -851,36 +851,36 @@ public class TestFragment extends Fragment {
     public void checkAnswer() {
         checked = true;
         saveAnswers();
-        if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
-            if ((entry.richtig1 !=null) && entry.richtig1) {
+        if ((question.type !=null) && (question.type.equals("auswahl"))) {
+            if ((question.richtig1 !=null) && question.richtig1) {
                 if (checkBox1.isChecked() == true) {
                     checkBox1.setTextColor(Color.GREEN);
                 } else {
                     checkBox1.setTextColor(Color.RED);
                 }
             }
-            if ((entry.richtig2 !=null) && entry.richtig2) {
+            if ((question.richtig2 !=null) && question.richtig2) {
                 if (checkBox2.isChecked() == true) {
                     checkBox2.setTextColor(Color.GREEN);
                 } else {
                     checkBox2.setTextColor(Color.RED);
                 }
             }
-            if ((entry.richtig3 !=null) && entry.richtig3) {
+            if ((question.richtig3 !=null) && question.richtig3) {
                 if (checkBox3.isChecked() == true) {
                     checkBox3.setTextColor(Color.GREEN);
                 } else {
                     checkBox3.setTextColor(Color.RED);
                 }
             }
-            if ((entry.richtig4 !=null) && entry.richtig4) {
+            if ((question.richtig4 !=null) && question.richtig4) {
                 if (checkBox4.isChecked() == true) {
                     checkBox4.setTextColor(Color.GREEN);
                 } else {
                     checkBox4.setTextColor(Color.RED);
                 }
             }
-            if ((entry.richtig5 !=null) && entry.richtig5) {
+            if ((question.richtig5 !=null) && question.richtig5) {
                 if (checkBox5.isChecked() == true) {
                     checkBox5.setTextColor(Color.GREEN);
                 } else {
@@ -888,11 +888,11 @@ public class TestFragment extends Fragment {
                 }
             }
         } else {
-            if (editText1.getText().toString().trim().equals(entry.antwort1.trim())) {
+            if (editText1.getText().toString().trim().equals(question.antwort1.trim())) {
                 editText1.setTextColor(Color.GREEN);
             } else {
                 editText1.setTextColor(Color.RED);
-                editText1.setText(entry.antwort1);
+                editText1.setText(question.antwort1);
             }
         }
         //answered = false;
@@ -909,35 +909,35 @@ public class TestFragment extends Fragment {
         ListIterator it = entries.subList(from, to).listIterator();
 
         while (it.hasNext()) {
-            Entry entry = (Entry) it.next();
+            Question question = (Question) it.next();
             index++;
             faults = 0;
             Answer answer = (Answer) answers.get(index);
             if (answer != null) {
 
-                if ((entry.type !=null) && (entry.type.equals("auswahl"))) {
-                    if ((entry.richtig1 !=null) && (entry.richtig1 != answer.richtig1 )) {
+                if ((question.type !=null) && (question.type.equals("auswahl"))) {
+                    if ((question.richtig1 !=null) && (question.richtig1 != answer.richtig1 )) {
                         faults++;
                     }
-                    if ((entry.richtig2 !=null) && (entry.richtig2 != answer.richtig2 )) {
+                    if ((question.richtig2 !=null) && (question.richtig2 != answer.richtig2 )) {
                         faults++;
                     }
-                    if ((entry.richtig3 !=null) && (entry.richtig3 != answer.richtig3 )) {
+                    if ((question.richtig3 !=null) && (question.richtig3 != answer.richtig3 )) {
                         faults++;
                     }
-                    if ((entry.richtig4 !=null) && (entry.richtig4 != answer.richtig4 )) {
+                    if ((question.richtig4 !=null) && (question.richtig4 != answer.richtig4 )) {
                         faults++;
                     }
-                    if ((entry.richtig5 !=null) && (entry.richtig5 != answer.richtig5 )) {
+                    if ((question.richtig5 !=null) && (question.richtig5 != answer.richtig5 )) {
                         faults++;
                     }
                 } else {
-                    if (!entry.antwort1.equals(answer.antwort)) {
+                    if (!question.antwort1.equals(answer.antwort)) {
                         faults++;
                     }
                 }
                 if (faults == 0) {
-                    points = points + entry.points;
+                    points = points + question.points;
 
                 }
 
@@ -949,7 +949,7 @@ public class TestFragment extends Fragment {
                 answers.put(index, new Answer(index,true, "", false, false, false, false, false ));
 
             }
-            maxpoints = maxpoints + entry.points;
+            maxpoints = maxpoints + question.points;
         }
 
         //although already checked, call to redraw the current question
@@ -961,11 +961,11 @@ public class TestFragment extends Fragment {
 
     //reads xml from file
     //
-    private ArrayList <Entry> loadXmlFromFile() throws XmlPullParserException, IOException {
+    private ArrayList <Question> loadXmlFromFile() throws XmlPullParserException, IOException {
         InputStream stream = null;
         // Instantiate the parser
         XmlParser parser = new XmlParser();
-        ArrayList <Entry> entries = null;
+        ArrayList <Question> entries = null;
         String title = null;
         String url = null;
         String summary = null;
