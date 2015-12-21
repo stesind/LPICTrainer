@@ -25,7 +25,7 @@ public class AdFragment extends Fragment {
   /*  private AdView mAdView;
     private TextView mAdStatus;
 
-    static AdFragment newInstance(int num) {
+    static AdFragment getInstance(int num) {
         AdFragment af = new AdFragment();
         // Supply num input as an argument.
         Bundle args = new Bundle();

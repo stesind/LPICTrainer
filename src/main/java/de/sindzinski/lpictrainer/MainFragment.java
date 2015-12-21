@@ -7,14 +7,12 @@ package de.sindzinski.lpictrainer;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,13 +27,10 @@ import android.widget.Toast;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import android.os.AsyncTask;
@@ -71,7 +66,8 @@ public class MainFragment extends Fragment {
 
     OnTestListener mListener;
 
-        // Container Activity must implement this interface to receive events from fragment
+    // start test fragment from within this fragment
+    // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
         void onTest(int from, int to, String fileName, int max);
 
@@ -106,15 +102,12 @@ public class MainFragment extends Fragment {
                                 Bundle savedInstanceState) {
        // super.onCreate(savedInstanceState);
 
-
         //not already done in main activity
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.main_fragment, container, false);
-
-
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         fileName = sharedPref.getString("fileName","").toString();
@@ -205,25 +198,25 @@ public class MainFragment extends Fragment {
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        new loadXmlFromAssetTask().execute("lpic1.xml");
+                        loadXml("lpic1.xml");
                         break;
                     case R.id.button_LPIC2:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        new loadXmlFromAssetTask().execute("lpic2.xml");
+                        loadXml("lpic2.xml");
                         break;
                     case R.id.button_LPIC3:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        new loadXmlFromAssetTask().execute("lpic3.xml");
+                        loadXml("lpic3.xml");
                         break;
                     case R.id.button_LPIC4:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
 
-                        new loadXmlFromAssetTask().execute("lpic4.xml");
+                        loadXml("lpic4.xml");
                         break;
                     case R.id.button_file:
                         //selectFile();
@@ -243,46 +236,12 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    public void selectFile() {
-        //String fileName = editText_fileName.getText().toString();
-
-        Intent intent = new Intent("org.openintents.action.PICK_FILE");
-
-        if (!TextUtils.isEmpty(fileName)) {
-            // Construct URI from file name.
-            File file = new File(fileName);
-            intent.setData(Uri.fromFile(file));
-            //intent.setData(Uri.parse(fileName));
-        } else {
-            intent.setData(Uri.parse("file://storage/extSdCard/lpic4.xml"));
-        }
-
-        //intent.putExtra("org.openintents.extra.TITLE", "Please select a file");
-
-        // Set fancy title and button (optional)
-        //intent.putExtra("org.openintents.extra.TITLE", "@string/button_open_file");
-        intent.putExtra("org.openintents.extra.TITLE", getResources().getString(R.string.button_open_file));
-
-        //intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.open_button));
-
-        try {
-            startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
-
-        } catch (ActivityNotFoundException e) {
-            // No compatible file manager was found.
-            Logger.e(TAG, "Error reading file: " + e);
-            Toast.makeText(getActivity(), "@string/message_no_filemanager_installed",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private static final int FILE_SELECT_CODE = 0;
 
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("FILE/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-
 
         try {
             startActivityForResult(
@@ -308,249 +267,57 @@ public class MainFragment extends Fragment {
             case FILE_SELECT_CODE:
                 if (resultCode == Activity.RESULT_OK) {
                     // Get the Uri of the selected file
-                    Uri uri = data.getData();
                     Uri fileUri = data.getData();
                     fileName = fileUri.getPath();
-                    //try {
-                            new loadXmlFromFileTask().execute(fileName);
-                    //} catch (FileNotFoundException e) {
-                        /* Exception handler must be here! */
-                    //}
+                    loadXml(fileName);
                 }
                 break;
 
-            case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
-                if (resultCode == getActivity().RESULT_OK && data != null) {
-                    // obtain the filename
-                    Uri fileUri = data.getData();
-                    if (fileUri != null) {
-                        fileName = fileUri.getPath();
-                        if (fileName != null) {
-
-                                //load in async task
-                                new loadXmlFromFileTask().execute(fileName);
-
-                        }
-                    }
-                }
-                break;
         }
     }
 
-    private class loadXmlFromFileTask extends AsyncTask<String, Integer, ArrayList<Question>>  {
+    public void loadXml(final String fileName) {
 
-        protected ArrayList<Question> doInBackground(String... fileName) {
-            //runs in background task
-            Logger.e(TAG, "running in async background task: doInBackground " );
-            try {
-                entries = loadXmlFromFile(fileName[0]);
-                return entries;
-            } catch (IOException ie){
-                Logger.e(TAG, "Error: " +ie.toString() );
-            } catch (XmlPullParserException ie){
-                Logger.e(TAG, "Error: " +ie.toString() );
+        // create new instance of async class and override methods for setting ui
+        new LoadXmlAsyncTask(getActivity()) {
+            @Override
+            protected void onPreExecute() {
+                //runs in foreground task
+                progressDialog = new ProgressDialog(getActivity());
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setMessage(getString(R.string.message_reading_file));
+                progressDialog.show();
             }
-            return null;
-        }
-        protected void onPreExecute() {
-            //runs in foreground task
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setMessage(getString(R.string.message_reading_file));
-            progressDialog.show();
-        }
-        protected void onProgressUpdate(Integer... progress) {
-            //setProgressPercent(progress[0]);
-        }
 
-        protected void onPostExecute(ArrayList result) {
-            //runs in foreground task
-            Logger.e(TAG, "running in post execute forground task " );
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            //showDialog("Downloaded " + result + " bytes");
-            if (result != null) {
-                entries = result;
-                Uri fileUri = Uri.parse(fileName);
-                editText_fileName.setText(fileUri.getLastPathSegment());
-                seekBar_from.setMax(entries.size());
-                seekBar_from.setProgress(0);
-                from = 0;
-                seekBar_to.setMax(entries.size());
-                seekBar_to.setProgress(entries.size());
-                to = entries.size();
-                max = entries.size();
-                safeToSQL(entries);
-            } else {
-                Toast.makeText(getActivity(), getString(R.string.message_error_reading_file), Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private ArrayList<Question> loadXmlFromFile(String fileName) throws XmlPullParserException, IOException {
-            InputStream stream = null;
-            // Instantiate the parser
-            XmlParser parser = new XmlParser();
-            //ArrayList<Question> entries = null;
-
-            FileInputStream fis = null;
-            BufferedInputStream bis = null;
-            DataInputStream dis = null;
-
-            try {
-                fis = new FileInputStream(fileName);
-                bis = new BufferedInputStream(fis);
-                dis = new DataInputStream(bis);
-
-                entries = parser.parse(dis);
-                return entries;
-
-            } finally {
-                if (fis != null) {
-                    fis.close();
+/*            @Override
+            protected void onProgressUpdate(Integer... progress) {
+                progressDialog.setProgress(progress[0]);
+            }*/
+            @Override
+            protected void onPostExecute(ArrayList result) {
+                //runs in foreground task
+                Logger.i(TAG, "running in post execute forground task ");
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
                 }
-                if (bis != null) {
-                    bis.close();
-                }
-                if (dis != null) {
-                    dis.close();
+                //showDialog("Downloaded " + result + " bytes");
+                if (result != null) {
+                    entries = result;
+                    Uri fileUri = Uri.parse(fileName);
+                    editText_fileName.setText(fileUri.getLastPathSegment());
+                    seekBar_from.setMax(entries.size());
+                    seekBar_from.setProgress(0);
+                    from = 0;
+                    seekBar_to.setMax(entries.size());
+                    seekBar_to.setProgress(entries.size());
+                    to = entries.size();
+                    max = entries.size();
+
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.message_error_reading_file), Toast.LENGTH_SHORT).show();
                 }
             }
-
-            //Toast.makeText(this, entries.size(),
-            //Toast.LENGTH_SHORT).show();
-        }
-
-        protected void safeToSQL(ArrayList<Question> entries) {
-
-            ListIterator it = entries.listIterator();
-            try {
-                DatabaseHandler db = new DatabaseHandler(getActivity());
-                db.onWipe();
-                while (it.hasNext()) {
-                    Question question = (Question) it.next();
-                    db.addEntry(question);
-                }
-            } catch (SQLiteException e) {
-                Logger.e(TAG, "Error reading database: " + e);
-            }
-        }
-    }
-
-    private class loadXmlFromAssetTask extends AsyncTask<String, Integer, ArrayList<Question>>
-    {
-        String fileName;
-        protected ArrayList<Question> doInBackground(String... params) {
-            //runs in background task
-
-            this.fileName = params[0];
-
-            Logger.e(TAG, "running in async background task: doInBackground " );
-            try {
-                entries = loadXmlFromAsset(params[0]);
-                return entries;
-            } catch (IOException ie){
-                Logger.e(TAG, "Error: " +ie.toString() );
-            } catch (XmlPullParserException ie){
-                Logger.e(TAG, "Error: " +ie.toString() );
-            }
-            return null;
-        }
-        protected void onPreExecute() {
-            //runs in foreground task
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setMessage(getString(R.string.message_reading_file));
-            progressDialog.show();
-        }
-        protected void onProgressUpdate(Integer... progress) {
-            //setProgressPercent(progress[0]);
-        }
-
-        protected void onPostExecute(ArrayList result) {
-            //runs in foreground task
-            Logger.e(TAG, "running in post execute forground task ");
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            //showDialog("Downloaded " + result + " bytes");
-            if (result != null) {
-                entries = result;
-                editText_fileName.setText(this.fileName);
-                seekBar_from.setMax(entries.size());
-                seekBar_from.setProgress(0);
-                from = 0;
-                seekBar_to.setMax(entries.size());
-                seekBar_to.setProgress(entries.size());
-                to = entries.size();
-                max = entries.size();
-                safeToSQL(entries);
-            } else {
-                Toast.makeText(getActivity(), getString(R.string.message_error_reading_file), Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private ArrayList<Question> loadXmlFromAsset(String fileName) throws XmlPullParserException, IOException {
-            InputStream is = null;
-            // Instantiate the parser
-            XmlParser parser = new XmlParser();
-            //ArrayList<Question> entries = null;
-
-            BufferedInputStream bis = null;
-            DataInputStream dis = null;
-
-            try {
-                is = getActivity().getAssets().open(fileName);
-                bis = new BufferedInputStream(is);
-                dis = new DataInputStream(bis);
-
-                entries = parser.parse(dis);
-                return entries;
-
-            } finally {
-                if (is != null) {
-                    is.close();
-                }
-                if (bis != null) {
-                    bis.close();
-                }
-                if (dis != null) {
-                    dis.close();
-                }
-            }
-
-            //Toast.makeText(this, entries.size(),
-            //Toast.LENGTH_SHORT).show();
-        }
-
-        protected void safeToSQL(ArrayList<Question> entries) {
-
-            ListIterator it = entries.listIterator();
-            try {
-                DatabaseHandler db = new DatabaseHandler(getActivity());
-                db.onWipe();
-                while (it.hasNext()) {
-                    Question question = (Question) it.next();
-                    db.addEntry(question);
-                }
-            } catch (SQLiteException e) {
-                Logger.e(TAG, "Error reading database: " + e);
-            }
-        }
-    }
-
-    public static String convertStreamToString(InputStream is) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        is.close();
-
-        return sb.toString();
+        }.execute(fileName);
     }
 
     @Override

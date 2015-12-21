@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.old;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -37,6 +37,9 @@ import java.util.ListIterator;
 
 import de.sindzinski.database.DatabaseHandler;
 import de.sindzinski.database.XmlParser;
+import de.sindzinski.lpictrainer.MainActivity;
+import de.sindzinski.lpictrainer.Question;
+import de.sindzinski.lpictrainer.R;
 import de.sindzinski.swipe.ActivitySwipeDetector;
 import de.sindzinski.swipe.ActivitySwipeDetectorLR;
 import de.sindzinski.swipe.SwipeInterfaceLR;

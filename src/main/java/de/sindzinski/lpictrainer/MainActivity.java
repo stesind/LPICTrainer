@@ -6,18 +6,12 @@ import android.content.*;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import 	android.preference.PreferenceManager;
 
-import de.sindzinski.helper.AppRater;
+//import de.sindzinski.helper.AppRater;
+import com.squareup.leakcanary.LeakCanary;
+
 import de.sindzinski.helper.HelpUtils;
 import de.sindzinski.helper.Logger;
 
@@ -32,15 +26,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
     protected static final int REQUEST_CODE_PREFERENCES = 2;
 
-    protected EditText editText_file;
-    protected SeekBar seekBar_from;
-    protected SeekBar seekBar_to;
-    protected TextView textView_to;
-    protected TextView textView_from;
     private static final String TAG = "LPITrainer";
 
-    private PreferenceManager chosenTheme;
-    private boolean mTwoPane;
 
     public String fileName;
     public Integer from;
@@ -48,19 +35,24 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer max;
     private boolean isDarkTheme;
 
-    public ArrayList<Question> entries = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
         if (BuildConfig.DEBUG) {
             Logger.logging = true;
         } else {
             Logger.logging = false;
         }
         
-
+        //Load preferences
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        fileName = sharedPref.getString("fileName","").toString();
+        from= sharedPref.getInt("from",0);
+        to = sharedPref.getInt("to",0);
+        max = sharedPref.getInt("max",0);
+
         isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
         if (isDarkTheme) {
             this.setTheme(android.R.style.Theme_Holo);
@@ -83,21 +75,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             return;
         }
 
-/*        SharedPreferences settings = this.getSharedPreferences("Settings", 0);
-        fileName = settings.getString("fileName","").toString();
-        from= settings.getInt("from",0);
-        to = settings.getInt("to",0);
-        max = settings.getInt("max",0);
-        //onTest(from, to, fileName);*/
-        fileName = sharedPref.getString("fileName","").toString();
-        from= sharedPref.getInt("from",0);
-        to = sharedPref.getInt("to",0);
-        max = sharedPref.getInt("max",0);
-        //onTest(from, to, fileName);
-
-
-        MainFragment mainFragment = new MainFragment();
-        mainFragment = MainFragment.newInstance();
+        MainFragment mainFragment = MainFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
         // Replace whatever is in the fragment_container view with this fragment,
@@ -114,7 +92,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             //ad
             //AdFragment adFragment = new AdFragment();
             Fragment adFragment = new Fragment();
-            mainFragment = MainFragment.newInstance();
+            //Fragment adFragment = Fragment.newInstance();
             FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
             adTransaction.replace(R.id.ad_container, adFragment);
             adTransaction.commit();
@@ -130,11 +108,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         }*/
 
         //show app rater dialog
-        AppRater.appLaunched(this);
+        //AppRater.appLaunched(this);
         //Trial.checkTrial(this, false);
+
+        LeakCanary.install(getApplication());
     }
 
 
+    // implements interface OnTestListener from main fragment
     public void onTest(int from, int to, String fileName, int max) {
         // Create new fragment and transact();
 
@@ -146,28 +127,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         if (testFragment != null) {
             //just update the fragment
             //testFragment.update();)) {
-            //testFragment = TestFragment.newInstance(from, to, fileName);
+            //testFragment = TestFragment.getInstance(from, to, fileName);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.commit();
         } else {
-            //transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_righ             t);
-            //        transaction.setCustomAnimatio            ns(
-            //                R.anim.card_flip_right_in, R.anim.card_flip_right_o            ut,
-            //                R.anim.card_flip_left_in, R.anim.card_flip_left_o
 
-            // Create fragment
-            //testFragment = new TestFragment();
-            //Arguments can go by bundle or by instance
-//            Bundle args = new Bundle();
-//            args.putInt(TestFragment.ARG_POSITION, position);
-//            testFragment.setArguments(args);
             testFragment = TestFragment.newInstance(from, to, fileName);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-/*            if (findViewById(R.id.container_two_pane) != null) {
-                transaction.replace(R.id.container_two_pane, testFragment);
-            } else {
-                transaction.replace(R.id.container, testFragment);
-            }*/
+
             transaction.replace(R.id.container, testFragment);
             transaction.addToBackStack("test");
             // Commit the transaction
@@ -184,12 +151,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             super.onBackPressed();
         }*/
         super.onBackPressed();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
     }
 
     @Override
@@ -244,68 +205,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     }
 
-/*    public void showAboutDialogFragment() {
-        DialogFragment newFragment = new AboutDialogFragment();
-        newFragment.show(getFragmentManager(), "about");
-    }
-
-    public void showLegalNoticeDialogFragment() {
-
-        DialogFragment newFragment = new LegalNoticeDialogFragment();
-        newFragment.show(getFragmentManager(), "legalNotice");
-    }
-
-    public void showHelpDialogFragment() {
-        DialogFragment newFragment = new HelpDialogFragment();
-        newFragment.show(getFragmentManager(), "help");
-    }*/
-
-
-
-    /*//not used anymore
-    public void showLegalNoticeDialog() {
-        String licenseInfo = null;
-        AssetManager am = this.getAssets();
-        try {
-            InputStream is = am.open("License");
-            licenseInfo = convertStreamToString(is);
-        } catch (IOException e) {
-            logger.e(TAG, "Error reading file: " + e);
-        }
-        AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(MainActivity.this);
-        LicenseDialog.setTitle("Legal Notices");
-        LicenseDialog.setMessage(licenseInfo);
-        LicenseDialog.show();
-    }
-
-    //not used anymore
-    public void showAboutDialog() {
-        //startActivity(new Intent(this, About.class));
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                this);
-
-        // set title
-        alertDialogBuilder.setTitle("About");
-
-        // set dialog message
-        alertDialogBuilder
-                .setMessage(R.string.copyright)
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, close
-                        // current activity
-                        dialog.dismiss();
-                    }
-                });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
-        alertDialog.show();
-    }   */
-
     /**
      * This is called after the file manager finished.
      */
@@ -325,20 +224,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         }
     }
 
-    public static String convertStreamToString(InputStream is) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        is.close();
-
-        return sb.toString();
-    }
-
     public void safeSettings(int from, int to, String fileName, int max) {
 
         //editText_file = (EditText) view.findViewById(R.id.editText_file);
@@ -349,7 +234,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         //SharedPreferences settings = this.getSharedPreferences("Settings", 0);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("fileName", fileName.toString() );
+        editor.putString("fileName", fileName );
         editor.putInt("max", max);
         editor.putInt("from", from);
         editor.putInt("to", to);

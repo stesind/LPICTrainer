@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TestActivity"
+            android:name="de.sindzinski.old.TestActivity"
             android:label="@string/title_activity_test"
             android:parentActivityName="de.sindzinski.lpictrainer.MainActivity" >
             <meta-data

@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.old;
 
 /**
  * Created by steffen on 10.10.13.
