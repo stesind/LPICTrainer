@@ -33,7 +33,6 @@ public class TestFragment extends Fragment {
     public ArrayList<Question> entries = null;
     //public ArrayList <Answer> answers = null;
     public HashMap answers = new HashMap();
-    private String fileName;
     private Integer from;
     private Integer to;
     public ListIterator<Question> it;
@@ -111,7 +110,7 @@ public class TestFragment extends Fragment {
         //get Arguments from bundle
         from = getArguments().getInt(ARG_FROM, 0);
         to = getArguments().getInt(ARG_TO, 0);
-        fileName = getArguments().getString(ARG_FILENAME);
+        String fileName = getArguments().getString(ARG_FILENAME);
 
         //only valid settings
         if (from > to) {

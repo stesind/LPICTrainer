@@ -28,7 +28,7 @@ public class Trial {
 
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putLong("date_firstlaunch_trial", firstStart);
-                editor.commit();
+                editor.apply(); //apply writes in background whereas commit in foreground
             }
 
             if (!notify && System.currentTimeMillis() > firstStart + (R.integer.trial_days * 24 * 60 * 60 * 1000)) {

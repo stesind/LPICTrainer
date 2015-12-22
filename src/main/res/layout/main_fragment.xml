@@ -29,9 +29,11 @@
             android:maxLines="1"
             android:singleLine="true"
             android:gravity="fill|right"
-            android:editable="true"
             android:layout_alignTop="@+id/button_file"
-            android:layout_alignParentLeft="true" android:layout_toLeftOf="@+id/button_file"/>
+            android:layout_alignParentLeft="true"
+            android:hint="file path"
+            android:layout_toLeftOf="@+id/button_file"/>
+
 
     <SeekBar
             android:layout_width="wrap_content"
@@ -89,6 +91,7 @@
             android:src="@drawable/ic_media_previous"
             android:layout_alignTop="@+id/textView_from"
             android:layout_alignBottom="@+id/textView_from"
+            android:contentDescription="from"
             android:layout_toRightOf="@+id/editText_fileName"/>
 
     <ImageView
@@ -97,6 +100,7 @@
             android:id="@+id/imageView2"
             android:src="@drawable/ic_media_next"
             android:layout_alignTop="@+id/textView_to"
+            android:contentDescription="to"
             android:layout_alignRight="@+id/imageView"
             android:layout_toRightOf="@+id/textView_to"/>
 

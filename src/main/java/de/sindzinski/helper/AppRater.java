@@ -52,7 +52,7 @@ public class AppRater {
             showRateDialog(mContext, editor);
         }
 
-        editor.commit();
+        editor.apply();
     }
 
     public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {

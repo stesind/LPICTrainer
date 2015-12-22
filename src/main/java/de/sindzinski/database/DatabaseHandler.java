@@ -200,11 +200,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Getting entries Count
     public int getEntriesCount() throws SQLiteException {
+        Cursor cursor = null;
         String countQuery = "SELECT  * FROM " + TABLE_ENTRIES;
         try (SQLiteDatabase db = this.getReadableDatabase()) {
-            Cursor cursor = db.rawQuery(countQuery, null);
+            cursor = db.rawQuery(countQuery, null);
             // return count
             return cursor.getCount();
+        } finally {
+            cursor.close();
         }
     }
 

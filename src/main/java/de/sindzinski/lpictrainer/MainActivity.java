@@ -35,7 +35,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer from;
     public Integer to;
     public Integer max;
-    private boolean isDarkTheme;
 
     // install leakcanary
     private RefWatcher refWatcher = null;
@@ -61,9 +60,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         fileName = sharedPref.getString("fileName","").toString();
         from= sharedPref.getInt("from",0);
         to = sharedPref.getInt("to",0);
-        max = sharedPref.getInt("max",0);
+        max = sharedPref.getInt("max", 0);
 
-        isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
+        boolean isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
         if (isDarkTheme) {
             this.setTheme(android.R.style.Theme_Holo);
         } else {
@@ -248,7 +247,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         editor.putInt("from", from);
         editor.putInt("to", to);
         // Commit the edits!
-        editor.commit();
+        editor.apply();
 
     }
 
