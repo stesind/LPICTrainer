@@ -36,6 +36,8 @@ import java.util.ListIterator;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
 
+import com.squareup.leakcanary.RefWatcher;
+
 import de.sindzinski.database.DatabaseHandler;
 import de.sindzinski.database.XmlParser;
 import de.sindzinski.helper.Logger;
@@ -340,6 +342,15 @@ public class MainFragment extends Fragment {
         } else {
             return LOG_TAG;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //RefWatcher refWatcher = MainActivity.getRefWatcher(getActivity());
+        MainActivity activity = (MainActivity) getActivity();
+        activity.getRefWatcher().watch(this);
+        //activity.getrrefwatcher .watch(this);
     }
 }
 

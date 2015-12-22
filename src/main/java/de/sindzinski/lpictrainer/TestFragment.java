@@ -5,6 +5,7 @@ package de.sindzinski.lpictrainer;
  */
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
@@ -19,6 +20,8 @@ import android.preference.PreferenceManager;
 import java.util.*;
 
 import android.view.GestureDetector;
+
+import com.squareup.leakcanary.RefWatcher;
 
 import de.sindzinski.database.DatabaseHandler;
 
@@ -700,7 +703,14 @@ public class TestFragment extends Fragment {
         savedInstanceState.putParcelableArrayList(SUBENTRIES, subEntries);
 
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //RefWatcher refWatcher = MainActivity.getRefWatcher(getActivity());
+        MainActivity activity = (MainActivity) getActivity();
+        activity.getRefWatcher().watch(this);
+        //activity.getrrefwatcher .watch(this);
+    }
 }
 
 

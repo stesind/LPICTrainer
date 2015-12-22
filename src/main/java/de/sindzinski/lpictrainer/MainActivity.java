@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import 	android.preference.PreferenceManager;
 
 //import de.sindzinski.helper.AppRater;
+import com.squareup.leakcanary.ActivityRefWatcher;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import de.sindzinski.helper.HelpUtils;
 import de.sindzinski.helper.Logger;
@@ -34,6 +36,14 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer to;
     public Integer max;
     private boolean isDarkTheme;
+
+    // install leakcanary
+    private RefWatcher refWatcher = null;
+
+    public RefWatcher getRefWatcher() {
+        //Application application = (Application) context.getApplicationContext();
+        return refWatcher;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +121,8 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         //AppRater.appLaunched(this);
         //Trial.checkTrial(this, false);
 
-        LeakCanary.install(getApplication());
+        refWatcher = LeakCanary.install(getApplication());
     }
-
 
     // implements interface OnTestListener from main fragment
     public void onTest(int from, int to, String fileName, int max) {
