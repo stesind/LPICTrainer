@@ -705,10 +705,8 @@ public class TestFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //RefWatcher refWatcher = MainActivity.getRefWatcher(getActivity());
-        MainActivity activity = (MainActivity) getActivity();
-        activity.getRefWatcher().watch(this);
-        //activity.getrrefwatcher .watch(this);
+        /*MainActivity activity = (MainActivity) getActivity();
+        activity.getRefWatcher().watch(this);*/
     }
 }
 

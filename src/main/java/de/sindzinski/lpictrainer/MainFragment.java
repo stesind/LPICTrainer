@@ -345,12 +345,16 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        //RefWatcher refWatcher = MainActivity.getRefWatcher(getActivity());
-        MainActivity activity = (MainActivity) getActivity();
-        activity.getRefWatcher().watch(this);
-        //activity.getrrefwatcher .watch(this);
+        /*MainActivity activity = (MainActivity) getActivity();
+        activity.getRefWatcher().watch(this);*/
+
     }
 }
 
