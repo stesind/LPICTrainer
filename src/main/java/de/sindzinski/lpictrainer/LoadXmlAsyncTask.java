@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import de.sindzinski.database.DatabaseHandler;
+import de.sindzinski.database.DatabaseHelper;
 import de.sindzinski.database.XmlParser;
 import de.sindzinski.helper.Logger;
 
@@ -97,7 +97,7 @@ public class LoadXmlAsyncTask extends AsyncTask<String, Integer, ArrayList<Quest
 
         ListIterator it = entries.listIterator();
 
-        DatabaseHandler db = new DatabaseHandler(mContext);
+        DatabaseHelper db = DatabaseHelper.getInstance(mContext);
 
         db.onWipe();
         while (it.hasNext()) {

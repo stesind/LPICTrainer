@@ -5,7 +5,6 @@ package de.sindzinski.lpictrainer;
  */
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
@@ -21,11 +20,8 @@ import java.util.*;
 
 import android.view.GestureDetector;
 
-import com.squareup.leakcanary.RefWatcher;
+import de.sindzinski.database.DatabaseHelper;
 
-import de.sindzinski.database.DatabaseHandler;
-
-import de.sindzinski.swipe.ActivitySwipeDetector;
 import de.sindzinski.helper.Logger;
 
 public class TestFragment extends Fragment {
@@ -150,7 +146,7 @@ public class TestFragment extends Fragment {
             //load first data to display
             try {
                 //load from sqlite database
-                DatabaseHandler db = new DatabaseHandler(getActivity());
+                DatabaseHelper db = DatabaseHelper.getInstance(getActivity());
                 entries = (ArrayList) db.getAllEntries();
                 subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
 

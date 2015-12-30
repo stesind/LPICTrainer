@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,22 +23,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.ListIterator;
-import android.os.AsyncTask;
+
 import android.app.ProgressDialog;
 
-import com.squareup.leakcanary.RefWatcher;
-
-import de.sindzinski.database.DatabaseHandler;
-import de.sindzinski.database.XmlParser;
 import de.sindzinski.helper.Logger;
 
 public class MainFragment extends Fragment {

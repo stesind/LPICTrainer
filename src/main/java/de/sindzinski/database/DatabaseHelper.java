@@ -14,9 +14,10 @@ import android.util.Log;
 import de.sindzinski.helper.Logger;
 import de.sindzinski.lpictrainer.Question;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     // All Static variables
+    private static DatabaseHelper sInstance;
     // Database Version
     private static final int DATABASE_VERSION = 1;
 
@@ -45,8 +46,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String TAG = "LPITrainer-Database";
 
-    public DatabaseHandler(Context context) {
+/*    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }*/
+
+    /**
+     * Constructor should be private to prevent direct instantiation.
+     * make call to static method "getInstance()" instead.
+     */
+    private DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static synchronized DatabaseHelper getInstance(Context context) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return sInstance;
     }
 
     // Creating Tables
