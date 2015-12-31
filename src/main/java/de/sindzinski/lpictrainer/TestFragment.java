@@ -76,7 +76,7 @@ public class TestFragment extends Fragment {
     private int mTouchSlop;
     private int mMinimumFlingVelocity;
 
-    // pass data to the fragment
+    // pass data to the fragment using factory pattern
     // later get date in onCreate with getArguments
     public static TestFragment newInstance(Integer from, Integer to, String fileName) {
         TestFragment testFragment = new TestFragment();
