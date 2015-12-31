@@ -116,7 +116,23 @@ public class XmlParser {
                 antwort5 = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
-                entries.add(new Question(index, title, type, points, text, antwort1, richtig1, antwort2, richtig2, antwort3, richtig3, antwort4, richtig4, antwort5, richtig5));
+                entries.add(new Question.Builder()
+                        .setIndex(index)
+                        .setTitle(title)
+                        .setType(type)
+                        .setPoints(points)
+                        .setText(text)
+                        .setAntwort1(antwort1)
+                        .setRichtig1(richtig1)
+                        .setAntwort2(antwort2)
+                        .setRichtig2(richtig2)
+                        .setAntwort3(antwort3)
+                        .setRichtig3(richtig3)
+                        .setAntwort4(antwort4)
+                        .setRichtig4(richtig4)
+                        .setAntwort5(antwort5)
+                        .setRichtig5(richtig5)
+                        .build());
                 title = null;
                 type = null;
                 points = null;
@@ -135,7 +151,23 @@ public class XmlParser {
                 antwort1 = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
-                entries.add(new Question(index, title, type, points, text, antwort1, richtig1, antwort2, richtig2, antwort3, richtig3, antwort4, richtig4, antwort5, richtig5));
+                entries.add(new Question.Builder()
+                        .setIndex(index)
+                        .setTitle(title)
+                        .setType(type)
+                        .setPoints(points)
+                        .setText(text)
+                        .setAntwort1(antwort1)
+                        .setRichtig1(richtig1)
+                        .setAntwort2(antwort2)
+                        .setRichtig2(richtig2)
+                        .setAntwort3(antwort3)
+                        .setRichtig3(richtig3)
+                        .setAntwort4(antwort4)
+                        .setRichtig4(richtig4)
+                        .setAntwort5(antwort5)
+                        .setRichtig5(richtig5)
+                        .build());
                 title = null;
                 type = null;
                 points = null;

@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 import de.sindzinski.helper.Logger;
 import de.sindzinski.lpictrainer.Question;
@@ -148,9 +147,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             ANTWORT3, RICHTIG3, ANTWORT4, RICHTIG4, ANTWORT5, RICHTIG5},
                     INDEX + "=?", new String[]{String.valueOf(id)}, null, null, null, null)) {
                 cursor.moveToFirst();
-                return new Question(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
-                        cursor.getString(4), cursor.getString(5), cursor.getInt(6) > 0, cursor.getString(7), cursor.getInt(8) > 0, cursor.getString(9), cursor.getInt(10) > 0,
-                        cursor.getString(11), cursor.getInt(12) > 0, cursor.getString(13), cursor.getInt(14) > 0);
+                return new Question.Builder().setIndex(Integer.parseInt(cursor.getString(0)))
+                        .setTitle(cursor.getString(1))
+                        .setType(cursor.getString(2))
+                        .setPoints(Integer.parseInt(cursor.getString(3)))
+                        .setText(cursor.getString(4))
+                        .setAntwort1(cursor.getString(5))
+                        .setRichtig1(cursor.getInt(6) > 0)
+                        .setAntwort2(cursor.getString(7))
+                        .setRichtig2(cursor.getInt(8) > 0)
+                        .setAntwort3(cursor.getString(9))
+                        .setRichtig3(cursor.getInt(10) > 0)
+                        .setAntwort4(cursor.getString(11))
+                        .setRichtig4(cursor.getInt(12) > 0)
+                        .setAntwort5(cursor.getString(13))
+                        .setRichtig5(cursor.getInt(14) > 0)
+                        .build();
             } catch (SQLiteException e) {
                 Logger.e(TAG, "Error reading database: " + e);
             }
@@ -169,9 +181,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // looping through all rows and adding to list
                 if (cursor.moveToFirst()) {
                     do {
-                        Question question = new Question(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)),
-                                cursor.getString(4), cursor.getString(5), cursor.getInt(6) > 0, cursor.getString(7), cursor.getInt(8) > 0, cursor.getString(9), cursor.getInt(10) > 0,
-                                cursor.getString(11), cursor.getInt(12) > 0, cursor.getString(13), cursor.getInt(14) > 0);
+                        Question question = new Question.Builder()
+                                .setIndex(Integer.parseInt(cursor.getString(0)))
+                                .setTitle(cursor.getString(1))
+                                .setType(cursor.getString(2))
+                                .setPoints(Integer.parseInt(cursor.getString(3)))
+                                .setText(cursor.getString(4))
+                                .setAntwort1(cursor.getString(5))
+                                .setRichtig1(cursor.getInt(6) > 0)
+                                .setAntwort2(cursor.getString(7))
+                                .setRichtig2(cursor.getInt(8) > 0)
+                                .setAntwort3(cursor.getString(9))
+                                .setRichtig3(cursor.getInt(10) > 0)
+                                .setAntwort4(cursor.getString(11))
+                                .setRichtig4(cursor.getInt(12) > 0)
+                                .setAntwort5(cursor.getString(13))
+                                .setRichtig5(cursor.getInt(14) > 0)
+                                .build();
                         // Adding contact to list
                         entryList.add(question);
                     } while (cursor.moveToNext());

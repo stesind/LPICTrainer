@@ -526,9 +526,27 @@ public class TestFragment extends Fragment {
     public void saveAnswers() {
             //save answers
         if (linearLayoutContainer.getChildCount()>1) {
-            answers.put(current, new Answer(current,checked, "", checkBox1.isChecked(), checkBox2.isChecked(), checkBox3.isChecked(), checkBox4.isChecked(), checkBox5.isChecked()));
+            answers.put(current, new Answer.Builder()
+                    .setIndex(current)
+                    .setChecked(checked)
+                    .setAntwort("")
+                    .setRichtig1(checkBox1.isChecked())
+                    .setRichtig2(checkBox2.isChecked())
+                    .setRichtig3(checkBox3.isChecked())
+                    .setRichtig4(checkBox4.isChecked())
+                    .setRichtig5(checkBox5.isChecked())
+                    .build());
         } else if (linearLayoutContainer.getChildCount()==1) {
-            answers.put(current, new Answer(current,checked, editText1.getText().toString(), false, false, false, false, false));
+            answers.put(current, new Answer.Builder()
+                    .setIndex(current)
+                    .setChecked(checked)
+                    .setAntwort(editText1.getText().toString())
+                    .setRichtig1(false)
+                    .setRichtig2(false)
+                    .setRichtig3(false)
+                    .setRichtig4(false)
+                    .setRichtig5(false)
+                    .build());
         }
             //answers.add(new Answer(current, editText_answer.getText().toString(), checkBox_answer1.isChecked(), checkBox_answer2.isChecked(), checkBox_answer3.isChecked(), checkBox_answer4.isChecked(), checkBox_answer5.isChecked() ));
     }
@@ -667,12 +685,30 @@ public class TestFragment extends Fragment {
 
                 }
 
-                answers.put(index, new Answer(index,true, answer.antwort, answer.richtig1, answer.richtig2, answer.richtig3, answer.richtig4, answer.richtig5 ));
+                answers.put(index, new Answer.Builder()
+                        .setIndex(index)
+                        .setChecked(true)
+                        .setAntwort(answer.antwort)
+                        .setRichtig1(answer.richtig1)
+                        .setRichtig2(answer.richtig2)
+                        .setRichtig3(answer.richtig3)
+                        .setRichtig4(answer.richtig4)
+                        .setRichtig5(answer.richtig5)
+                        .build());
 
             } else {
 
                 //set all to checked
-                answers.put(index, new Answer(index,true, "", false, false, false, false, false ));
+                answers.put(index, new Answer.Builder()
+                        .setIndex(index)
+                        .setChecked(true)
+                        .setAntwort("")
+                        .setRichtig1(false)
+                        .setRichtig2(false)
+                        .setRichtig3(false)
+                        .setRichtig4(false)
+                        .setRichtig5(false)
+                        .build());
 
             }
             maxpoints = maxpoints + question.points;

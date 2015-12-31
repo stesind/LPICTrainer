@@ -15,7 +15,7 @@ public class Answer implements Parcelable {
     public boolean richtig4;
     public boolean richtig5;
 
-    public Answer(Integer index, Boolean checked, String antwort, Boolean richtig1, Boolean richtig2, Boolean richtig3, Boolean richtig4, Boolean richtig5) {
+/*    public Answer(Integer index, Boolean checked, String antwort, Boolean richtig1, Boolean richtig2, Boolean richtig3, Boolean richtig4, Boolean richtig5) {
         this.index = index;
         this.checked = checked;
         this.antwort = antwort;
@@ -24,6 +24,77 @@ public class Answer implements Parcelable {
         this.richtig3 = richtig3;
         this.richtig4 = richtig4;
         this.richtig5 = richtig5;
+    }*/
+private Answer(Builder builder) {
+    this.index = builder.index;
+    this.checked = builder.checked;
+    this.antwort = builder.antwort;
+    this.richtig1 = builder.richtig1;
+    this.richtig2 = builder.richtig2;
+    this.richtig3 = builder.richtig3;
+    this.richtig4 = builder.richtig4;
+    this.richtig5 = builder.richtig5;
+}
+    //builder pattern public static class
+    public static class Builder {
+        private Integer index;
+        private Boolean checked;
+        private String antwort;
+        private Boolean richtig1;
+        private Boolean richtig2;
+        private Boolean richtig3;
+        private Boolean richtig4;
+        private Boolean richtig5;
+        private Parcel in;
+
+        public Builder setIndex(Integer index) {
+            this.index = index;
+            return this;
+        }
+
+        public Builder setChecked(Boolean checked) {
+            this.checked = checked;
+            return this;
+        }
+
+        public Builder setAntwort(String antwort) {
+            this.antwort = antwort;
+            return this;
+        }
+
+        public Builder setRichtig1(Boolean richtig1) {
+            this.richtig1 = richtig1;
+            return this;
+        }
+
+        public Builder setRichtig2(Boolean richtig2) {
+            this.richtig2 = richtig2;
+            return this;
+        }
+
+        public Builder setRichtig3(Boolean richtig3) {
+            this.richtig3 = richtig3;
+            return this;
+        }
+
+        public Builder setRichtig4(Boolean richtig4) {
+            this.richtig4 = richtig4;
+            return this;
+        }
+
+        public Builder setRichtig5(Boolean richtig5) {
+            this.richtig5 = richtig5;
+            return this;
+        }
+
+        public Builder setIn(Parcel in) {
+            this.in = in;
+            return this;
+        }
+
+        public Answer build() {
+            return new Answer(this);
+        }
     }
 
     public int describeContents() {
@@ -44,7 +115,7 @@ public class Answer implements Parcelable {
     public static final Answer.Creator<Answer> CREATOR
             = new Parcelable.Creator<Answer>() {
         public Answer createFromParcel(Parcel in) {
-            return new Answer(in);
+            return new Builder().setIn(in).build();
         }
 
         public Answer[] newArray(int size) {
