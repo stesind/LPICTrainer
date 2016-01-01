@@ -19,7 +19,7 @@ import de.sindzinski.helper.Logger;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
-public class MainActivity extends Activity implements MainFragment.OnTestListener {
+public class MainActivity extends Activity implements MainFragment.OnTestListener  {
 
     public final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
     public final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";

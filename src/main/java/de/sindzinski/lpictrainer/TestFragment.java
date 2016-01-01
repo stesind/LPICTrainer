@@ -24,7 +24,7 @@ import de.sindzinski.database.DatabaseHelper;
 
 import de.sindzinski.helper.Logger;
 
-public class TestFragment extends Fragment {
+public class TestFragment extends Fragment  {
 
     public ArrayList<Question> entries = null;
     //public ArrayList <Answer> answers = null;

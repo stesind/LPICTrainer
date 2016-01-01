@@ -44,10 +44,10 @@ public class MainFragment extends Fragment {
     protected Button button_LPIC2;
     protected Button button_LPIC3;
     protected Button button_LPIC4;
-    public String fileName;
-    public Integer from;
-    public Integer to;
-    public Integer max;
+    private String fileName;
+    private Integer from;
+    private Integer to;
+    private Integer max;
     private static final String TAG = "LPITrainer";
 
     public ArrayList<Question> entries = null;
@@ -187,25 +187,28 @@ public class MainFragment extends Fragment {
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        loadXml("lpic1.xml");
+                        fileName = "lpic1.xml";
+                        loadXml(fileName);
                         break;
                     case R.id.button_LPIC2:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        loadXml("lpic2.xml");
+                        fileName = "lpic1.xml";
+                        loadXml(fileName);
                         break;
                     case R.id.button_LPIC3:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        loadXml("lpic3.xml");
+                        fileName = "lpic1.xml";
+                        loadXml(fileName);
                         break;
                     case R.id.button_LPIC4:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
-
-                        loadXml("lpic4.xml");
+                        fileName = "lpic1.xml";
+                        loadXml(fileName);
                         break;
                     case R.id.button_file:
                         //selectFile();
