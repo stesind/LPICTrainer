@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -16,6 +16,7 @@ import java.util.ListIterator;
 import de.sindzinski.database.DatabaseHelper;
 import de.sindzinski.database.XmlParser;
 import de.sindzinski.helper.Logger;
+import de.sindzinski.lpictrainer.Question;
 
 /**
  * Created by steffen on 20.12.15.

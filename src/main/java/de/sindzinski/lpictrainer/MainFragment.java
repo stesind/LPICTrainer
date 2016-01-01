@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 import android.app.ProgressDialog;
 
+import de.sindzinski.database.LoadXmlAsyncTask;
 import de.sindzinski.helper.Logger;
 
 public class MainFragment extends Fragment {
