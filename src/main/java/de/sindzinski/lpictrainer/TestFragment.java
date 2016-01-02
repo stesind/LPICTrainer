@@ -7,8 +7,10 @@ package de.sindzinski.lpictrainer;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
@@ -20,19 +22,21 @@ import java.util.*;
 
 import android.view.GestureDetector;
 
-import de.sindzinski.database.DatabaseHelper;
+import de.sindzinski.lpictrainer.database.DatabaseHelper;
 
+import de.sindzinski.lpictrainer.database.QuestionTable;
 import de.sindzinski.helper.Logger;
+import de.sindzinski.lpictrainer.database.QuestionContentProvider;
 
 public class TestFragment extends Fragment  {
 
-    public ArrayList<Question> entries = null;
+    public ArrayList<Question> questions = null;
     //public ArrayList <Answer> answers = null;
     public HashMap answers = new HashMap();
     private Integer from;
     private Integer to;
+    private String fileName;
     public ListIterator<Question> it;
-    public ArrayList<Question> subEntries;
 
     protected TextView textView_question;
     protected TextView textView_current;
@@ -62,8 +66,8 @@ public class TestFragment extends Fragment  {
     private static final String TAG="LPITrainer";
     private static final String CURRENT="CURRENT_QUESTION";
     private static final String ANSWERS="CURRENT_ANSWERS";
-    private static final String ENTRIES="CURRENT_ENTRIES";
-    private static final String SUBENTRIES="CURRENT_SUBENTRIES";
+
+    private static final String QUESTIONS="CURRENT_QUESTIONS";
     public static final String ARG_FROM="from";
     public static final String ARG_TO="to";
     public static final String ARG_FILENAME="fileName";
@@ -106,7 +110,7 @@ public class TestFragment extends Fragment  {
         //get Arguments from bundle
         from = getArguments().getInt(ARG_FROM, 0);
         to = getArguments().getInt(ARG_TO, 0);
-        String fileName = getArguments().getString(ARG_FILENAME);
+        fileName = getArguments().getString(ARG_FILENAME);
 
         //only valid settings
         if (from > to) {
@@ -139,20 +143,24 @@ public class TestFragment extends Fragment  {
             //redrawn
             current = savedInstanceState.getInt(CURRENT,0);
             answers = (HashMap) savedInstanceState.getSerializable(ANSWERS);
-            entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
-            subEntries = (ArrayList) savedInstanceState.getSerializable(SUBENTRIES);
+            //entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
+            questions = (ArrayList) savedInstanceState.getSerializable(QUESTIONS);
         } else {
             //newly drawn
             //load first data to display
             try {
                 //load from sqlite database
                 DatabaseHelper db = DatabaseHelper.getInstance(getActivity());
-                entries = (ArrayList) db.getAllEntries();
-                subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
-
+                //old databasehelper
+                //entries = (ArrayList) db.getAllEntries(fileName);
+                //new content provider
+/*                entries = (ArrayList) getData();
+                subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));*/
+                questions = (ArrayList) getData();
+                //subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
                 //if set in preferences then shuffle entries
                 if (shuffle) {
-                    Collections.shuffle(subEntries);
+                    Collections.shuffle(questions);
                 }
             } catch (SQLiteException e) {
                 Log.e(TAG, "Error reading database: " + e);
@@ -164,7 +172,7 @@ public class TestFragment extends Fragment  {
 
 
         //get the iterator fr
-        it = subEntries.listIterator();
+        it = questions.listIterator();
 
         //run to current item
         int i = 1;
@@ -314,6 +322,80 @@ public class TestFragment extends Fragment  {
         inflater.inflate(R.menu.zoom, menu);
         //MenuItem end = menu.add("@string/menu_end");
         //end.setIcon(R.drawable.ic_menu_refresh);
+    }
+
+    private List<Question> getData() {
+
+        List<Question> entryList = new ArrayList<Question>();
+
+        // A "projection" defines the columns that will be returned for each row
+
+        String[] mProjection = {
+              QuestionTable.COLUMN_ID,
+              QuestionTable.COLUMN_TITLE,
+              QuestionTable.COLUMN_TYPE,
+                QuestionTable.COLUMN_POINTS,
+                QuestionTable.COLUMN_TEXT,
+                QuestionTable.COLUMN_ANTWORT1,
+                QuestionTable.COLUMN_RICHTIG1,
+                QuestionTable.COLUMN_ANTWORT2,
+                QuestionTable.COLUMN_RICHTIG2,
+                QuestionTable.COLUMN_ANTWORT3,
+                QuestionTable.COLUMN_RICHTIG3,
+                QuestionTable.COLUMN_ANTWORT4,
+                QuestionTable.COLUMN_RICHTIG4,
+                QuestionTable.COLUMN_ANTWORT5,
+                QuestionTable.COLUMN_RICHTIG5,
+        };
+
+        // Defines a string to contain the selection clause
+        String mSelectionClause = null;
+        // Initializes an array to contain selection arguments
+        String[] mSelectionArgs = null;
+        String mSortOrder = null;
+        Uri uri = Uri.parse(QuestionContentProvider.CONTENT_URI + "/"
+                + from + "/" + to);
+        try (Cursor cursor = getActivity().getContentResolver().query(
+                uri,   // The content URI of the question table
+                mProjection,                        // The columns to return for each row
+                mSelectionClause,                    // Selection criteria
+                mSelectionArgs,                     // Selection criteria
+                mSortOrder)) {
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        Question question = new Question.Builder()
+                                .setIndex(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ID))))
+                                .setTitle(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TITLE)))
+                                .setType(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TYPE)))
+                                .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_POINTS))))
+                                .setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TEXT)))
+                                .setAntwort1(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)))
+                                .setRichtig1(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG1)) > 0)
+                                .setAntwort2(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT2)))
+                                .setRichtig2(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG2)) > 0)
+                                .setAntwort3(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT3)))
+                                .setRichtig3(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG3)) > 0)
+                                .setAntwort4(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT4)))
+                                .setRichtig4(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG4)) > 0)
+                                .setAntwort5(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT5)))
+                                .setRichtig5(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT5)) > 0)
+                                .build();
+                        // Adding contact to list
+                        entryList.add(question);
+                    } while (cursor.moveToNext());
+                }
+
+                // always close the cursor
+                cursor.close();
+            }
+            return entryList;
+        }
+        catch (SQLiteException e) {
+            Logger.e(TAG, "Error reading database: " + e);
+        }
+        return null;
     }
 
     public void nextTextSize() {
@@ -650,7 +732,8 @@ public class TestFragment extends Fragment  {
         Integer faults = 0;
         Integer points = 0;
         Integer maxpoints = 0;
-        ListIterator it = entries.subList(from, to).listIterator();
+        //ListIterator it = entries.subList(from, to).listIterator();
+        ListIterator it = questions.listIterator();
 
         while (it.hasNext()) {
             Question question = (Question) it.next();
@@ -730,8 +813,8 @@ public class TestFragment extends Fragment  {
         //savedInstanceState.putSerializable(ANSWERS, answers);
         //savedInstanceState.putSerializable(ENTRIES, entries);
         savedInstanceState.putSerializable(ANSWERS, answers);
-        savedInstanceState.putParcelableArrayList(ENTRIES, entries);
-        savedInstanceState.putParcelableArrayList(SUBENTRIES, subEntries);
+        //savedInstanceState.putParcelableArrayList(ENTRIES, entries);
+        savedInstanceState.putParcelableArrayList(QUESTIONS, questions);
 
     }
     @Override

@@ -3,23 +3,27 @@ package de.sindzinski.lpictrainer;
 import android.app.*;
 import android.app.FragmentTransaction;
 import android.content.*;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import 	android.preference.PreferenceManager;
+import android.widget.SimpleCursorAdapter;
 
 //import de.sindzinski.helper.AppRater;
-import com.squareup.leakcanary.ActivityRefWatcher;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import de.sindzinski.lpictrainer.database.QuestionTable;
 import de.sindzinski.helper.HelpUtils;
 import de.sindzinski.helper.Logger;
+import de.sindzinski.lpictrainer.database.QuestionContentProvider;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
-public class MainActivity extends Activity implements MainFragment.OnTestListener  {
+public class MainActivity extends Activity implements MainFragment.OnTestListener,
+        LoaderManager.LoaderCallbacks<Cursor>{
 
     public final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
     public final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
@@ -29,7 +33,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     protected static final int REQUEST_CODE_PREFERENCES = 2;
 
     private static final String TAG = "LPITrainer";
-
+    private SimpleCursorAdapter adapter;
 
     public String fileName;
     public Integer from;
@@ -249,6 +253,26 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // Commit the edits!
         editor.apply();
 
+    }
+
+    // creates a new loader after the initLoader () call
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String[] projection = { QuestionTable.COLUMN_ID, QuestionTable.COLUMN_TEXT };
+        CursorLoader cursorLoader = new CursorLoader(this,
+                QuestionContentProvider.CONTENT_URI, projection, null, null, null);
+        return cursorLoader;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        // data is not available anymore, delete reference
+        adapter.swapCursor(null);
     }
 
     // We're being destroyed.

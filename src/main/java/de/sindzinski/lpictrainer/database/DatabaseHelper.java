@@ -1,4 +1,4 @@
-package de.sindzinski.database;
+package de.sindzinski.lpictrainer.database;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +21,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "lpiTrainer";
+    private static final String DATABASE_NAME = "lpicTrainer.db";
 
     // Contacts table name
-    private static final String TABLE_ENTRIES = "entries";
+    private static final String TABLE_QUESTIONS = "questions";
 
-    // Contacts Table Columns names
+    // Contacts QuestionTable Columns names
     private static final String INDEX ="ID";
     private static final String TITLE ="title";
     private static final String TYPE ="type";
@@ -71,7 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) throws SQLiteException {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_ENTRIES + "("
+        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_QUESTIONS + "("
                 + INDEX + " INTEGER PRIMARY KEY, "
                 + TITLE + " TEXT, "
                 + TYPE + " TEXT, "
@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) throws SQLiteException {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTRIES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
         // Create tables again
         onCreate(db);
     }
@@ -105,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Drop older table if existed
 
         try (SQLiteDatabase db = this.getWritableDatabase()) {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTRIES);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
             // Create tables again
             onCreate(db);
         } catch (SQLiteException e) {
@@ -134,7 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(ANTWORT5, question.getAntwort5());
             values.put(RICHTIG5, question.getRichtig5());
             // Inserting Row
-            db.insert(TABLE_ENTRIES, null, values);
+            db.insert(TABLE_QUESTIONS, null, values);
         }
     }
 
@@ -142,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Question getEntry(int id) throws SQLiteException {
 
         try (SQLiteDatabase db = this.getReadableDatabase()) {
-            try (Cursor cursor = db.query(TABLE_ENTRIES, new String[]{INDEX,
+            try (Cursor cursor = db.query(TABLE_QUESTIONS, new String[]{INDEX,
                             TITLE, TYPE, POINTS, TEXT, ANTWORT1, RICHTIG1, ANTWORT2, RICHTIG2,
                             ANTWORT3, RICHTIG3, ANTWORT4, RICHTIG4, ANTWORT5, RICHTIG5},
                     INDEX + "=?", new String[]{String.valueOf(id)}, null, null, null, null)) {
@@ -171,10 +171,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Getting All Entries
-    public List<Question> getAllEntries() {
+    public List<Question> getAllEntries(String fileName) {
         List<Question> entryList = new ArrayList<Question>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_ENTRIES;
+        String selectQuery = "SELECT  * FROM " + TABLE_QUESTIONS;
 
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             try (Cursor cursor = db.rawQuery(selectQuery, null)) {
@@ -230,7 +230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(ANTWORT5, question.getAntwort5());
             values.put(RICHTIG5, question.getRichtig5());
             // updating row
-            return db.update(TABLE_ENTRIES, values, INDEX + " = ?",
+            return db.update(TABLE_QUESTIONS, values, INDEX + " = ?",
                     new String[]{String.valueOf(question.getIndex())});
         }
     }
@@ -238,7 +238,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Deleting single question
     public void deleteEntry(Question question) throws SQLiteException  {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
-            db.delete(TABLE_ENTRIES, INDEX + " = ?",
+            db.delete(TABLE_QUESTIONS, INDEX + " = ?",
                     new String[]{String.valueOf(question.getIndex())});
         }
     }
@@ -247,7 +247,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Getting entries Count
     public int getEntriesCount() throws SQLiteException {
         Cursor cursor = null;
-        String countQuery = "SELECT  * FROM " + TABLE_ENTRIES;
+        String countQuery = "SELECT  * FROM " + TABLE_QUESTIONS;
         try (SQLiteDatabase db = this.getReadableDatabase()) {
             cursor = db.rawQuery(countQuery, null);
             // return count

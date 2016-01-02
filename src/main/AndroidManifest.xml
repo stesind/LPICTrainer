@@ -33,6 +33,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.sindzinski.lpictrainer.MainActivity" />
         </activity>
+        <provider
+            android:name="de.sindzinski.lpictrainer.database.QuestionContentProvider"
+            android:authorities="de.sindzinski.lpictrainer.database.QuestionContentProvider" >
+        </provider>
         <!-- AdMobActivity definition -->
         <!--<activity android:name="com.google.ads.AdActivity"
                   android:c-->onfigChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>

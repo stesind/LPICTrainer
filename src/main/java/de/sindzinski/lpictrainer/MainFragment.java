@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 import android.app.ProgressDialog;
 
-import de.sindzinski.database.LoadXmlAsyncTask;
+import de.sindzinski.lpictrainer.database.LoadXmlAsyncTask;
 import de.sindzinski.helper.Logger;
 
 public class MainFragment extends Fragment {
@@ -195,20 +195,20 @@ public class MainFragment extends Fragment {
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        fileName = "lpic1.xml";
+                        fileName = "lpic2.xml";
                         loadXml(fileName);
                         break;
                     case R.id.button_LPIC3:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        fileName = "lpic1.xml";
+                        fileName = "lpic3.xml";
                         loadXml(fileName);
                         break;
                     case R.id.button_LPIC4:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
-                        fileName = "lpic1.xml";
+                        fileName = "lpic4.xml";
                         loadXml(fileName);
                         break;
                     case R.id.button_file:

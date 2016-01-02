@@ -35,8 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
 
-import de.sindzinski.database.DatabaseHelper;
-import de.sindzinski.database.XmlParser;
+import de.sindzinski.lpictrainer.database.DatabaseHelper;
+import de.sindzinski.lpictrainer.database.XmlParser;
 import de.sindzinski.lpictrainer.MainActivity;
 import de.sindzinski.lpictrainer.Question;
 import de.sindzinski.lpictrainer.R;
@@ -164,7 +164,7 @@ public class TestActivity extends Activity  {
         try {
             //load from sqlite database
             DatabaseHelper db = DatabaseHelper.getInstance(this);
-            entries = (ArrayList) db.getAllEntries();
+            entries = (ArrayList) db.getAllEntries(fileName);
 
             //entries = loadXmlFromFile();
             it = entries.subList(from, to).listIterator();
