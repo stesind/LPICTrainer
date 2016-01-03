@@ -51,6 +51,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //unhandled crash logger
+        Thread.setDefaultUncaughtExceptionHandler(handleAppCrash);
+
         super.onCreate(savedInstanceState);
         if (BuildConfig.DEBUG) {
             Logger.logging = true;
@@ -285,5 +288,15 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         if (mHelper != null) mHelper.dispose();
         mHelper = null;*/
     }
+
+    private Thread.UncaughtExceptionHandler handleAppCrash =
+            new Thread.UncaughtExceptionHandler() {
+                @Override
+                public void uncaughtException(Thread thread, Throwable ex) {
+                    Logger.e("error", ex.toString());
+                    //send email here
+                }
+            };
+
 
 }

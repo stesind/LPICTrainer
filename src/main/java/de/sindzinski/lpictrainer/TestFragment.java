@@ -348,13 +348,18 @@ public class TestFragment extends Fragment  {
                 QuestionTable.COLUMN_RICHTIG5,
         };
 
+        Uri uri = Uri.parse(QuestionContentProvider.CONTENT_URI + "/"
+                + from + "/" + to);
         // Defines a string to contain the selection clause
         String mSelectionClause = null;
         // Initializes an array to contain selection arguments
         String[] mSelectionArgs = null;
+        // more generic to use selection and args in content provider than here
         String mSortOrder = null;
-        Uri uri = Uri.parse(QuestionContentProvider.CONTENT_URI + "/"
-                + from + "/" + to);
+/*        String mSelectionClause = "((" + QuestionTable.COLUMN_ID  + " >= ?) AND ("
+                + QuestionTable.COLUMN_ID + " = ?))";
+        String[] mSelectionArgs = new String[] {uri.getPathSegments().get(uri.getPathSegments().size()-2), uri.getLastPathSegment(),
+                "thx4uall@gmail.com"};*/
         try (Cursor cursor = getActivity().getContentResolver().query(
                 uri,   // The content URI of the question table
                 mProjection,                        // The columns to return for each row

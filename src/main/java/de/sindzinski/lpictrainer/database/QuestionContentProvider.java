@@ -87,6 +87,7 @@ public class QuestionContentProvider extends ContentProvider {
                 //selection = selection + "_ID = " uri.getLastPathSegment();
                 break;
             case QUESTIONS_FROM_TO:
+                //better to user selection and args in calling method
                 queryBuilder.appendWhere( QuestionTable.COLUMN_ID + ">=" + uri.getPathSegments().get(uri.getPathSegments().size()-2));
                 queryBuilder.appendWhere(" AND ");
                 queryBuilder.appendWhere(QuestionTable.COLUMN_ID + "<=" + uri.getLastPathSegment());
