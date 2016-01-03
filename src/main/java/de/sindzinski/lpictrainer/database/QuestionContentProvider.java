@@ -25,7 +25,7 @@ public class QuestionContentProvider extends ContentProvider {
     // database
     private QuestionDatabaseHelper database;
 
-    private static final String AUTHORITY = "de.sindzinski.lpictrainer.database.QuestionContentProvider";
+    private static final String AUTHORITY = "de.sindzinski.lpictrainer.provider";
 
     private static final String BASE_PATH = "questions";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
