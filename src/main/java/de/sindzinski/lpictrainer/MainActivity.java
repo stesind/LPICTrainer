@@ -40,7 +40,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     public Integer to;
     public Integer max;
 
-    // install leakcanary
+    /**
+     *     install leakcanary
+     */
     private RefWatcher refWatcher = null;
 
     public RefWatcher getRefWatcher() {
@@ -88,53 +90,60 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         // then we don't need to do anything and should return or else
         // we could end up with overlapping fragments.
         if (savedInstanceState != null) {
-            return;
-        }
+            //todo
+            //also in onRetoreInstanceState()
+            Fragment restoredFragment = getFragmentManager().getFragment(savedInstanceState,"SavedFragment");
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.container, restoredFragment);
+            transaction.addToBackStack("restoredFragment");
+            transaction.addToBackStack("main");
+            transaction.commit();
+        } else {
 
-        MainFragment mainFragment = MainFragment.newInstance();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        //transaction.addToBackStack("main");
-        transaction.replace(R.id.container, mainFragment);
-        transaction.addToBackStack("main");
+            MainFragment mainFragment = MainFragment.newInstance();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            //transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            //transaction.addToBackStack("main");
+            transaction.replace(R.id.container, mainFragment);
+            transaction.addToBackStack("main");
 
-        // Commit the transaction
-        transaction.commit();
-        //testFragment.update();
+            // Commit the transaction
+            transaction.commit();
+            //testFragment.update();
 
-        if (showAd) {
-            //ad
-            //AdFragment adFragment = new AdFragment();
-            Fragment adFragment = new Fragment();
-            //Fragment adFragment = Fragment.newInstance();
-            FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
-            adTransaction.replace(R.id.ad_container, adFragment);
-            adTransaction.commit();
-        }
+            if (showAd) {
+                //ad
+                //AdFragment adFragment = new AdFragment();
+                Fragment adFragment = new Fragment();
+                //Fragment adFragment = Fragment.newInstance();
+                FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
+                adTransaction.replace(R.id.ad_container, adFragment);
+                adTransaction.commit();
+            }
 
-        // Check whether the activity is using the layout version with
-        // the fragment_container FrameLayout. If so, we must add the first fragment
+            // Check whether the activity is using the layout version with
+            // the fragment_container FrameLayout. If so, we must add the first fragment
 /*        if (findViewById(R.id.container_two_pane) != null) {
             mTwoPane = true;
-            onTest(from, to, fileName);
+            showTestFragment(from, to, fileName);
         } else {
             mTwoPane = false;
         }*/
 
-        //show app rater dialog
-        //AppRater.appLaunched(this);
-        //Trial.checkTrial(this, false);
-
+            //show app rater dialog
+            //AppRater.appLaunched(this);
+            //Trial.checkTrial(this, false);
+        }
         refWatcher = LeakCanary.install(getApplication());
     }
 
     // implements interface OnTestListener from main fragment
-    public void onTest(int from, int to, String fileName, int max) {
+    public void showTestFragment(int from, int to, String fileName, int max) {
         // Create new fragment and transact();
 
-        safeSettings(from,to, fileName, max);
+        saveSettings(from, to, fileName, max);
 
         TestFragment testFragment = (TestFragment)
                 getFragmentManager().findFragmentByTag("test");
@@ -146,7 +155,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.commit();
         } else {
-
             testFragment = TestFragment.newInstance(from, to, fileName);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -217,7 +225,6 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         transaction.replace(R.id.container, new SettingsFragment());
         transaction.addToBackStack("settings");
         transaction.commit();
-
     }
 
     /**
@@ -239,7 +246,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         }
     }
 
-    public void safeSettings(int from, int to, String fileName, int max) {
+    public void saveSettings(int from, int to, String fileName, int max) {
 
         //editText_file = (EditText) view.findViewById(R.id.editText_file);
 
@@ -255,7 +262,12 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         editor.putInt("to", to);
         // Commit the edits!
         editor.apply();
+    }
 
+
+    public void onPause() {
+        super.onPause();
+        saveSettings(from, to, fileName, max);
     }
 
     // creates a new loader after the initLoader () call
@@ -289,6 +301,23 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         mHelper = null;*/
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.container);
+        if (fragment != null) {
+            getFragmentManager().putFragment(outState, "SavedFragment", fragment);
+        }
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle inState){
+        super.onRestoreInstanceState(inState);
+    }
+
+    /**
+     * Log uncaught Exceptions
+     */
     private Thread.UncaughtExceptionHandler handleAppCrash =
             new Thread.UncaughtExceptionHandler() {
                 @Override

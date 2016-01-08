@@ -59,7 +59,7 @@ public class MainFragment extends Fragment {
     // start test fragment from within this fragment
     // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
-        void onTest(int from, int to, String fileName, int max);
+        void showTestFragment(int from, int to, String fileName, int max);
 
     }
 
@@ -75,10 +75,10 @@ public class MainFragment extends Fragment {
     }
 
     //this calls the event on the activity
-    public void onTest() {
+    public void showTestFragment() {
         // Append the clicked item's row ID with the content provider Uri
         // Send the event and Uri to the host activity
-        mListener.onTest(from, to, fileName, max);
+        mListener.showTestFragment(from, to, fileName, max);
     }
 
     public static MainFragment newInstance() {
@@ -182,7 +182,7 @@ public class MainFragment extends Fragment {
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        onTest();
+                        showTestFragment();
                         break;
                     case R.id.button_LPIC1:
                         // which is supposed to be called automatically
