@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.lpictrainer.data;
 
 import android.os.Parcelable;
 import android.os.Parcel;

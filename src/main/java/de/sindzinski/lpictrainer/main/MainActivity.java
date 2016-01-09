@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.lpictrainer.main;
 
 import android.app.*;
 import android.app.FragmentTransaction;
@@ -15,10 +15,15 @@ import android.widget.SimpleCursorAdapter;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import de.sindzinski.lpictrainer.database.QuestionTable;
-import de.sindzinski.helper.HelpUtils;
-import de.sindzinski.helper.Logger;
-import de.sindzinski.lpictrainer.database.QuestionContentProvider;
+import de.sindzinski.lpictrainer.BuildConfig;
+import de.sindzinski.lpictrainer.MainFragment;
+import de.sindzinski.lpictrainer.R;
+import de.sindzinski.lpictrainer.SettingsFragment;
+import de.sindzinski.lpictrainer.TestFragment;
+import de.sindzinski.lpictrainer.data.QuestionTable;
+import de.sindzinski.util.HelpUtils;
+import de.sindzinski.util.Logger;
+import de.sindzinski.lpictrainer.data.QuestionContentProvider;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -93,11 +98,12 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             //todo
             //also in onRetoreInstanceState()
             Fragment restoredFragment = getFragmentManager().getFragment(savedInstanceState,"SavedFragment");
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // new transition probably not needed
+            /*FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.container, restoredFragment);
             transaction.addToBackStack("restoredFragment");
             transaction.addToBackStack("main");
-            transaction.commit();
+            transaction.commit();*/
         } else {
 
             MainFragment mainFragment = MainFragment.newInstance();

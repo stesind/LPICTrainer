@@ -1,4 +1,4 @@
-package de.sindzinski.helper;
+package de.sindzinski.util;
 
 import android.app.DialogFragment;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package de.sindzinski.helper;
+package de.sindzinski.util;
 
 /*
 // Ad network-specific imports (AdMob).

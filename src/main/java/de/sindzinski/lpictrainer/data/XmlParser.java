@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer.database;
+package de.sindzinski.lpictrainer.data;
 
 /**
  * Created by steffen on 09.08.13.

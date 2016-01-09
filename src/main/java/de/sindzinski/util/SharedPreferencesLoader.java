@@ -1,4 +1,4 @@
-package de.sindzinski.helper;
+package de.sindzinski.util;
 
 /**
  * Created by steffen on 31.12.15.

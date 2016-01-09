@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.sindzinski.helper;
+package de.sindzinski.util;
 
 //import com.google.android.apps.iosched.R;
 
@@ -24,14 +24,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -41,9 +38,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;

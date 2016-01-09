@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer.database;
+package de.sindzinski.lpictrainer.data;
 
 import android.content.ContentValues;
 import android.content.Context;

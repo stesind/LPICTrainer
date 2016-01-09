@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.lpictrainer.main;
 
 /**
  * Created by steffen on 18.08.13.
@@ -27,8 +27,10 @@ import java.util.ArrayList;
 
 import android.app.ProgressDialog;
 
-import de.sindzinski.lpictrainer.database.LoadXmlAsyncTask;
-import de.sindzinski.helper.Logger;
+import de.sindzinski.lpictrainer.R;
+import de.sindzinski.lpictrainer.data.LoadXmlAsyncTask;
+import de.sindzinski.lpictrainer.data.Question;
+import de.sindzinski.util.Logger;
 
 public class MainFragment extends Fragment {
 

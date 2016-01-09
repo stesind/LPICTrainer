@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer.database;
+package de.sindzinski.lpictrainer.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

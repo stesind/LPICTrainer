@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer.database;
+package de.sindzinski.lpictrainer.data;
 
 import java.util.ArrayList;
 import java.util.List;
