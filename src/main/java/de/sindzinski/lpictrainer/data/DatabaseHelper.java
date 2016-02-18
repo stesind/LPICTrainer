@@ -10,8 +10,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteException;
 
-import de.sindzinski.helper.Logger;
-import de.sindzinski.lpictrainer.Question;
+import de.sindzinski.lpictrainer.data.TrainerContract.QuestionEntry;
+
+import de.sindzinski.util.Logger;
+import de.sindzinski.lpictrainer.data.Question;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -25,23 +27,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Contacts table name
     private static final String TABLE_QUESTIONS = "questions";
-
-    // Contacts QuestionTable Columns names
-    private static final String INDEX ="ID";
-    private static final String TITLE ="title";
-    private static final String TYPE ="type";
-    private static final String POINTS = "points";
-    private static final String TEXT = "text";
-    private static final String ANTWORT1 = "antwort1";
-    private static final String RICHTIG1 = "richtig1";
-    private static final String ANTWORT2 = "antwort2";
-    private static final String RICHTIG2 = "richtig2";
-    private static final String ANTWORT3 = "antwort3";
-    private static final String RICHTIG3 = "richtig3";
-    private static final String ANTWORT4 = "antwort4";
-    private static final String RICHTIG4 = "richtig4";
-    private static final String ANTWORT5 = "antwort5";
-    private static final String RICHTIG5 = "richtig5";
 
     private static final String TAG = "LPITrainer-Database";
 
@@ -72,21 +57,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) throws SQLiteException {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_QUESTIONS + "("
-                + INDEX + " INTEGER PRIMARY KEY, "
-                + TITLE + " TEXT, "
-                + TYPE + " TEXT, "
-                + POINTS + " INTEGER, "
-                + TEXT + " TEXT, "
-                + ANTWORT1 + " TEXT, "
-                + RICHTIG1 + " INTEGER, "
-                + ANTWORT2 + " TEXT, "
-                + RICHTIG2 + " INTEGER, "
-                + ANTWORT3 + " TEXT, "
-                + RICHTIG3 + " INTEGER, "
-                + ANTWORT4 + " TEXT, "
-                + RICHTIG4 + " INTEGER, "
-                + ANTWORT5 + " TEXT, "
-                + RICHTIG5 + " INTEGER "
+                + QuestionEntry.INDEX + " INTEGER PRIMARY KEY, "
+                + QuestionEntry.TITLE + " TEXT NOT NULL, "
+                + QuestionEntry.TYPE + " TEXT NOT NULL, "
+                + QuestionEntry.POINTS + " INTEGER, "
+                + QuestionEntry.TEXT + " TEXT NOT NULL, "
+                + QuestionEntry.ANTWORT1 + " TEXT, "
+                + QuestionEntry.RICHTIG1 + " INTEGER, "
+                + QuestionEntry.ANTWORT2 + " TEXT, "
+                + QuestionEntry.RICHTIG2 + " INTEGER, "
+                + QuestionEntry.ANTWORT3 + " TEXT, "
+                + QuestionEntry.RICHTIG3 + " INTEGER, "
+                + QuestionEntry.ANTWORT4 + " TEXT, "
+                + QuestionEntry.RICHTIG4 + " INTEGER, "
+                + QuestionEntry.ANTWORT5 + " TEXT, "
+                + QuestionEntry.RICHTIG5 + " INTEGER "
                 + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
@@ -118,21 +103,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
-            values.put(INDEX, question.getIndex());
-            values.put(TITLE, question.getTitle());
-            values.put(TYPE, question.getType());
-            values.put(POINTS, question.getPoints());
-            values.put(TEXT, question.getText());
-            values.put(ANTWORT1, question.getAntwort1());
-            values.put(RICHTIG1, question.getRichtig1());
-            values.put(ANTWORT2, question.getAntwort2());
-            values.put(RICHTIG2, question.getRichtig2());
-            values.put(ANTWORT3, question.getAntwort3());
-            values.put(RICHTIG3, question.getRichtig3());
-            values.put(ANTWORT4, question.getAntwort4());
-            values.put(RICHTIG4, question.getRichtig4());
-            values.put(ANTWORT5, question.getAntwort5());
-            values.put(RICHTIG5, question.getRichtig5());
+            values.put(QuestionEntry.INDEX, question.getIndex());
+            values.put(QuestionEntry.TITLE, question.getTitle());
+            values.put(QuestionEntry.TYPE, question.getType());
+            values.put(QuestionEntry.POINTS, question.getPoints());
+            values.put(QuestionEntry.TEXT, question.getText());
+            values.put(QuestionEntry.ANTWORT1, question.getAntwort1());
+            values.put(QuestionEntry.RICHTIG1, question.getRichtig1());
+            values.put(QuestionEntry.ANTWORT2, question.getAntwort2());
+            values.put(QuestionEntry.RICHTIG2, question.getRichtig2());
+            values.put(QuestionEntry.ANTWORT3, question.getAntwort3());
+            values.put(QuestionEntry.RICHTIG3, question.getRichtig3());
+            values.put(QuestionEntry.ANTWORT4, question.getAntwort4());
+            values.put(QuestionEntry.RICHTIG4, question.getRichtig4());
+            values.put(QuestionEntry.ANTWORT5, question.getAntwort5());
+            values.put(QuestionEntry.RICHTIG5, question.getRichtig5());
             // Inserting Row
             db.insert(TABLE_QUESTIONS, null, values);
         }
@@ -142,10 +127,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Question getEntry(int id) throws SQLiteException {
 
         try (SQLiteDatabase db = this.getReadableDatabase()) {
-            try (Cursor cursor = db.query(TABLE_QUESTIONS, new String[]{INDEX,
-                            TITLE, TYPE, POINTS, TEXT, ANTWORT1, RICHTIG1, ANTWORT2, RICHTIG2,
-                            ANTWORT3, RICHTIG3, ANTWORT4, RICHTIG4, ANTWORT5, RICHTIG5},
-                    INDEX + "=?", new String[]{String.valueOf(id)}, null, null, null, null)) {
+            try (Cursor cursor = db.query(TABLE_QUESTIONS, new String[]{QuestionEntry.INDEX,
+                            QuestionEntry.TITLE, QuestionEntry.TYPE, QuestionEntry.POINTS,
+                    QuestionEntry.TEXT, QuestionEntry.ANTWORT1, QuestionEntry.RICHTIG1,
+                    QuestionEntry.ANTWORT2, QuestionEntry.RICHTIG2, QuestionEntry.ANTWORT3,
+                            QuestionEntry.RICHTIG3, QuestionEntry.ANTWORT4, QuestionEntry.RICHTIG4,
+                            QuestionEntry.ANTWORT5, QuestionEntry.RICHTIG5},
+                    QuestionEntry.INDEX + "=?", new String[]{String.valueOf(id)}, null, null, null, null)) {
                 cursor.moveToFirst();
                 return new Question.Builder().setIndex(Integer.parseInt(cursor.getString(0)))
                         .setTitle(cursor.getString(1))
@@ -214,23 +202,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int updateEntry(Question question) throws SQLiteException {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
-            values.put(INDEX, question.getIndex());
-            values.put(TITLE, question.getTitle());
-            values.put(TYPE, question.getType());
-            values.put(POINTS, question.getPoints());
-            values.put(TEXT, question.getText());
-            values.put(ANTWORT1, question.getAntwort1());
-            values.put(RICHTIG1, question.getRichtig1());
-            values.put(ANTWORT2, question.getAntwort2());
-            values.put(RICHTIG2, question.getRichtig2());
-            values.put(ANTWORT3, question.getAntwort3());
-            values.put(RICHTIG3, question.getRichtig3());
-            values.put(ANTWORT4, question.getAntwort4());
-            values.put(RICHTIG4, question.getRichtig4());
-            values.put(ANTWORT5, question.getAntwort5());
-            values.put(RICHTIG5, question.getRichtig5());
+            values.put(QuestionEntry.INDEX, question.getIndex());
+            values.put(QuestionEntry.TITLE, question.getTitle());
+            values.put(QuestionEntry.TYPE, question.getType());
+            values.put(QuestionEntry.POINTS, question.getPoints());
+            values.put(QuestionEntry.TEXT, question.getText());
+            values.put(QuestionEntry.ANTWORT1, question.getAntwort1());
+            values.put(QuestionEntry.RICHTIG1, question.getRichtig1());
+            values.put(QuestionEntry.ANTWORT2, question.getAntwort2());
+            values.put(QuestionEntry.RICHTIG2, question.getRichtig2());
+            values.put(QuestionEntry.ANTWORT3, question.getAntwort3());
+            values.put(QuestionEntry.RICHTIG3, question.getRichtig3());
+            values.put(QuestionEntry.ANTWORT4, question.getAntwort4());
+            values.put(QuestionEntry.RICHTIG4, question.getRichtig4());
+            values.put(QuestionEntry.ANTWORT5, question.getAntwort5());
+            values.put(QuestionEntry.RICHTIG5, question.getRichtig5());
             // updating row
-            return db.update(TABLE_QUESTIONS, values, INDEX + " = ?",
+            return db.update(TABLE_QUESTIONS, values, QuestionEntry.INDEX + " = ?",
                     new String[]{String.valueOf(question.getIndex())});
         }
     }
@@ -238,7 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Deleting single question
     public void deleteEntry(Question question) throws SQLiteException  {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
-            db.delete(TABLE_QUESTIONS, INDEX + " = ?",
+            db.delete(TABLE_QUESTIONS, QuestionEntry.INDEX + " = ?",
                     new String[]{String.valueOf(question.getIndex())});
         }
     }
