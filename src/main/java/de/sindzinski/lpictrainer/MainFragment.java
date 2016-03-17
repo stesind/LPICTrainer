@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer.main;
+package de.sindzinski.lpictrainer;
 
 /**
  * Created by steffen on 18.08.13.
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 
 import android.app.ProgressDialog;
 
-import de.sindzinski.lpictrainer.R;
 import de.sindzinski.lpictrainer.data.LoadXmlAsyncTask;
 import de.sindzinski.lpictrainer.data.Question;
 import de.sindzinski.util.Logger;

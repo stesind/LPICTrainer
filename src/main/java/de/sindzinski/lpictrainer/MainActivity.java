@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer.main;
+package de.sindzinski.lpictrainer;
 
 import android.app.*;
 import android.app.FragmentTransaction;
@@ -18,9 +18,10 @@ import com.squareup.leakcanary.RefWatcher;
 import de.sindzinski.lpictrainer.BuildConfig;
 import de.sindzinski.lpictrainer.MainFragment;
 import de.sindzinski.lpictrainer.R;
-import de.sindzinski.lpictrainer.SettingsFragment;
-import de.sindzinski.lpictrainer.TestFragment;
 import de.sindzinski.lpictrainer.data.QuestionTable;
+import de.sindzinski.lpictrainer.main.MainFragment;
+import de.sindzinski.lpictrainer.main.SettingsFragment;
+import de.sindzinski.lpictrainer.main.TestFragment;
 import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
 import de.sindzinski.lpictrainer.data.QuestionContentProvider;

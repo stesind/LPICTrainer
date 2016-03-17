@@ -5,7 +5,8 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import com.squareup.leakcanary.RefWatcher;
+import de.sindzinski.lpictrainer.MainActivity;
+import de.sindzinski.lpictrainer.R;
 
 /**
  * Created by steffen on 15.08.13.
