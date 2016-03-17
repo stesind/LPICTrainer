@@ -45,7 +45,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import de.sindzinski.helper.Logger;
+import de.sindzinski.util.Logger;
 
 public class ActivitySwipeDetectorLR implements View.OnTouchListener {
 

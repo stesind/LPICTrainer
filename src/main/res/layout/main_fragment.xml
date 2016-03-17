@@ -144,4 +144,14 @@
             android:layout_weight="1" />
     </LinearLayout>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Activity"
+        android:id="@+id/button_test_activity"
+        android:layout_below="@+id/seekBar_to"
+        android:layout_toStartOf="@+id/button_test"
+        android:clickable="true" />
+
 </RelativeLayout>

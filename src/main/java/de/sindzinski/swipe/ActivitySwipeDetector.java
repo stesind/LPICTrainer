@@ -26,7 +26,7 @@ public void left2right(View v) {
 import android.view.MotionEvent;
 import android.view.View;
 
-import de.sindzinski.helper.Logger;
+import de.sindzinski.util.Logger;
 
 public class ActivitySwipeDetector implements View.OnTouchListener {
 

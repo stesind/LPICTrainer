@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.sindzinski.old.TestActivity"
+            android:name="de.sindzinski.lpictrainer.TestActivity"
             android:label="@string/title_activity_test"
             android:parentActivityName="de.sindzinski.lpictrainer.MainActivity" >
             <meta-data
@@ -34,7 +34,7 @@
                 android:value="de.sindzinski.lpictrainer.MainActivity" />
         </activity>
         <provider
-            android:name="de.sindzinski.lpictrainer.database.QuestionContentProvider"
+            android:name="de.sindzinski.lpictrainer.data.QuestionContentProvider"
             android:authorities="de.sindzinski.lpictrainer.provider" >
         </provider>
         <!-- AdMobActivity definition -->

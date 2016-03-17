@@ -15,8 +15,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import de.sindzinski.helper.Logger;
-import de.sindzinski.lpictrainer.Question;
+import de.sindzinski.util.Logger;
+import de.sindzinski.lpictrainer.data.TrainerContract;
 
 /**
  * Created by steffen on 20.12.15.
@@ -101,44 +101,31 @@ public class LoadXmlAsyncTask extends AsyncTask<String, Integer, ArrayList<Quest
         //delete all old
         String mSelection = null;
         String[] mSelectionArgs = null;
-        Integer rowsDeleted = mContext.getContentResolver().delete(QuestionContentProvider.CONTENT_URI, mSelection, mSelectionArgs);
+        Integer rowsDeleted = mContext.getContentResolver().delete(TrainerContract.QuestionEntry.CONTENT_URI, mSelection, mSelectionArgs);
         Logger.i(TAG, "Rows deleted: " + rowsDeleted);
         //add new questions
         ContentValues values = new ContentValues();
         while (it.hasNext()) {
             Question question = (Question) it.next();
             values.clear();
-            values.put(QuestionTable.COLUMN_ID, question.index);
-            values.put(QuestionTable.COLUMN_TITLE, question.title);
-            values.put(QuestionTable.COLUMN_TYPE, question.type);
-            values.put(QuestionTable.COLUMN_TEXT, question.text);
-            values.put(QuestionTable.COLUMN_POINTS, question.points);
-            values.put(QuestionTable.COLUMN_ANTWORT1, question.antwort1);
-            values.put(QuestionTable.COLUMN_RICHTIG1, question.richtig1);
-            values.put(QuestionTable.COLUMN_ANTWORT2, question.antwort2);
-            values.put(QuestionTable.COLUMN_RICHTIG2, question.richtig2);
-            values.put(QuestionTable.COLUMN_ANTWORT3, question.antwort3);
-            values.put(QuestionTable.COLUMN_RICHTIG3, question.richtig3);
-            values.put(QuestionTable.COLUMN_ANTWORT4, question.antwort4);
-            values.put(QuestionTable.COLUMN_RICHTIG4, question.richtig4);
-            values.put(QuestionTable.COLUMN_ANTWORT5, question.antwort5);
-            values.put(QuestionTable.COLUMN_RICHTIG5, question.richtig5);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ID, question.index);
+            values.put(TrainerContract.QuestionEntry.COLUMN_TITLE, question.title);
+            values.put(TrainerContract.QuestionEntry.COLUMN_TYPE, question.type);
+            values.put(TrainerContract.QuestionEntry.COLUMN_TEXT, question.text);
+            values.put(TrainerContract.QuestionEntry.COLUMN_POINTS, question.points);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT1, question.antwort1);
+            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG1, question.richtig1);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT2, question.antwort2);
+            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG2, question.richtig2);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT3, question.antwort3);
+            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG3, question.richtig3);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT4, question.antwort4);
+            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG4, question.richtig4);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT5, question.antwort5);
+            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG5, question.richtig5);
 
-            QuestionUri = mContext.getContentResolver().insert(QuestionContentProvider.CONTENT_URI, values);
+            QuestionUri = mContext.getContentResolver().insert(TrainerContract.QuestionEntry.CONTENT_URI, values);
             Logger.i(TAG, "Rows added: " + QuestionUri);
-        }
-    }
-
-    private void safeToSQL(ArrayList<Question> entries) {
-
-        ListIterator it = entries.listIterator();
-
-        DatabaseHelper db = DatabaseHelper.getInstance(mContext);
-
-        db.onWipe();
-        while (it.hasNext()) {
-            Question question = (Question) it.next();
-            db.addEntry(question);
         }
     }
 }

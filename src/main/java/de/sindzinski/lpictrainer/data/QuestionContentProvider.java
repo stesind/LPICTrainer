@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import de.sindzinski.helper.Logger;
+import de.sindzinski.util.Logger;
 
 /**
  * Created by steffen on 01.01.16.
@@ -25,16 +25,6 @@ public class QuestionContentProvider extends ContentProvider {
     // database
     private QuestionDatabaseHelper database;
 
-    private static final String AUTHORITY = "de.sindzinski.lpictrainer.provider";
-
-    private static final String BASE_PATH = "questions";
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
-            + "/" + BASE_PATH);
-
-    public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
-            + "/questions";
-    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
-            + "/questions";
 
     // used for the UriMacher
     private static final int QUESTIONS = 10;
@@ -51,9 +41,9 @@ public class QuestionContentProvider extends ContentProvider {
         * Sets the integer value for multiple rows in table BASE_PATH to QUESTIONS. Notice that no wildcard is used
         * in the path
         */
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH, QUESTIONS);
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", QUESTIONS_ID);
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#/#", QUESTIONS_FROM_TO);
+        sURIMatcher.addURI(TrainerContract.QuestionEntry.AUTHORITY, TrainerContract.QuestionEntry.BASE_PATH, QUESTIONS);
+        sURIMatcher.addURI(TrainerContract.QuestionEntry.AUTHORITY, TrainerContract.QuestionEntry.BASE_PATH + "/#", QUESTIONS_ID);
+        sURIMatcher.addURI(TrainerContract.QuestionEntry.AUTHORITY, TrainerContract.QuestionEntry.BASE_PATH + "/#/#", QUESTIONS_FROM_TO);
     }
 
     @Override
@@ -73,7 +63,7 @@ public class QuestionContentProvider extends ContentProvider {
         checkColumns(projection);
 
         // Set the table
-        queryBuilder.setTables(QuestionTable.TABLE_QUESTION);
+        queryBuilder.setTables(TrainerContract.QuestionEntry.TABLE_NAME);
 
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
@@ -82,17 +72,17 @@ public class QuestionContentProvider extends ContentProvider {
                 break;
             case QUESTIONS_ID:
                 // adding the ID to the original query
-                queryBuilder.appendWhere(QuestionTable.COLUMN_ID + "="
+                queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "="
                         + uri.getLastPathSegment());
                 //selection = selection + "_ID = " uri.getLastPathSegment();
                 break;
             case QUESTIONS_FROM_TO:
                 //better to user selection and args in calling method
-                queryBuilder.appendWhere( QuestionTable.COLUMN_ID + ">=" + uri.getPathSegments().get(uri.getPathSegments().size()-2));
+                queryBuilder.appendWhere( TrainerContract.QuestionEntry.COLUMN_ID + ">=" + uri.getPathSegments().get(uri.getPathSegments().size()-2));
                 queryBuilder.appendWhere(" AND ");
-                queryBuilder.appendWhere(QuestionTable.COLUMN_ID + "<=" + uri.getLastPathSegment());
+                queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "<=" + uri.getLastPathSegment());
 
-/*                queryBuilder.appendWhere(QuestionTable.COLUMN_ID + "<="
+/*                queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "<="
                         + uri.getLastPathSegment());*/
                 break;
             default:
@@ -125,13 +115,13 @@ public class QuestionContentProvider extends ContentProvider {
         long id = 0;
         switch (uriType) {
             case QUESTIONS:
-                id = sqlDB.insert(QuestionTable.TABLE_QUESTION, null, values);
+                id = sqlDB.insert(TrainerContract.QuestionEntry.TABLE_NAME, null, values);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
         getContext().getContentResolver().notifyChange(uri, null);
-        return Uri.parse(BASE_PATH + "/" + id);
+        return Uri.parse(TrainerContract.QuestionEntry.BASE_PATH + "/" + id);
     }
 
     @Override
@@ -141,18 +131,18 @@ public class QuestionContentProvider extends ContentProvider {
         int rowsDeleted = 0;
         switch (uriType) {
             case QUESTIONS:
-                rowsDeleted = sqlDB.delete(QuestionTable.TABLE_QUESTION, selection,
+                rowsDeleted = sqlDB.delete(TrainerContract.QuestionEntry.TABLE_NAME, selection,
                         selectionArgs);
                 break;
             case QUESTIONS_ID:
                 String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    rowsDeleted = sqlDB.delete(QuestionTable.TABLE_QUESTION,
-                            QuestionTable.COLUMN_ID + "=" + id,
+                    rowsDeleted = sqlDB.delete(TrainerContract.QuestionEntry.TABLE_NAME,
+                            TrainerContract.QuestionEntry.COLUMN_ID + "=" + id,
                             null);
                 } else {
-                    rowsDeleted = sqlDB.delete(QuestionTable.TABLE_QUESTION,
-                            QuestionTable.COLUMN_ID + "=" + id
+                    rowsDeleted = sqlDB.delete(TrainerContract.QuestionEntry.TABLE_NAME,
+                            TrainerContract.QuestionEntry.COLUMN_ID + "=" + id
                                     + " and " + selection,
                             selectionArgs);
                 }
@@ -173,7 +163,7 @@ public class QuestionContentProvider extends ContentProvider {
         int rowsUpdated = 0;
         switch (uriType) {
             case QUESTIONS:
-                rowsUpdated = sqlDB.update(QuestionTable.TABLE_QUESTION,
+                rowsUpdated = sqlDB.update(TrainerContract.QuestionEntry.TABLE_NAME,
                         values,
                         selection,
                         selectionArgs);
@@ -181,14 +171,14 @@ public class QuestionContentProvider extends ContentProvider {
             case QUESTIONS_ID:
                 String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    rowsUpdated = sqlDB.update(QuestionTable.TABLE_QUESTION,
+                    rowsUpdated = sqlDB.update(TrainerContract.QuestionEntry.TABLE_NAME,
                             values,
-                            QuestionTable.COLUMN_ID + "=" + id,
+                            TrainerContract.QuestionEntry.COLUMN_ID + "=" + id,
                             null);
                 } else {
-                    rowsUpdated = sqlDB.update(QuestionTable.TABLE_QUESTION,
+                    rowsUpdated = sqlDB.update(TrainerContract.QuestionEntry.TABLE_NAME,
                             values,
-                            QuestionTable.COLUMN_ID + "=" + id
+                            TrainerContract.QuestionEntry.COLUMN_ID + "=" + id
                                     + " and "
                                     + selection,
                             selectionArgs);
@@ -203,21 +193,23 @@ public class QuestionContentProvider extends ContentProvider {
 
     private void checkColumns(String[] projection) {
         String[] available = {
-                QuestionTable.COLUMN_TITLE,
-                QuestionTable.COLUMN_TYPE,
-                QuestionTable.COLUMN_POINTS,
-                QuestionTable.COLUMN_TEXT,
-                QuestionTable.COLUMN_ANTWORT1,
-                QuestionTable.COLUMN_RICHTIG1,
-                QuestionTable.COLUMN_ANTWORT2,
-                QuestionTable.COLUMN_RICHTIG2,
-                QuestionTable.COLUMN_ANTWORT3,
-                QuestionTable.COLUMN_RICHTIG3,
-                QuestionTable.COLUMN_ANTWORT4,
-                QuestionTable.COLUMN_RICHTIG4,
-                QuestionTable.COLUMN_ANTWORT5,
-                QuestionTable.COLUMN_RICHTIG5,
-                QuestionTable.COLUMN_ID };
+                TrainerContract.QuestionEntry._ID,
+                TrainerContract.QuestionEntry.COLUMN_ID,
+                TrainerContract.QuestionEntry.COLUMN_TITLE,
+                TrainerContract.QuestionEntry.COLUMN_TYPE,
+                TrainerContract.QuestionEntry.COLUMN_POINTS,
+                TrainerContract.QuestionEntry.COLUMN_TEXT,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT1,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG1,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT2,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG2,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT3,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG3,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT4,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG4,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT5,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG5,
+                 };
         if (projection != null) {
             HashSet<String> requestedColumns = new HashSet<String>(Arrays.asList(projection));
             HashSet<String> availableColumns = new HashSet<String>(Arrays.asList(available));

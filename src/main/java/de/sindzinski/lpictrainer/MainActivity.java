@@ -15,13 +15,8 @@ import android.widget.SimpleCursorAdapter;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import de.sindzinski.lpictrainer.BuildConfig;
-import de.sindzinski.lpictrainer.MainFragment;
-import de.sindzinski.lpictrainer.R;
-import de.sindzinski.lpictrainer.data.QuestionTable;
-import de.sindzinski.lpictrainer.main.MainFragment;
-import de.sindzinski.lpictrainer.main.SettingsFragment;
-import de.sindzinski.lpictrainer.main.TestFragment;
+import de.sindzinski.lpictrainer.data.TrainerContract.QuestionEntry;
+import de.sindzinski.lpictrainer.data.TrainerContract;
 import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
 import de.sindzinski.lpictrainer.data.QuestionContentProvider;
@@ -280,9 +275,9 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     // creates a new loader after the initLoader () call
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projection = { QuestionTable.COLUMN_ID, QuestionTable.COLUMN_TEXT };
+        String[] projection = { TrainerContract.QuestionEntry.COLUMN_ID, TrainerContract.QuestionEntry.COLUMN_TEXT };
         CursorLoader cursorLoader = new CursorLoader(this,
-                QuestionContentProvider.CONTENT_URI, projection, null, null, null);
+                TrainerContract.QuestionEntry.CONTENT_URI, projection, null, null, null);
         return cursorLoader;
     }
 

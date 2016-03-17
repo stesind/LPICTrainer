@@ -52,6 +52,10 @@ public class MainFragment extends Fragment {
     private Integer max;
     private static final String TAG = "LPITrainer";
 
+    public final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
+    public final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
+    public final static String EXTRA_TO = "de.sindzinski.lpictrainer.TO";
+
     public ArrayList<Question> entries = null;
     ProgressDialog progressDialog;
 
@@ -80,6 +84,17 @@ public class MainFragment extends Fragment {
         // Append the clicked item's row ID with the content provider Uri
         // Send the event and Uri to the host activity
         mListener.showTestFragment(from, to, fileName, max);
+    }
+
+
+    public void startTestActivity() {
+        Intent intent = new Intent(getActivity(), TestActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_FILENAME, fileName);
+        bundle.putInt(EXTRA_FROM, from);
+        bundle.putInt(EXTRA_TO, to);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public static MainFragment newInstance() {
@@ -128,6 +143,7 @@ public class MainFragment extends Fragment {
 
         button_file = (ImageButton) view.findViewById(R.id.button_file);
         button_test = (Button) view.findViewById(R.id.button_test);
+        Button button_test_activity = (Button) view.findViewById(R.id.button_test_activity);
         button_LPIC1 = (Button) view.findViewById(R.id.button_LPIC1);
         button_LPIC2 = (Button) view.findViewById(R.id.button_LPIC2);
         button_LPIC3 = (Button) view.findViewById(R.id.button_LPIC3);
@@ -185,6 +201,11 @@ public class MainFragment extends Fragment {
                         //startTestFragment();
                         showTestFragment();
                         break;
+                    case R.id.button_test_activity:
+                        // which is supposed to be called automatically
+                        // in your activity, which has now changed to a fragment.
+                        startTestActivity();
+                        break;
                     case R.id.button_LPIC1:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
@@ -221,6 +242,7 @@ public class MainFragment extends Fragment {
         };
 
         button_test.setOnClickListener(clickListener);
+        button_test_activity.setOnClickListener(clickListener);
         button_LPIC1.setOnClickListener(clickListener);
         button_LPIC2.setOnClickListener(clickListener);
         button_LPIC3.setOnClickListener(clickListener);

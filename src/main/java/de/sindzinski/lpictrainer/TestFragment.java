@@ -12,7 +12,6 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -22,11 +21,10 @@ import java.util.*;
 
 import android.view.GestureDetector;
 
-import de.sindzinski.lpictrainer.database.DatabaseHelper;
-
-import de.sindzinski.lpictrainer.database.QuestionTable;
-import de.sindzinski.helper.Logger;
-import de.sindzinski.lpictrainer.database.QuestionContentProvider;
+import de.sindzinski.lpictrainer.data.Question;
+import de.sindzinski.lpictrainer.data.Answer;
+import de.sindzinski.lpictrainer.data.TrainerContract;
+import de.sindzinski.util.Logger;
 
 public class TestFragment extends Fragment  {
 
@@ -148,22 +146,29 @@ public class TestFragment extends Fragment  {
         } else {
             //newly drawn
             //load first data to display
-            try {
-                //load from sqlite database
-                DatabaseHelper db = DatabaseHelper.getInstance(getActivity());
-                //old databasehelper
-                //entries = (ArrayList) db.getAllEntries(fileName);
-                //new content provider
-/*                entries = (ArrayList) getData();
-                subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));*/
-                questions = (ArrayList) getData();
-                //subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
-                //if set in preferences then shuffle entries
-                if (shuffle) {
-                    Collections.shuffle(questions);
-                }
-            } catch (SQLiteException e) {
-                Log.e(TAG, "Error reading database: " + e);
+//            try {
+//                //load from sqlite database
+//                //DatabaseHelper db = DatabaseHelper.getInstance(getActivity());
+//                //old databasehelper
+//                //entries = (ArrayList) db.getAllEntries(fileName);
+//                //new content provider
+///*                entries = (ArrayList) getData();
+//                subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));*/
+//                questions = (ArrayList) getData();
+//                //subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
+//                //if set in preferences then shuffle entries
+//
+//                //Logger.i(TAG, "Rows added: " + QuestionUri);
+//
+//
+//            } catch (SQLiteException e) {
+//                Log.e(TAG, "Error reading database: " + e);
+//            }
+
+            questions = (ArrayList) getData();
+            //subEntries = new ArrayList<Question>(entries.subList((from > to) ? 0 : from, to));
+            if (shuffle) {
+                Collections.shuffle(questions);
             }
         }
 
@@ -324,31 +329,33 @@ public class TestFragment extends Fragment  {
         //end.setIcon(R.drawable.ic_menu_refresh);
     }
 
-    private List<Question> getData() {
+    private List<Question> getData()
+    {
+
 
         List<Question> entryList = new ArrayList<Question>();
 
         // A "projection" defines the columns that will be returned for each row
 
         String[] mProjection = {
-              QuestionTable.COLUMN_ID,
-              QuestionTable.COLUMN_TITLE,
-              QuestionTable.COLUMN_TYPE,
-                QuestionTable.COLUMN_POINTS,
-                QuestionTable.COLUMN_TEXT,
-                QuestionTable.COLUMN_ANTWORT1,
-                QuestionTable.COLUMN_RICHTIG1,
-                QuestionTable.COLUMN_ANTWORT2,
-                QuestionTable.COLUMN_RICHTIG2,
-                QuestionTable.COLUMN_ANTWORT3,
-                QuestionTable.COLUMN_RICHTIG3,
-                QuestionTable.COLUMN_ANTWORT4,
-                QuestionTable.COLUMN_RICHTIG4,
-                QuestionTable.COLUMN_ANTWORT5,
-                QuestionTable.COLUMN_RICHTIG5,
+                TrainerContract.QuestionEntry.COLUMN_ID,
+                TrainerContract.QuestionEntry.COLUMN_TITLE,
+                TrainerContract.QuestionEntry.COLUMN_TYPE,
+                TrainerContract.QuestionEntry.COLUMN_POINTS,
+                TrainerContract.QuestionEntry.COLUMN_TEXT,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT1,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG1,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT2,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG2,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT3,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG3,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT4,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG4,
+                TrainerContract.QuestionEntry.COLUMN_ANTWORT5,
+                TrainerContract.QuestionEntry.COLUMN_RICHTIG5,
         };
 
-        Uri uri = Uri.parse(QuestionContentProvider.CONTENT_URI + "/"
+        Uri uri = Uri.parse(TrainerContract.QuestionEntry.CONTENT_URI + "/"
                 + from + "/" + to);
         // Defines a string to contain the selection clause
         String mSelectionClause = null;
@@ -371,21 +378,21 @@ public class TestFragment extends Fragment  {
                 if (cursor.moveToFirst()) {
                     do {
                         Question question = new Question.Builder()
-                                .setIndex(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ID))))
-                                .setTitle(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TITLE)))
-                                .setType(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TYPE)))
-                                .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_POINTS))))
-                                .setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TEXT)))
-                                .setAntwort1(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)))
-                                .setRichtig1(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG1)) > 0)
-                                .setAntwort2(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT2)))
-                                .setRichtig2(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG2)) > 0)
-                                .setAntwort3(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT3)))
-                                .setRichtig3(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG3)) > 0)
-                                .setAntwort4(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT4)))
-                                .setRichtig4(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG4)) > 0)
-                                .setAntwort5(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT5)))
-                                .setRichtig5(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT5)) > 0)
+                                .setIndex(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))))
+                                .setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TITLE)))
+                                .setType(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TYPE)))
+                                .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))))
+                                .setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)))
+                                .setAntwort1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)))
+                                .setRichtig1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG1)) > 0)
+                                .setAntwort2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT2)))
+                                .setRichtig2(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG2)) > 0)
+                                .setAntwort3(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT3)))
+                                .setRichtig3(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG3)) > 0)
+                                .setAntwort4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT4)))
+                                .setRichtig4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG4)) > 0)
+                                .setAntwort5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT5)))
+                                .setRichtig5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT5)) > 0)
                                 .build();
                         // Adding contact to list
                         entryList.add(question);
@@ -396,8 +403,7 @@ public class TestFragment extends Fragment  {
                 cursor.close();
             }
             return entryList;
-        }
-        catch (SQLiteException e) {
+        } catch (SQLiteException e) {
             Logger.e(TAG, "Error reading database: " + e);
         }
         return null;

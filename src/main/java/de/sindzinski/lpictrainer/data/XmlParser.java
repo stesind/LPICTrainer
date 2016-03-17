@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import android.provider.BaseColumns;
 
-import de.sindzinski.lpictrainer.Question;
+import de.sindzinski.lpictrainer.data.Question;
 
 
 public class XmlParser {

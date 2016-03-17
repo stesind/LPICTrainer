@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import de.sindzinski.lpictrainer.data.QuestionTable;
+import de.sindzinski.lpictrainer.data.TrainerContract;
 
 /**
  * Created by steffen on 22.02.16.
@@ -84,26 +84,26 @@ public class TestAdapter extends CursorAdapter {
         viewHolder.textView_current.setText(Integer.toString(cursor.getPosition()) + "/" + Integer.toString(cursor.getCount()));
 //       textView_current.setText(it.nextIndex()-1+"/"+entries.size());
 
-        viewHolder.textView_question.setText(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TITLE));
+        viewHolder.textView_question.setText(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TITLE));
 //TODO the view holder does not keep the default answers, needs to implement
-//                    .setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TEXT)))
-//                    .setAntwort1(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)))
-//                    .setRichtig1(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG1)) > 0)
-//                    .setAntwort2(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT2)))
-//                    .setRichtig2(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG2)) > 0)
-//                    .setAntwort3(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT3)))
-//                    .setRichtig3(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG3)) > 0)
-//                    .setAntwort4(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT4)))
-//                    .setRichtig4(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_RICHTIG4)) > 0)
-//                    .setAntwort5(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT5)))
-//                    .setRichtig5(cursor.getInt(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT5)) > 0)
+//                    .setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)))
+//                    .setAntwort1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)))
+//                    .setRichtig1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG1)) > 0)
+//                    .setAntwort2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT2)))
+//                    .setRichtig2(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG2)) > 0)
+//                    .setAntwort3(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT3)))
+//                    .setRichtig3(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG3)) > 0)
+//                    .setAntwort4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT4)))
+//                    .setRichtig4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG4)) > 0)
+//                    .setAntwort5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT5)))
+//                    .setRichtig5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT5)) > 0)
 
-        viewHolder.checkBox1.setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)));
-        viewHolder.checkBox2.setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)));
-        viewHolder.checkBox3.setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)));
-        viewHolder.checkBox4.setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)));
-        viewHolder.checkBox5.setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_ANTWORT1)));
-        viewHolder.editText1.setText(cursor.getString(cursor.getColumnIndexOrThrow(QuestionTable.COLUMN_TEXT)));
+        viewHolder.checkBox1.setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)));
+        viewHolder.checkBox2.setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)));
+        viewHolder.checkBox3.setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)));
+        viewHolder.checkBox4.setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)));
+        viewHolder.checkBox5.setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)));
+        viewHolder.editText1.setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)));
     }
 
 }
