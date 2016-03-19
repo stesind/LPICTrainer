@@ -21,7 +21,7 @@ import de.sindzinski.lpictrainer.data.TrainerContract;
  * Created by steffen on 22.02.16.
  */
 
-public class TestAdapter extends CursorAdapter {
+public class TestCursorAdapter extends CursorAdapter {
 
     private static final int VIEW_TYPE_COUNT = 2;
     private static final int VIEW_TYPE_TODAY = 0;
@@ -61,7 +61,7 @@ public class TestAdapter extends CursorAdapter {
         }
     }
 
-    public TestAdapter(Context context, Cursor c, int flags) {
+    public TestCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
 
