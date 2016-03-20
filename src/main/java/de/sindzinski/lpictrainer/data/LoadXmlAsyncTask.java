@@ -113,16 +113,16 @@ public class LoadXmlAsyncTask extends AsyncTask<String, Integer, ArrayList<Quest
             values.put(TrainerContract.QuestionEntry.COLUMN_TYPE, question.type);
             values.put(TrainerContract.QuestionEntry.COLUMN_TEXT, question.text);
             values.put(TrainerContract.QuestionEntry.COLUMN_POINTS, question.points);
-            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT1, question.antwort1);
-            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG1, question.richtig1);
-            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT2, question.antwort2);
-            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG2, question.richtig2);
-            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT3, question.antwort3);
-            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG3, question.richtig3);
-            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT4, question.antwort4);
-            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG4, question.richtig4);
-            values.put(TrainerContract.QuestionEntry.COLUMN_ANTWORT5, question.antwort5);
-            values.put(TrainerContract.QuestionEntry.COLUMN_RICHTIG5, question.richtig5);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER1, question.answer1);
+            values.put(TrainerContract.QuestionEntry.COLUMN_CORRECT1, question.correct1);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER2, question.answer2);
+            values.put(TrainerContract.QuestionEntry.COLUMN_CORRECT2, question.correct2);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER3, question.answer3);
+            values.put(TrainerContract.QuestionEntry.COLUMN_CORRECT3, question.correct3);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER4, question.answer4);
+            values.put(TrainerContract.QuestionEntry.COLUMN_CORRECT4, question.correct4);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER5, question.answer5);
+            values.put(TrainerContract.QuestionEntry.COLUMN_CORRECT5, question.correct5);
 
             QuestionUri = mContext.getContentResolver().insert(TrainerContract.QuestionEntry.CONTENT_URI, values);
             Logger.i(TAG, "Rows added: " + QuestionUri);

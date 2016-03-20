@@ -12,16 +12,16 @@ public class Question implements Parcelable {
     public String type;
     public Integer points;
     public String text;
-    public String antwort1;
-    public Boolean richtig1;
-    public String antwort2;
-    public Boolean richtig2;
-    public String antwort3;
-    public Boolean richtig3;
-    public String antwort4;
-    public Boolean richtig4;
-    public String antwort5;
-    public Boolean richtig5;
+    public String answer1;
+    public Boolean correct1;
+    public String answer2;
+    public Boolean correct2;
+    public String answer3;
+    public Boolean correct3;
+    public String answer4;
+    public Boolean correct4;
+    public String answer5;
+    public Boolean correct5;
 
     private Question(Builder questionBuilder) {
         this.index = questionBuilder.index;
@@ -29,34 +29,34 @@ public class Question implements Parcelable {
         this.type = questionBuilder.type;
         this.points = questionBuilder.points;
         this.text = questionBuilder.text;
-        this.antwort1 = questionBuilder.antwort1;
-        this.richtig1 = questionBuilder.richtig1;
-        this.antwort2 = questionBuilder.antwort2;
-        this.richtig2 = questionBuilder.richtig2;
-        this.antwort3 = questionBuilder.antwort3;
-        this.richtig3 = questionBuilder.richtig3;
-        this.antwort4 = questionBuilder.antwort4;
-        this.richtig4 = questionBuilder.richtig4;
-        this.antwort5 = questionBuilder.antwort5;
-        this.richtig5 = questionBuilder.richtig5;
+        this.answer1 = questionBuilder.answer1;
+        this.correct1 = questionBuilder.correct1;
+        this.answer2 = questionBuilder.answer2;
+        this.correct2 = questionBuilder.correct2;
+        this.answer3 = questionBuilder.answer3;
+        this.correct3 = questionBuilder.correct3;
+        this.answer4 = questionBuilder.answer4;
+        this.correct4 = questionBuilder.correct4;
+        this.answer5 = questionBuilder.answer5;
+        this.correct5 = questionBuilder.correct5;
     }
 
- /*   private Question(Integer index, String title, String type, Integer points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {
+ /*   private Question(Integer index, String title, String type, Integer points, String text, String answer1, Boolean correct1, String answer2, Boolean correct2, String answer3, Boolean correct3, String answer4, Boolean correct4, String answer5, Boolean correct5) {
         this.index = index;
         this.title = title;
         this.type = type;
         this.points = points;
         this.text = text;
-        this.antwort1 = antwort1;
-        this.richtig1 = richtig1;
-        this.antwort2 = antwort2;
-        this.richtig2 = richtig2;
-        this.antwort3 = antwort3;
-        this.richtig3 = richtig3;
-        this.antwort4 = antwort4;
-        this.richtig4 = richtig4;
-        this.antwort5 = antwort5;
-        this.richtig5 = richtig5;
+        this.answer1 = answer1;
+        this.correct1 = correct1;
+        this.answer2 = answer2;
+        this.correct2 = correct2;
+        this.answer3 = answer3;
+        this.correct3 = correct3;
+        this.answer4 = answer4;
+        this.correct4 = correct4;
+        this.answer5 = answer5;
+        this.correct5 = correct5;
     }*/
 
     //builder pattern static class
@@ -66,16 +66,16 @@ public class Question implements Parcelable {
         private String type;
         private Integer points;
         private String text;
-        private String antwort1;
-        private Boolean richtig1;
-        private String antwort2;
-        private Boolean richtig2;
-        private String antwort3;
-        private Boolean richtig3;
-        private String antwort4;
-        private Boolean richtig4;
-        private String antwort5;
-        private Boolean richtig5;
+        private String answer1;
+        private Boolean correct1;
+        private String answer2;
+        private Boolean correct2;
+        private String answer3;
+        private Boolean correct3;
+        private String answer4;
+        private Boolean correct4;
+        private String answer5;
+        private Boolean correct5;
         private Parcel in;
 
         public Builder setIndex(Integer index) {
@@ -103,53 +103,53 @@ public class Question implements Parcelable {
             return this;
         }
 
-        public Builder setAntwort1(String antwort1) {
-            this.antwort1 = antwort1;
+        public Builder setAnswer1(String answer1) {
+            this.answer1 = answer1;
             return this;
         }
 
-        public Builder setRichtig1(Boolean richtig1) {
-            this.richtig1 = richtig1;
+        public Builder setCorrect1(Boolean correct1) {
+            this.correct1 = correct1;
             return this;
         }
 
-        public Builder setAntwort2(String antwort2) {
-            this.antwort2 = antwort2;
+        public Builder setAnswer2(String answer2) {
+            this.answer2 = answer2;
             return this;
         }
 
-        public Builder setRichtig2(Boolean richtig2) {
-            this.richtig2 = richtig2;
+        public Builder setCorrect2(Boolean correct2) {
+            this.correct2 = correct2;
             return this;
         }
 
-        public Builder setAntwort3(String antwort3) {
-            this.antwort3 = antwort3;
+        public Builder setAnswer3(String answer3) {
+            this.answer3 = answer3;
             return this;
         }
 
-        public Builder setRichtig3(Boolean richtig3) {
-            this.richtig3 = richtig3;
+        public Builder setCorrect3(Boolean correct3) {
+            this.correct3 = correct3;
             return this;
         }
 
-        public Builder setAntwort4(String antwort4) {
-            this.antwort4 = antwort4;
+        public Builder setAnswer4(String answer4) {
+            this.answer4 = answer4;
             return this;
         }
 
-        public Builder setRichtig4(Boolean richtig4) {
-            this.richtig4 = richtig4;
+        public Builder setCorrect4(Boolean correct4) {
+            this.correct4 = correct4;
             return this;
         }
 
-        public Builder setAntwort5(String antwort5) {
-            this.antwort5 = antwort5;
+        public Builder setAnswer5(String answer5) {
+            this.answer5 = answer5;
             return this;
         }
 
-        public Builder setRichtig5(Boolean richtig5) {
-            this.richtig5 = richtig5;
+        public Builder setCorrect5(Boolean correct5) {
+            this.correct5 = correct5;
             return this;
         }
 
@@ -176,16 +176,16 @@ public class Question implements Parcelable {
         outParcel.writeString(type);
         outParcel.writeInt(points);
         outParcel.writeString(text);
-        outParcel.writeString(antwort1);
-        outParcel.writeByte((byte) (richtig1 ? 1 : 0));     //if myBoolean == true, byte == 1
-        outParcel.writeString(antwort2);
-        outParcel.writeByte((byte) (richtig2 ? 1 : 0));     //if myBoolean == true, byte == 1
-        outParcel.writeString(antwort3);
-        outParcel.writeByte((byte) (richtig3 ? 1 : 0));     //if myBoolean == true, byte == 1
-        outParcel.writeString(antwort4);
-        outParcel.writeByte((byte) (richtig4 ? 1 : 0));     //if myBoolean == true, byte == 1
-        outParcel.writeString(antwort5);
-        outParcel.writeByte((byte) (richtig5 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(answer1);
+        outParcel.writeByte((byte) (correct1 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(answer2);
+        outParcel.writeByte((byte) (correct2 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(answer3);
+        outParcel.writeByte((byte) (correct3 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(answer4);
+        outParcel.writeByte((byte) (correct4 ? 1 : 0));     //if myBoolean == true, byte == 1
+        outParcel.writeString(answer5);
+        outParcel.writeByte((byte) (correct5 ? 1 : 0));     //if myBoolean == true, byte == 1
         //myBoolean = in.readByte() == 1;     //myBoolean == true if byte == 1
     }
 
@@ -207,16 +207,16 @@ public class Question implements Parcelable {
         type = in.readString();
         points=in.readInt();
         text = in.readString();
-        antwort1 = in.readString();
-        richtig1 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        antwort2 = in.readString();
-        richtig2 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        antwort3 = in.readString();
-        richtig3 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        antwort4 = in.readString();
-        richtig4 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        antwort5 = in.readString();
-        richtig5 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer1 = in.readString();
+        correct1 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer2 = in.readString();
+        correct2 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer3 = in.readString();
+        correct3 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer4 = in.readString();
+        correct4 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer5 = in.readString();
+        correct5 = in.readByte() == 1;     //myBoolean == true if byte == 1
     }
 
     public Integer getIndex() {
@@ -239,44 +239,44 @@ public class Question implements Parcelable {
         return text;
     }
 
-    public String getAntwort1() {
-        return antwort1;
+    public String getANSWER1() {
+        return answer1;
     }
 
-    public Boolean getRichtig1() {
-        return richtig1;
+    public Boolean getCORRECT1() {
+        return correct1;
     }
 
-    public String getAntwort2() {
-        return antwort2;
+    public String getANSWER2() {
+        return answer2;
     }
 
-    public Boolean getRichtig2() {
-        return richtig2;
+    public Boolean getCORRECT2() {
+        return correct2;
     }
 
-    public String getAntwort3() {
-        return antwort3;
+    public String getANSWER3() {
+        return answer3;
     }
 
-    public Boolean getRichtig3() {
-        return richtig3;
+    public Boolean getCORRECT3() {
+        return correct3;
     }
 
-    public String getAntwort4() {
-        return antwort4;
+    public String getANSWER4() {
+        return answer4;
     }
 
-    public Boolean getRichtig4() {
-        return richtig4;
+    public Boolean getCORRECT4() {
+        return correct4;
     }
 
-    public String getAntwort5() {
-        return antwort5;
+    public String getANSWER5() {
+        return answer5;
     }
 
-    public Boolean getRichtig5() {
-        return richtig5;
+    public Boolean getCORRECT5() {
+        return correct5;
     }
 
 }

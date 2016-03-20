@@ -343,16 +343,16 @@ public class TestFragment extends Fragment  {
                 TrainerContract.QuestionEntry.COLUMN_TYPE,
                 TrainerContract.QuestionEntry.COLUMN_POINTS,
                 TrainerContract.QuestionEntry.COLUMN_TEXT,
-                TrainerContract.QuestionEntry.COLUMN_ANTWORT1,
-                TrainerContract.QuestionEntry.COLUMN_RICHTIG1,
-                TrainerContract.QuestionEntry.COLUMN_ANTWORT2,
-                TrainerContract.QuestionEntry.COLUMN_RICHTIG2,
-                TrainerContract.QuestionEntry.COLUMN_ANTWORT3,
-                TrainerContract.QuestionEntry.COLUMN_RICHTIG3,
-                TrainerContract.QuestionEntry.COLUMN_ANTWORT4,
-                TrainerContract.QuestionEntry.COLUMN_RICHTIG4,
-                TrainerContract.QuestionEntry.COLUMN_ANTWORT5,
-                TrainerContract.QuestionEntry.COLUMN_RICHTIG5,
+                TrainerContract.QuestionEntry.COLUMN_ANSWER1,
+                TrainerContract.QuestionEntry.COLUMN_CORRECT1,
+                TrainerContract.QuestionEntry.COLUMN_ANSWER2,
+                TrainerContract.QuestionEntry.COLUMN_CORRECT2,
+                TrainerContract.QuestionEntry.COLUMN_ANSWER3,
+                TrainerContract.QuestionEntry.COLUMN_CORRECT3,
+                TrainerContract.QuestionEntry.COLUMN_ANSWER4,
+                TrainerContract.QuestionEntry.COLUMN_CORRECT4,
+                TrainerContract.QuestionEntry.COLUMN_ANSWER5,
+                TrainerContract.QuestionEntry.COLUMN_CORRECT5,
         };
 
         Uri uri = Uri.parse(TrainerContract.QuestionEntry.CONTENT_URI + "/"
@@ -383,16 +383,16 @@ public class TestFragment extends Fragment  {
                                 .setType(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TYPE)))
                                 .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))))
                                 .setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)))
-                                .setAntwort1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT1)))
-                                .setRichtig1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG1)) > 0)
-                                .setAntwort2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT2)))
-                                .setRichtig2(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG2)) > 0)
-                                .setAntwort3(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT3)))
-                                .setRichtig3(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG3)) > 0)
-                                .setAntwort4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT4)))
-                                .setRichtig4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_RICHTIG4)) > 0)
-                                .setAntwort5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT5)))
-                                .setRichtig5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANTWORT5)) > 0)
+                                .setAnswer1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER1)))
+                                .setCorrect1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT1)) > 0)
+                                .setAnswer2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER2)))
+                                .setCorrect2(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT2)) > 0)
+                                .setAnswer3(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER3)))
+                                .setCorrect3(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT3)) > 0)
+                                .setAnswer4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER4)))
+                                .setCorrect4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT4)) > 0)
+                                .setAnswer5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER5)))
+                                .setCorrect5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER5)) > 0)
                                 .build();
                         // Adding contact to list
                         entryList.add(question);
@@ -622,23 +622,23 @@ public class TestFragment extends Fragment  {
             answers.put(current, new Answer.Builder()
                     .setIndex(current)
                     .setChecked(checked)
-                    .setAntwort("")
-                    .setRichtig1(checkBox1.isChecked())
-                    .setRichtig2(checkBox2.isChecked())
-                    .setRichtig3(checkBox3.isChecked())
-                    .setRichtig4(checkBox4.isChecked())
-                    .setRichtig5(checkBox5.isChecked())
+                    .setAnswer("")
+                    .setAnswer1(checkBox1.isChecked())
+                    .setAnswer2(checkBox2.isChecked())
+                    .setAnswer3(checkBox3.isChecked())
+                    .setAnswer4(checkBox4.isChecked())
+                    .setAnswer5(checkBox5.isChecked())
                     .build());
         } else if (linearLayoutContainer.getChildCount()==1) {
             answers.put(current, new Answer.Builder()
                     .setIndex(current)
                     .setChecked(checked)
-                    .setAntwort(editText1.getText().toString())
-                    .setRichtig1(false)
-                    .setRichtig2(false)
-                    .setRichtig3(false)
-                    .setRichtig4(false)
-                    .setRichtig5(false)
+                    .setAnswer(editText1.getText().toString())
+                    .setAnswer1(false)
+                    .setAnswer2(false)
+                    .setAnswer3(false)
+                    .setAnswer4(false)
+                    .setAnswer5(false)
                     .build());
         }
             //answers.add(new Answer(current, editText_answer.getText().toString(), checkBox_answer1.isChecked(), checkBox_answer2.isChecked(), checkBox_answer3.isChecked(), checkBox_answer4.isChecked(), checkBox_answer5.isChecked() ));
@@ -650,14 +650,14 @@ public class TestFragment extends Fragment  {
         Answer answer = (Answer) answers.get(current);
         if (answer != null) {
             if ((question.type !=null) && (question.type.equals("auswahl"))) {
-                checkBox1.setChecked(answer.richtig1);
-                checkBox2.setChecked(answer.richtig2);
-                checkBox3.setChecked(answer.richtig3);
-                checkBox4.setChecked(answer.richtig4);
-                checkBox5.setChecked(answer.richtig5);
+                checkBox1.setChecked(answer.answer1);
+                checkBox2.setChecked(answer.answer2);
+                checkBox3.setChecked(answer.answer3);
+                checkBox4.setChecked(answer.answer4);
+                checkBox5.setChecked(answer.answer5);
 
             } else {
-                editText1.setText(answer.antwort);
+                editText1.setText(answer.answer);
             }
             answered = false;
             checked = answer.checked;
@@ -676,11 +676,11 @@ public class TestFragment extends Fragment  {
 
         if ((question.type != null) && (question.type.equals("auswahl"))) {
 
-            checkBox1.setText(question.antwort1);
-            checkBox2.setText(question.antwort2);
-            checkBox3.setText(question.antwort3);
-            checkBox4.setText(question.antwort4);
-            checkBox5.setText(question.antwort5);
+            checkBox1.setText(question.answer1);
+            checkBox2.setText(question.answer2);
+            checkBox3.setText(question.answer3);
+            checkBox4.setText(question.answer4);
+            checkBox5.setText(question.answer5);
         }
     }
 
@@ -689,35 +689,35 @@ public class TestFragment extends Fragment  {
         checked = true;
         saveAnswers();
         if ((question.type !=null) && (question.type.equals("auswahl"))) {
-            if ((question.richtig1 !=null) && question.richtig1) {
+            if ((question.correct1 !=null) && question.correct1) {
                 if (checkBox1.isChecked() == true) {
                     checkBox1.setTextColor(Color.GREEN);
                 } else {
                     checkBox1.setTextColor(Color.RED);
                 }
             }
-            if ((question.richtig2 !=null) && question.richtig2) {
+            if ((question.correct2 !=null) && question.correct2) {
                 if (checkBox2.isChecked() == true) {
                     checkBox2.setTextColor(Color.GREEN);
                 } else {
                     checkBox2.setTextColor(Color.RED);
                 }
             }
-            if ((question.richtig3 !=null) && question.richtig3) {
+            if ((question.correct3 !=null) && question.correct3) {
                 if (checkBox3.isChecked() == true) {
                     checkBox3.setTextColor(Color.GREEN);
                 } else {
                     checkBox3.setTextColor(Color.RED);
                 }
             }
-            if ((question.richtig4 !=null) && question.richtig4) {
+            if ((question.correct4 !=null) && question.correct4) {
                 if (checkBox4.isChecked() == true) {
                     checkBox4.setTextColor(Color.GREEN);
                 } else {
                     checkBox4.setTextColor(Color.RED);
                 }
             }
-            if ((question.richtig5 !=null) && question.richtig5) {
+            if ((question.correct5 !=null) && question.correct5) {
                 if (checkBox5.isChecked() == true) {
                     checkBox5.setTextColor(Color.GREEN);
                 } else {
@@ -725,11 +725,11 @@ public class TestFragment extends Fragment  {
                 }
             }
         } else {
-            if (editText1.getText().toString().trim().equals(question.antwort1.trim())) {
+            if (editText1.getText().toString().trim().equals(question.answer1.trim())) {
                 editText1.setTextColor(Color.GREEN);
             } else {
                 editText1.setTextColor(Color.RED);
-                editText1.setText(question.antwort1);
+                editText1.setText(question.answer1);
             }
         }
         //answered = false;
@@ -754,23 +754,23 @@ public class TestFragment extends Fragment  {
             if (answer != null) {
 
                 if ((question.type !=null) && (question.type.equals("auswahl"))) {
-                    if ((question.richtig1 !=null) && (question.richtig1 != answer.richtig1 )) {
+                    if ((question.correct1 !=null) && (question.correct1 != answer.answer1 )) {
                         faults++;
                     }
-                    if ((question.richtig2 !=null) && (question.richtig2 != answer.richtig2 )) {
+                    if ((question.correct2 !=null) && (question.correct2 != answer.answer2 )) {
                         faults++;
                     }
-                    if ((question.richtig3 !=null) && (question.richtig3 != answer.richtig3 )) {
+                    if ((question.correct3 !=null) && (question.correct3 != answer.answer3 )) {
                         faults++;
                     }
-                    if ((question.richtig4 !=null) && (question.richtig4 != answer.richtig4 )) {
+                    if ((question.correct4 !=null) && (question.correct4 != answer.answer4 )) {
                         faults++;
                     }
-                    if ((question.richtig5 !=null) && (question.richtig5 != answer.richtig5 )) {
+                    if ((question.correct5 !=null) && (question.correct5 != answer.answer5 )) {
                         faults++;
                     }
                 } else {
-                    if (!question.antwort1.equals(answer.antwort)) {
+                    if (!question.answer1.equals(answer.answer)) {
                         faults++;
                     }
                 }
@@ -782,12 +782,12 @@ public class TestFragment extends Fragment  {
                 answers.put(index, new Answer.Builder()
                         .setIndex(index)
                         .setChecked(true)
-                        .setAntwort(answer.antwort)
-                        .setRichtig1(answer.richtig1)
-                        .setRichtig2(answer.richtig2)
-                        .setRichtig3(answer.richtig3)
-                        .setRichtig4(answer.richtig4)
-                        .setRichtig5(answer.richtig5)
+                        .setAnswer(answer.answer)
+                        .setAnswer1(answer.answer1)
+                        .setAnswer2(answer.answer2)
+                        .setAnswer3(answer.answer3)
+                        .setAnswer4(answer.answer4)
+                        .setAnswer5(answer.answer5)
                         .build());
 
             } else {
@@ -796,12 +796,12 @@ public class TestFragment extends Fragment  {
                 answers.put(index, new Answer.Builder()
                         .setIndex(index)
                         .setChecked(true)
-                        .setAntwort("")
-                        .setRichtig1(false)
-                        .setRichtig2(false)
-                        .setRichtig3(false)
-                        .setRichtig4(false)
-                        .setRichtig5(false)
+                        .setAnswer("")
+                        .setAnswer1(false)
+                        .setAnswer2(false)
+                        .setAnswer3(false)
+                        .setAnswer4(false)
+                        .setAnswer5(false)
                         .build());
 
             }

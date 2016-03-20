@@ -34,7 +34,7 @@
                 android:value="de.sindzinski.lpictrainer.MainActivity" />
         </activity>
         <provider
-            android:name="de.sindzinski.lpictrainer.data.QuestionContentProvider"
+            android:name=".data.TrainerContentProvider"
             android:authorities="de.sindzinski.lpictrainer.provider" >
         </provider>
         <!-- AdMobActivity definition -->

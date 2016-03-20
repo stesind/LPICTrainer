@@ -8,43 +8,46 @@ import android.os.Parcel;
 public class Answer implements Parcelable {
     public Integer index = 0;
     public boolean checked;
-    public String antwort;
-    public boolean richtig1;
-    public boolean richtig2;
-    public boolean richtig3;
-    public boolean richtig4;
-    public boolean richtig5;
+    public Integer points;
+    public String answer;
+    public boolean answer1;
+    public boolean answer2;
+    public boolean answer3;
+    public boolean answer4;
+    public boolean answer5;
 
-/*    public Answer(Integer index, Boolean checked, String antwort, Boolean richtig1, Boolean richtig2, Boolean richtig3, Boolean richtig4, Boolean richtig5) {
+/*    public ANSWER(Integer index, Boolean checked, String ANSWER, Boolean ANSWER1, Boolean ANSWER2, Boolean ANSWER3, Boolean ANSWER4, Boolean ANSWER5) {
         this.index = index;
         this.checked = checked;
-        this.antwort = antwort;
-        this.richtig1 = richtig1;
-        this.richtig2 = richtig2;
-        this.richtig3 = richtig3;
-        this.richtig4 = richtig4;
-        this.richtig5 = richtig5;
+        this.ANSWER = ANSWER;
+        this.ANSWER1 = ANSWER1;
+        this.ANSWER2 = ANSWER2;
+        this.ANSWER3 = ANSWER3;
+        this.ANSWER4 = ANSWER4;
+        this.ANSWER5 = ANSWER5;
     }*/
 private Answer(Builder builder) {
     this.index = builder.index;
     this.checked = builder.checked;
-    this.antwort = builder.antwort;
-    this.richtig1 = builder.richtig1;
-    this.richtig2 = builder.richtig2;
-    this.richtig3 = builder.richtig3;
-    this.richtig4 = builder.richtig4;
-    this.richtig5 = builder.richtig5;
+    this.points = builder.points;
+    this.answer = builder.answer;
+    this.answer1 = builder.answer1;
+    this.answer2 = builder.answer2;
+    this.answer3 = builder.answer3;
+    this.answer4 = builder.answer4;
+    this.answer5 = builder.answer5;
 }
     //builder pattern public static class
     public static class Builder {
         private Integer index;
         private Boolean checked;
-        private String antwort;
-        private Boolean richtig1;
-        private Boolean richtig2;
-        private Boolean richtig3;
-        private Boolean richtig4;
-        private Boolean richtig5;
+        private Integer points;
+        private String answer;
+        private Boolean answer1;
+        private Boolean answer2;
+        private Boolean answer3;
+        private Boolean answer4;
+        private Boolean answer5;
         private Parcel in;
 
         public Builder setIndex(Integer index) {
@@ -57,33 +60,37 @@ private Answer(Builder builder) {
             return this;
         }
 
-        public Builder setAntwort(String antwort) {
-            this.antwort = antwort;
+        public Builder setPoints(Integer points) {
+            this.points = points;
+            return this;
+        }
+        public Builder setAnswer(String answer) {
+            this.answer = answer;
             return this;
         }
 
-        public Builder setRichtig1(Boolean richtig1) {
-            this.richtig1 = richtig1;
+        public Builder setAnswer1(Boolean answer1) {
+            this.answer1 = answer1;
             return this;
         }
 
-        public Builder setRichtig2(Boolean richtig2) {
-            this.richtig2 = richtig2;
+        public Builder setAnswer2(Boolean answer2) {
+            this.answer2 = answer2;
             return this;
         }
 
-        public Builder setRichtig3(Boolean richtig3) {
-            this.richtig3 = richtig3;
+        public Builder setAnswer3(Boolean answer3) {
+            this.answer3 = answer3;
             return this;
         }
 
-        public Builder setRichtig4(Boolean richtig4) {
-            this.richtig4 = richtig4;
+        public Builder setAnswer4(Boolean answer4) {
+            this.answer4 = answer4;
             return this;
         }
 
-        public Builder setRichtig5(Boolean richtig5) {
-            this.richtig5 = richtig5;
+        public Builder setAnswer5(Boolean answer5) {
+            this.answer5 = answer5;
             return this;
         }
 
@@ -104,12 +111,13 @@ private Answer(Builder builder) {
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(index);
         out.writeByte((byte) (checked ? 1 : 0));     //if myBoolean == true, byte == 1
-        out.writeString(antwort);
-        out.writeByte((byte) (richtig1 ? 1 : 0));     //if myBoolean == true, byte == 1
-        out.writeByte((byte) (richtig2 ? 1 : 0));     //if myBoolean == true, byte == 1
-        out.writeByte((byte) (richtig3 ? 1 : 0));     //if myBoolean == true, byte == 1
-        out.writeByte((byte) (richtig4 ? 1 : 0));     //if myBoolean == true, byte == 1
-        out.writeByte((byte) (richtig5 ? 1 : 0));     //if myBoolean == true, byte == 1
+        out.writeInt(points);
+        out.writeString(answer);
+        out.writeByte((byte) (answer1 ? 1 : 0));     //if myBoolean == true, byte == 1
+        out.writeByte((byte) (answer2 ? 1 : 0));     //if myBoolean == true, byte == 1
+        out.writeByte((byte) (answer3 ? 1 : 0));     //if myBoolean == true, byte == 1
+        out.writeByte((byte) (answer4 ? 1 : 0));     //if myBoolean == true, byte == 1
+        out.writeByte((byte) (answer5 ? 1 : 0));     //if myBoolean == true, byte == 1
     }
 
     public static final Answer.Creator<Answer> CREATOR
@@ -127,34 +135,35 @@ private Answer(Builder builder) {
 
         index=in.readInt();
         checked = in.readByte() == 1;     //myBoolean == true if byte == 1
-        antwort = in.readString();
-        richtig1 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        richtig2 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        richtig3 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        richtig4 = in.readByte() == 1;     //myBoolean == true if byte == 1
-        richtig5 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        points=in.readInt();
+        answer = in.readString();
+        answer1 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer2 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer3 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer4 = in.readByte() == 1;     //myBoolean == true if byte == 1
+        answer5 = in.readByte() == 1;     //myBoolean == true if byte == 1
     }
 
-    /*    public static class Answer implements Serializable {
+    /*    public static class ANSWER implements Serializable {
 
         public Integer index = 0;
         public boolean checked;
-        public String antwort;
-        public boolean richtig1;
-        public boolean richtig2;
-        public boolean richtig3;
-        public boolean richtig4;
-        public boolean richtig5;
+        public String ANSWER;
+        public boolean ANSWER1;
+        public boolean ANSWER2;
+        public boolean ANSWER3;
+        public boolean ANSWER4;
+        public boolean ANSWER5;
 
-        private Answer(Integer index, Boolean checked, String antwort, Boolean richtig1, Boolean richtig2, Boolean richtig3, Boolean richtig4, Boolean richtig5) {
+        private ANSWER(Integer index, Boolean checked, String ANSWER, Boolean ANSWER1, Boolean ANSWER2, Boolean ANSWER3, Boolean ANSWER4, Boolean ANSWER5) {
             this.index = index;
             this.checked = checked;
-            this.antwort = antwort;
-            this.richtig1 = richtig1;
-            this.richtig2 = richtig2;
-            this.richtig3 = richtig3;
-            this.richtig4 = richtig4;
-            this.richtig5 = richtig5;
+            this.ANSWER = ANSWER;
+            this.ANSWER1 = ANSWER1;
+            this.ANSWER2 = ANSWER2;
+            this.ANSWER3 = ANSWER3;
+            this.ANSWER4 = ANSWER4;
+            this.ANSWER5 = ANSWER5;
         }
     }*/
 }

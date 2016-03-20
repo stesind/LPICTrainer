@@ -15,11 +15,9 @@ import android.widget.SimpleCursorAdapter;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import de.sindzinski.lpictrainer.data.TrainerContract.QuestionEntry;
 import de.sindzinski.lpictrainer.data.TrainerContract;
 import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
-import de.sindzinski.lpictrainer.data.QuestionContentProvider;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 

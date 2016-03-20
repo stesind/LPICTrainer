@@ -53,16 +53,16 @@ public class XmlParser {
         String type = null;
         Integer points = 0;
         String text = null;
-        String antwort1 = null;
-        Boolean richtig1 = null;
-        String antwort2 = null;
-        Boolean richtig2 = null;
-        String antwort3 = null;
-        Boolean richtig3 = null;
-        String antwort4 = null;
-        Boolean richtig4 = null;
-        String antwort5 = null;
-        Boolean richtig5 = null;
+        String answer1 = null;
+        Boolean correct1 = null;
+        String answer2 = null;
+        Boolean correct2 = null;
+        String answer3 = null;
+        Boolean correct3 = null;
+        String answer4 = null;
+        Boolean correct4 = null;
+        String answer5 = null;
+        Boolean correct5 = null;
         String tag = null;
 
         parser.require(XmlPullParser.START_TAG, ns, "rootnode");
@@ -83,37 +83,37 @@ public class XmlParser {
             } else if ((type != null) && (type.equals("auswahl")) && (name.equals("antwort"))) {
 
                 tag = parser.getName();
-                richtig1 = parser.getAttributeValue(null, "richtig").equals("ja");
-                //richtig1 = parser.getAttributeValue(null, "richtig");
-                antwort1 = android.text.Html.fromHtml(readText(parser)).toString();
+                correct1 = parser.getAttributeValue(null, "richtig").equals("ja");
+                //correct1 = parser.getAttributeValue(null, "correct");
+                answer1 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                richtig2 = parser.getAttributeValue(null, "richtig").equals("ja");
-                //richtig2 = parser.getAttributeValue(null, "richtig");
-                antwort2 = android.text.Html.fromHtml(readText(parser)).toString();
+                correct2 = parser.getAttributeValue(null, "richtig").equals("ja");
+                //correct2 = parser.getAttributeValue(null, "correct");
+                answer2 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                richtig3 = parser.getAttributeValue(null, "richtig").equals("ja");
-                //richtig3 = parser.getAttributeValue(null, "richtig");
-                antwort3 = android.text.Html.fromHtml(readText(parser)).toString();
+                correct3 = parser.getAttributeValue(null, "richtig").equals("ja");
+                //correct3 = parser.getAttributeValue(null, "correct");
+                answer3 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                richtig4 = parser.getAttributeValue(null, "richtig").equals("ja");
-                //richtig4 = parser.getAttributeValue(null, "richtig");
-                antwort4 = android.text.Html.fromHtml(readText(parser)).toString();
+                correct4 = parser.getAttributeValue(null, "richtig").equals("ja");
+                //correct4 = parser.getAttributeValue(null, "correct");
+                answer4 = android.text.Html.fromHtml(readText(parser)).toString();
                 do {
                     parser.next();
                 } while (parser.getEventType() != XmlPullParser.START_TAG);
                 tag = parser.getName();
-                richtig5 = parser.getAttributeValue(null, "richtig").equals("ja");
-                //richtig5 = parser.getAttributeValue(null, "richtig");
-                antwort5 = android.text.Html.fromHtml(readText(parser)).toString();
+                correct5 = parser.getAttributeValue(null, "richtig").equals("ja");
+                //correct5 = parser.getAttributeValue(null, "correct");
+                answer5 = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
                 entries.add(new Question.Builder()
@@ -122,33 +122,33 @@ public class XmlParser {
                         .setType(type)
                         .setPoints(points)
                         .setText(text)
-                        .setAntwort1(antwort1)
-                        .setRichtig1(richtig1)
-                        .setAntwort2(antwort2)
-                        .setRichtig2(richtig2)
-                        .setAntwort3(antwort3)
-                        .setRichtig3(richtig3)
-                        .setAntwort4(antwort4)
-                        .setRichtig4(richtig4)
-                        .setAntwort5(antwort5)
-                        .setRichtig5(richtig5)
+                        .setAnswer1(answer1)
+                        .setCorrect1(correct1)
+                        .setAnswer2(answer2)
+                        .setCorrect2(correct2)
+                        .setAnswer3(answer3)
+                        .setCorrect3(correct3)
+                        .setAnswer4(answer4)
+                        .setCorrect4(correct4)
+                        .setAnswer5(answer5)
+                        .setCorrect5(correct5)
                         .build());
                 title = null;
                 type = null;
                 points = null;
                 text = null;
-                antwort1 = null;
-                richtig1 = null;
-                antwort2 = null;
-                richtig2 = null;
-                antwort3 = null;
-                richtig3 = null;
-                antwort4 = null;
-                richtig4 = null;
-                antwort5 = null;
-                richtig5 = null;
+                answer1 = null;
+                correct1 = null;
+                answer2 = null;
+                correct2 = null;
+                answer3 = null;
+                correct3 = null;
+                answer4 = null;
+                correct4 = null;
+                answer5 = null;
+                correct5 = null;
             } else if ( (type != null) && (type.equals("text")) && (name.equals("antwort"))) {
-                antwort1 = android.text.Html.fromHtml(readText(parser)).toString();
+                answer1 = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
                 entries.add(new Question.Builder()
@@ -157,31 +157,31 @@ public class XmlParser {
                         .setType(type)
                         .setPoints(points)
                         .setText(text)
-                        .setAntwort1(antwort1)
-                        .setRichtig1(richtig1)
-                        .setAntwort2(antwort2)
-                        .setRichtig2(richtig2)
-                        .setAntwort3(antwort3)
-                        .setRichtig3(richtig3)
-                        .setAntwort4(antwort4)
-                        .setRichtig4(richtig4)
-                        .setAntwort5(antwort5)
-                        .setRichtig5(richtig5)
+                        .setAnswer1(answer1)
+                        .setCorrect1(correct1)
+                        .setAnswer2(answer2)
+                        .setCorrect2(correct2)
+                        .setAnswer3(answer3)
+                        .setCorrect3(correct3)
+                        .setAnswer4(answer4)
+                        .setCorrect4(correct4)
+                        .setAnswer5(answer5)
+                        .setCorrect5(correct5)
                         .build());
                 title = null;
                 type = null;
                 points = null;
                 text = null;
-                antwort1 = null;
-                richtig1 = null;
-                antwort2 = null;
-                richtig2 = null;
-                antwort3 = null;
-                richtig3 = null;
-                antwort4 = null;
-                richtig4 = null;
-                antwort5 = null;
-                richtig5 = null;
+                answer1 = null;
+                correct1 = null;
+                answer2 = null;
+                correct2 = null;
+                answer3 = null;
+                correct3 = null;
+                answer4 = null;
+                correct4 = null;
+                answer5 = null;
+                correct5 = null;
             } else {
                 skip(parser);
             }
@@ -213,34 +213,34 @@ public class XmlParser {
         public final String type;
         public final String points;
         public final String text;
-        public final String antwort1;
-        public final Boolean richtig1;
-        public final String antwort2;
-        public final Boolean richtig2;
-        public final String antwort3;
-        public final Boolean richtig3;
-        public final String antwort4;
-        public final Boolean richtig4;
-        public final String antwort5;
-        public final Boolean richtig5;
+        public final String answer1;
+        public final Boolean correct1;
+        public final String answer2;
+        public final Boolean correct2;
+        public final String answer3;
+        public final Boolean correct3;
+        public final String answer4;
+        public final Boolean correct4;
+        public final String answer5;
+        public final Boolean correct5;
         // We don't use namespaces
         private static final String ns = null;
 
-        private Question(String title, String type, String points, String text, String antwort1, Boolean richtig1, String antwort2, Boolean richtig2, String antwort3, Boolean richtig3, String antwort4, Boolean richtig4, String antwort5, Boolean richtig5) {
+        private Question(String title, String type, String points, String text, String answer1, Boolean correct1, String answer2, Boolean correct2, String answer3, Boolean correct3, String answer4, Boolean correct4, String answer5, Boolean correct5) {
             this.title = title;
             this.type = type;
             this.points = points;
             this.text = text;
-            this.antwort1 = antwort1;
-            this.richtig1 = richtig1;
-            this.antwort2 = antwort2;
-            this.richtig2 = richtig2;
-            this.antwort3 = antwort3;
-            this.richtig3 = richtig3;
-            this.antwort4 = antwort4;
-            this.richtig4 = richtig4;
-            this.antwort5 = antwort5;
-            this.richtig5 = richtig5;
+            this.answer1 = answer1;
+            this.correct1 = correct1;
+            this.answer2 = answer2;
+            this.correct2 = correct2;
+            this.answer3 = answer3;
+            this.correct3 = correct3;
+            this.answer4 = answer4;
+            this.correct4 = correct4;
+            this.answer5 = answer5;
+            this.correct5 = correct5;
         }
     }*/
 
@@ -304,11 +304,11 @@ public class XmlParser {
     }
 
     // Processes link tags in the feed.
-    private String readAntwort(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "antwort");
-        String antwort = readText(parser);
-        String richtig = parser.getAttributeValue(null, "richtig");
-        return antwort;
+    private String readANSWER(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "answer");
+        String answer = readText(parser);
+        String correct = parser.getAttributeValue(null, "correct");
+        return answer;
     }
 
     // For the tags title and summary, extracts their text values.
