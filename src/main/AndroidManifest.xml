@@ -28,6 +28,7 @@
         <activity
             android:name="de.sindzinski.lpictrainer.TestActivity"
             android:label="@string/title_activity_test"
+            android:theme="@android:style/Theme.Holo">
             android:parentActivityName="de.sindzinski.lpictrainer.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

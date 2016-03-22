@@ -2,9 +2,11 @@ package de.sindzinski.lpictrainer;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.AsyncQueryHandler;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -20,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import de.sindzinski.lpictrainer.data.TrainerContract;
+import de.sindzinski.lpictrainer.data.TrainerContract.AnswerEntry;
 import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
 
@@ -177,9 +180,10 @@ public class TestActivity extends FragmentActivity {
         //Uri mDataUrl = Uri.parse(TrainerContract.AnswerEntry.CONTENT_URI + "/"
         //        + mAnswer.index);
         String[] projection = {
-                TrainerContract.AnswerEntry._ID,
-                TrainerContract.AnswerEntry.COLUMN_ID,
-                TrainerContract.AnswerEntry.COLUMN_POINTS,
+                AnswerEntry._ID,
+                AnswerEntry.COLUMN_ID,
+//                AnswerEntry.COLUMN_CHECKED,
+                AnswerEntry.COLUMN_POINTS,
         };
         //String selectionClause = TrainerContract.AnswerEntry.CO + "=" + mAnswer.index;
         String selectionClause = null;
@@ -188,7 +192,7 @@ public class TestActivity extends FragmentActivity {
 
         try {
             Cursor cursor = this.getContentResolver().query(
-                    TrainerContract.AnswerEntry.CONTENT_URI,
+                    AnswerEntry.CONTENT_URI,
                     projection,
                     selectionClause,
                     selectionArgs,
@@ -197,7 +201,12 @@ public class TestActivity extends FragmentActivity {
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
                     do {
-                        points = points + cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS);
+                        //points = points + 1;
+                        int rowPoints = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS)));
+                        if (rowPoints > 0 ) {
+                            points = points + 1;
+                                    }
+
                     } while (cursor.moveToNext());
                 }
                 // always close the cursor
@@ -209,7 +218,44 @@ public class TestActivity extends FragmentActivity {
         maxPoints = to - from;
         Toast.makeText(this,
                 "You reached " + points.toString() + " out of " + maxPoints.toString(), Toast.LENGTH_LONG).show();
-    }
 
+//        int token = 2;
+//        AsyncQueryHandler handler =
+//                new AsyncQueryHandler(this.getContentResolver()) {
+//                    @Override
+//                    protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+//                        super.onQueryComplete(token, cookie, cursor);
+//                        if (cursor != null) {
+//                            Integer points =0;
+//                            Integer maxPoints = 0;
+//                            if (cursor.moveToFirst()) {
+//                                do {
+//                                    if (Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))) > 0 ) {
+//                                        points = points + 1;
+//                                    }
+//                                    //points = points + cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS);
+//                                } while (cursor.moveToNext());
+//                            }
+//                            // always close the cursor
+//                            cursor.close();
+//                            maxPoints = to - from;
+//                            Toast.makeText(TestActivity.this,
+//                                    "You reached "
+//                                            + points.toString()
+//                                            + " out of "
+//                                            + maxPoints.toString(),
+//                                    Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                };
+//
+//        handler.startQuery(token,
+//                null,
+//                AnswerEntry.CONTENT_URI,
+//                projection,
+//                selectionClause,
+//                selectionArgs,
+//                sortOrder);
+    }
 }
 

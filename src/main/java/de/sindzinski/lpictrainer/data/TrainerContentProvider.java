@@ -69,44 +69,50 @@ public class TrainerContentProvider extends ContentProvider {
         // check if the caller has requested a column which does not exists
         checkColumns(projection);
 
-        // Set the table
-        queryBuilder.setTables(TrainerContract.QuestionEntry.TABLE_NAME);
-
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
             case QUESTIONS:
                 //if (TextUtils.isEmpty(sortOrder)) sortOrder = "_ID ASC";
+                queryBuilder.setTables(TrainerContract.QuestionEntry.TABLE_NAME);
+                if (TextUtils.isEmpty(sortOrder)) sortOrder = TrainerContract.QuestionEntry.COLUMN_ID + " ASC";
                 break;
             case QUESTIONS_ID:
+                queryBuilder.setTables(TrainerContract.QuestionEntry.TABLE_NAME);
                 // adding the ID to the original query
                 queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "="
                         + uri.getLastPathSegment());
                 //selection = selection + "_ID = " uri.getLastPathSegment();
+                if (TextUtils.isEmpty(sortOrder)) sortOrder = TrainerContract.QuestionEntry.COLUMN_ID + " ASC";
                 break;
             case QUESTIONS_FROM_TO:
+                queryBuilder.setTables(TrainerContract.QuestionEntry.TABLE_NAME);
                 //better to user selection and args in calling method
                 queryBuilder.appendWhere( TrainerContract.QuestionEntry.COLUMN_ID + ">=" + uri.getPathSegments().get(uri.getPathSegments().size()-2));
                 queryBuilder.appendWhere(" AND ");
                 queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "<=" + uri.getLastPathSegment());
-
+                if (TextUtils.isEmpty(sortOrder)) sortOrder = TrainerContract.QuestionEntry.COLUMN_ID + " ASC";
 /*                queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "<="
                         + uri.getLastPathSegment());*/
                 break;
             case ANSWERS:
-                //if (TextUtils.isEmpty(sortOrder)) sortOrder = "_ID ASC";
+                queryBuilder.setTables(TrainerContract.AnswerEntry.TABLE_NAME);
+                if (TextUtils.isEmpty(sortOrder)) sortOrder = TrainerContract.AnswerEntry.COLUMN_ID + " ASC";
                 break;
             case ANSWERS_ID:
+                queryBuilder.setTables(TrainerContract.AnswerEntry.TABLE_NAME);
                 // adding the ID to the original query
                 queryBuilder.appendWhere(TrainerContract.AnswerEntry.COLUMN_ID + "="
                         + uri.getLastPathSegment());
                 //selection = selection + "_ID = " uri.getLastPathSegment();
+                if (TextUtils.isEmpty(sortOrder)) sortOrder = TrainerContract.AnswerEntry.COLUMN_ID + " ASC";
                 break;
             case ANSWERS_FROM_TO:
+                queryBuilder.setTables(TrainerContract.AnswerEntry.TABLE_NAME);
                 //better to user selection and args in calling method
                 queryBuilder.appendWhere( TrainerContract.AnswerEntry.COLUMN_ID + ">=" + uri.getPathSegments().get(uri.getPathSegments().size()-2));
                 queryBuilder.appendWhere(" AND ");
                 queryBuilder.appendWhere(TrainerContract.AnswerEntry.COLUMN_ID + "<=" + uri.getLastPathSegment());
-
+                if (TextUtils.isEmpty(sortOrder)) sortOrder = TrainerContract.AnswerEntry.COLUMN_ID + " ASC";
 /*                queryBuilder.appendWhere(TrainerContract.QuestionEntry.COLUMN_ID + "<="
                         + uri.getLastPathSegment());*/
                 break;
