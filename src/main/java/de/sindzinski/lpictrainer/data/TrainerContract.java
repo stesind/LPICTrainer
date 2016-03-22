@@ -21,6 +21,7 @@ public class TrainerContract {
         public static final String COLUMN_TYPE ="type";
         public static final String COLUMN_POINTS = "points";
         public static final String COLUMN_TEXT = "text";
+        public static final String COLUMN_ANSWER = "answer";
         public static final String COLUMN_ANSWER1 = "answer1";
         public static final String COLUMN_CORRECT1 = "correct1";
         public static final String COLUMN_ANSWER2 = "answer2";

@@ -74,9 +74,9 @@ public class PagerTestFragment extends Fragment
             //redrawn
             mCurrent = savedInstanceState.getInt(EXTRA_CURRENT, 0);
             mTo = savedInstanceState.getInt(EXTRA_TO, 0);
-            mAnswer = savedInstanceState.getParcelable(ANSWER);
+            //mAnswer = savedInstanceState.getParcelable(ANSWER);
             //entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
-            mQuestion = savedInstanceState.getParcelable(QUESTION);
+            //mQuestion = savedInstanceState.getParcelable(QUESTION);
 
         } else {
             mCurrent = getArguments() != null ? getArguments().getInt(EXTRA_CURRENT) : 1;
@@ -115,51 +115,46 @@ public class PagerTestFragment extends Fragment
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        saveAnswer();
-    }
-
-    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-        if (id== loaderQuestion) {
-                Uri mDataUrl = Uri.parse(TrainerContract.QuestionEntry.CONTENT_URI + "/"
-                        + mCurrent);
+        if (id == loaderQuestion) {
+            Uri mDataUrl = Uri.parse(TrainerContract.QuestionEntry.CONTENT_URI + "/"
+                    + mCurrent);
 
-                String[] mProjection = {
-                        TrainerContract.QuestionEntry._ID,
-                        TrainerContract.QuestionEntry.COLUMN_ID,
-                        TrainerContract.QuestionEntry.COLUMN_TITLE,
-                        TrainerContract.QuestionEntry.COLUMN_TYPE,
-                        TrainerContract.QuestionEntry.COLUMN_POINTS,
-                        TrainerContract.QuestionEntry.COLUMN_TEXT,
-                        TrainerContract.QuestionEntry.COLUMN_ANSWER1,
-                        TrainerContract.QuestionEntry.COLUMN_CORRECT1,
-                        TrainerContract.QuestionEntry.COLUMN_ANSWER2,
-                        TrainerContract.QuestionEntry.COLUMN_CORRECT2,
-                        TrainerContract.QuestionEntry.COLUMN_ANSWER3,
-                        TrainerContract.QuestionEntry.COLUMN_CORRECT3,
-                        TrainerContract.QuestionEntry.COLUMN_ANSWER4,
-                        TrainerContract.QuestionEntry.COLUMN_CORRECT4,
-                        TrainerContract.QuestionEntry.COLUMN_ANSWER5,
-                        TrainerContract.QuestionEntry.COLUMN_CORRECT5,
-                };
+            String[] mProjection = {
+                    TrainerContract.QuestionEntry._ID,
+                    TrainerContract.QuestionEntry.COLUMN_ID,
+                    TrainerContract.QuestionEntry.COLUMN_TITLE,
+                    TrainerContract.QuestionEntry.COLUMN_TYPE,
+                    TrainerContract.QuestionEntry.COLUMN_POINTS,
+                    TrainerContract.QuestionEntry.COLUMN_TEXT,
+                    TrainerContract.QuestionEntry.COLUMN_ANSWER,
+                    TrainerContract.QuestionEntry.COLUMN_ANSWER1,
+                    TrainerContract.QuestionEntry.COLUMN_CORRECT1,
+                    TrainerContract.QuestionEntry.COLUMN_ANSWER2,
+                    TrainerContract.QuestionEntry.COLUMN_CORRECT2,
+                    TrainerContract.QuestionEntry.COLUMN_ANSWER3,
+                    TrainerContract.QuestionEntry.COLUMN_CORRECT3,
+                    TrainerContract.QuestionEntry.COLUMN_ANSWER4,
+                    TrainerContract.QuestionEntry.COLUMN_CORRECT4,
+                    TrainerContract.QuestionEntry.COLUMN_ANSWER5,
+                    TrainerContract.QuestionEntry.COLUMN_CORRECT5,
+            };
 
-                // Defines a string to contain the selection clause
-                String mSelectionClause = null;
-                // Initializes an array to contain selection arguments
-                String[] mSelectionArgs = null;
-                // more generic to use selection and args in content provider than here
-                String mSortOrder = null;
+            // Defines a string to contain the selection clause
+            String mSelectionClause = null;
+            // Initializes an array to contain selection arguments
+            String[] mSelectionArgs = null;
+            // more generic to use selection and args in content provider than here
+            String mSortOrder = null;
 
-                return new CursorLoader(
-                        getActivity(),
-                        mDataUrl,   // The content URI of the question table
-                        mProjection,                        // The columns to return for each row
-                        mSelectionClause,                    // Selection criteria
-                        mSelectionArgs,                     // Selection criteria
-                        mSortOrder);
+            return new CursorLoader(
+                    getActivity(),
+                    mDataUrl,   // The content URI of the question table
+                    mProjection,                        // The columns to return for each row
+                    mSelectionClause,                    // Selection criteria
+                    mSelectionArgs,                     // Selection criteria
+                    mSortOrder);
 
 
         } else {
@@ -181,6 +176,7 @@ public class PagerTestFragment extends Fragment
                                 .setType(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TYPE)))
                                 .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))))
                                 .setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)))
+                                .setAnswer(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER)))
                                 .setAnswer1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER1)))
                                 .setCorrect1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT1)) > 0)
                                 .setAnswer2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER2)))
@@ -262,6 +258,10 @@ public class PagerTestFragment extends Fragment
 //        CheckBox checkBox5 = (CheckBox) getView().findViewById(R.id.checkBox5);
 //        EditText editText1 = (EditText) getView().findViewById(R.id.editText1);
 
+        String[] parts = viewHolder.textView_current.getText().toString().split("/");
+//        if (parts != null) {
+//            int current = Integer.parseInt(parts[0]);
+//        }
         mAnswer = new Answer.Builder()
                 .setIndex(mCurrent)
                 .setChecked(true)
@@ -273,28 +273,16 @@ public class PagerTestFragment extends Fragment
                 .setAnswer5(viewHolder.checkBox5.isChecked())
                 .build();
 
-        //save to content provider (db)
-        int token = 1;
-        AsyncQueryHandler handler =
-                new AsyncQueryHandler(getActivity().getContentResolver()) {
-                    @Override
-                    protected void onInsertComplete(int token, Object cookie, Uri uri) {
-                        super.onInsertComplete(token, cookie, uri);
-                    }
-
-                    @Override
-                    protected void onUpdateComplete(int token, Object cookie, int result) {
-                        super.onUpdateComplete(token, cookie, result);
-                        Logger.i(TAG, "Rows updated: " + result);
-                    }};
-
-        String SelectionClause = mAnswer.index.toString();
-        String[] SelectionArgs = null;
+        // check the answers and set points
+        Bundle bundle = checkAnswer();
+        mAnswer.points = bundle.getInt("points");
+        mAnswer.checked = true;
 
         //add new questions
         ContentValues values = new ContentValues();
         values.clear();
-        //values.put(TrainerContract.AnswerEntry.COLUMN_ID, mAnswer.index);
+        //values.put(TrainerContract.AnswerEntry._ID, mAnswer.index);
+        values.put(TrainerContract.AnswerEntry.COLUMN_ID, mAnswer.index);
         values.put(TrainerContract.AnswerEntry.COLUMN_CHECKED, mAnswer.checked);
         values.put(TrainerContract.AnswerEntry.COLUMN_POINTS, mAnswer.points);
         values.put(TrainerContract.AnswerEntry.COLUMN_ANSWER, mAnswer.answer);
@@ -304,15 +292,49 @@ public class PagerTestFragment extends Fragment
         values.put(TrainerContract.AnswerEntry.COLUMN_ANSWER4, mAnswer.answer4);
         values.put(TrainerContract.AnswerEntry.COLUMN_ANSWER5, mAnswer.answer5);
 
-        handler.startUpdate(token, null,
+
+//          save to content provider in ui thread
+//        try {
+//            //insert or replace by "on conflict replace in answer table
+//            Uri uri = getActivity().getContentResolver().insert(TrainerContract.AnswerEntry.CONTENT_URI, values);
+//            Logger.i(TAG, "Answer Rows inserted: " + uri);
+//
+//        } catch (Exception e) {
+//            Logger.i(TAG, "Exception: " + e.toString());
+//        }
+
+
+        //save to content provider (db) async
+        int token = 1;
+        AsyncQueryHandler handler =
+                new AsyncQueryHandler(getActivity().getContentResolver()) {
+                    @Override
+                    protected void onInsertComplete(int token, Object cookie, Uri uri) {
+                        super.onInsertComplete(token, cookie, uri);
+                        Logger.i(TAG, "Row inserted: " + uri);
+                    }
+
+                    @Override
+                    protected void onUpdateComplete(int token, Object cookie, int result) {
+                        super.onUpdateComplete(token, cookie, result);
+                        Logger.i(TAG, "Rows updated: " + result);
+                    }};
+        handler.startInsert(token, null,
                 TrainerContract.AnswerEntry.CONTENT_URI,
-                values,
-                SelectionClause,
-                SelectionArgs);
+                values);
+
+//        handler.startUpdate(token, null,
+//                TrainerContract.AnswerEntry.CONTENT_URI,
+//                values,
+//                SelectionClause,
+//                SelectionArgs);
+
+
+
     }
 
-    public void checkAnswer() {
-        saveAnswer();
+    public void markAnswer() {
+
         ViewHolder viewHolder = (ViewHolder) getView().getTag();
 
 //        CheckBox checkBox1 = (CheckBox) getView().findViewById(R.id.checkBox1);
@@ -359,24 +381,22 @@ public class PagerTestFragment extends Fragment
                 }
             }
         } else {
-            if (viewHolder.editText1.getText().toString().trim().equals(mQuestion.answer1.trim())) {
+            if (viewHolder.editText1.getText().toString().trim().equals(mQuestion.answer.trim())) {
                 viewHolder.editText1.setTextColor(Color.GREEN);
             } else {
                 viewHolder.editText1.setTextColor(Color.RED);
-                viewHolder.editText1.setText(mQuestion.answer1);
+                viewHolder.editText1.setText(mQuestion.answer);
             }
         }
-        //answered = false;
-        //checked = true;
+
     }
 
-    public Bundle check() {
-        saveAnswer();
+    public Bundle checkAnswer() {
         Integer faults = 0;
         Integer points = 0;
         Bundle bundle = new Bundle();
 
-        if (mAnswer != null) {
+        if ((mAnswer != null) && (mQuestion != null)) {
 
             if ((mQuestion.type != null) && (mQuestion.type.equals("auswahl"))) {
                 if ((mQuestion.correct1 != null) && (mQuestion.correct1 != mAnswer.answer1)) {
@@ -395,7 +415,7 @@ public class PagerTestFragment extends Fragment
                     faults++;
                 }
             } else {
-                if (!mQuestion.answer1.equals(mAnswer.answer)) {
+                if (!mQuestion.answer.equals(mAnswer.answer)) {
                     faults++;
                 }
             }
@@ -403,11 +423,13 @@ public class PagerTestFragment extends Fragment
                 bundle.putInt("points", mQuestion.points);
                 bundle.putInt("maxPoints", mQuestion.points);
                 return bundle;
+            } else {
+                bundle.putInt("points", 0);
+                bundle.putInt("maxPoints", mQuestion.points);
+                return bundle;
             }
         }
-        bundle.putInt("points", 0);
-        bundle.putInt("maxPoints", mQuestion.points);
-        return bundle;
+        return null;
     }
 
 

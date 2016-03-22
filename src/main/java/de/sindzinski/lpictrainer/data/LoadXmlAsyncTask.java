@@ -102,7 +102,9 @@ public class LoadXmlAsyncTask extends AsyncTask<String, Integer, ArrayList<Quest
         String mSelection = null;
         String[] mSelectionArgs = null;
         Integer rowsDeleted = mContext.getContentResolver().delete(TrainerContract.QuestionEntry.CONTENT_URI, mSelection, mSelectionArgs);
-        Logger.i(TAG, "Rows deleted: " + rowsDeleted);
+        Logger.i(TAG, "Question Rows deleted: " + rowsDeleted);
+        rowsDeleted = mContext.getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
+        Logger.i(TAG, "Answer Rows deleted: " + rowsDeleted);
         //add new questions
         ContentValues values = new ContentValues();
         while (it.hasNext()) {
@@ -113,6 +115,7 @@ public class LoadXmlAsyncTask extends AsyncTask<String, Integer, ArrayList<Quest
             values.put(TrainerContract.QuestionEntry.COLUMN_TYPE, question.type);
             values.put(TrainerContract.QuestionEntry.COLUMN_TEXT, question.text);
             values.put(TrainerContract.QuestionEntry.COLUMN_POINTS, question.points);
+            values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER, question.answer);
             values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER1, question.answer1);
             values.put(TrainerContract.QuestionEntry.COLUMN_CORRECT1, question.correct1);
             values.put(TrainerContract.QuestionEntry.COLUMN_ANSWER2, question.answer2);

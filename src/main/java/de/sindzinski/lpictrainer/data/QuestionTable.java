@@ -18,6 +18,7 @@ public class QuestionTable {
             + TrainerContract.QuestionEntry.COLUMN_TYPE + " TEXT, "
             + TrainerContract.QuestionEntry.COLUMN_POINTS + " INTEGER, "
             + TrainerContract.QuestionEntry.COLUMN_TEXT + " TEXT, "
+            + TrainerContract.QuestionEntry.COLUMN_ANSWER + " TEXT, "
             + TrainerContract.QuestionEntry.COLUMN_ANSWER1 + " TEXT, "
             + TrainerContract.QuestionEntry.COLUMN_CORRECT1 + " INTEGER, "
             + TrainerContract.QuestionEntry.COLUMN_ANSWER2 + " TEXT, "

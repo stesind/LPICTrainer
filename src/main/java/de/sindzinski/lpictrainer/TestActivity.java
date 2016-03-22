@@ -3,6 +3,8 @@ package de.sindzinski.lpictrainer;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -17,7 +19,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import de.sindzinski.lpictrainer.data.TrainerContract;
 import de.sindzinski.util.HelpUtils;
+import de.sindzinski.util.Logger;
 
 /**
  * Created by steffen on 22.02.16.
@@ -72,18 +76,22 @@ public class TestActivity extends FragmentActivity {
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
-        mPager.setCurrentItem(1);
+        //mPager.setCurrentItem(1);
 
         // Watch for button clicks.
         ImageButton button = (ImageButton) findViewById(R.id.button_back);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
+                fragment.saveAnswer();
                 mPager.setCurrentItem(mPager.getCurrentItem() - 1);
             }
         });
         button = (ImageButton) findViewById(R.id.button_forward);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
+                fragment.saveAnswer();
                 mPager.setCurrentItem(mPager.getCurrentItem() + 1);
             }
         });
@@ -92,7 +100,8 @@ public class TestActivity extends FragmentActivity {
             public void onClick(View v) {
                 PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
 //                PagerTestFragment fragment = (PagerTestFragment) mAdapter.getFragment(mPager.getCurrentItem());
-                fragment.checkAnswer();
+                fragment.markAnswer();
+                fragment.saveAnswer();
 
             }
         });
@@ -111,7 +120,7 @@ public class TestActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int current) {
-            return PagerTestFragment.newInstance(current, to);
+            return PagerTestFragment.newInstance(current + 1, to);
         }
 //        @SuppressWarnings("unchecked")
 //        public Fragment getFragment(int position) {
@@ -164,16 +173,40 @@ public class TestActivity extends FragmentActivity {
     public void onCheckAll() {
         Integer points = 0;
         Integer maxPoints = 0;
-        for (int i = 1; i <= to; i++) {
-            //mPager.findViewById()
-            PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, i);
-            if (fragment != null) {
-//                PagerTestFragment fragment = (PagerTestFragment) mAdapter.getFragment(mPager.getCurrentItem());
-                Bundle bundle = fragment.check();
-                points = points + bundle.getInt("points");
-                maxPoints = maxPoints + bundle.getInt("maxPoints");
+
+        //Uri mDataUrl = Uri.parse(TrainerContract.AnswerEntry.CONTENT_URI + "/"
+        //        + mAnswer.index);
+        String[] projection = {
+                TrainerContract.AnswerEntry._ID,
+                TrainerContract.AnswerEntry.COLUMN_ID,
+                TrainerContract.AnswerEntry.COLUMN_POINTS,
+        };
+        //String selectionClause = TrainerContract.AnswerEntry.CO + "=" + mAnswer.index;
+        String selectionClause = null;
+        String[] selectionArgs = null;
+        String sortOrder = null;
+
+        try {
+            Cursor cursor = this.getContentResolver().query(
+                    TrainerContract.AnswerEntry.CONTENT_URI,
+                    projection,
+                    selectionClause,
+                    selectionArgs,
+                    sortOrder);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        points = points + cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS);
+                    } while (cursor.moveToNext());
+                }
+                // always close the cursor
+                cursor.close();
             }
+        } catch (SQLiteException e) {
+            Logger.e(TAG, "Error reading database: " + e);
         }
+        maxPoints = to - from;
         Toast.makeText(this,
                 "You reached " + points.toString() + " out of " + maxPoints.toString(), Toast.LENGTH_LONG).show();
     }

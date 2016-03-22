@@ -1,7 +1,6 @@
 package de.sindzinski.lpictrainer.data;
 
 import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -23,7 +22,7 @@ public class TrainerContentProvider extends ContentProvider {
 
     private final String TAG = "TrainerContentProvider";
     // database
-    private QuestionDatabaseHelper database;
+    private TrainerDatabaseHelper database;
 
 
     // used for the UriMacher
@@ -56,7 +55,7 @@ public class TrainerContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        database = new QuestionDatabaseHelper(getContext());
+        database = new TrainerDatabaseHelper(getContext());
         return false;
     }
 
@@ -138,17 +137,23 @@ public class TrainerContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         int uriType = sURIMatcher.match(uri);
         SQLiteDatabase sqlDB = database.getWritableDatabase();
-        long id = 0;
+
         Uri result;
         switch (uriType) {
-            case QUESTIONS:
-                id = sqlDB.insert(TrainerContract.QuestionEntry.TABLE_NAME, null, values);
-                result = Uri.parse(TrainerContract.QuestionEntry.BASE_PATH + "/" + id);
-                break;
-            case ANSWERS:
-                id = sqlDB.insert(TrainerContract.AnswerEntry.TABLE_NAME, null, values);
-                result = Uri.parse(TrainerContract.QuestionEntry.BASE_PATH + "/" + id);
-                break;
+            case QUESTIONS: {
+                long _id = sqlDB.insert(TrainerContract.QuestionEntry.TABLE_NAME, null, values);
+                if ( _id > 0 )
+                    result = Uri.parse(TrainerContract.QuestionEntry.BASE_PATH + "/" + _id);
+                else
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                break;}
+            case ANSWERS: {
+                long _id =  sqlDB.insert(TrainerContract.AnswerEntry.TABLE_NAME, null, values);
+                if ( _id > 0 )
+                    result = Uri.parse(TrainerContract.QuestionEntry.BASE_PATH + "/" + _id);
+                else
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                break;}
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
@@ -272,7 +277,7 @@ public class TrainerContentProvider extends ContentProvider {
                 TrainerContract.QuestionEntry.COLUMN_TYPE,
                 TrainerContract.QuestionEntry.COLUMN_POINTS,
                 TrainerContract.QuestionEntry.COLUMN_TEXT,
-                TrainerContract.QuestionEntry.COLUMN_ANSWER1,
+                TrainerContract.QuestionEntry.COLUMN_ANSWER,
                 TrainerContract.QuestionEntry.COLUMN_ANSWER1,
                 TrainerContract.QuestionEntry.COLUMN_CORRECT1,
                 TrainerContract.QuestionEntry.COLUMN_ANSWER2,

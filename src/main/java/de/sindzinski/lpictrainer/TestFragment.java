@@ -725,11 +725,11 @@ public class TestFragment extends Fragment  {
                 }
             }
         } else {
-            if (editText1.getText().toString().trim().equals(question.answer1.trim())) {
+            if (editText1.getText().toString().trim().equals(question.answer.trim())) {
                 editText1.setTextColor(Color.GREEN);
             } else {
                 editText1.setTextColor(Color.RED);
-                editText1.setText(question.answer1);
+                editText1.setText(question.answer);
             }
         }
         //answered = false;
@@ -770,7 +770,7 @@ public class TestFragment extends Fragment  {
                         faults++;
                     }
                 } else {
-                    if (!question.answer1.equals(answer.answer)) {
+                    if (!question.answer.equals(answer.answer)) {
                         faults++;
                     }
                 }

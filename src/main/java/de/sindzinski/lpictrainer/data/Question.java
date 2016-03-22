@@ -12,6 +12,7 @@ public class Question implements Parcelable {
     public String type;
     public Integer points;
     public String text;
+    public String answer;
     public String answer1;
     public Boolean correct1;
     public String answer2;
@@ -29,6 +30,7 @@ public class Question implements Parcelable {
         this.type = questionBuilder.type;
         this.points = questionBuilder.points;
         this.text = questionBuilder.text;
+        this.answer = questionBuilder.answer;
         this.answer1 = questionBuilder.answer1;
         this.correct1 = questionBuilder.correct1;
         this.answer2 = questionBuilder.answer2;
@@ -66,6 +68,7 @@ public class Question implements Parcelable {
         private String type;
         private Integer points;
         private String text;
+        private String answer;
         private String answer1;
         private Boolean correct1;
         private String answer2;
@@ -103,7 +106,11 @@ public class Question implements Parcelable {
             return this;
         }
 
-        public Builder setAnswer1(String answer1) {
+        public Builder setAnswer(String answer) {
+            this.answer = answer;
+            return this;
+
+        }        public Builder setAnswer1(String answer1) {
             this.answer1 = answer1;
             return this;
         }
@@ -176,6 +183,7 @@ public class Question implements Parcelable {
         outParcel.writeString(type);
         outParcel.writeInt(points);
         outParcel.writeString(text);
+        outParcel.writeString(answer);
         outParcel.writeString(answer1);
         outParcel.writeByte((byte) (correct1 ? 1 : 0));     //if myBoolean == true, byte == 1
         outParcel.writeString(answer2);
@@ -207,6 +215,7 @@ public class Question implements Parcelable {
         type = in.readString();
         points=in.readInt();
         text = in.readString();
+        answer = in.readString();
         answer1 = in.readString();
         correct1 = in.readByte() == 1;     //myBoolean == true if byte == 1
         answer2 = in.readString();
@@ -237,6 +246,10 @@ public class Question implements Parcelable {
 
     public String getText() {
         return text;
+    }
+
+    public String getANSWER() {
+        return answer;
     }
 
     public String getANSWER1() {

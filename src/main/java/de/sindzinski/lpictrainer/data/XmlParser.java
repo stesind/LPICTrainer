@@ -53,6 +53,7 @@ public class XmlParser {
         String type = null;
         Integer points = 0;
         String text = null;
+        String answer = null;
         String answer1 = null;
         Boolean correct1 = null;
         String answer2 = null;
@@ -122,6 +123,7 @@ public class XmlParser {
                         .setType(type)
                         .setPoints(points)
                         .setText(text)
+                        .setAnswer(answer)
                         .setAnswer1(answer1)
                         .setCorrect1(correct1)
                         .setAnswer2(answer2)
@@ -137,6 +139,7 @@ public class XmlParser {
                 type = null;
                 points = null;
                 text = null;
+                answer = null;
                 answer1 = null;
                 correct1 = null;
                 answer2 = null;
@@ -148,7 +151,7 @@ public class XmlParser {
                 answer5 = null;
                 correct5 = null;
             } else if ( (type != null) && (type.equals("text")) && (name.equals("antwort"))) {
-                answer1 = android.text.Html.fromHtml(readText(parser)).toString();
+                answer = android.text.Html.fromHtml(readText(parser)).toString();
 
                 index++;
                 entries.add(new Question.Builder()
@@ -157,6 +160,7 @@ public class XmlParser {
                         .setType(type)
                         .setPoints(points)
                         .setText(text)
+                        .setAnswer(answer)
                         .setAnswer1(answer1)
                         .setCorrect1(correct1)
                         .setAnswer2(answer2)
@@ -172,6 +176,7 @@ public class XmlParser {
                 type = null;
                 points = null;
                 text = null;
+                answer = null;
                 answer1 = null;
                 correct1 = null;
                 answer2 = null;

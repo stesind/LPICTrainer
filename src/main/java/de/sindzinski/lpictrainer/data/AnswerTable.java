@@ -21,8 +21,9 @@ public class AnswerTable {
             + TrainerContract.AnswerEntry.COLUMN_ANSWER2 + " TEXT, "
             + TrainerContract.AnswerEntry.COLUMN_ANSWER3 + " TEXT, "
             + TrainerContract.AnswerEntry.COLUMN_ANSWER4 + " TEXT, "
-            + TrainerContract.AnswerEntry.COLUMN_ANSWER5 + " TEXT, "
-            + ")";
+            + TrainerContract.AnswerEntry.COLUMN_ANSWER5 + " TEXT "
+            + ", UNIQUE ( " + TrainerContract.AnswerEntry.COLUMN_ID + " ) ON CONFLICT REPLACE )";
+//            + " )";
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
     }
