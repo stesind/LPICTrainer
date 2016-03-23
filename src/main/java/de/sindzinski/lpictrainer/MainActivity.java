@@ -70,12 +70,12 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         to = sharedPref.getInt("to",0);
         max = sharedPref.getInt("max", 0);
 
-        boolean isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
-        if (isDarkTheme) {
-            this.setTheme(android.R.style.Theme_Holo);
-        } else {
-            this.setTheme(android.R.style.Theme_Holo_Light);
-        }
+//        boolean isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
+//        if (isDarkTheme) {
+//            this.setTheme(android.R.style.Theme_Holo);
+//        } else {
+//            this.setTheme(android.R.style.Theme_Holo_Light);
+//        }
         boolean showAd = sharedPref.getBoolean("pref_key_ads", this.getResources().getBoolean(R.bool.pref_key_ads_default));
 
         super.onCreate(savedInstanceState);
