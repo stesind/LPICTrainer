@@ -42,6 +42,7 @@ public class PagerTestFragment extends Fragment
     public static final int loaderQuestion = 0;
     public static final int loaderAnswer = 1;
     int mCurrent;
+    int mFrom;
     int mTo;
     final String TAG = "TestFragment";
     Answer mAnswer;
@@ -51,12 +52,13 @@ public class PagerTestFragment extends Fragment
      * Create a new instance of CountingFragment, providing "num"
      * as an argument.
      */
-    public static PagerTestFragment newInstance(int current, int to) {
+    public static PagerTestFragment newInstance(int current, int from, int to) {
         PagerTestFragment fragment = new PagerTestFragment();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putInt(EXTRA_CURRENT, current);
+        args.putInt(EXTRA_FROM, from);
         args.putInt(EXTRA_TO, to);
         fragment.setArguments(args);
 
@@ -73,6 +75,7 @@ public class PagerTestFragment extends Fragment
         if (savedInstanceState != null) {
             //redrawn
             mCurrent = savedInstanceState.getInt(EXTRA_CURRENT, 0);
+            mFrom = savedInstanceState.getInt(EXTRA_FROM, 0);
             mTo = savedInstanceState.getInt(EXTRA_TO, 0);
             //mAnswer = savedInstanceState.getParcelable(ANSWER);
             //entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
@@ -80,6 +83,7 @@ public class PagerTestFragment extends Fragment
 
         } else {
             mCurrent = getArguments() != null ? getArguments().getInt(EXTRA_CURRENT) : 1;
+            mFrom = getArguments() != null ? getArguments().getInt(EXTRA_FROM) : 1;
             mTo = getArguments() != null ? getArguments().getInt(EXTRA_TO) : 1;
 
         }
@@ -200,7 +204,7 @@ public class PagerTestFragment extends Fragment
 //                    CheckBox checkBox5 = (CheckBox) getView().findViewById(R.id.checkBox5);
 //                    EditText editText1 = (EditText) getView().findViewById(R.id.editText1);
 
-                        viewHolder.textView_current.setText(Integer.toString(mCurrent) + "/" + Integer.toString(mTo));
+                        viewHolder.textView_current.setText(Integer.toString(mCurrent) + "/" + Integer.toString(mTo-mFrom));
 
                         viewHolder.textView_question.setText(mQuestion.text);
 
@@ -439,6 +443,7 @@ public class PagerTestFragment extends Fragment
 
         // Save the current article selection in case we need to recreate the fragment
         savedInstanceState.putInt(EXTRA_CURRENT, mCurrent);
+        savedInstanceState.putInt(EXTRA_FROM, mFrom);
         savedInstanceState.putInt(EXTRA_TO, mTo);
         //savedInstanceState.putSerializable(ANSWERS, answers);
         //savedInstanceState.putSerializable(ENTRIES, entries);

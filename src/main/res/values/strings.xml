@@ -7,8 +7,8 @@
     <string name="help">Help</string>
     <string name="copyright">Copyright by Steffen Sindzinski 2013, Licensed under GPL v.3</string>
     <string name="menu_legalnotices">Legal Notices</string>
-    <string name="title_activity_test">Test</string>
-    <string name="title_activity_main">LPI Trainer</string>
+    <string name="title_activity_test">LPIC Trainer / Testing</string>
+    <string name="title_activity_main">LPIC Trainer</string>
     <string name="button_open_file">Select a file</string>
     <string name="message_no_filemanager_installed">No file manager installed!</string>
     <string name="message_no_licence_file">No license file found!</string>

@@ -118,12 +118,12 @@ public class TestActivity extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return to;
+            return to-from;
         }
 
         @Override
         public Fragment getItem(int current) {
-            return PagerTestFragment.newInstance(current + 1, to);
+            return PagerTestFragment.newInstance(current + 1, from, to);
         }
 //        @SuppressWarnings("unchecked")
 //        public Fragment getFragment(int position) {
