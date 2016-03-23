@@ -67,9 +67,9 @@ public class TestActivity extends FragmentActivity {
 //
 //        boolean isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
 //        if (isDarkTheme) {
-//            this.setTheme(android.R.style.Theme_Holo);
+//            this.setTheme(android.R.style.Theme_DeviceDefault);
 //        } else {
-//            this.setTheme(android.R.style.Theme_Holo_Light);
+//            this.setTheme(android.R.style.Theme_DeviceDefault_Light);
 //        }
 
 //        ActionBar actionBar = getActionBar();

@@ -72,11 +72,11 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
 //        boolean isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
 //        if (isDarkTheme) {
-//            this.setTheme(android.R.style.Theme_Holo);
+//            this.setTheme(android.R.style.Theme_DeviceDefault);
 //        } else {
-//            this.setTheme(android.R.style.Theme_Holo_Light);
+//            this.setTheme(android.R.style.Theme_DeviceDefault_Light);
 //        }
-        boolean showAd = sharedPref.getBoolean("pref_key_ads", this.getResources().getBoolean(R.bool.pref_key_ads_default));
+//        boolean showAd = sharedPref.getBoolean("pref_key_ads", this.getResources().getBoolean(R.bool.pref_key_ads_default));
 
         super.onCreate(savedInstanceState);
 
@@ -113,15 +113,15 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             transaction.commit();
             //testFragment.update();
 
-            if (showAd) {
-                //ad
-                //AdFragment adFragment = new AdFragment();
-                Fragment adFragment = new Fragment();
-                //Fragment adFragment = Fragment.newInstance();
-                FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
-                adTransaction.replace(R.id.ad_container, adFragment);
-                adTransaction.commit();
-            }
+//            if (showAd) {
+//                //ad
+//                //AdFragment adFragment = new AdFragment();
+//                Fragment adFragment = new Fragment();
+//                //Fragment adFragment = Fragment.newInstance();
+//                FragmentTransaction adTransaction = getFragmentManager().beginTransaction();
+//                adTransaction.replace(R.id.ad_container, adFragment);
+//                adTransaction.commit();
+//            }
 
             // Check whether the activity is using the layout version with
             // the fragment_container FrameLayout. If so, we must add the first fragment
