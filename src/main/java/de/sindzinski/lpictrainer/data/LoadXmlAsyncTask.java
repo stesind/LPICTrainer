@@ -101,7 +101,7 @@ public class LoadXmlAsyncTask extends AsyncTask<String, Integer, ArrayList<Quest
         //delete all old
         String mSelection = null;
         String[] mSelectionArgs = null;
-        Integer rowsDeleted = mContext.getContentResolver().delete(TrainerContract.QuestionEntry.CONTENT_URI, mSelection, mSelectionArgs);
+        long rowsDeleted = mContext.getContentResolver().delete(TrainerContract.QuestionEntry.CONTENT_URI, mSelection, mSelectionArgs);
         Logger.i(TAG, "Question Rows deleted: " + rowsDeleted);
         rowsDeleted = mContext.getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
         Logger.i(TAG, "Answer Rows deleted: " + rowsDeleted);

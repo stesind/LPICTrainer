@@ -109,6 +109,12 @@ public class TestActivity extends FragmentActivity {
             }
         });
 
+        //delete all old
+        String mSelection = null;
+        String[] mSelectionArgs = null;
+        long rowsDeleted = getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
+        Logger.i(TAG, "Answer Rows deleted: " + rowsDeleted);
+
     }
 
     public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {

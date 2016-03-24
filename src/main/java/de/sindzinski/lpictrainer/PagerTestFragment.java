@@ -44,6 +44,7 @@ public class PagerTestFragment extends Fragment
     int mCurrent;
     int mFrom;
     int mTo;
+    boolean mChecked = false;
     final String TAG = "TestFragment";
     Answer mAnswer;
     Question mQuestion;
@@ -190,7 +191,7 @@ public class PagerTestFragment extends Fragment
                                 .setAnswer4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER4)))
                                 .setCorrect4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT4)) > 0)
                                 .setAnswer5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER5)))
-                                .setCorrect5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER5)) > 0)
+                                .setCorrect5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT5)) > 0)
                                 .build();
 
                         ViewHolder viewHolder = (ViewHolder) getView().getTag();
@@ -239,6 +240,7 @@ public class PagerTestFragment extends Fragment
                         }
                     }
                 }
+                mChecked = false;
                 break;
             case loaderAnswer:
                 // do some other stuff here
@@ -280,7 +282,7 @@ public class PagerTestFragment extends Fragment
         // check the answers and set points
         Bundle bundle = checkAnswer();
         mAnswer.points = bundle.getInt("points");
-        mAnswer.checked = true;
+        mAnswer.checked = mChecked;
 
         //add new questions
         ContentValues values = new ContentValues();
@@ -392,7 +394,7 @@ public class PagerTestFragment extends Fragment
                 viewHolder.editText1.setText(mQuestion.answer);
             }
         }
-
+        mChecked = true;
     }
 
     public Bundle checkAnswer() {
