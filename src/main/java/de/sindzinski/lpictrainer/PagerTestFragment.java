@@ -75,9 +75,9 @@ public class PagerTestFragment extends Fragment
 
         if (savedInstanceState != null) {
             //redrawn
-            mCurrent = savedInstanceState.getInt(EXTRA_CURRENT, 0);
-            mFrom = savedInstanceState.getInt(EXTRA_FROM, 0);
-            mTo = savedInstanceState.getInt(EXTRA_TO, 0);
+            mCurrent = savedInstanceState.getInt(EXTRA_CURRENT, 1);
+            mFrom = savedInstanceState.getInt(EXTRA_FROM, 1);
+            mTo = savedInstanceState.getInt(EXTRA_TO, 1);
             //mAnswer = savedInstanceState.getParcelable(ANSWER);
             //entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
             //mQuestion = savedInstanceState.getParcelable(QUESTION);
@@ -175,25 +175,28 @@ public class PagerTestFragment extends Fragment
 
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
-                        mQuestion = new Question.Builder()
-                                .setIndex(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))))
-                                .setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TITLE)))
-                                .setType(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TYPE)))
-                                .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))))
-                                .setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)))
-                                .setAnswer(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER)))
-                                .setAnswer1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER1)))
-                                .setCorrect1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT1)) > 0)
-                                .setAnswer2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER2)))
-                                .setCorrect2(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT2)) > 0)
-                                .setAnswer3(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER3)))
-                                .setCorrect3(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT3)) > 0)
-                                .setAnswer4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER4)))
-                                .setCorrect4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT4)) > 0)
-                                .setAnswer5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER5)))
-                                .setCorrect5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT5)) > 0)
-                                .build();
-
+                        try {
+                            mQuestion = new Question.Builder()
+                                    .setIndex(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))))
+                                    .setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TITLE)))
+                                    .setType(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TYPE)))
+                                    .setPoints(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))))
+                                    .setText(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_TEXT)))
+                                    .setAnswer(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER)))
+                                    .setAnswer1(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER1)))
+                                    .setCorrect1(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT1)) > 0)
+                                    .setAnswer2(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER2)))
+                                    .setCorrect2(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT2)) > 0)
+                                    .setAnswer3(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER3)))
+                                    .setCorrect3(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT3)) > 0)
+                                    .setAnswer4(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER4)))
+                                    .setCorrect4(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT4)) > 0)
+                                    .setAnswer5(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ANSWER5)))
+                                    .setCorrect5(cursor.getInt(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_CORRECT5)) > 0)
+                                    .build();
+                        } catch (NullPointerException e) {
+                            Logger.e(TAG, e.toString());
+                        }
                         ViewHolder viewHolder = (ViewHolder) getView().getTag();
 
 //                    TextView textView_current = (TextView) getView().findViewById(R.id.textView_current);
@@ -205,7 +208,7 @@ public class PagerTestFragment extends Fragment
 //                    CheckBox checkBox5 = (CheckBox) getView().findViewById(R.id.checkBox5);
 //                    EditText editText1 = (EditText) getView().findViewById(R.id.editText1);
 
-                        viewHolder.textView_current.setText(Integer.toString(mCurrent) + "/" + Integer.toString(mTo-mFrom));
+                        viewHolder.textView_current.setText(Integer.toString(mCurrent) + "/" + Integer.toString(mTo - mFrom));
 
                         viewHolder.textView_question.setText(mQuestion.text);
 
@@ -240,6 +243,7 @@ public class PagerTestFragment extends Fragment
                         }
                     }
                 }
+
                 mChecked = false;
                 break;
             case loaderAnswer:
@@ -281,7 +285,7 @@ public class PagerTestFragment extends Fragment
 
         // check the answers and set points
         Bundle bundle = checkAnswer();
-        mAnswer.points = bundle.getInt("points");
+        mAnswer.points = bundle != null ? bundle.getInt("points") : 0;
         mAnswer.checked = mChecked;
 
         //add new questions
@@ -324,7 +328,8 @@ public class PagerTestFragment extends Fragment
                     protected void onUpdateComplete(int token, Object cookie, int result) {
                         super.onUpdateComplete(token, cookie, result);
                         Logger.i(TAG, "Rows updated: " + result);
-                    }};
+                    }
+                };
         handler.startInsert(token, null,
                 TrainerContract.AnswerEntry.CONTENT_URI,
                 values);
@@ -334,7 +339,6 @@ public class PagerTestFragment extends Fragment
 //                values,
 //                SelectionClause,
 //                SelectionArgs);
-
 
 
     }
