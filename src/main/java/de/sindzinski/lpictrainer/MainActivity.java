@@ -165,6 +165,19 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         }
     }
 
+    @Override
+    public void startTestActivity(int from, int to, String fileName, int max) {
+        saveSettings(from, to, fileName, max);
+
+        Intent intent = new Intent(this, TestActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_FILENAME, fileName);
+        bundle.putInt(EXTRA_FROM, from);
+        bundle.putInt(EXTRA_TO, to);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     //not neccacary because fragments are on the backstack
     @Override
     public void onBackPressed() {
@@ -267,7 +280,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 
     public void onPause() {
         super.onPause();
-        saveSettings(from, to, fileName, max);
+        //saveSettings(from, to, fileName, max);
     }
 
     // creates a new loader after the initLoader () call

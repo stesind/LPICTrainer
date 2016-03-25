@@ -65,7 +65,7 @@ public class MainFragment extends Fragment {
     // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
         void showTestFragment(int from, int to, String fileName, int max);
-
+        void startTestActivity(int from, int to, String fileName, int max);
     }
 
     //this ensures that the activity implements the interface
@@ -86,15 +86,8 @@ public class MainFragment extends Fragment {
         mListener.showTestFragment(from, to, fileName, max);
     }
 
-
     public void startTestActivity() {
-        Intent intent = new Intent(getActivity(), TestActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_FILENAME, fileName);
-        bundle.putInt(EXTRA_FROM, from);
-        bundle.putInt(EXTRA_TO, to);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        mListener.startTestActivity(from, to, fileName, max);
     }
 
     public static MainFragment newInstance() {
