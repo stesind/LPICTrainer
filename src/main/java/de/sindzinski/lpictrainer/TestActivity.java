@@ -21,6 +21,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
+
 import de.sindzinski.lpictrainer.data.TrainerContract;
 import de.sindzinski.lpictrainer.data.TrainerContract.AnswerEntry;
 import de.sindzinski.util.HelpUtils;
@@ -49,6 +54,8 @@ public class TestActivity extends FragmentActivity {
     private Integer to;
     public int mCurrent;
     public int mNumItems;
+    List<Integer> questionList;
+    ListIterator<Integer> questionIterator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,28 +116,137 @@ public class TestActivity extends FragmentActivity {
             }
         });
 
-        //delete all old
+        //async implementation
+        int token = 3;
+        AsyncQueryHandler handler =
+                new AsyncQueryHandler(this.getContentResolver()) {
+                    @Override
+                    protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+                        super.onQueryComplete(token, cookie, cursor);
+                        if (cursor != null) {
+                            if (cursor.moveToFirst()) {
+                                do {
+                                       questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))));
+                                    // shuffle if needed
+                                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
+                                    boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
+                                    if(shuffle) {
+                                        Collections.shuffle(questionList);
+                                    }
+                                } while (cursor.moveToNext());
+                            }
+                            // always close the cursor
+                            cursor.close();
+                        }
+                    }
+
+                    @Override
+                    protected void onDeleteComplete(int token, Object cookie, int result) {
+                        super.onDeleteComplete(token, cookie, result);
+                        Logger.i(TAG, "Answer Rows deleted: " + result);
+                    }
+                };
+
+        // get list of questions
+
+        questionList = new ArrayList();
+
+        Uri uri = Uri.parse(TrainerContract.QuestionEntry.CONTENT_URI + "/"
+                + from + "/" + to);
+        String[] projection = {
+                TrainerContract.QuestionEntry.COLUMN_ID,
+        };
+        //String selectionClause = TrainerContract.AnswerEntry.CO + "=" + mAnswer.index;
+        String selectionClause = null;
+        String[] selectionArgs = null;
+        String sortOrder = null;
+
+//        handler.startQuery(token,
+//                null,
+//                uri,
+//                projection,
+//                selectionClause,
+//                selectionArgs,
+//                sortOrder);
+
+//        //run to current item
+//        int i = 1;
+
+//        while (i < current) {
+//            it.next();
+//            i++;
+//        }
+//        max = to-from;
+//        if (current > 0) {
+//            current--; //neccessary because current is increased in nextQuestion
+//        }
+
+        //async delete of old answers
+//        String mSelection = null;
+//        String[] mSelectionArgs = null;
+//        long rowsDeleted = getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
+//        handler.startDelete(token,
+//                null,
+//                uri,
+//                selectionClause,
+//                selectionArgs
+//        );
+
+            try {
+            Cursor cursor = this.getContentResolver().query(
+                    uri,
+                    projection,
+                    selectionClause,
+                    selectionArgs,
+                    sortOrder);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    Integer result = 0;
+                    do {
+                        //points = points + 1;
+                        result = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID)));
+                        questionList.add(result);
+                        Logger.d(TAG, "added to questionList: " + result.toString());
+                    } while (cursor.moveToNext());
+                }
+                // always close the cursor
+                cursor.close();
+            }
+
+                // shuffle if needed
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
+                boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
+                if(shuffle) {
+                    Collections.shuffle(questionList);
+                    Logger.d(TAG, "shuffling question list");
+                }
+
+        } catch (SQLiteException e) {
+            Logger.e(TAG, "Error reading database: " + e);
+        }
+//    delete all old
         String mSelection = null;
         String[] mSelectionArgs = null;
         long rowsDeleted = getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
-        Logger.i(TAG, "Answer Rows deleted: " + rowsDeleted);
+        Logger.i(TAG, "Old answer rows deleted: " + rowsDeleted);
 
+}
+
+public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
+    public TestFragmentStatePagerAdapter(FragmentManager fm) {
+        super(fm);
     }
 
-    public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
-        public TestFragmentStatePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
+    @Override
+    public int getCount() {
+        return to - from;
+    }
 
-        @Override
-        public int getCount() {
-            return to-from;
-        }
-
-        @Override
-        public Fragment getItem(int current) {
-            return PagerTestFragment.newInstance(current + 1, from, to);
-        }
+    @Override
+    public Fragment getItem(int current) {
+        return PagerTestFragment.newInstance(questionList.get(current), from, to, current+1);
+    }
 //        @SuppressWarnings("unchecked")
 //        public Fragment getFragment(int position) {
 //            try {
@@ -146,7 +262,7 @@ public class TestActivity extends FragmentActivity {
 //            }
 //        }
 
-    }
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -196,72 +312,72 @@ public class TestActivity extends FragmentActivity {
         String[] selectionArgs = null;
         String sortOrder = null;
 
-        try {
-            Cursor cursor = this.getContentResolver().query(
-                    AnswerEntry.CONTENT_URI,
-                    projection,
-                    selectionClause,
-                    selectionArgs,
-                    sortOrder);
-
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    do {
-                        //points = points + 1;
-                        int rowPoints = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS)));
-                        if (rowPoints > 0 ) {
-                            points = points + 1;
-                                    }
-
-                    } while (cursor.moveToNext());
-                }
-                // always close the cursor
-                cursor.close();
-            }
-        } catch (SQLiteException e) {
-            Logger.e(TAG, "Error reading database: " + e);
-        }
-        maxPoints = to - from;
-        Toast.makeText(this,
-                "You reached " + points.toString() + " out of " + maxPoints.toString(), Toast.LENGTH_LONG).show();
-
-//        int token = 2;
-//        AsyncQueryHandler handler =
-//                new AsyncQueryHandler(this.getContentResolver()) {
-//                    @Override
-//                    protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-//                        super.onQueryComplete(token, cookie, cursor);
-//                        if (cursor != null) {
-//                            Integer points =0;
-//                            Integer maxPoints = 0;
-//                            if (cursor.moveToFirst()) {
-//                                do {
-//                                    if (Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))) > 0 ) {
-//                                        points = points + 1;
-//                                    }
-//                                    //points = points + cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS);
-//                                } while (cursor.moveToNext());
-//                            }
-//                            // always close the cursor
-//                            cursor.close();
-//                            maxPoints = to - from;
-//                            Toast.makeText(TestActivity.this,
-//                                    "You reached "
-//                                            + points.toString()
-//                                            + " out of "
-//                                            + maxPoints.toString(),
-//                                    Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                };
+//        try {
+//            Cursor cursor = this.getContentResolver().query(
+//                    AnswerEntry.CONTENT_URI,
+//                    projection,
+//                    selectionClause,
+//                    selectionArgs,
+//                    sortOrder);
 //
-//        handler.startQuery(token,
-//                null,
-//                AnswerEntry.CONTENT_URI,
-//                projection,
-//                selectionClause,
-//                selectionArgs,
-//                sortOrder);
+//            if (cursor != null) {
+//                if (cursor.moveToFirst()) {
+//                    do {
+//                        //points = points + 1;
+//                        int rowPoints = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS)));
+//                        if (rowPoints > 0 ) {
+//                            points = points + 1;
+//                                    }
+//
+//                    } while (cursor.moveToNext());
+//                }
+//                // always close the cursor
+//                cursor.close();
+//            }
+//        } catch (SQLiteException e) {
+//            Logger.e(TAG, "Error reading database: " + e);
+//        }
+//        maxPoints = to - from;
+//        Toast.makeText(this,
+//                "You reached " + points.toString() + " out of " + maxPoints.toString(), Toast.LENGTH_LONG).show();
+
+        int token = 2;
+        AsyncQueryHandler handler =
+                new AsyncQueryHandler(this.getContentResolver()) {
+                    @Override
+                    protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+                        super.onQueryComplete(token, cookie, cursor);
+                        if (cursor != null) {
+                            Integer points = 0;
+                            Integer maxPoints = 0;
+                            if (cursor.moveToFirst()) {
+                                do {
+                                    if (Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS))) > 0) {
+                                        points = points + 1;
+                                    }
+                                    //points = points + cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_POINTS);
+                                } while (cursor.moveToNext());
+                            }
+                            // always close the cursor
+                            cursor.close();
+                            maxPoints = to - from;
+                            Toast.makeText(TestActivity.this,
+                                    "You reached "
+                                            + points.toString()
+                                            + " out of "
+                                            + maxPoints.toString(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                };
+
+        handler.startQuery(token,
+                null,
+                AnswerEntry.CONTENT_URI,
+                projection,
+                selectionClause,
+                selectionArgs,
+                sortOrder);
     }
 }
 

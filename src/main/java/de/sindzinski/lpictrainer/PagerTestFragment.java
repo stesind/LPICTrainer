@@ -35,6 +35,7 @@ public class PagerTestFragment extends Fragment
     private final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
     private final static String EXTRA_TO = "de.sindzinski.lpictrainer.TO";
     private final static String EXTRA_CURRENT = "de.sindzinski.lpictrainer.CURRENT";
+    private final static String EXTRA_VIEW_PAGER_INDEX = "de.sindzinski.lpictrainer.VIEW_PAGER_INDEX";
     private static final String CURRENT = "CURRENT_QUESTION";
     private static final String ANSWER = "ANSWER";
 
@@ -44,6 +45,7 @@ public class PagerTestFragment extends Fragment
     int mCurrent;
     int mFrom;
     int mTo;
+    int mViewPagerIndex;
     boolean mChecked = false;
     final String TAG = "TestFragment";
     Answer mAnswer;
@@ -53,7 +55,7 @@ public class PagerTestFragment extends Fragment
      * Create a new instance of CountingFragment, providing "num"
      * as an argument.
      */
-    public static PagerTestFragment newInstance(int current, int from, int to) {
+    public static PagerTestFragment newInstance(int current, int from, int to, int viewPagerIndex) {
         PagerTestFragment fragment = new PagerTestFragment();
 
         // Supply num input as an argument.
@@ -61,6 +63,7 @@ public class PagerTestFragment extends Fragment
         args.putInt(EXTRA_CURRENT, current);
         args.putInt(EXTRA_FROM, from);
         args.putInt(EXTRA_TO, to);
+        args.putInt(EXTRA_VIEW_PAGER_INDEX, viewPagerIndex);
         fragment.setArguments(args);
 
         return fragment;
@@ -78,6 +81,7 @@ public class PagerTestFragment extends Fragment
             mCurrent = savedInstanceState.getInt(EXTRA_CURRENT, 1);
             mFrom = savedInstanceState.getInt(EXTRA_FROM, 1);
             mTo = savedInstanceState.getInt(EXTRA_TO, 1);
+            mViewPagerIndex = savedInstanceState.getInt(EXTRA_VIEW_PAGER_INDEX, 1);
             //mAnswer = savedInstanceState.getParcelable(ANSWER);
             //entries = (ArrayList) savedInstanceState.getSerializable(ENTRIES);
             //mQuestion = savedInstanceState.getParcelable(QUESTION);
@@ -86,6 +90,7 @@ public class PagerTestFragment extends Fragment
             mCurrent = getArguments() != null ? getArguments().getInt(EXTRA_CURRENT) : 1;
             mFrom = getArguments() != null ? getArguments().getInt(EXTRA_FROM) : 1;
             mTo = getArguments() != null ? getArguments().getInt(EXTRA_TO) : 1;
+            mViewPagerIndex = getArguments() != null ? getArguments().getInt(EXTRA_VIEW_PAGER_INDEX) : 1;
 
         }
         getLoaderManager().initLoader(loaderQuestion, null, this);
@@ -208,7 +213,7 @@ public class PagerTestFragment extends Fragment
 //                    CheckBox checkBox5 = (CheckBox) getView().findViewById(R.id.checkBox5);
 //                    EditText editText1 = (EditText) getView().findViewById(R.id.editText1);
 
-                        viewHolder.textView_current.setText(Integer.toString(mCurrent) + "/" + Integer.toString(mTo - mFrom));
+                        viewHolder.textView_current.setText(Integer.toString(mViewPagerIndex) + "/" + Integer.toString(mTo-mFrom));
 
                         viewHolder.textView_question.setText(mQuestion.text);
 
@@ -451,11 +456,12 @@ public class PagerTestFragment extends Fragment
         savedInstanceState.putInt(EXTRA_CURRENT, mCurrent);
         savedInstanceState.putInt(EXTRA_FROM, mFrom);
         savedInstanceState.putInt(EXTRA_TO, mTo);
+        savedInstanceState.putInt(EXTRA_VIEW_PAGER_INDEX, mViewPagerIndex);
         //savedInstanceState.putSerializable(ANSWERS, answers);
         //savedInstanceState.putSerializable(ENTRIES, entries);
-        savedInstanceState.putParcelable(ANSWER, mAnswer);
+        //savedInstanceState.putParcelable(ANSWER, mAnswer);
         //savedInstanceState.putParcelableArrayList(ENTRIES, entries);
-        savedInstanceState.putParcelable(QUESTION, mQuestion);
+        //savedInstanceState.putParcelable(QUESTION, mQuestion);
 
     }
 
