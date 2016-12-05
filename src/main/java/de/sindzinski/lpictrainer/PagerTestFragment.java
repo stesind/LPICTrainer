@@ -4,15 +4,20 @@ import android.content.AsyncQueryHandler;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -113,6 +118,28 @@ public class PagerTestFragment extends Fragment
 //                checkAnswer();
 //            }
 //        });
+        int width = getActivity().getResources().getDisplayMetrics().widthPixels;
+        int height = getActivity().getResources().getDisplayMetrics().heightPixels;
+
+        if (height <= 1500) {
+            viewHolder.textView_question.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.editText1.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.checkBox1.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.checkBox2.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.checkBox3.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.checkBox4.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.checkBox5.setTextAppearance(android.R.style.TextAppearance_Small);
+            viewHolder.textView_current.setTextAppearance(android.R.style.TextAppearance_Small);
+        } else {
+            viewHolder.textView_question.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.editText1.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.checkBox1.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.checkBox2.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.checkBox3.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.checkBox4.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.checkBox5.setTextAppearance(android.R.style.TextAppearance_Medium);
+            viewHolder.textView_current.setTextAppearance(android.R.style.TextAppearance_Medium);
+        }
 
         return view;
     }
