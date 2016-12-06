@@ -27,12 +27,28 @@ dependencies {
 
 
 android {
+    lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    signingConfigs {
+        config {
+            storeFile file('/home/steffen/keystores/android.jks')
+            keyAlias 'AndroidKey'
+            keyPassword '***REMOVED***'
+            storePassword '***REMOVED***'
+        }
+    }
     defaultConfig {
         applicationId "de.sindzinski.lpictrainer"
+        setProperty("archivesBaseName", "de.sindzinski.LPICTrainer")
         minSdkVersion 23
         targetSdkVersion 25
         versionCode 2
         versionName "2.0"
+        signingConfig signingConfigs.config
     }
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
@@ -46,22 +62,25 @@ android {
     }
     buildTypes {
         debug {
+
             debuggable true
             minifyEnabled false
-            //applicationIdSuffix ".debug"
+            applicationIdSuffix ".debug"
             //testCoverageEnabled = true
+            signingConfig signingConfigs.config
         }
         release {
+
             debuggable false
             minifyEnabled true
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-
 }
 dependencies {
     //compile 'com.google.android.gms:play-services-ads:8.4.0'
