@@ -1,4 +1,4 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.lpictrainer.old;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import de.sindzinski.lpictrainer.R;
 import de.sindzinski.lpictrainer.data.TrainerContract;
 
 /**

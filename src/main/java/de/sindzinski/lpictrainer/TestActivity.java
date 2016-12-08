@@ -1,7 +1,5 @@
 package de.sindzinski.lpictrainer;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.content.AsyncQueryHandler;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,16 +7,18 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,40 +28,37 @@ import java.util.ListIterator;
 
 import de.sindzinski.lpictrainer.data.TrainerContract;
 import de.sindzinski.lpictrainer.data.TrainerContract.AnswerEntry;
-import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
 
 /**
  * Created by steffen on 22.02.16.
  */
-public class TestActivity extends FragmentActivity {
-
-    TestFragmentStatePagerAdapter mAdapter;
-
-    ViewPager mPager;
+public class TestActivity extends AppCompatActivity {
 
     public static final int loaderID = 1;
-
     private final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
     private final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
     private final static String EXTRA_TO = "de.sindzinski.lpictrainer.TO";
     private final static String EXTRA_CURRENT = "de.sindzinski.lpictrainer.CURRENT";
-
     private final String TAG = "TestActivity";
-
+    public int mCurrent;
+    public int mNumItems;
+    TestFragmentStatePagerAdapter mAdapter;
+    ViewPager mPager;
+    List<Integer> questionList;
+    ListIterator<Integer> questionIterator;
     private String fileName;
     private Integer from;
     private Integer to;
-    public int mCurrent;
-    public int mNumItems;
-    List<Integer> questionList;
-    ListIterator<Integer> questionIterator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_pager);
+        setContentView(R.layout.activity_test);
         //setHasOptionsMenu(true);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.test_toolbar);
+        setSupportActionBar(myToolbar);
+        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -84,28 +81,14 @@ public class TestActivity extends FragmentActivity {
 
         mAdapter = new TestFragmentStatePagerAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setAdapter(mAdapter);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(mAdapter);
         //mPager.setCurrentItem(1);
 
-        // Watch for button clicks.
-        ImageButton button = (ImageButton) findViewById(R.id.button_back);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
-                fragment.saveAnswer();
-                mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-            }
-        });
-        button = (ImageButton) findViewById(R.id.button_forward);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
-                fragment.saveAnswer();
-                mPager.setCurrentItem(mPager.getCurrentItem() + 1);
-            }
-        });
-        button = (ImageButton) findViewById(R.id.button_check);
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(viewPager);
+
+        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.button_check);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
@@ -126,11 +109,11 @@ public class TestActivity extends FragmentActivity {
                         if (cursor != null) {
                             if (cursor.moveToFirst()) {
                                 do {
-                                       questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))));
+                                    questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))));
                                     // shuffle if needed
                                     SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
                                     boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
-                                    if(shuffle) {
+                                    if (shuffle) {
                                         Collections.shuffle(questionList);
                                     }
                                 } while (cursor.moveToNext());
@@ -192,7 +175,7 @@ public class TestActivity extends FragmentActivity {
 //                selectionArgs
 //        );
 
-            try {
+        try {
             Cursor cursor = this.getContentResolver().query(
                     uri,
                     projection,
@@ -214,13 +197,13 @@ public class TestActivity extends FragmentActivity {
                 cursor.close();
             }
 
-                // shuffle if needed
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
-                boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
-                if(shuffle) {
-                    Collections.shuffle(questionList);
-                    Logger.d(TAG, "shuffling question list");
-                }
+            // shuffle if needed
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
+            boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
+            if (shuffle) {
+                Collections.shuffle(questionList);
+                Logger.d(TAG, "shuffling question list");
+            }
 
         } catch (SQLiteException e) {
             Logger.e(TAG, "Error reading database: " + e);
@@ -231,38 +214,9 @@ public class TestActivity extends FragmentActivity {
         long rowsDeleted = getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
         Logger.i(TAG, "Old answer rows deleted: " + rowsDeleted);
 
-}
-
-public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
-    public TestFragmentStatePagerAdapter(FragmentManager fm) {
-        super(fm);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
-
-    @Override
-    public int getCount() {
-        return to - from;
-    }
-
-    @Override
-    public Fragment getItem(int current) {
-        return PagerTestFragment.newInstance(questionList.get(current), from, to, current+1);
-    }
-//        @SuppressWarnings("unchecked")
-//        public Fragment getFragment(int position) {
-//            try {
-//                Field f = FragmentStatePagerAdapter.class.getDeclaredField("mFragments");
-//                f.setAccessible(true);
-//                ArrayList<Fragment> fragments = (ArrayList<Fragment>) f.get(this);
-//                if (fragments.size() > position) {
-//                    return fragments.get(position);
-//                }
-//                return null;
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-
-}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -378,6 +332,43 @@ public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
                 selectionClause,
                 selectionArgs,
                 sortOrder);
+    }
+
+    public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
+        public TestFragmentStatePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return to - from;
+        }
+
+        @Override
+        public Fragment getItem(int current) {
+            return PagerTestFragment.newInstance(questionList.get(current), from, to, current + 1);
+        }
+        @Override
+        public CharSequence getPageTitle(int current) {
+            //return Integer.toString(current);
+            return ((questionList != null) ? questionList.get(current).toString() : "0");
+        }
+
+//        @SuppressWarnings("unchecked")
+//        public Fragment getFragment(int position) {
+//            try {
+//                Field f = FragmentStatePagerAdapter.class.getDeclaredField("mFragments");
+//                f.setAccessible(true);
+//                ArrayList<Fragment> fragments = (ArrayList<Fragment>) f.get(this);
+//                if (fragments.size() > position) {
+//                    return fragments.get(position);
+//                }
+//                return null;
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+
     }
 }
 

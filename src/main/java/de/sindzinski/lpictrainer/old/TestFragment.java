@@ -1,10 +1,9 @@
-package de.sindzinski.lpictrainer;
+package de.sindzinski.lpictrainer.old;
 
 /**
  * Created by steffen on 17.08.13.
  */
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -21,6 +20,7 @@ import java.util.*;
 
 import android.view.GestureDetector;
 
+import de.sindzinski.lpictrainer.R;
 import de.sindzinski.lpictrainer.data.Question;
 import de.sindzinski.lpictrainer.data.Answer;
 import de.sindzinski.lpictrainer.data.TrainerContract;
@@ -198,8 +198,8 @@ public class TestFragment extends Fragment  {
                              Bundle savedInstanceState) {
 
         //not already done in main activity
-        ActionBar actionBar = getActivity().getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //ActionBar actionBar = getActivity().getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.test_fragment, container, false);

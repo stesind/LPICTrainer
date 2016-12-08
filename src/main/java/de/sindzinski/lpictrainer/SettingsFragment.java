@@ -20,15 +20,15 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preferences);
 
         //not already done in main activity
-        ActionBar actionBar = getActivity().getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //ActionBar actionBar = getActivity().getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
         //RefWatcher refWatcher = MainActivity.getRefWatcher(getActivity());
         MainActivity activity = (MainActivity) getActivity();
-        activity.getRefWatcher().watch(this);
+        //activity.getRefWatcher().watch(this);
         //activity.getrrefwatcher .watch(this);
     }
 }

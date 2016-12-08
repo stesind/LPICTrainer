@@ -5,6 +5,8 @@ import android.app.FragmentTransaction;
 import android.content.*;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,16 +14,17 @@ import 	android.preference.PreferenceManager;
 import android.widget.SimpleCursorAdapter;
 
 //import de.sindzinski.helper.AppRater;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import de.sindzinski.lpictrainer.data.TrainerContract;
+import de.sindzinski.lpictrainer.old.TestFragment;
 import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
 
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
-public class MainActivity extends Activity implements MainFragment.OnTestListener,
+
+
+public class MainActivity extends AppCompatActivity implements MainFragment.OnTestListener,
         LoaderManager.LoaderCallbacks<Cursor>{
 
     public final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
@@ -42,12 +45,12 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
     /**
      *     install leakcanary
      */
-    private RefWatcher refWatcher = null;
-
-    public RefWatcher getRefWatcher() {
-        //Application application = (Application) context.getApplicationContext();
-        return refWatcher;
-    }
+//    private RefWatcher refWatcher = null;
+//
+//    public RefWatcher getRefWatcher() {
+//        //Application application = (Application) context.getApplicationContext();
+//        return refWatcher;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
         //unhandled crash logger
         Thread.setDefaultUncaughtExceptionHandler(handleAppCrash);
 
-        super.onCreate(savedInstanceState);
+        //super.onCreate(savedInstanceState);
         if (BuildConfig.DEBUG) {
             Logger.logging = true;
         } else {
@@ -79,11 +82,11 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
 //        boolean showAd = sharedPref.getBoolean("pref_key_ads", this.getResources().getBoolean(R.bool.pref_key_ads_default));
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(myToolbar);
+        //ActionBar actionBar = getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(false);
 
         // However, if we're being restored from a previous state,
         // then we don't need to do anything and should return or else
@@ -136,7 +139,7 @@ public class MainActivity extends Activity implements MainFragment.OnTestListene
             //AppRater.appLaunched(this);
             //Trial.checkTrial(this, false);
         }
-        refWatcher = LeakCanary.install(getApplication());
+        //refWatcher = LeakCanary.install(getApplication());
     }
 
     // implements interface OnTestListener from main fragment

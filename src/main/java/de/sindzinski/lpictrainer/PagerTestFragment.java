@@ -121,7 +121,7 @@ public class PagerTestFragment extends Fragment
         int width = getActivity().getResources().getDisplayMetrics().widthPixels;
         int height = getActivity().getResources().getDisplayMetrics().heightPixels;
 
-        if (height <= 1500) {
+        if (height <= 1000) {
             viewHolder.textView_question.setTextAppearance(android.R.style.TextAppearance_Small);
             viewHolder.editText1.setTextAppearance(android.R.style.TextAppearance_Small);
             viewHolder.checkBox1.setTextAppearance(android.R.style.TextAppearance_Small);
@@ -129,7 +129,7 @@ public class PagerTestFragment extends Fragment
             viewHolder.checkBox3.setTextAppearance(android.R.style.TextAppearance_Small);
             viewHolder.checkBox4.setTextAppearance(android.R.style.TextAppearance_Small);
             viewHolder.checkBox5.setTextAppearance(android.R.style.TextAppearance_Small);
-            viewHolder.textView_current.setTextAppearance(android.R.style.TextAppearance_Small);
+            //viewHolder.textView_current.setTextAppearance(android.R.style.TextAppearance_Small);
         } else {
             viewHolder.textView_question.setTextAppearance(android.R.style.TextAppearance_Medium);
             viewHolder.editText1.setTextAppearance(android.R.style.TextAppearance_Medium);
@@ -138,7 +138,7 @@ public class PagerTestFragment extends Fragment
             viewHolder.checkBox3.setTextAppearance(android.R.style.TextAppearance_Medium);
             viewHolder.checkBox4.setTextAppearance(android.R.style.TextAppearance_Medium);
             viewHolder.checkBox5.setTextAppearance(android.R.style.TextAppearance_Medium);
-            viewHolder.textView_current.setTextAppearance(android.R.style.TextAppearance_Medium);
+            //viewHolder.textView_current.setTextAppearance(android.R.style.TextAppearance_Medium);
         }
 
         return view;
@@ -240,7 +240,7 @@ public class PagerTestFragment extends Fragment
 //                    CheckBox checkBox5 = (CheckBox) getView().findViewById(R.id.checkBox5);
 //                    EditText editText1 = (EditText) getView().findViewById(R.id.editText1);
 
-                        viewHolder.textView_current.setText(Integer.toString(mViewPagerIndex) + "/" + Integer.toString(mTo-mFrom));
+                        //viewHolder.textView_current.setText(Integer.toString(mViewPagerIndex) + "/" + Integer.toString(mTo-mFrom));
 
                         viewHolder.textView_question.setText(mQuestion.text);
 
@@ -300,7 +300,7 @@ public class PagerTestFragment extends Fragment
 //        CheckBox checkBox5 = (CheckBox) getView().findViewById(R.id.checkBox5);
 //        EditText editText1 = (EditText) getView().findViewById(R.id.editText1);
 
-        String[] parts = viewHolder.textView_current.getText().toString().split("/");
+        //String[] parts = viewHolder.textView_current.getText().toString().split("/");
 //        if (parts != null) {
 //            int current = Integer.parseInt(parts[0]);
 //        }
@@ -323,7 +323,7 @@ public class PagerTestFragment extends Fragment
         //add new questions
         ContentValues values = new ContentValues();
         values.clear();
-        //values.put(TrainerContract.AnswerEntry._ID, mAnswer.index);
+        values.put(TrainerContract.AnswerEntry._ID, mAnswer.index);
         values.put(TrainerContract.AnswerEntry.COLUMN_ID, mAnswer.index);
         values.put(TrainerContract.AnswerEntry.COLUMN_CHECKED, mAnswer.checked);
         values.put(TrainerContract.AnswerEntry.COLUMN_POINTS, mAnswer.points);
@@ -495,7 +495,7 @@ public class PagerTestFragment extends Fragment
     class ViewHolder {
 
         public final TextView textView_question;
-        public final TextView textView_current;
+        //public final TextView textView_current;
 
 
         public final CheckBox checkBox1;
@@ -508,7 +508,7 @@ public class PagerTestFragment extends Fragment
         public ViewHolder(View view) {
 
             textView_question = (TextView) view.findViewById(R.id.textView_question);
-            textView_current = (TextView) view.findViewById(R.id.textView_current);
+            //textView_current = (TextView) view.findViewById(R.id.textView_current);
 
             checkBox1 = (CheckBox) view.findViewById(R.id.checkBox1);
             checkBox2 = (CheckBox) view.findViewById(R.id.checkBox2);
