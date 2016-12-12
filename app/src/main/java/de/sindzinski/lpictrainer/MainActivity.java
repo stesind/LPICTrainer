@@ -16,7 +16,6 @@ import android.widget.SimpleCursorAdapter;
 //import de.sindzinski.helper.AppRater;
 
 import de.sindzinski.lpictrainer.data.TrainerContract;
-import de.sindzinski.lpictrainer.old.TestFragment;
 import de.sindzinski.util.HelpUtils;
 import de.sindzinski.util.Logger;
 
@@ -143,30 +142,30 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnTe
     }
 
     // implements interface OnTestListener from main fragment
-    public void showTestFragment(int from, int to, String fileName, int max) {
-        // Create new fragment and transact();
-
-        saveSettings(from, to, fileName, max);
-
-        TestFragment testFragment = (TestFragment)
-                getFragmentManager().findFragmentByTag("test");
-
-        if (testFragment != null) {
-            //just update the fragment
-            //testFragment.update();)) {
-            //testFragment = TestFragment.getInstance(from, to, fileName);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.commit();
-        } else {
-            testFragment = TestFragment.newInstance(from, to, fileName);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            transaction.replace(R.id.container, testFragment);
-            transaction.addToBackStack("test");
-            // Commit the transaction
-            transaction.commit();
-        }
-    }
+//    public void showTestFragment(int from, int to, String fileName, int max) {
+//        // Create new fragment and transact();
+//
+//        saveSettings(from, to, fileName, max);
+//
+//        TestFragment testFragment = (TestFragment)
+//                getFragmentManager().findFragmentByTag("test");
+//
+//        if (testFragment != null) {
+//            //just update the fragment
+//            //testFragment.update();)) {
+//            //testFragment = TestFragment.getInstance(from, to, fileName);
+//            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//            transaction.commit();
+//        } else {
+//            testFragment = TestFragment.newInstance(from, to, fileName);
+//            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//
+//            transaction.replace(R.id.container, testFragment);
+//            transaction.addToBackStack("test");
+//            // Commit the transaction
+//            transaction.commit();
+//        }
+//    }
 
     @Override
     public void startTestActivity(int from, int to, String fileName, int max) {

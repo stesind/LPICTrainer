@@ -1,0 +1,120 @@
+AAPT err(Facade for 1079772985): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1042711129): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1611011741): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 997732180): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 602398700): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 80880313): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1845011825): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 875690461): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 865299812): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1789505032): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 642072070): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1781713053): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 975090799): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 840704696): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 989604887): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 531668112): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1286052734): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1837628964): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1011435851): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+AAPT err(Facade for 1363726112): /media/pool/opt/android-sdk/build-tools/23.0.2/aapt: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+Exception in thread "png-cruncher_5" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_14" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_10" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_11" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_8" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_13" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_4" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_2" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_3" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_16" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_15" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_19" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_20" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_12" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_7" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_9" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_1" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_6" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_18" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)
+Exception in thread "png-cruncher_17" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at /media/pool/opt/android-sdk/build-tools/23.0.2/aapt can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:110)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:203)
+	at java.lang.Thread.run(Thread.java:745)

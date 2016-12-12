@@ -1,40 +1,52 @@
 package de.sindzinski.lpictrainer;
 
+/**
+ * Created by steffen on 12.12.16.
+ */
+
+/*
+ * Copyright (C) 2014 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import android.content.AsyncQueryHandler;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+import de.sindzinski.lpictrainer.TestFragment.TestFragmentStatePagerAdapter;
 
 import de.sindzinski.lpictrainer.data.TrainerContract;
-import de.sindzinski.lpictrainer.data.TrainerContract.AnswerEntry;
-import de.sindzinski.util.Logger;
 
-/**
- * Created by steffen on 22.02.16.
- */
+
 public class TestActivity extends AppCompatActivity {
-
     public static final int loaderID = 1;
     private final static String EXTRA_FILENAME = "de.sindzinski.lpictrainer.FILENAME";
     private final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
@@ -66,156 +78,26 @@ public class TestActivity extends AppCompatActivity {
         from = bundle.getInt(EXTRA_FROM, 0);
         to = bundle.getInt(EXTRA_TO, 0);
 
-//        //Load preferences
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-//
-//        boolean isDarkTheme = sharedPref.getBoolean("pref_key_theme", this.getResources().getBoolean(R.bool.pref_key_dark_default));
-//        if (isDarkTheme) {
-//            this.setTheme(android.R.style.Theme_DeviceDefault);
-//        } else {
-//            this.setTheme(android.R.style.Theme_DeviceDefault_Light);
-//        }
 
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(false);
+        if (savedInstanceState == null) {
+            // Create the detail fragment and add it to the activity
+            // using a fragment transaction.
 
-        mAdapter = new TestFragmentStatePagerAdapter(getSupportFragmentManager());
+            Bundle arguments = new Bundle();
+            arguments.putString(EXTRA_FILENAME, fileName);
+            arguments.putInt(EXTRA_FROM, from);
+            arguments.putInt(EXTRA_TO, to);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(mAdapter);
-        //mPager.setCurrentItem(1);
+            TestFragment fragment = new TestFragment();
+            fragment.setArguments(arguments);
 
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(viewPager);
+            //arguments.putParcelable(TestFragment.DETAIL_URI, getIntent().getData());
+            //fragment.setArguments(arguments);
 
-        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.button_check);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
-//                PagerTestFragment fragment = (PagerTestFragment) mAdapter.getFragment(mPager.getCurrentItem());
-                fragment.markAnswer();
-                fragment.saveAnswer();
-
-            }
-        });
-
-        //async implementation
-        int token = 3;
-        AsyncQueryHandler handler =
-                new AsyncQueryHandler(this.getContentResolver()) {
-                    @Override
-                    protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-                        super.onQueryComplete(token, cookie, cursor);
-                        if (cursor != null) {
-                            if (cursor.moveToFirst()) {
-                                do {
-                                    questionList.add(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID))));
-                                    // shuffle if needed
-                                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
-                                    boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
-                                    if (shuffle) {
-                                        Collections.shuffle(questionList);
-                                    }
-                                } while (cursor.moveToNext());
-                            }
-                            // always close the cursor
-                            cursor.close();
-                        }
-                    }
-
-                    @Override
-                    protected void onDeleteComplete(int token, Object cookie, int result) {
-                        super.onDeleteComplete(token, cookie, result);
-                        Logger.i(TAG, "Answer Rows deleted: " + result);
-                    }
-                };
-
-        // get list of questions
-
-        questionList = new ArrayList();
-
-        Uri uri = Uri.parse(TrainerContract.QuestionEntry.CONTENT_URI + "/"
-                + from + "/" + to);
-        String[] projection = {
-                TrainerContract.QuestionEntry.COLUMN_ID,
-        };
-        //String selectionClause = TrainerContract.AnswerEntry.CO + "=" + mAnswer.index;
-        String selectionClause = null;
-        String[] selectionArgs = null;
-        String sortOrder = null;
-
-//        handler.startQuery(token,
-//                null,
-//                uri,
-//                projection,
-//                selectionClause,
-//                selectionArgs,
-//                sortOrder);
-
-//        //run to current item
-//        int i = 1;
-
-//        while (i < current) {
-//            it.next();
-//            i++;
-//        }
-//        max = to-from;
-//        if (current > 0) {
-//            current--; //neccessary because current is increased in nextQuestion
-//        }
-
-        //async delete of old answers
-//        String mSelection = null;
-//        String[] mSelectionArgs = null;
-//        long rowsDeleted = getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
-//        handler.startDelete(token,
-//                null,
-//                uri,
-//                selectionClause,
-//                selectionArgs
-//        );
-
-        try {
-            Cursor cursor = this.getContentResolver().query(
-                    uri,
-                    projection,
-                    selectionClause,
-                    selectionArgs,
-                    sortOrder);
-
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    Integer result = 0;
-                    do {
-                        //points = points + 1;
-                        result = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(TrainerContract.QuestionEntry.COLUMN_ID)));
-                        questionList.add(result);
-                        Logger.d(TAG, "added to questionList: " + result.toString());
-                    } while (cursor.moveToNext());
-                }
-                // always close the cursor
-                cursor.close();
-            }
-
-            // shuffle if needed
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplication());
-            boolean shuffle = sharedPref.getBoolean("pref_key_shuffle", getResources().getBoolean(R.bool.pref_key_shuffle_default));
-            if (shuffle) {
-                Collections.shuffle(questionList);
-                Logger.d(TAG, "shuffling question list");
-            }
-
-        } catch (SQLiteException e) {
-            Logger.e(TAG, "Error reading database: " + e);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.test_container, fragment)
+                    .commit();
         }
-//    delete all old
-        String mSelection = null;
-        String[] mSelectionArgs = null;
-        long rowsDeleted = getContentResolver().delete(TrainerContract.AnswerEntry.CONTENT_URI, mSelection, mSelectionArgs);
-        Logger.i(TAG, "Old answer rows deleted: " + rowsDeleted);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -249,6 +131,7 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
+
     public void onCheckAll() {
         Integer points = 0;
         Integer maxPoints = 0;
@@ -256,10 +139,10 @@ public class TestActivity extends AppCompatActivity {
         //Uri mDataUrl = Uri.parse(TrainerContract.AnswerEntry.CONTENT_URI + "/"
         //        + mAnswer.index);
         String[] projection = {
-                AnswerEntry._ID,
-                AnswerEntry.COLUMN_ID,
+                TrainerContract.AnswerEntry._ID,
+                TrainerContract.AnswerEntry.COLUMN_ID,
 //                AnswerEntry.COLUMN_CHECKED,
-                AnswerEntry.COLUMN_POINTS,
+                TrainerContract.AnswerEntry.COLUMN_POINTS,
         };
         //String selectionClause = TrainerContract.AnswerEntry.CO + "=" + mAnswer.index;
         String selectionClause = null;
@@ -315,7 +198,7 @@ public class TestActivity extends AppCompatActivity {
                             // always close the cursor
                             cursor.close();
                             maxPoints = to - from;
-                            Toast.makeText(TestActivity.this,
+                            Toast.makeText(de.sindzinski.lpictrainer.TestActivity.this,
                                     "You reached "
                                             + points.toString()
                                             + " out of "
@@ -327,48 +210,11 @@ public class TestActivity extends AppCompatActivity {
 
         handler.startQuery(token,
                 null,
-                AnswerEntry.CONTENT_URI,
+                TrainerContract.AnswerEntry.CONTENT_URI,
                 projection,
                 selectionClause,
                 selectionArgs,
                 sortOrder);
     }
 
-    public class TestFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
-        public TestFragmentStatePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public int getCount() {
-            return to - from;
-        }
-
-        @Override
-        public Fragment getItem(int current) {
-            return PagerTestFragment.newInstance(questionList.get(current), from, to, current + 1);
-        }
-        @Override
-        public CharSequence getPageTitle(int current) {
-            //return Integer.toString(current);
-            return ((questionList != null) ? questionList.get(current).toString() : "0");
-        }
-
-//        @SuppressWarnings("unchecked")
-//        public Fragment getFragment(int position) {
-//            try {
-//                Field f = FragmentStatePagerAdapter.class.getDeclaredField("mFragments");
-//                f.setAccessible(true);
-//                ArrayList<Fragment> fragments = (ArrayList<Fragment>) f.get(this);
-//                if (fragments.size() > position) {
-//                    return fragments.get(position);
-//                }
-//                return null;
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-
-    }
 }
-

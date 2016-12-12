@@ -64,7 +64,7 @@ public class MainFragment extends Fragment {
     // start test fragment from within this fragment
     // Container Activity must implement this interface to receive events from fragment
     public interface OnTestListener {
-        void showTestFragment(int from, int to, String fileName, int max);
+        //void showTestFragment(int from, int to, String fileName, int max);
         void startTestActivity(int from, int to, String fileName, int max);
     }
 
@@ -79,12 +79,12 @@ public class MainFragment extends Fragment {
         }
     }
 
-    //this calls the event on the activity
-    public void showTestFragment() {
-        // Append the clicked item's row ID with the content provider Uri
-        // Send the event and Uri to the host activity
-        mListener.showTestFragment(from, to, fileName, max);
-    }
+//    //this calls the event on the activity
+//    public void showTestFragment() {
+//        // Append the clicked item's row ID with the content provider Uri
+//        // Send the event and Uri to the host activity
+//        mListener.showTestFragment(from, to, fileName, max);
+//    }
 
     public void startTestActivity() {
         mListener.startTestActivity(from, to, fileName, max);
@@ -192,7 +192,7 @@ public class MainFragment extends Fragment {
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
                         //startTestFragment();
-                        showTestFragment();
+                        startTestActivity();
                         break;
                     case R.id.button_test_activity:
                         // which is supposed to be called automatically

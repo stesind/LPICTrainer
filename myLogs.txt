@@ -1,0 +1,21 @@
+Incremental java compilation is an incubating feature.
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild UP-TO-DATE
+:app:checkDebugManifest
+:app:preReleaseBuild UP-TO-DATE
+:app:prepareComAndroidSupportAnimatedVectorDrawable2321Library UP-TO-DATE
+:app:prepareComAndroidSupportAppcompatV72321Library UP-TO-DATE
+:app:prepareComAndroidSupportSupportV42321Library UP-TO-DATE
+:app:prepareComAndroidSupportSupportVectorDrawable2321Library UP-TO-DATE
+:app:prepareComSquareupLeakcanaryLeakcanaryAndroid131Library UP-TO-DATE
+:app:prepareDebugDependencies
+:app:compileDebugAidl UP-TO-DATE
+:app:compileDebugRenderscript UP-TO-DATE
+:app:generateDebugBuildConfig UP-TO-DATE
+:app:mergeDebugShaders UP-TO-DATE
+:app:compileDebugShaders UP-TO-DATE
+:app:generateDebugAssets UP-TO-DATE
+:app:mergeDebugAssets UP-TO-DATE
+:app:generateDebugResValues UP-TO-DATE
+:app:generateDebugResources UP-TO-DATE
+:app:mergeDebugResources
