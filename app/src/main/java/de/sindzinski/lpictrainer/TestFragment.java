@@ -42,7 +42,7 @@ public class TestFragment extends Fragment {
     private final static String EXTRA_FROM = "de.sindzinski.lpictrainer.FROM";
     private final static String EXTRA_TO = "de.sindzinski.lpictrainer.TO";
     private final static String EXTRA_CURRENT = "de.sindzinski.lpictrainer.CURRENT";
-    private final String TAG = "TestActivity";
+    private final String TAG = "TestFragment";
     public int mCurrent;
     public int mNumItems;
     public TestFragmentStatePagerAdapter mAdapter;
