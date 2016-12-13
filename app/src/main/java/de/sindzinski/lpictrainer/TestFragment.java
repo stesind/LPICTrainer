@@ -45,7 +45,7 @@ public class TestFragment extends Fragment {
     private final String TAG = "TestActivity";
     public int mCurrent;
     public int mNumItems;
-    TestFragmentStatePagerAdapter mAdapter;
+    public TestFragmentStatePagerAdapter mAdapter;
     ViewPager mPager;
     List<Integer> questionList;
     ListIterator<Integer> questionIterator;
@@ -85,6 +85,7 @@ public class TestFragment extends Fragment {
 
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.pager);
         viewPager.setAdapter(mAdapter);
+
         //mPager.setCurrentItem(1);
 
 //        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -93,8 +94,9 @@ public class TestFragment extends Fragment {
         FloatingActionButton button = (FloatingActionButton) rootView.findViewById(R.id.button_check);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
-//                PagerTestFragment fragment = (PagerTestFragment) mAdapter.getFragment(mPager.getCurrentItem());
+
+                //PagerTestFragment fragment = (PagerTestFragment) mAdapter.instantiateItem(null, mPager.getCurrentItem());
+                PagerTestFragment fragment = (PagerTestFragment) mAdapter.getCurrentFragment();
                 fragment.markAnswer();
                 fragment.saveAnswer();
 
@@ -227,6 +229,7 @@ public class TestFragment extends Fragment {
         public TestFragmentStatePagerAdapter(FragmentManager fm) {
             super(fm);
         }
+        private Fragment mCurrentFragment;
 
         @Override
         public int getCount() {
@@ -243,7 +246,18 @@ public class TestFragment extends Fragment {
             return ((questionList != null) ? questionList.get(current).toString() : "0");
         }
 
-//        @SuppressWarnings("unchecked")
+
+        public Fragment getCurrentFragment() {
+            return mCurrentFragment;
+        }
+        @Override
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
+            if (getCurrentFragment() != object) {
+                mCurrentFragment = ((Fragment) object);
+            }
+            super.setPrimaryItem(container, position, object);
+        }
+//        //@SuppressWarnings("unchecked")
 //        public Fragment getFragment(int position) {
 //            try {
 //                Field f = FragmentStatePagerAdapter.class.getDeclaredField("mFragments");
