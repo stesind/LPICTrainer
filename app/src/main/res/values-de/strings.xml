@@ -7,7 +7,7 @@
     <string name="help">Hilfe</string>
     <string name="copyright">Copyright by Steffen Sindzinski 2013, Licensed under GPL v.3</string>
     <string name="menu_legalnotices">Lizenzen</string>
-    <string name="title_activity_test">Test</string>
+    <string name="title_activity_test">LPIC Trainer / Testing</string>
     <string name="title_activity_main">LPIC Trainer</string>
     <string name="button_open_file">Datei auswählen</string>
     <string name="message_no_filemanager_installed">Kein Dateimanager installiert!</string>
