@@ -136,7 +136,6 @@ public class MainFragment extends Fragment {
 
         button_file = (ImageButton) view.findViewById(R.id.button_file);
         button_test = (Button) view.findViewById(R.id.button_test);
-        Button button_test_activity = (Button) view.findViewById(R.id.button_test_activity);
         button_LPIC1 = (Button) view.findViewById(R.id.button_LPIC1);
         button_LPIC2 = (Button) view.findViewById(R.id.button_LPIC2);
         button_LPIC3 = (Button) view.findViewById(R.id.button_LPIC3);
@@ -194,11 +193,6 @@ public class MainFragment extends Fragment {
                         //startTestFragment();
                         startTestActivity();
                         break;
-                    case R.id.button_test_activity:
-                        // which is supposed to be called automatically
-                        // in your activity, which has now changed to a fragment.
-                        startTestActivity();
-                        break;
                     case R.id.button_LPIC1:
                         // which is supposed to be called automatically
                         // in your activity, which has now changed to a fragment.
@@ -235,7 +229,6 @@ public class MainFragment extends Fragment {
         };
 
         button_test.setOnClickListener(clickListener);
-        button_test_activity.setOnClickListener(clickListener);
         button_LPIC1.setOnClickListener(clickListener);
         button_LPIC2.setOnClickListener(clickListener);
         button_LPIC3.setOnClickListener(clickListener);

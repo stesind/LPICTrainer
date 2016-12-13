@@ -148,15 +148,4 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Activity"
-        android:id="@+id/button_test_activity"
-        android:clickable="true"
-        android:layout_alignTop="@+id/button_test"
-        android:layout_toStartOf="@+id/button_test"
-        android:layout_alignBottom="@+id/button_test" />
-
 </RelativeLayout>

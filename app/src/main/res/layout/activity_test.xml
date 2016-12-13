@@ -3,5 +3,5 @@
     android:id="@+id/test_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.sindzinski.lpictrainer.old.TestActivity"
+    tools:context="de.sindzinski.lpictrainer.TestActivity"
     tools:ignore="MergeRootFrame" />
