@@ -26,7 +26,22 @@ dependencies {
     // more stuff, e.g., Mockito
 }
 
-
+// Project independend signing config
+android {
+    signingConfigs {
+        config {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.config
+        }
+    }
+}
 android {
     lintOptions {
             checkReleaseBuilds false
@@ -34,14 +49,6 @@ android {
             // but continue the build even when errors are found:
             abortOnError false
         }
-    signingConfigs {
-        config {
-            storeFile file('/home/steffen/keystores/android.jks')
-            keyAlias 'AndroidKey'
-            keyPassword '***REMOVED***'
-            storePassword '***REMOVED***'
-        }
-    }
     defaultConfig {
         applicationId "de.sindzinski.lpictrainer"
         setProperty("archivesBaseName", "de.sindzinski.LPICTrainer")
@@ -49,7 +56,6 @@ android {
         targetSdkVersion 25
         versionCode 2
         versionName "2.0"
-        signingConfig signingConfigs.config
     }
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
